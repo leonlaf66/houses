@@ -1,0 +1,114 @@
+<?php
+use module\yellowpage\widgets\Gallery as GalleryWidget;
+use \module\blocks\widgets\GoogleMap as GoogleMapWidget;
+use \module\comment\widgets\Review as ReviewWidget;
+
+$_urlManager = \WS::$app->urlManager;
+$t = function($message, $params=[]){
+    echo t('yellowpage', $message, $params);
+};
+
+/* @var $this yii\web\View */
+$this->title = t('yellowpage', 'Pro Services {name}', ['name'=>$model->name]);
+?>
+
+<?php
+    $this->params['breadcrumbs'] = [
+        ['label'=>t('yellowpage', 'Pro Services'), 'url'=>'/yellowpage/'],
+        $model->name
+    ]
+?>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-9">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="yellowpage-image-media media-gallery">
+                        <?php echo GalleryWidget::widget(['yellowpage'=>$model])?>
+                    </div>
+                </div>
+                <div class="col-md-8">
+                    <div class="page-title">
+                       <h3><?php echo $model->name?></h3>
+                    </div>
+                    <div class="yellowpage-short-info">
+                        <div class="row col-2">
+                            <div class="col-md-6">
+                                <div class="item">
+                                    <label><?php $t('Contact:')?></label><?php echo $model->contact?>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="rating-star" style="float:right">
+                                    <em class="rating rating-<?php echo $model->rating?>"></em>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="short-info">
+                            <div class="item">
+                                <label><?php $t('Address:')?></label><?php echo $model->address?>
+                            </div>
+                            <div class="item">
+                                <label><?php echo $t('Phone:')?></label><?php echo $model->phone?>
+                            </div>
+                            <div class="item">
+                                <label><?php echo $t('Website:')?></label><a href="<?php echo $model->website?>" target="_blank">
+                                    <?php echo $model->website?>
+                                </a>
+                            </div>
+                            <div class="item">
+                                <label><?php $t('Email:')?></label>
+                                <a href="mailto:<?php echo $model->email?>"><?php echo $model->email?></a>
+                            </div>
+                            <div class="item">
+                                <label><?php $t('License:')?></label><?php echo $model->license?>
+                            </div>
+                        </div>
+                    </div>
+                </div><!--col-md-8-->
+            </div>
+            <div class="yellowpage-detail-info">
+                <div class="table-info">
+                    <div class="bar">
+                        <div class="title">
+                            <?php $t('Business')?>
+                        </div>
+                        <div class="value">
+                            <?php echo $model->business?>
+                        </div>
+                    </div>
+                </div>
+                <div class="description">
+                    <?php echo $model->intro?>
+                </div>
+            </div>
+
+            <div class="yellowpage-reviews">
+                <?php
+                    echo ReviewWidget::widget([
+                        'path'=>"yellowpage/{$model->id}",
+                        'onSubmitExecUrl'=>$_urlManager->createUrl([
+                                'yellowpage/default/oncomment',
+                                'id'=>$model->id, 
+                                'rating'=>'var.rating',
+                                'total'=>'var.total'
+                        ])
+                    ]); 
+                ?>
+            </div>
+        </div>
+        <!--
+        <div class="col-md-3">
+            <?php //$ad = \module\cms\widgets\Ad::begin(['containerClassName'=>'yellowpage-view-right-ad']);?>
+                <div class="heading">Advertising here</div>
+                <p>
+                    Lorem ipsum dolor sit amet, <br/>
+                    consectetur adipisicing elit, sed do <br/>
+                    eiusmod tempor incididunt ut labore et <br/>
+                    dolore magna aliqua.
+                </p>
+            <?php //$ad->end()?>
+        </div>-->
+    </div>
+</div>

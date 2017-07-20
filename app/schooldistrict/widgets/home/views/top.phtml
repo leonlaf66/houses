@@ -1,0 +1,22 @@
+<div class="home-top-scholl-areas">
+    <h2>TOP PUBLIC SCHOOL DISTRICTS</h2>
+    <div class="desc">Top 20 Public Districts in Massachusetts. <a>For More Details</a></div>
+    <?php foreach($groups as $items):?>
+        <div class="lay-g row">
+            <?php foreach($items as $item):?>
+                <div class="col lay-u-<?php echo $item['colRule']?>">
+                    <a href="<?php echo $item['url']?>" target="_blank">
+                        <div class="school-area">
+                            <div class="bg"></div>
+                            <img src="<?php echo $imageRoot?><?php echo $item['image']?>">
+                            <div class="desc">
+                                <h3 class="name-cn"><?php echo $item['name_cn']?></h3>
+                                <h3 class="name"><?php echo $item['name']?></h3>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            <?php endforeach?>
+        </div>
+    <?php endforeach?>
+</div>

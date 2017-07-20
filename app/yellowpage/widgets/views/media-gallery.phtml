@@ -1,0 +1,24 @@
+<?php 
+$_yellowpage = $this->context->yellowpage;
+$_imageHelper = $this->context->getImageHelper();
+?>
+<div id="yellow-media-gallery">
+    <div class="picFocus">
+        <div class="bd">
+            <ul>
+                <li>
+                    <img src="<?php echo $_yellowpage->getPhotoImageInstance()->resize(235, 245)?>" style="height:230px"/>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript" src="/static/js/jquery.SuperSlide.2.1.1.js"></script>
+<script type="text/javascript">
+    jQuery("#yellow-media-gallery .picFocus").slide({
+        mainCell: ".bd ul",
+        effect: "left",
+        autoPlay: true
+    });
+</script>

@@ -1,0 +1,66 @@
+<?php
+namespace module\estate\widgets\search\filter;
+
+use WS;
+use yii\helpers\Url;
+use module\estate\helpers\Rets as RetsHelper;
+use module\cms\helpers\UrlParamEncoder;
+
+class Dropdown extends \yii\base\Widget 
+{  
+    public $search = null;
+
+    public function run()
+    {  
+        $search = $this->search;
+
+        $filters = $this->getRules('dropdownFilters');
+        foreach($filters as $filterId=>$filterOptions) {
+            if (isset($_GET[$filterId]) && isset($filterOptions['apply'])) {
+                ($filterOptions['apply'])($_GET[$filterId], $search);
+            }
+        }
+
+        return $this->render('dropdown.phtml', [
+            'self'=>$this,
+            'rules'=>$filters
+        ]);
+    }
+
+    public function selectAttr($ruleId, $value)
+    {
+        return WS::$app->request->get($ruleId) === (string)$value ? 'selected="selected"' : '';
+    }
+
+    public function getSelectName($ruleId)
+    {
+        $paramValue = \WS::$app->request->get($ruleId);
+        if (!$paramValue) return '不限';
+        $rules = $this->getRules('dropdownFilters');
+        return $rules[$ruleId]['options'][$paramValue][1];
+    }
+
+    public function getRules($scope)
+    {
+        $property = WS::$app->share('rets.property');
+        $rules = RetsHelper::getSearchRules($property);
+        return isset($rules[$scope]) ? $rules[$scope] :[];
+    }
+
+    public function createUrl($name, $value)
+    {
+        $property = WS::$app->share('rets.property');
+        $tab = WS::$app->share('rets.tab');
+        if ($tab === 'search') {
+            $tab = '';
+        } else {
+            $tab = '/'.$tab;
+        }
+
+        $newUrlParamValue = UrlParamEncoder::$inst->setParam($name, $value);
+        if ($newUrlParamValue === '') {
+            return \yii\helpers\Url::to('/house/'.$property.$tab.'/');
+        }
+        return \yii\helpers\Url::to('/house/'.$property.$tab.'/'.$newUrlParamValue.'/');
+    }
+}

@@ -1,0 +1,129 @@
+<?php
+    use \common\core\Configure;
+
+    $_rets = $this->context->rets;
+    $t = lang('rets/calculator');
+?>
+
+<script type="text/javascript" src="/static/js/calculate.js"></script>
+<div class="rets-calculator side-block" style="display:none;">
+    <form id="calculator" action="" method="post" onsubmit="mlcalcCalculate(this);return false;" class="form-inline">
+        <fieldset>
+            <div class="form-group input-group-sm">
+                <label for="ma"><?php $t('Purchase Price')?>:</label>
+                <div class="input-group input-group-sm">
+                    <input type="text" id="ma" name="ma" class="form-control" value="<?php echo $_rets->list_price?>" size="6" disabled>
+                    <span class="input-group-addon">$</span>
+                </div>
+            </div>
+
+            <div class="form-group input-group-sm">
+                <label for="dp"><?php $t('Down Payment')?>:</label>
+                <div class="input-group input-group-sm">
+                    <input type="text" id="dp" name="dp" class="form-control" value="20" size="1">
+                    <span class="input-group-addon">%</span>
+                </div>
+            </div>
+
+            <div class="form-group input-group-sm">
+                <label for="mt"><?php $t('Mortgage Term:')?></label>
+                <div class="input-group input-group-sm">
+                    <input type="text" id="mt" name="mt" class="form-control" value="30" size="1">
+                    <span class="input-group-addon"><?php $t('years')?></span>
+                </div>
+            </div>
+
+            <div class="form-group input-group-sm">
+                <label for="ir"><?php $t('Interest Rate')?>:</label>
+                <div class="input-group input-group-sm">
+                    <input type="text" id="ir" name="ir" class="form-control" value="<?php echo Configure::get('purchase.mortgage-calculator.interest-rate.default', 4.5)?>" size="1">
+                    <span class="input-group-addon">%</span>
+                </div>
+            </div>
+
+            <div class="form-group input-group-sm">
+                <label for="pt"><?php $t('Property Tax')?>:</label>
+                <div class="input-group input-group-sm">
+                    <input type="text" id="pt" name="pt" class="form-control" value="<?php echo $_rets->taxes?>" size="4" disabled>
+                    <span class="input-group-addon">$</span>
+                </div>
+            </div>
+
+            <button  type="submit" class="btn btn-sm" style="width:100%;background:#f15044;border-color:#f15044"><?php $t('Calculate')?></button>
+        </fieldset>
+    </form>
+</div>
+
+<div class="el-dialog__wrapper">
+    <div class="el-dialog">
+        <div class="el-dialog__title">
+            <div class="el-dialog__headerbtn">
+                <a href="javascript:void(0)"><i class="iconfont icon-close"></i></a>
+            </div>
+        </div>
+        <div class="el-dialog__body">
+            <div id="calculator-form-window" style="padding:15px;width:800px">
+                <ul class="list-group">
+                  <li class="list-group-item">
+                    <span class="badge">14</span>
+                    <?php $t('Purchase Price')?>
+                  </li>
+                  <li class="list-group-item">
+                    <span class="badge">14</span>
+                    <?php $t('Down Payment')?>
+                  </li>
+                  <li class="list-group-item">
+                    <span class="badge">14</span>
+                    <?php $t('Property Tax')?>
+                  </li>
+                  <li class="list-group-item">
+                    <span class="badge">14</span>
+                    <?php $t('Loan Amount')?>
+                  </li>
+                  <li class="list-group-item">
+                    <span class="badge">14</span>
+                    <?php $t('Monthly Payment')?>
+                  </li>
+                  <li class="list-group-item">
+                    <span class="badge">14</span>
+                    <?php $t('Annual Payment')?>
+                  </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    var $calculatorResult = $('#calculator-form-window');
+    function mlcalcCalculate(form)
+    {
+        try {
+            var calcu = new calculate(form.ma.value, form.dp.value, form.mt.value, form.ir.value, form.pt.value);
+            var result = calcu.result();
+            
+            var idx = 0;
+            for(name in result) {
+                var value = result[name];
+                $calculatorResult.find('.list-group-item').eq(idx).find('.badge').text('$ '+value);
+                idx ++;
+            }
+
+            $calculatorResult.modal({});
+        }
+        catch(e) {
+            if(typeof(window.console) !== 'undefined') {
+                console.log(e);
+            }
+        }
+
+        return false;
+    }
+    mlcalcCalculate(document.getElementById('calculator'));
+</script>
+<style type="text/css">
+    #calculator-form-window .list-group-item>.badge {
+        background: transparent;
+        color: #333;
+    }
+</style>

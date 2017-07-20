@@ -1,0 +1,97 @@
+<?php
+use yii\bootstrap\Nav;
+use yii\bootstrap\NavBar;
+
+$urlManager = \WS::$app->urlManager;
+?>
+<nav id="main-nav">
+    <?php $_actionNavId = isset($this->params['activeNavId']) ? $this->params['activeNavId'] : null;?>
+    <div class="menubar">
+        <div class="container">
+            <div class="logo">
+                <a href="/" title="北美房产一网打尽" alt="北美房产一网打尽"><img src="/static/img/logo.png" alt="Wesnail"></a>
+            </div>
+            <?php 
+                $_menuItems = [
+                    ['label' => t('app/nav', 'BUY & SELL'), 'url' => '/house/purchase/', 'active'=>$_actionNavId === 'purchase'],
+                    ['label' => t('app/nav', 'SCHOLL DISTRICTSS'), 'url' => ['/schooldistrict/default/index'], 'active'=>$_actionNavId === 'schooldistrict'],
+                    ['label' => t('app/nav', 'RENTAL'), 'url' => '/house/lease/', 'active'=>$_actionNavId === 'lease'],
+                    ['label' => t('app/nav', 'SERVICE'), 'url' => ['/yellowpage/default/index'], 'active'=>$_actionNavId === 'yellowpage'],
+                    ['label' => t('app/nav', 'NEWS'), 'url' => ['/news/default/index'], 'active'=>$_actionNavId === 'news']
+                ];
+            ?>
+            <ul class="menu-items">
+                <?php foreach($_menuItems as $_item):?>
+                    <li class="menu-item <?php echo $_item['active'] ? 'active' : ''?> <?php echo isset($_item['class']) ? $_item['class'] : ''?>">
+                        <a class="menu-link" href="<?php echo $urlManager->createUrl($_item['url'])?>"><?php echo $_item['label']?></a>
+                    </li>
+                <?php endforeach?>
+            </ul>
+            <div class="quick-links">
+                <?php if (WS::$app->user->isGuest):?>
+                    <a class="quick-link" href="#"><span class="iconfont icon-login">LOGIN</a>
+                <?php else:?>
+                    <div class="my-account">
+                        <a href="#" class="quick-link">
+                            <span class="iconfont icon-login">
+                                <?php echo WS::$app->user->getIdentity()->username?>
+                            </span>
+                        </a>
+                        <ul style="position: absolute;">
+                            <li><a href="#">Member Center</a></li>
+                            <li><a href="#">Logout</a></li>
+                        </ul>
+
+                    </div>
+                <?php endif?>
+                <!--
+                <a class="quick-link" href="#"><span class="iconfont icon-message"></span>MESSAGES</a>
+                <a class="quick-link" href="#"><span class="iconfont icon-help"></span>HELP</a>
+                -->
+                <a class="quick-link" href="#"><span class="iconfont icon-chinese"></span>中文</a>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<div style="float:none;clear:both;"></div>
+
+<style type="text/css">
+    #main-nav .icon-xuequ{
+        position: relative;
+        top: -18px;
+        margin-right: -15px;
+    }
+    #main-nav .my-account{
+        display:inline-block;
+    }
+    #main-nav .my-account > a {
+        text-decoration:underline;
+    }
+    #main-nav .my-account > ul{
+        display:none;
+        position: absolute;
+        background: #fff;
+        z-index: 9000;
+        color: #333;
+        min-width: 100px;
+        border: solid 1px #96a922;
+        margin-top: -30px;
+        text-align: left;
+        line-height: 14px;
+    }
+    #main-nav .my-account > ul > li {
+        display:block;
+        padding:7px 10px;
+    }
+    #main-nav .my-account > ul > li:hover {
+        background:#e5e5e5;
+    }
+    #main-nav .my-account > ul > li:hover > a {
+        color:#222;
+        text-decoration:none;
+    }
+    #main-nav .my-account:hover > ul {
+        display:block;
+    }
+</style>

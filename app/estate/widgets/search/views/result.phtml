@@ -1,0 +1,80 @@
+<?php
+    use module\estate\helpers\RetsHtml;
+    use module\estate\helpers\Rets as RetsHelper;
+    use module\cms\widgets\SeoLinkPager as LinkPager;
+
+    $list = RetsHelper::result($search);
+?>
+<div class="rets-results">
+	<?php if(empty($list)):?>
+		<div style="padding:10px;margin-top:-10px;background:#f6f6f6;font-size:18px;color:#999;">
+			抱歉, 未找到任何房源...<br/>或者请尝试通过改变搜索关键字或过滤
+		</div>
+	<?php endif?>
+	<div class="grid">
+		<?php foreach($list as $rets):?>
+			<?php
+				$url = RetsHelper::getUrl($rets);
+			?>
+		<div class="item">
+			<div class="col col-main-image">
+				<a href="<?php echo $url?>">
+					<div class="image-shower large" style="background-image:url(<?php echo $rets->getPhoto(0, 800, 800)?>)"></div>
+				</a>
+			</div>
+			<div class="col col-sub-images">
+				<div class="pl15 pr15">
+					<div class="image-shower smoll" style="background-image:url(<?php echo $rets->getPhoto(1, 600, 600)?>"></div>
+					<div class="image-shower smoll" style="background-image:url(<?php echo $rets->getPhoto(2, 600, 600)?>"></div>
+				</div>
+			</div>
+			<div class="col col-info">
+				<div class="pl15 pr15">
+					<h2 class="location"><a href="<?php echo $url?>"><?php echo $rets->location?></a></h2>
+					<div class="fields1">
+						<span>卧室 <?php echo RetsHtml::getValueHtml($rets, 'no_bedrooms')?></span> | 
+						<span>全卫 <?php echo RetsHtml::getValueHtml($rets, 'no_full_baths')?></span> 
+						<span>半卫 <?php echo RetsHtml::getValueHtml($rets, 'no_half_baths')?></span> | 
+						<span>居住面积 <?php echo RetsHtml::getValueHtml($rets, 'square_feet', ['suffix'=>'m<sup>2</sup>'])?></span>
+					</div>
+					<div class="price">
+						 <label>售价</label>
+						 <span class="default"><?php echo RetsHtml::getValueHtml($rets, 'list_price')?></span>
+						 <span class="rmb">约人民币<?php echo number_format(intval($rets->list_price) * 6.9506 / 10000, 1)?>万</span>
+					</div>
+
+					<div class="tag-lines">
+						<div class="fields2">
+							<span style="color:#5F7FFF;border:solid 1px #5F7FFF"><?php echo $rets->propTypeName()?></span>
+							<span class="status"><?php echo $rets->statusName()?></span>
+							<span class="days"><?php echo $rets->getListDaysDescription()?></span>
+						</div>
+						<?php 
+							$_tags = $rets->getTags();
+						?>
+						<?php if (count($_tags) > 0):?>
+							<div class="fields3">
+								<?php foreach($_tags as $tag):?>
+									<span><?php echo $tag?></span>
+								<?php endforeach?>
+							</div>
+						<?php endif?>
+					</div>
+				</div>
+			</div>
+			
+		</div>
+		<?php endforeach?>
+	</div>
+	<div class="pager">
+		<?php
+			$context = $this->context;
+			echo LinkPager::widget([
+			    'pagination' => $search->pagination,
+			    'createUrlFn'=>function($page) use($context) {
+			    	return $context->createPageUrl($page);
+			    }
+			]);
+		?>
+	</div>
+</div>

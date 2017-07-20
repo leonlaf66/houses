@@ -1,0 +1,42 @@
+<?php
+    use module\estate\helpers\Rets as RetsHelper;
+    use module\estate\helpers\RetsHtml;
+?>
+<style type="text/css">
+.rets-recommend-view .image-shower {
+    background-size: cover;
+    background-position: center center;
+    width:223px;
+    height:174px;
+}
+</style>
+<div class="rets-view-block rets-recommend-view">
+    <div class="block-heading">相似房源推荐</div>
+    <div class="lay-g row">
+        <?php foreach($nearbyHouses as $_rets):?>
+            <?php
+                $_entity = $_rets->entity();
+                $_render = $_entity->render();
+            ?>
+            <div class="col lay-u-1-4">
+                <div class="rets-item" style="margin-bottom:20px">
+                    <div class="image-box" style="min-height:174px">
+                        <a style="display:block;" href="<?php echo RetsHelper::getUrl($_entity)?>" target="_blank">
+                            <div class="image-shower" style="background-image:url(<?php echo $_entity->getPhoto(0, 500, 500)?>)"></div>
+                        </a>
+                        <span class="price"><?php echo RetsHtml::getValueHtml($_entity, 'list_price')?></span>
+                    </div>
+                    <div class="info">
+                        <h2 class="location">
+                            <span class="address"><?php echo $_render->get('location')['value']?></span>
+                        </h2>
+                        <div class="rooms">
+                            <span><?php echo $_render->get('rooms_descriptions')['value']?></span>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                </div>
+            </div>
+        <?php endforeach?>
+    </div>
+</div>

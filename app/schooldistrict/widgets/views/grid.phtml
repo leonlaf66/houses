@@ -1,0 +1,173 @@
+<?php 
+    $this->registerJsFile('http://d3js.org/d3.v3.min.js', ['position'=>$this::POS_HEAD]);
+?>
+
+<div id="school-area-list">
+
+    <?php foreach($items as $item):?>
+    <div class="school-item">
+        <div class="row-header">
+            <div class="col col1">
+                <span class="sa-no">
+                    NO.<span><?php echo $item->sort_order?></span> <label>/排名</label>
+                </span>
+                <span class="sa-name-cn">
+                    <?php echo $item->getItemData('name')[1]?>
+                </span>
+                <span class="sa-name">
+                    <?php echo $item->getItemData('name')[0]?>
+                </span>
+                <span class="sa-rating">
+                    <span class="rating"><span style="width:<?php echo $item->rating * 0.1 * 100?>%"></span></span>
+                </span>
+            </div>
+            <div class="btn-links col col2 text-right">
+                <a class="btn btn-primary" href="/school-district/<?php echo $item->id?>/">学区详情 <span class="iconfont icon-arraw-r"></span></a>
+                <div class="rets-links">
+                    <a target="_blank" href="/house/purchase/school-districtss/sd-<?php echo str_replace('/', '%7C', strtolower($item->code))?>/">
+                        共<?php echo $item->getSummary('total')?>套在售 <span class="iconfont icon-arraw-r"></span></a>
+                    <ul class="sub-links">
+                        <li class="sub-link-item"><a href="#">独栋别墅320套 <span class="iconfont icon-arraw-r"></a></li>
+                        <li class="sub-link-item"><a href="#">公寓156套 <span class="iconfont icon-arraw-r"></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div><!--end header-->
+        <div class="row-body">
+            <div class="col col1">
+                <a href="/school-district/<?php echo $item->id?>/">
+                    <img src="<?php echo media_url('school-area/images')?>/<?php echo str_replace('/', '&', strtoupper($item->code))?>.jpg">
+                </a>
+            </div>
+            <div class="col col2">
+                <div class="avg-scores">
+                    <div class="total"><label>平均分</label><span><?php echo $item->sat->local[0]?></span></div>
+                    <ul class="items">
+                        <li class="item"><label>阅读</label><span><?php echo $item->sat->local[1][0]?></span></li>
+                        <li class="item"><label>写作</label><span><?php echo $item->sat->local[1][1]?></span></li>
+                        <li class="item"><label>数学</label><span><?php echo $item->sat->local[1][2]?></span></li>
+                    </ul>
+                </div>
+                <div class="k12">
+                    <h5>K12</h5>
+                    <svg class="school-pie-chart" data-data="<?php echo implode(',', $this->context->k12($item->schools))?>" width="250" height="125"></svg>
+                </div>
+            </div>
+            <div class="col col3 text-right">
+                <table class="grid-info text-center">
+                    <tr>
+                        <td width="50%"><span><?php echo $item->special->special1?></span>入学人数</td>
+                        <td width="50%"><span>$<?php echo number_format($item->special->special3)?></span>人均政府补贴</td>
+                    </tr>
+                    <tr>
+                        <td><span>$<?php echo $item->getSummary('average-price')?></span>平均房价</td>
+                        <td><span>$<?php echo number_format($item->special->special2)?></span>平均收入(年)</td>
+                    </tr>
+                </table>
+                <div class="racists text-left">
+                    <div class="header">种族分布</div>
+                    <ul>
+                        <?php foreach ($this->context->racials($item->racials) as $item):?>
+                            <li style="width:<?php echo $item->value?>">
+                                <div title="<?php echo $item->name.' '.$item->value?>" class="tooltip-lk bar bar-" style="background:<?php echo $item->bgColor?>;height:<?php echo $item->height?>;"></div>
+                                <!--<label><?php echo $item->name?></label>-->
+                            </li>
+                        <?php endforeach?>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+<?php endforeach?>
+</div>
+<script type="text/javascript">
+window.createSchoolPie = function (ele, dataset) {
+    var pie = d3.layout.pie();
+    var arc = d3.svg.arc()  
+        .innerRadius(40)  
+        .outerRadius(60);
+    var svg = d3.select(ele);
+    var names = ['高中', '初中', '小学'];
+
+    var tooltip = d3.select('body')  
+        .append('div')  
+        .attr('class', 'tooltip')  
+        .style('opacity', 0.0);
+
+    var arcs = svg.selectAll('g')  
+        .data(pie(dataset))  
+        .enter()  
+        .append('g')
+        .attr('transform', 'translate(140,65)')
+        .attr('stroke', '#fff')
+        .attr('stroke-width', 1.2)
+        .on('mouseover', function (d, i) {
+            d3.select(this).attr('stroke', colors[i]);
+            tooltip.html(names[i] + dataset[i] + '所')
+                .style('left', (d3.event.pageX) + 'px')  
+                .style('top', (d3.event.pageY + 20) + 'px')  
+                .style('opacity', 1.0);  
+        })
+        .on('mousemove', function (d, i) {
+            tooltip.style("left", (d3.event.pageX) + "px")  
+                .style("top", (d3.event.pageY + 20) + "px");
+        })
+        .on('mouseout', function () {
+            d3.select(this).attr('stroke', '#fff');
+            tooltip.style('opacity', 0.0);
+        });
+
+    var colors = ['#f66c6c', '#a3c9fb', '#99bd2a']; 
+
+    arcs.append('path')  
+        .attr('fill',function(d,i){  
+            return colors[i];  
+        })
+        .attr('d',function(d){  
+            return arc(d);
+        });
+
+    var legendGroup = svg.append('g')
+        .attr('class', 'legend')
+        .attr('transform', 'translate(0, 35)');
+
+    var legendIems = legendGroup.selectAll('g.item')
+        .data(dataset)
+        .enter()
+        .append('g')
+        .attr('class', function(d, i){
+            return 'item item-'+i;
+        })
+        .attr('transform', function (d, i) {
+            return 'translate(0,' + (i * 24) + ')'
+        });
+
+        legendIems.append('rect')
+            .style('width', '10px')
+            .style('height', '14px')
+            .style('rx', '3px')
+            .style('ry', '3px')
+            .style('fill', function(d, i){
+                return colors[i];
+            });
+
+        var texts = legendIems.append('text')
+            .attr('x', '15')
+            .attr('y', '12');
+
+        texts.append('tspan')
+            .text(function(d, i){
+                return names[i];
+            });
+};
+(function($){
+    $('#school-area-list .school-pie-chart').each(function(){
+        var data = $(this).data('data').split(',');
+        for(var i in data) {
+            data[i] = parseInt(data[i]);
+        }
+        createSchoolPie(this, data);
+    });
+})(jQuery);
+</script>

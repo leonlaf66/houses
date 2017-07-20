@@ -1,0 +1,49 @@
+<div class="general-filters">
+    <?php foreach($rules as $ruleId=>$rule):?>
+        <div class="filter filter-<?php echo $ruleId?>">
+            <label><?php echo $rule['heading']?></label>
+            <ul class="values">
+                <li class="<?php echo $self->activeClass($ruleId, null)?>"><a href="<?php echo $this->context->createUrl($ruleId, null)?>">不限</a></li>
+
+                <?php foreach($rule['options'] as $key=>$item):?>
+                    <?php list($value, $name) = $item;?>
+                    <li class="<?php echo $self->activeClass($ruleId, $value)?>">
+                        <a href="<?php echo $this->context->createUrl($ruleId, $value)?>"><?php echo $name?></a>
+                    </li>
+                <?php endforeach?>
+                <!--
+                <?php if ($ruleId === 'price'):?>
+                    <li class="custom range range-price" data-field="price">
+                        <input class="input sm" name="from" placeholder="元" size="10" class="form-control" value="<?php echo ($self->parseRangeValues($ruleId))[0]?>" />
+                        <span>-</span>
+                        <input class="input sm" name="to" placeholder="元" size="10" value="<?php echo ($self->parseRangeValues($ruleId))[1]?>">
+                        <button class="btn sm">OK</button>
+                    </li>
+                <?php elseif ($ruleId === 'square'):?>
+                    <li class="custom range range-square" data-field="square">
+                        <input class="input sm" name="from" placeholder="平方" size="10" value="<?php echo ($self->parseRangeValues($ruleId))[0]?>"/>
+                        <span>-</span>
+                        <input class="input sm" name="to" placeholder="平方" size="10" value="<?php echo ($self->parseRangeValues($ruleId))[1]?>"/>
+                        <button class="btn sm">OK</button>
+                    </li>
+                <?php endif?>
+                -->
+            </ul>
+        </div>
+    <?php endforeach?>
+</div>
+<script type="text/javascript">
+(function ($) {
+    $('.general-filters .range-price, .general-filters .range-square').find('button').click(function () {
+        var $item = $(this).parent('li.range');
+
+        var fromValue = parseInt($item.find('input[name=from]').val());
+        if (! fromValue) fromValue = 0;
+
+        var toValue = parseInt($item.find('input[name=to]').val());
+        if (! toValue) toValue = 0;
+
+        window.location.changeParam($item.data('field'), fromValue + '-' + toValue);
+    });
+})(jQuery);
+</script>

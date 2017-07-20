@@ -1,0 +1,49 @@
+<?php
+use module\estate\helpers\Rets as RetsHelper;
+use module\estate\helpers\RetsHtml;
+?>
+
+<div class="home-top-houses">
+    <h2>LUXURY HOUSES</h2>
+    <div class="desc">Featuring luxury quality houses in Massachusetts</div>
+    <?php foreach($groups as $items):?>
+        <div class="lay-g row">
+            <?php foreach($items as $item):?>
+                <?php 
+                    $_rets = \common\estate\Rets::findOne($item['list_no']);
+                    if (! $_rets) continue;
+                    $_render = $_rets->render();
+                ?>
+                <div class="col lay-u-<?php echo $item['colRule']?>">
+                    <div class="rets-item">
+                        <div class="image-box">
+                            <a style="display:block;" href="<?php echo RetsHelper::getUrl($_rets)?>" target="_blank">
+                                <img src="<?php echo $imageRoot?>/<?php echo $item['image']?>">
+                            </a>
+                            <span class="price"><?php echo RetsHtml::getValueHtml($_rets, 'list_price')?></span>
+                        </div>
+                        <div class="info">
+                            <h2 class="location">
+                                <span class="address"><?php echo $_render->get('location')['value']?></span>
+                            </h2>
+                            <div class="rooms">
+                                <span><?php echo $_render->get('rooms_descriptions')['value']?></span>
+                            </div>
+                            <div class="clear"></div>
+                        </div>
+                    </div>
+                </div>
+            <?php endforeach?>
+        </div>
+    <?php endforeach?>
+</div>
+
+<script>
+(function($){
+    var $header = $('#header');
+    var $window = $(window);
+    $(window).scroll(function(){
+        $header.css('background-position-y', '-' + ($window.scrollTop() * 0.2) + 'px');
+    });
+})(jQuery);
+</script>

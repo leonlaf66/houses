@@ -1,0 +1,45 @@
+<?php
+    $photoCount = intval($rets->getJsonData('photo_count'));
+?>
+
+<div id="estate-media-gallery" class="media-gallery galleria" style="height:318px;">
+    <?php if($photoCount > 0):?>
+        <?php for($i=0;$i < $photoCount;$i++):?>
+            <a href="<?php echo $rets->getPhoto($i, 400, 330)?>">
+                <img src="<?php echo $rets->getPhoto($i, 70, 53)?>" 
+                    data-big="<?php echo $rets->getPhoto($i, 1920, 1080)?>">
+            </a>
+        <?php endfor?>
+    <?php else:?>
+        <a href="<?php echo $rets->getPhoto(0, 400, 330)?>">
+            <img src="<?php echo $rets->getPhoto(0, 70, 53)?>" 
+                data-big="<?php echo $rets->getPhoto(0, 1920, 1080)?>">
+        </a>
+    <?php endif?>
+</div>
+<style>
+.media-gallery img{display:none;}
+</style>
+
+<?php 
+    $this->registerJsFile(
+        '/static/js/azur/galleria/galleria-1.4.2.min.js', 
+        [
+            'position'=>$this::POS_HEAD,
+            'depends'=>[\yii\web\JqueryAsset::className()]
+        ], 
+        'azur'
+    )
+?>
+<?php 
+    $this->registerJsFile(
+        '/static/js/azur/galleria/themes/azur/galleria.azur.min.js', 
+        [
+            'position'=>$this::POS_HEAD,
+            'depends'=>[\yii\web\JqueryAsset::className()]
+        ], 
+        'azur.theme'
+    )
+?>
+<?php $this->registerCssFile('/static/js/azur/galleria/themes/azur/galleria.azur.css', ['position'=>$this::POS_HEAD], 'azur.css')?>
+<?php $this->registerJs("Galleria.run('.galleria', {fullscreenCrop:false});", $this::POS_READY, 'azur.script')?>

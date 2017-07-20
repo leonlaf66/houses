@@ -1,0 +1,37 @@
+<?php $t = lang('news')?>
+
+<?php
+    $this->params['breadcrumbs'] = [
+        ['label'=>'News', 'url'=>'/news/'],
+        $news->title
+    ]
+?>
+
+<div class="container">
+    <div class="lay-g">
+        <div class="lay-u-7-8" style="width:73%">
+            <div class="news-view">
+                <div class="heading">
+                    <?php echo $news->title?>
+                    <div class="date">
+                        <span class="iconfont icon-time"></span>
+                        <span><?php echo date('Y-m-d', strtotime($news->created_at))?></span>
+                    </div>
+                </div>
+                <div class="content std">
+                    <?php echo $news->content?>
+                </div>
+            </div>
+        </div>
+        <div class="lay-u-1-8" style="width:27%;padding-left:35px;">
+            <?php echo \module\news\widgets\ListBlock::widget([
+                'heading' => '同类文章',
+                'type' => 'category',
+                'theNews' => $news
+            ]);?>
+            <?php echo \module\news\widgets\ListBlock::widget([
+                'heading' => '热门文章',
+                'type' => 'hot'
+            ]);?>
+        </div>
+</div>
