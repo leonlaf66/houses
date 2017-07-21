@@ -1,0 +1,53 @@
+<style>
+.area-container > h2{
+    font-size:18px;font-weight:700;
+}
+.area-blocks {
+    margin-top:15px;
+    margin-left:-15px;
+}
+.area-block-col .image-btn{
+    margin-left:15px;
+}
+.area-block-col {
+    position:relative;
+}
+.image-btn {
+    display:block;
+    position: relative;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+}
+.image-btn-a {
+    height:590px;
+}
+.image-btn-b, .image-btn-c {
+    height:287px;
+}
+.image-btn-c {
+    margin-top:15px;
+}
+.image-btn > span {
+    display:block;
+    position:absolute;
+    left:0;right:0;bottom:0;
+    padding:10px;
+    background:rgba(0, 0, 0, .3);
+    font-size:18px;
+    color:#fff;
+}
+</style>
+<div class="container area-container">
+    <h2>请选择区域</h2>
+    <div class="area-blocks lay-g">
+        <div class="area-block-col lay-u-1-2">
+            <a href="#" class="image-btn image-btn-a" style="background-image:url(<?php echo media_url('area/ma.jpg')?>)">
+                <span>麻省州</span>
+            </a>
+        </div>
+        <div class="area-block-col lay-u-1-2">
+            <a href="#" class="image-btn image-btn-b" style="background-image:url(<?php echo media_url('area/b.jpg')?>)"><span>纽约</span></a>
+            <a href="#" class="image-btn image-btn-c" style="background-image:url(<?php echo media_url('area/c.jpg')?>)"><span>华盛顿</span></a>
+        </div>
+    </div>
+</div>
