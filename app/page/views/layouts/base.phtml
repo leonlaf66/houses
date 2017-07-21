@@ -47,28 +47,18 @@ module\page\assets\Asset::register($this);
         </script>
     <?php endif?>
 </head>
-<body class="unresponsive 
-    module-<?php echo WS::$app->controller->module->id?>
-    <?php echo WS::$app->controller->id?>-<?php echo WS::$app->controller->action->id?>
-    <?php echo WS::$app->controller->module->id?>-<?php echo WS::$app->controller->id?>-<?php echo WS::$app->controller->action->id?>
-    <?php echo strtolower(WS::$app->language)?>">
+<?php
+    $_bodyClasses = ['unresponsive'];
+    $_bodyClasses[] = 'module-'.WS::$app->controller->module->id;
+    $_bodyClasses[] = WS::$app->controller->id.'-'.WS::$app->controller->action->id;
+    $_bodyClasses[] = WS::$app->controller->module->id.'-'.WS::$app->controller->id.'-'.WS::$app->controller->action->id;
+    $_bodyClasses[] = strtolower(WS::$app->language);
+?>
+<body class="<?php echo implode(' ', $_bodyClasses)?>">
 
 <?php $this->beginBody() ?>
     <?php echo $content;?>
 <?php $this->endBody() ?>
-<!-- Start of LiveChat (www.livechatinc.com) code -->
-<script type="text/javascript">
-/*
-window.__lc = window.__lc || {};
-window.__lc.license = 7739171;
-(function() {
-  var lc = document.createElement('script'); lc.type = 'text/javascript'; lc.async = true;
-  lc.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'cdn.livechatinc.com/tracking.js';
-  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(lc, s);
-})();
-*/
-</script>
-<!-- End of LiveChat code -->
 </body>
 </html>
 <?php $this->endPage() ?>

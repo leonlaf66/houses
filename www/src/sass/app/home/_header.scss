@@ -1,3 +1,44 @@
+#main-nav .menubar {
+    .container {
+        position:relative;
+    }
+    .logo {
+        margin-top:15px;
+    }
+    .area-switcher-btn {
+        display: inline-block;
+        position: absolute;
+        top: 35px;
+        left: 120px;
+        line-height: 24px;
+        padding: 4px 8px;
+        background: rgba(0, 0, 0, .3);
+        border-radius: 10px;
+        color:#fff;
+        font-size:14px;
+        .iconfont {
+            margin-right: 5px;
+            vertical-align: sub;
+            font-size:24px;
+        }
+    }
+    .quick-links {
+        margin-top:-10px;
+        .quick-link {
+            margin-right:0;
+            margin-left:20px;
+        }
+    }
+    .menu-items {
+        position:absolute;
+        top:35px;
+        right:0;
+        .menu-item {
+            margin-right:0;
+            margin-left:30px;
+        }
+    }
+}
 
 #header { 
     height:500px;
