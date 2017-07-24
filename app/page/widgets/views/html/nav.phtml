@@ -34,7 +34,7 @@ $urlManager = \WS::$app->urlManager;
             </ul>
             <div class="quick-links">
                 <?php if (WS::$app->user->isGuest):?>
-                    <a class="quick-link" href="#"><span class="iconfont icon-login">LOGIN</a>
+                    <a class="quick-link" href="<?php echo \WS::$app->loginUrl?>"><span class="iconfont icon-login">LOGIN</a>
                 <?php else:?>
                     <div class="my-account">
                         <a href="#" class="quick-link">
@@ -42,11 +42,10 @@ $urlManager = \WS::$app->urlManager;
                                 <?php echo WS::$app->user->getIdentity()->username?>
                             </span>
                         </a>
-                        <ul style="position: absolute;">
-                            <li><a href="#">Member Center</a></li>
-                            <li><a href="#">Logout</a></li>
+                        <ul class="my-account-menu" style="position: absolute;">
+                            <li><a href="<?php echo \WS::$app->memberUrl?>">Member Center</a></li>
+                            <li><a href="<?php echo \WS::$app->logoutUrl?>">Logout</a></li>
                         </ul>
-
                     </div>
                 <?php endif?>
                 <!--
@@ -73,11 +72,11 @@ $urlManager = \WS::$app->urlManager;
     #main-nav .my-account > a {
         text-decoration:underline;
     }
-    #main-nav .my-account > ul{
+    #main-nav .my-account-menu {
         display:none;
         position: absolute;
         background: #fff;
-        z-index: 9000;
+        z-index: 999999;
         color: #333;
         min-width: 100px;
         border: solid 1px #96a922;
@@ -85,18 +84,18 @@ $urlManager = \WS::$app->urlManager;
         text-align: left;
         line-height: 14px;
     }
-    #main-nav .my-account > ul > li {
+    #main-nav .my-account-menu > li {
         display:block;
         padding:7px 10px;
     }
-    #main-nav .my-account > ul > li:hover {
+    #main-nav .my-account-menu > li:hover {
         background:#e5e5e5;
     }
-    #main-nav .my-account > ul > li:hover > a {
+    #main-nav .my-account-menu > li:hover > a {
         color:#222;
         text-decoration:none;
     }
-    #main-nav .my-account:hover > ul {
+    #main-nav .my-account:hover .my-account-menu {
         display:block;
     }
 </style>

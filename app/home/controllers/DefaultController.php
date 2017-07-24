@@ -5,7 +5,7 @@ class DefaultController extends \yii\web\Controller
 {
     public function actionIndex()
     {
-        if (! \WS::$app->stateCode || isset($_GET['area'])) {
+        if (! \WS::$app->stateId) {
             $this->layout = '@module/page/views/layouts/simple.phtml';
             return $this->render('area.phtml');
         }

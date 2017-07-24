@@ -31,9 +31,12 @@
     }
     .menu-items {
         position:absolute;
-        top:35px;
+        top:72px;
         right:0;
+        line-height:16px;
         .menu-item {
+            height:16px;
+            line-height:16px;
             margin-right:0;
             margin-left:30px;
         }

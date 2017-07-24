@@ -27,7 +27,7 @@ class News extends \common\news\News
         $query = parent::find();
 
         $query->andWhere('(is_public=true or towns @> :towns)', [
-            ':towns' => '{'.\WS::$app->stateCode.'}'
+            ':towns' => '{'.\WS::$app->stateId.'}'
         ]);
 
         return $query;

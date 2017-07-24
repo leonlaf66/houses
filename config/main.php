@@ -40,6 +40,7 @@ return \yii\helpers\ArrayHelper::merge(get_fdn_etc(), [
         'user' => [
             'identityClass' => '\module\customer\models\UserIdentity',
             'enableAutoLogin' => true,
+            'loginUrl'=>''
         ],
         'authClientCollection' => [
            'class' => 'yii\authclient\Collection',
