@@ -33,8 +33,16 @@
     left:0;right:0;bottom:0;
     padding:10px;
     background:rgba(0, 0, 0, .3);
-    font-size:18px;
+    font-size:20px;
+    font-weight:bold;
     color:#fff;
+}
+.image-btn > span > i {
+    color: #fff;
+    margin-left: 10px;
+    font-size: 16px;
+    font-style: normal;
+    font-weight:200;
 }
 </style>
 <div class="container area-container">
@@ -42,12 +50,12 @@
     <div class="area-blocks lay-g">
         <div class="area-block-col lay-u-1-2">
             <a href="http://ma<?php echo domain()?>" class="image-btn image-btn-a" style="background-image:url(<?php echo media_url('area/ma.jpg')?>)">
-                <span>波士顿</span>
+                <span>波士顿<i>(马萨诸塞州)</i></span>
             </a>
         </div>
         <div class="area-block-col lay-u-1-2">
-            <a href="javascript:void(0)" class="image-btn image-btn-b" style="background-image:url(<?php echo media_url('area/b.jpg')?>)"><span>纽约</span></a>
-            <a href="javascript:void(0)" class="image-btn image-btn-c" style="background-image:url(<?php echo media_url('area/c.jpg')?>)"><span>华盛顿</span></a>
+            <a href="javascript:void(0)" class="image-btn image-btn-b" style="background-image:url(<?php echo media_url('area/b.jpg')?>)"><span>纽约<i>(纽约市，布鲁克林，长岛)</i></span></a>
+            <a href="javascript:void(0)" class="image-btn image-btn-c" style="background-image:url(<?php echo media_url('area/c.jpg')?>)"><span>华盛顿<i>(华盛顿DC，马里兰，弗吉尼亚)</i></span></a>
         </div>
     </div>
 </div>
