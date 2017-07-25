@@ -12,7 +12,7 @@ $urlManager = \WS::$app->urlManager;
                 <a href="/" title="北美房产一网打尽" alt="北美房产一网打尽"><img src="/static/img/logo.png" alt="Wesnail"></a>
             </div>
             <?php if (WS::$app->controller->module->id.'-'.WS::$app->controller->id.'-'.WS::$app->controller->action->id === 'home-default-index'):?>
-                <a class="area-switcher-btn" href="javascript:void(0)">
+                <a href="http://www<?php echo domain()?>/" class="area-switcher-btn" href="javascript:void(0)">
                     <i class="iconfont icon-area"></i>波士顿
                 </a>
             <?php endif?>
