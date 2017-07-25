@@ -13,7 +13,8 @@ class App extends \common\web\SiteApp
     public function bootstrap()
     {
         $this->initSite();
-        return parent::bootstrap();
+        
+        parent::bootstrap();
     }
 
     protected function initSite()
@@ -22,7 +23,7 @@ class App extends \common\web\SiteApp
         $siteId = null;
 
         if (isset($cookies['state_id'])) {
-            $siteId = $cookies['state_id'];
+            $siteId = $cookies->getValue('state_id');
         } else {
             $parts = explode('.', $_SERVER["HTTP_HOST"]);
             if (isset($this->siteMaps[$parts[0]])) {

@@ -6,12 +6,16 @@ use yii\db\Query;
 
 class LanguageController extends \yii\web\Controller
 {
-    public function actionSwitcher()
+    public function actionSwitcher($lang)
     {
-        $language=  \Yii::$app->request->get('lang');  
-        if(isset($language)){  
-            \Yii::$app->session['language']=$language;  
-        }
+        
+        \Yii::$app->response->cookies->add(new \yii\web\Cookie([
+            'name' => 'language',
+            'value' => $lang,
+            'domain' => domain(),
+            'expire'=>0,
+        ]));
+
         $this->goBack(\Yii::$app->request->headers['referer']);  
     }
 

@@ -52,7 +52,11 @@ $urlManager = \WS::$app->urlManager;
                 <a class="quick-link" href="#"><span class="iconfont icon-message"></span>MESSAGES</a>
                 <a class="quick-link" href="#"><span class="iconfont icon-help"></span>HELP</a>
                 -->
-                <a class="quick-link" href="#"><span class="iconfont icon-chinese"></span>中文</a>
+                <?php if (\WS::$app->language === 'en-US'):?>
+                    <a class="quick-link" href="/language/zh-CN/"><span class="iconfont icon-chinese"></span>中文</a>
+                <?php else:?>
+                    <a class="quick-link" href="/language/en-US/"><span class="iconfont icon-english"></span>English</a>
+                <?php endif?>
             </div>
         </div>
     </div>
@@ -84,16 +88,14 @@ $urlManager = \WS::$app->urlManager;
         text-align: left;
         line-height: 14px;
     }
-    #main-nav .my-account-menu > li {
+    #main-nav .my-account-menu > li > a{
         display:block;
         padding:7px 10px;
-    }
-    #main-nav .my-account-menu > li:hover {
-        background:#e5e5e5;
-    }
-    #main-nav .my-account-menu > li:hover > a {
         color:#222;
         text-decoration:none;
+    }
+    #main-nav .my-account-menu > li:hover > a {
+        background:#e5e5e5;
     }
     #main-nav .my-account:hover .my-account-menu {
         display:block;
