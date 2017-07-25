@@ -23,6 +23,14 @@
             padding-left:10px;
             > a {
                 font-size:14px;
+                word-break: break-all;
+                text-overflow: ellipsis;
+                display: -webkit-box;
+                box-orient: vertical;
+                -webkit-box-orient: vertical;
+                line-clamp: 2;
+                -webkit-line-clamp: 2;
+                overflow: hidden;
             }
             > p {
                 position:absolute;
