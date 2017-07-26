@@ -22,7 +22,7 @@ class DefaultController extends Controller
             ->asArray()
             ->all();
 
-        $types = \common\helper\ArrayHelper::index($types, 'id', (WS::$app->language === 'zh-CN' ? 'name_cn' : 'name'));
+        $types = \common\helper\ArrayHelper::index($types, 'id', (WS::$app->language === 'zh-CN' ? 'name_zh' : 'name'));
 
         $pages = new \yii\data\Pagination([
             'totalCount' =>$newsProvider->query->count(),
