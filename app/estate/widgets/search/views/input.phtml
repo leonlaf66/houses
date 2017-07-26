@@ -27,6 +27,15 @@ $('#go').on('click', function(){
     return false;
 });
 
+$('#<?php echo $id?>').bind('keydown', function (e) {
+    if (e.keyCode == 13) {
+        var val = $(this).val();
+        if ($.trim(val) !== '') {
+            $(this).parents('form').submit();
+        }
+    }
+});
+
 $.typeahead({
     input: '#<?php echo $id?>',
     minLength: 1,
@@ -38,7 +47,7 @@ $.typeahead({
     source: {
         cities: {
             display: "title",
-            href: "<?php echo $resultUrl?>q-{{title|slugify}}/",
+            href: "<?php echo $resultUrl?>?q={{title}}",
             ajax: {
                 url: '/house/search/autocomplete/'
             }

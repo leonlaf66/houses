@@ -7,7 +7,7 @@ use \module\cms\helpers\UrlParamEncoder;
 
 class HouseController extends Controller
 {
-    public function actionIndex($type = 'lease', $tab = 'search', $params='')
+    public function actionIndex($type = 'lease', $tab = 'search', $q='', $params='')
     {
         $req = WS::$app->request;
         WS::$app->share('rets.property', $type);
@@ -40,11 +40,16 @@ class HouseController extends Controller
 
         $q = $req->get('q', '');
         if ($q && strlen($q) > 0) {
-            $qWhere = "to_tsvector('english', location) @@ plainto_tsquery('english', '{$q}')";
-            if (is_numeric($q)) {
-                $search->query->andWhere("({$qWhere} or id={$q})");
+            $town = \common\catalog\Town::searchKeywords($q);
+            if ($town) {
+                $search->query->andWhere(['town' => $town->short_name]);
             } else {
+                $qWhere = "to_tsvector('english', location) @@ plainto_tsquery('english', '{$q}')";
                 $search->query->andWhere($qWhere);
+            }
+
+            if (is_numeric($q)) {
+                $search->query->orWhere(['id' => $q]);
             }
         }
 

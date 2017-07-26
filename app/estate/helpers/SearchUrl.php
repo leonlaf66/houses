@@ -12,9 +12,17 @@ class SearchUrl
         list($property, $tab) = self::getBaseInfo();
         $newUrlParamValue = UrlParamEncoder::$inst->setParam($key, $value);
         if ($newUrlParamValue === '') {
-            return \yii\helpers\Url::to('/house/'.$property.$tab.'/');
+            $url = \yii\helpers\Url::to('/house/'.$property.$tab.'/');
+        } else {
+            $url = '/house/'.$property.$tab.'/'.$newUrlParamValue.'/';
         }
-        return \yii\helpers\Url::to('/house/'.$property.$tab.'/'.$newUrlParamValue.'/');
+        
+        $q = \yii::$app->request->get('q');
+        if ($q) {
+            $url.= '?q='.urlencode($q);
+        }
+
+        return \yii\helpers\Url::to($url);
     }
 
     public static function replaceTo($key, $value)
@@ -24,7 +32,14 @@ class SearchUrl
         if ($newUrlParamValue === '') {
             return \yii\helpers\Url::to('/house/'.$property.$tab.'/');
         }
-        return \yii\helpers\Url::to('/house/'.$property.$tab.'/'.$newUrlParamValue.'/');
+
+        $url = '/house/'.$property.$tab.'/'.$newUrlParamValue.'/';
+        $q = \yii::$app->request->get('q');
+        if ($q) {
+            $url.= '?q='.urlencode($q);
+        }
+
+        return \yii\helpers\Url::to($url);
     }
 
     public static function getBaseInfo()
