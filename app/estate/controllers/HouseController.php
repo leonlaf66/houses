@@ -41,14 +41,19 @@ class HouseController extends Controller
         $q = $req->get('q', '');
         if ($q && strlen($q) > 0) {
             $town = \common\catalog\Town::searchKeywords($q);
-            if ($town) {
+            if ($town) { // 城市
                 $search->query->andWhere(['town' => $town->short_name]);
             } else {
-                $qWhere = "to_tsvector('english', location) @@ plainto_tsquery('english', '{$q}')";
-                $search->query->andWhere($qWhere);
+                $zipcode = \common\catalog\Zipcode::searchKeywords($q);
+                if ($zipcode) { // zip
+                    $search->query->andWhere(['town' => $zipcode->city_short_name]);
+                } else { // 普通搜索
+                    $qWhere = "to_tsvector('english', location) @@ plainto_tsquery('english', '{$q}')";
+                    $search->query->andWhere($qWhere);
+                }
             }
 
-            if (is_numeric($q)) {
+            if (is_numeric($q)) { // mls id
                 $search->query->orWhere(['id' => $q]);
             }
         }
