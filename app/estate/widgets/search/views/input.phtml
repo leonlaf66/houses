@@ -26,35 +26,26 @@ $('#go').on('click', function(){
     $(this).parents('form').submit();
     return false;
 });
-$('#form-search').submit(function(){
-    var qValue = $(this).find('input').val();
-    var goUrl = '<?php echo $resultUrl?>';
-    if (qValue && qValue !== '') {
-        qValue = qValue.replace(/[^A-Za-z0-9\s]+/g, ' ');
-        goUrl += 'q-' + qValue + '/';
-    }
-    window.location.href = goUrl
-    
-    return false;
-});
 
 $.typeahead({
     input: '#<?php echo $id?>',
     minLength: 1,
+    hint: true,
+    highlight: true,
     delay: 500,
-    order: "desc",
+    order: "asc",
+    display: 'title',
     source: {
-        city: {
-            display: "name",
-            href: "<?php echo $resultUrl?>q-{{name|slugify}}/",
+        cities: {
+            display: "title",
+            href: "<?php echo $resultUrl?>q-{{title|slugify}}/",
             ajax: {
-                url: '/estate/autocomplete/',
-                path: "cities"
+                url: '/house/search/autocomplete/'
             }
         }
     },
     template: function (query, item) {
-        return "{{name}} <small style='color:#999;'>{{type}}</small>";
+        return "{{title}} <small style='color:#999;float:right'>{{desc}}</small>";
     },
     callback: {
         onClickAfter: function (node, a, item, event) {

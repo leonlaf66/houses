@@ -1,5 +1,9 @@
 <?php $t = lang('news')?>
 
+<?php 
+    $this->registerCssFile('/static/css/editormd.css', ['position'=>$this::POS_HEAD]);
+?>
+
 <?php
     $this->params['breadcrumbs'] = [
         ['label'=>'News', 'url'=>'/news/'],
@@ -10,6 +14,9 @@
 <style type="text/css">
 .news-view .content img {
     max-width:100%;
+}
+.editormd-html-preview, .editormd-preview-container {
+    padding:0;
 }
 </style>
 
@@ -24,8 +31,10 @@
                         <span><?php echo date('Y-m-d', strtotime($news->created_at))?></span>
                     </div>
                 </div>
-                <div class="content std">
-                    <?php echo $news->content?>
+                <div class="editormd-preview">
+                    <div class="markdown-body editormd-preview-container content std">
+                        <?php echo $news->content?>
+                    </div>
                 </div>
             </div>
         </div>
