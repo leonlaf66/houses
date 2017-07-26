@@ -18,8 +18,6 @@ class DefaultController extends Controller
             'pageSizeLimit'=>false
         ]);
 
-        $newsProvider->query->orderBy('id', 'DESC');
-
     	return $this->render('index.phtml', [
             'typeId'=>$typeId,
             'types'=>$types,

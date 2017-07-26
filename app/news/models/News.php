@@ -10,13 +10,13 @@ class News extends \common\news\News
             $query->andWhere('type_id='.intval($typeId));
         }
         $query->andWhere('status=1');
-        //$query->orderBy('id', 'DESC');
 
         $dataProvider = new \yii\data\ActiveDataProvider([
             'query' => $query,
             'pagination' => [
                 'pagesize' => '10',
-            ]
+            ],
+            'sort'=> ['defaultOrder' => ['id'=>SORT_DESC]]
         ]);
 
         return $dataProvider;
