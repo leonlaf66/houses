@@ -16,14 +16,24 @@ class MapSearch
     }
     public static function applyAreas($search, $q)
     {
-        if (is_numeric($q) && strlen(trim($q)) !== 5) { // mlsid
-            $search->query->andFilterWhere(['=', 'id', $q]);
-            return -1; // 城市单独从结果中获取
-        }
+        $townCode = '';
+        $townName = '';
 
-        // 是城市名和邮编
-        $townName = \common\catalog\Town::getMapValue($q, 'name');
-        $townCode = \common\catalog\Town::getMapValue($q, 'short_name');
+        $town = \common\catalog\Town::searchKeywords($q);
+        if ($town) { // 城市
+            $search->query->andWhere(['town' => $town->short_name]);
+
+            $townCode = $town->short_name;
+            $townName = $town->name;
+        } else {
+            $zipcode = \common\catalog\Zipcode::searchKeywords($q);
+            if ($zipcode) { // zip
+                $search->query->andWhere(['town' => $zipcode->city_short_name]);
+
+                $townCode = $zipcode->city_short_name;
+                $townName = $zipcode->city_name;
+            }
+        }
 
         // 应用条件
         if ($townCode) {

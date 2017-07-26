@@ -19,20 +19,18 @@ define('vc-search', {
                 order: "desc",
                 source: {
                     city: {
-                        display: "name",
-                        // href: "{{name}}",
+                        display: "title",
                         ajax: {
                             url: '/estate/autocomplete/',
-                            path: "cities"
                         }
                     }
                 },
                 template: function (query, item) {
-                    return "{{name}} <small style='color:#999;'>{{type}}</small>";
+                    return "{{title}} <small style='color:#999;float:right'>{{desc}}</small>";
                 },
                 callback: {
                     onClickAfter: function (node, a, item, event) {
-                        that.q = item.name;
+                        that.q = item.title;
                         that.handleConfirm();
                     }
                 }
