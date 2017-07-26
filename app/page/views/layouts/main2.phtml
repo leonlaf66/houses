@@ -33,8 +33,9 @@
     <?php echo $content;?>
 </div>
 
-<?php echo PageWidget\FooterBefore::widget()?>
-
-<?php echo PageWidget\Footer::widget()?>
+<div class="page-bottom-container">
+    <?php echo PageWidget\FooterBefore::widget()?>
+    <?php echo PageWidget\Footer::widget()?>
+</div>
 
 <?php $this->endContent()?>

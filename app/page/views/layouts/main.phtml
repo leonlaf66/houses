@@ -10,8 +10,11 @@
 
     <?php echo $content;?>
 
-<?php echo PageWidget\FooterBefore::widget()?>
-
-<?php echo PageWidget\Footer::widget()?>
+<div class="page-bottom-container">
+    <?php echo PageWidget\FooterBefore::widget()?>
+    <div class="container">
+        <?php echo PageWidget\Footer::widget()?>
+    </div>
+</div>
 
 <?php $this->endContent()?>
