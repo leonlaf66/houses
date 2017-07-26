@@ -1,7 +1,9 @@
 <?php
 namespace module\news\controllers;
 
+use WS;
 use yii\web\Controller;
+use common\core\TaxonomyTerm;
 use module\news\models\News;
 
 class DefaultController extends Controller
@@ -11,7 +13,17 @@ class DefaultController extends Controller
         $typeId = intval(\WS::$app->request->get('type', 0));
         $newsProvider = News::search($typeId);
 
-        $types = News::types();
+        //$types = News::types();
+        $types = TaxonomyTerm::find()
+            ->where([
+                'taxonomy_id' => 3,
+                'parent_id' => 0
+            ])
+            ->asArray()
+            ->all();
+
+        $types = \common\helper\ArrayHelper::index($types, 'id', (WS::$app->language === 'zh-CN' ? 'name_cn' : 'name'));
+
         $pages = new \yii\data\Pagination([
             'totalCount' =>$newsProvider->query->count(),
             'defaultPageSize'=>10,

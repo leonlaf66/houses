@@ -3,8 +3,6 @@
 
     $_urlManager = \WS::$app->urlManager;
     $t = lang('news');
-
-    array_unshift($types, 'All');
 ?>
 
 <div class="container news-container">
@@ -14,6 +12,9 @@
 
             <div class="news-category-tab">
                 <div class="tab">
+                    <div class="tab-item <?php echo !$typeId ? 'active' : ''?>">
+                        <a href="<?php echo $_urlManager->createUrl(['news/default/index'])?>"><?php echo $t('All')?></a>
+                    </div>
                     <?php foreach($types as $_id=>$_name):?>
                         <?php
                             $_urlParams = ['news/default/index'];
