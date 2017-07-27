@@ -30,6 +30,11 @@ define('vc-map', {
 
             // 清除边界选区
             gmap.$(that.instance).clearPolygon();
+
+            if (results.items.length === 0) {
+                app.eventHub.$emit('loading:hide');
+                return;
+            }
             
             that.setMarkers(results.items);
 

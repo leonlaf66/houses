@@ -32,6 +32,14 @@ class MapController extends Controller
         $locationResult = MapSearchHelper::applySearchLocation($search, $req->post('mode_val', null), $req->post('mode', 'areas'));
         MapSearchHelper::applyFilters($search, $req->post('filters', []), MapSearchHelper::filterRules()[$type]);
 
+        if ($locationResult[1] === '') {
+            return $this->ajaxJson([
+                'city' => null,
+                'cityPolygons' => [],
+                'items' => []
+            ]);
+        }
+
         // 获取城市边界
         $cityPolygons = [];
         $cityName = null;
