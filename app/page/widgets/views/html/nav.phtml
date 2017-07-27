@@ -13,7 +13,7 @@ $urlManager = \WS::$app->urlManager;
             </div>
             <?php if (WS::$app->controller->module->id.'-'.WS::$app->controller->id.'-'.WS::$app->controller->action->id === 'home-default-index'):?>
                 <a href="http://www<?php echo domain()?>/" class="area-switcher-btn" href="javascript:void(0)">
-                    <i class="iconfont icon-area"></i>波士顿
+                    <i class="iconfont icon-area"></i><?php _t('city', 'Boston')?>
                 </a>
             <?php endif?>
             <?php 

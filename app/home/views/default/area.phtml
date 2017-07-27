@@ -46,16 +46,28 @@
 }
 </style>
 <div class="container area-container">
-    <h2>请选择区域</h2>
+    <h2><?php _t('house', 'Choose location')?></h2>
     <div class="area-blocks lay-g">
         <div class="area-block-col lay-u-1-2">
             <a href="http://ma<?php echo domain()?>" class="image-btn image-btn-a" style="background-image:url(<?php echo media_url('area/ma.jpg')?>)">
-                <span>波士顿<i>(马萨诸塞州)</i></span>
+                <span>
+                    <?php _t('city', 'Boston')?>
+                    <i>(<?php _t('state', 'Massachusetts')?></i>
+                </span>
             </a>
         </div>
         <div class="area-block-col lay-u-1-2">
-            <a href="javascript:void(0)" class="image-btn image-btn-b" style="background-image:url(<?php echo media_url('area/b.jpg')?>)"><span>纽约<i>(纽约市，布鲁克林，长岛)</i></span></a>
-            <a href="javascript:void(0)" class="image-btn image-btn-c" style="background-image:url(<?php echo media_url('area/c.jpg')?>)"><span>华盛顿<i>(华盛顿DC，马里兰，弗吉尼亚)</i></span></a>
+            <a href="javascript:void(0)" class="image-btn image-btn-b" style="background-image:url(<?php echo media_url('area/b.jpg')?>)">
+                <span>
+                    <?php _t('city', 'New York')?>
+                    <i>(<?php _t('state', 'NYC')?>, <?php _t('state', 'Long island')?>, <?php _t('state', 'Brooklyn')?></i>
+                </span>
+            </a>
+            <a href="javascript:void(0)" class="image-btn image-btn-c" style="background-image:url(<?php echo media_url('area/c.jpg')?>)">
+                <span><?php _t('city', 'Washington')?>
+                    <i>(<?php _t('state', 'DC')?>, <?php _t('state', 'MD')?>, <?php _t('state', 'VA')?></i>
+                </span>
+            </a>
         </div>
     </div>
 </div>
