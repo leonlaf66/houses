@@ -10,14 +10,14 @@ class Sort extends \yii\base\Widget
     public function run()
     {  
         $options = [
-            '1'=>'价格由高到低',
-            '2'=>'价格由低到高',
-            '3'=>'卧室由多到少',
-            '4'=>'卧室由少到多'
+            '1'=>tt('Price up', '价格由低到高'),
+            '2'=>tt('Price down', '价格由高到低'),
+            '3'=>tt('Bedrooms down', '卧室由多到少'),
+            '4'=>tt('Bedrooms up', '卧室由少到多')
         ];
         $map = [
-            '1'=>'list_price DESC',
-            '2'=>'list_price ASC',
+            '1'=>'list_price ASC',
+            '2'=>'list_price DESC',
             '3'=>'no_bedrooms DESC',
             '4'=>'no_bedrooms ASC'
         ];

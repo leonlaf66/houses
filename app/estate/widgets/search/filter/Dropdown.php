@@ -35,7 +35,7 @@ class Dropdown extends \yii\base\Widget
     public function getSelectName($ruleId)
     {
         $paramValue = \WS::$app->request->get($ruleId);
-        if (!$paramValue) return '不限';
+        if (!$paramValue) return tt('All', '不限');
         $rules = $this->getRules('dropdownFilters');
         return $rules[$ruleId]['options'][$paramValue][1];
     }

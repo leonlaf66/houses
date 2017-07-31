@@ -21,9 +21,9 @@ class Filter extends \yii\base\Widget
     public function tabs()
     {
         return [
-            'search'=>'搜索',
-            'school-districtss'=>'学区',
-            'subway'=>'地铁'
+            'search'=>t('rets-filter', 'SEARCH'),
+            'school-districtss'=>t('rets-filter', 'SCHOOL DISTRICTS'),
+            'subway'=>t('rets-filter', 'SUBWAY')
         ];
     }
 

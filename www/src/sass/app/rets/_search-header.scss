@@ -206,7 +206,8 @@
 			padding:7px 0;
 			> label {
 				display:inline-block;
-				width:50px;
+				width:75px;
+				white-space:nowrap;
 				&:after {
 					content:':'
 				}
@@ -275,6 +276,7 @@
 					border: solid 1px #ccc;
     				margin-top:-1px;
     				display:none;
+    				z-index:1;
     				> li {
     					> a {
     						display:block;

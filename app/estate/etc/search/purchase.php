@@ -9,10 +9,11 @@ foreach($propertyNames as $name=>$lable) {
     }
 }
 
+$t = lang('rets-filters', true);
 return [
     'generalFilters'=>[
         'property'=>[
-            'heading'=>'类型',
+            'heading'=>$t('Type'),
             'options'=>$propTypes,
             'apply'=>function ($val, $search) {
                 $val = strtoupper($val);
@@ -20,7 +21,7 @@ return [
             }
         ],
         'price'=>[
-            'heading'=>'价格',
+            'heading'=>$t('Price'),
             'options'=>[
                 ['~500000', '50万以下'],
                 ['500000~800000', '50-80万'],

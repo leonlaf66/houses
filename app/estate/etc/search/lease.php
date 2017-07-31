@@ -1,8 +1,9 @@
 <?php
+$t = lang('rets-filters', true);
 return [
     'generalFilters'=>[
         'price'=>[
-            'heading'=>'价格',
+            'heading'=>$t('Price'),
             'options'=>[
                 ['~100000', '0 至 10万美元'],
                 ['100000~300000', '10 至 30 万美元'],

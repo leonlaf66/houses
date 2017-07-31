@@ -3,7 +3,9 @@
         <div class="filter filter-<?php echo $ruleId?>">
             <label><?php echo $rule['heading']?></label>
             <ul class="values">
-                <li class="<?php echo $self->activeClass($ruleId, null)?>"><a href="<?php echo $this->context->createUrl($ruleId, null)?>">不限</a></li>
+                <li class="<?php echo $self->activeClass($ruleId, null)?>"><a href="<?php echo $this->context->createUrl($ruleId, null)?>">
+                    <?php tt('All', '不限')?>
+                </a></li>
 
                 <?php foreach($rule['options'] as $key=>$item):?>
                     <?php list($value, $name) = $item;?>

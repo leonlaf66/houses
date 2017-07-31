@@ -1,8 +1,11 @@
 <?php
+$t = lang('rets-filters', true);
+$tAll = tt('ALL', '不限');
+
 return [
     'generalFilters'=>[
         'square'=>[
-            'heading'=>'面积',
+            'heading'=>$t('Living area'),
             'options'=>[
                 ['~1000', '0-1000'],
                 ['1000~2000', '1000 - 2000'],
@@ -19,7 +22,7 @@ return [
             }
         ],
         'beds'=>[
-            'heading'=>'卧室数',
+            'heading'=>$t('Bedroom'),
             'options'=>[
                 ['1', '1+'],
                 ['2', '2+'],
@@ -35,9 +38,9 @@ return [
     ],
     'dropdownFilters'=>[
         'baths'=>[
-            'heading'=>'卫生间',
+            'heading'=>tt('Bathroom', '卫生间'),
             'options'=>[
-                [null, '不限'],
+                [null, $tAll],
                 ['1', '1+'],
                 ['2', '2+'],
                 ['3', '3+'],
@@ -50,9 +53,9 @@ return [
             }
         ],
         'parking'=>[
-            'heading'=>'车位',
+            'heading'=>tt('Parking', '车位'),
             'options'=>[
-                [null, '不限'],
+                [null, $tAll],
                 ['1', '1+'],
                 ['2', '2+'],
                 ['3', '3+'],
@@ -63,11 +66,11 @@ return [
             }
         ],
         'agrage'=>[
-            'heading'=>'车库',
+            'heading'=>tt('Garage', '车库'),
             'options'=>[
-                [null, '不限'],
-                ['1', '有'],
-                ['0', '无']
+                [null, $tAll],
+                ['1', tt('Yes', '有')],
+                ['0', tt('No', '无')]
             ],
             'apply'=>function ($val, $search) {
                 $val = intval($val);
@@ -79,14 +82,12 @@ return [
             }
         ],
         'market-days'=>[
-            'heading'=>'上市天数',
+            'heading'=>tt('Days on market', '上市天数'),
             'options'=>[
-                [null, '不限'],
-                ['1', '最新'],
-                ['2', '本周'],
-                ['3', '本月'],
-                ['4', '本周之前'],
-                ['5', '本月之前']
+                [null, $tAll],
+                ['1', tt('New listing', '最新')],
+                ['2', tt('This week', '本周')],
+                ['3', tt('This month', '本月')]
             ],
             'apply'=>function ($value, $search) {
                 if($value !== '') {
@@ -102,14 +103,6 @@ return [
                         '3'=>function(){
                             $now = time();
                             return [$now - 86400 * 30, $now];
-                        },
-                        '4'=>function(){
-                            $now = time();
-                            return [0, $now - 86400 * 7];
-                        },
-                        '5'=>function(){
-                            $now = time();
-                            return [0, $now - 86400 * 30];
                         }
                     ];
 
