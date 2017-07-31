@@ -17,6 +17,7 @@ class ListBlock extends \yii\base\Widget
                 $news->andWhere(['=', 'is_infomation', true]);
                 break;
             case 'hot':
+                $news->andWhere(['=', 'is_hot', true]);
                 $news->orderBy([
                     'hits' => 'DESC'
                 ]);
