@@ -11,7 +11,7 @@
     <ul class="list-view" style="margin-bottom:20px">
         <li>
             <label class="calculate-item">
-                <span class="calculate-label">Purchase Price</span>
+                <span class="calculate-label"><?php $t('Purchase Price')?></span>
                 <span class="calculate-input">
                     <div class="div-input" contenteditable="plaintext-only" id="ma"><?php echo $dataParams['ma']?></div>
                     <span class="suffix">USD</span>
@@ -20,7 +20,7 @@
         </li>
         <li>
             <label class="calculate-item">
-                <span class="calculate-label">Down Payment</span>
+                <span class="calculate-label"><?php $t('Down Payment')?></span>
                 <span class="calculate-input">
                     <div class="div-input" contenteditable="plaintext-only" id="dp"><?php echo $dataParams['dp']?></div>
                     <span class="suffix">%</span>
@@ -29,7 +29,7 @@
         </li>
         <li>
             <label class="calculate-item">
-                <span class="calculate-label">Interest Rate</span>
+                <span class="calculate-label"><?php $t('Interest Rate')?></span>
                 <span class="calculate-input">
                     <div class="div-input" contenteditable="plaintext-only" id="ir"><?php echo $dataParams['ir']?></div>
                     <span class="suffix">%</span>
@@ -38,7 +38,7 @@
         </li>
         <li>
             <label class="calculate-item">
-                <span class="calculate-label">Mortgage Term</span>
+                <span class="calculate-label"><?php $t('Mortgage Term')?></span>
                 <span class="calculate-input">
                     <div class="div-input" contenteditable="plaintext-only" id="mt"><?php echo $dataParams['mt']?></div>
                     <span class="suffix">years</span>
@@ -47,7 +47,7 @@
         </li>
     </ul>
 
-    <button id="btn-calculate" class="btn red fill">重新计算</button>
+    <button id="btn-calculate" class="btn red fill"><?php _tt('Calculate', '重新计算')?></button>
 
     <svg id="charts-result" width="100%" height="185px" style="margin-top:20px"></svg>
 </div>

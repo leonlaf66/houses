@@ -4,6 +4,7 @@
     use module\cms\widgets\SeoLinkPager as LinkPager;
 
     $list = RetsHelper::result($search);
+    $_t = lang('rets');
 ?>
 <div class="rets-results">
 	<?php if(empty($list)):?>
@@ -31,14 +32,14 @@
 			<div class="col col-info">
 				<div class="pl15 pr15">
 					<h2 class="location"><a href="<?php echo $url?>"><?php echo $rets->location?></a></h2>
-					<div class="fields1">
-						<span>卧室 <?php echo RetsHtml::getValueHtml($rets, 'no_bedrooms')?></span> | 
-						<span>全卫 <?php echo RetsHtml::getValueHtml($rets, 'no_full_baths')?></span> 
-						<span>半卫 <?php echo RetsHtml::getValueHtml($rets, 'no_half_baths')?></span> | 
-						<span>居住面积 <?php echo RetsHtml::getValueHtml($rets, 'square_feet', ['suffix'=>'m<sup>2</sup>'])?></span>
+					<div class="fields1" style="white-space:nowrap">
+						<span><?php $_t('Bedrooms')?> <?php echo RetsHtml::getValueHtml($rets, 'no_bedrooms')?></span> | 
+						<span><?php $_t('Full baths')?> <?php echo RetsHtml::getValueHtml($rets, 'no_full_baths')?></span> 
+						<span><?php $_t('Half baths')?> <?php echo RetsHtml::getValueHtml($rets, 'no_half_baths')?></span> | 
+						<span><?php $_t('Living area')?> <?php echo RetsHtml::getValueHtml($rets, 'square_feet', ['suffix'=>'m<sup>2</sup>'])?></span>
 					</div>
 					<div class="price">
-						 <label>售价</label>
+						 <label><?php $_t('Pirce')?></label>
 						 <span class="default"><?php echo RetsHtml::getValueHtml($rets, 'list_price')?></span>
 						 <span class="rmb">约人民币<?php echo number_format(intval($rets->list_price) * 6.9506 / 10000, 1)?>万</span>
 					</div>

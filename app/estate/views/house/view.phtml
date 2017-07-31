@@ -82,20 +82,20 @@
         <div class="lay-u-1-6">
             <div class="right-side" style="background:#fff">
                 <div class="side-box">
-                    <div class="side-title">米乐居客服</div>
+                    <div class="side-title"><?php _t('sys', 'Customer service')?></div>
                     <div class="side-content">
                         <?php echo \module\catalog\widgets\ContactBanner::widget()?>
                     </div>
                 </div>
                 <div class="side-box">
-                    <div class="side-title"><?php echo t('gour', 'Go Tour This House')?></div>
+                    <div class="side-title"><?php _t('gour', 'Go Tour This House')?></div>
                     <div class="side-content">
                         <?php echo \module\gotour\widgets\Form::widget(['rets' => $rets])?>
                     </div>
                 </div>
                 <?php if ($rets->prop_type !== 'RN'):?>
                     <div class="side-box">
-                        <div class="side-title">房贷计算器</div>
+                        <div class="side-title"><?php _t('rets', 'Mortgage calculator')?></div>
                         <div class="side-content">
                             <?php echo \module\estate\widgets\detail\Calculator::widget(['rets' => $rets])?>
                         </div>
