@@ -31,9 +31,12 @@ class General extends \yii\base\Widget
         return WS::$app->request->get($ruleId) === $value ? $className : '';
     }
 
-    public function parseRangeValues($field, $s = '-')
+    public function parseRangeValues($field, $s = '~')
     {
         $items = explode($s, WS::$app->request->get($field));
+        if ($customFieldValue = WS::$app->request->get('custom-'.$field)) {
+            $items = explode($s, $customFieldValue);
+        }
         if (count($items) === 0) $items = ['', '']; 
         if (count($items) === 1) $items[] = '';
         return $items;

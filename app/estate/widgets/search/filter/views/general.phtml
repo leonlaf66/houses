@@ -4,7 +4,7 @@
             <label><?php echo $rule['heading']?></label>
             <ul class="values">
                 <li class="<?php echo $self->activeClass($ruleId, null)?>"><a href="<?php echo $this->context->createUrl($ruleId, null)?>">
-                    <?php tt('All', '不限')?>
+                    <?php _tt('All', '不限')?>
                 </a></li>
 
                 <?php foreach($rule['options'] as $key=>$item):?>
@@ -13,23 +13,21 @@
                         <a href="<?php echo $this->context->createUrl($ruleId, $value)?>"><?php echo $name?></a>
                     </li>
                 <?php endforeach?>
-                <!--
                 <?php if ($ruleId === 'price'):?>
-                    <li class="custom range range-price" data-field="price">
-                        <input class="input sm" name="from" placeholder="元" size="10" class="form-control" value="<?php echo ($self->parseRangeValues($ruleId))[0]?>" />
+                    <li class="custom range range-price" data-field="custom-price">
+                        <input class="input sm" name="from" placeholder="<?php _tt('$', '万元')?>" size="10" class="form-control" value="<?php echo ($self->parseRangeValues($ruleId))[0]?>" />
                         <span>-</span>
-                        <input class="input sm" name="to" placeholder="元" size="10" value="<?php echo ($self->parseRangeValues($ruleId))[1]?>">
-                        <button class="btn sm">OK</button>
+                        <input class="input sm" name="to" placeholder="<?php _tt('$', '万元')?>" size="10" value="<?php echo ($self->parseRangeValues($ruleId))[1]?>">
+                        <button class="btn sm"><?php _tt('OK', '确认')?></button>
                     </li>
                 <?php elseif ($ruleId === 'square'):?>
-                    <li class="custom range range-square" data-field="square">
-                        <input class="input sm" name="from" placeholder="平方" size="10" value="<?php echo ($self->parseRangeValues($ruleId))[0]?>"/>
+                    <li class="custom range range-square" data-field="custom-square">
+                        <input class="input sm" name="from" placeholder="<?php _tt('sq', '平方')?>" size="10" value="<?php echo ($self->parseRangeValues($ruleId))[0]?>"/>
                         <span>-</span>
-                        <input class="input sm" name="to" placeholder="平方" size="10" value="<?php echo ($self->parseRangeValues($ruleId))[1]?>"/>
-                        <button class="btn sm">OK</button>
+                        <input class="input sm" name="to" placeholder="<?php _tt('sq', '平方')?>" size="10" value="<?php echo ($self->parseRangeValues($ruleId))[1]?>"/>
+                        <button class="btn sm"><?php _tt('OK', '确认')?></button>
                     </li>
                 <?php endif?>
-                -->
             </ul>
         </div>
     <?php endforeach?>
@@ -45,7 +43,7 @@
         var toValue = parseInt($item.find('input[name=to]').val());
         if (! toValue) toValue = 0;
 
-        window.location.changeParam($item.data('field'), fromValue + '-' + toValue);
+        window.location.changeParam($item.data('field'), fromValue + '~' + toValue);
     });
 })(jQuery);
 </script>
