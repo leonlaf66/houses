@@ -9,27 +9,40 @@
         <div class="row-header">
             <div class="col col1">
                 <span class="sa-no">
-                    NO.<span><?php echo $item->sort_order?></span> <label>/排名</label>
+                    NO.<span><?php echo $item->sort_order?></span> <label>/<?php _tt('Rank', '排名')?></label>
                 </span>
                 <span class="sa-name-cn">
-                    <?php echo $item->getItemData('name')[1]?>
+                    <?php if (\WS::$app->language === 'zh-CN'):?>
+                        <?php echo $item->getItemData('name')[1]?>
+                    <?php else:?>
+                        <?php echo $item->getItemData('name')[0]?>
+                    <?php endif?>
                 </span>
                 <span class="sa-name">
-                    <?php echo $item->getItemData('name')[0]?>
+                    <?php if (\WS::$app->language === 'zh-CN'):?>
+                        <?php echo $item->getItemData('name')[0]?>
+                    <?php else:?>
+                        <?php echo $item->getItemData('name')[1]?>
+                    <?php endif?>
                 </span>
                 <span class="sa-rating">
                     <span class="rating"><span style="width:<?php echo $item->rating * 0.1 * 100?>%"></span></span>
                 </span>
             </div>
             <div class="btn-links col col2 text-right">
-                <a class="btn btn-primary" href="/school-district/<?php echo $item->id?>/">学区详情 <span class="iconfont icon-arraw-r"></span></a>
+                <a class="btn btn-primary" href="/school-district/<?php echo $item->id?>/">
+                    <?php _tt('Details', '学区详情')?> <span class="iconfont icon-arraw-r"></span>
+                </a>
                 <div class="rets-links">
                     <a target="_blank" href="/house/purchase/school-districtss/sd-<?php echo str_replace('/', '%7C', strtolower($item->code))?>/">
-                        共<?php echo $item->getSummary('total')?>套在售 <span class="iconfont icon-arraw-r"></span></a>
+                        <?php echo sprintf(tt('%d on Market', '共%d套在售'), $item->getSummary('total'))?>
+                        <span class="iconfont icon-arraw-r"></span>
+                    </a>
+                    <!--
                     <ul class="sub-links">
                         <li class="sub-link-item"><a href="#">独栋别墅320套 <span class="iconfont icon-arraw-r"></a></li>
                         <li class="sub-link-item"><a href="#">公寓156套 <span class="iconfont icon-arraw-r"></a></li>
-                    </ul>
+                    </ul>-->
                 </div>
             </div>
         </div><!--end header-->
@@ -41,11 +54,11 @@
             </div>
             <div class="col col2">
                 <div class="avg-scores">
-                    <div class="total"><label>平均分</label><span><?php echo $item->sat->local[0]?></span></div>
+                    <div class="total"><label><?php _tt('SAT score', 'SAT平均分')?></label> <span><?php echo $item->sat->local[0]?></span></div>
                     <ul class="items">
-                        <li class="item"><label>阅读</label><span><?php echo $item->sat->local[1][0]?></span></li>
-                        <li class="item"><label>写作</label><span><?php echo $item->sat->local[1][1]?></span></li>
-                        <li class="item"><label>数学</label><span><?php echo $item->sat->local[1][2]?></span></li>
+                        <li class="item"><label><?php _tt('Reading', '阅读')?></label><span><?php echo $item->sat->local[1][0]?></span></li>
+                        <li class="item"><label><?php _tt('Writing', '写作')?></label><span><?php echo $item->sat->local[1][1]?></span></li>
+                        <li class="item"><label><?php _tt('Math', '数学')?></label><span><?php echo $item->sat->local[1][2]?></span></li>
                     </ul>
                 </div>
                 <div class="k12">
@@ -56,16 +69,30 @@
             <div class="col col3 text-right">
                 <table class="grid-info text-center">
                     <tr>
-                        <td width="50%"><span><?php echo $item->special->special1?></span>入学人数</td>
-                        <td width="50%"><span>$<?php echo number_format($item->special->special3)?></span>人均政府补贴</td>
+                        <td width="50%"><span><?php echo $item->special->special1?></span><?php _tt('Student number', '入学人数')?></td>
+                        <td width="50%"><span>$<?php echo number_format($item->special->special3)?></span><?php _tt('Government subsidies', '人均政府补贴')?></td>
                     </tr>
                     <tr>
-                        <td><span>$<?php echo $item->getSummary('average-price')?></span>平均房价</td>
-                        <td><span>$<?php echo number_format($item->special->special2)?></span>平均收入(年)</td>
+                        <td>
+                            <?php if (\WS::$app->language === 'zh-CN'):?>
+                                <span><?php echo number_format(floatval(str_replace(',', '', $item->getSummary('average-price'))) / 10000, 1)?>万美元</span>
+                            <?php else:?>
+                                <span>$<?php echo $item->getSummary('average-price')?></span>
+                            <?php endif?>
+                            <?php _tt('Avg price', '平均房价')?>
+                        </td>
+                        <td>
+                            <?php if (\WS::$app->language === 'zh-CN'):?>
+                                <span><?php echo number_format($item->special->special2 / 10000, 1)?>万美元</span>
+                            <?php else:?>
+                                <span>$<?php echo number_format($item->special->special2)?></span>
+                            <?php endif?>
+                            <?php _tt('Avg income', '平均收入(年)')?>
+                        </td>
                     </tr>
                 </table>
                 <div class="racists text-left">
-                    <div class="header">种族分布</div>
+                    <div class="header"><?php _tt('Race distributions', '种族分布')?></div>
                     <ul>
                         <?php foreach ($this->context->racials($item->racials) as $item):?>
                             <li style="width:<?php echo $item->value?>">
@@ -88,7 +115,7 @@ window.createSchoolPie = function (ele, dataset) {
         .innerRadius(40)  
         .outerRadius(60);
     var svg = d3.select(ele);
-    var names = ['高中', '初中', '小学'];
+    var names = ['<?php _tt('High', '高中')?>', '<?php _tt('Middle', '初中')?>', '<?php _tt('Elementary', '小学')?>'];
 
     var tooltip = d3.select('body')  
         .append('div')  
@@ -99,12 +126,12 @@ window.createSchoolPie = function (ele, dataset) {
         .data(pie(dataset))  
         .enter()  
         .append('g')
-        .attr('transform', 'translate(140,65)')
+        .attr('transform', 'translate(160,65)')
         .attr('stroke', '#fff')
         .attr('stroke-width', 1.2)
         .on('mouseover', function (d, i) {
             d3.select(this).attr('stroke', colors[i]);
-            tooltip.html(names[i] + dataset[i] + '所')
+            tooltip.html(names[i] + ':' + dataset[i])
                 .style('left', (d3.event.pageX) + 'px')  
                 .style('top', (d3.event.pageY + 20) + 'px')  
                 .style('opacity', 1.0);  

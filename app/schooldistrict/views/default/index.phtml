@@ -10,8 +10,15 @@ $this->params['activeNavId'] = 'schooldistrict';
         <?php echo MenuNav::widget()?>
         <div class="info1">&nbsp;</div>
         <div class="school-area-info">
-            <div class="info1">麻省排名前<?php echo $summary['count']?>的顶级公立学区</div>
-            <div class="info2"><?php echo $summary['total']?>套在售房源</div>
+            <div class="info1">
+                <?php echo sprintf(
+                    tt('Top %s Public School Districts in Massachusetts', '麻省排名前%s的顶级公立学区'),
+                    $summary['count']
+                )?>
+            </div>
+            <div class="info2">
+                <?php echo sprintf(tt('%s on market', '%s套在售房源'), $summary['total'])?>
+            </div>
         </div>
     </div>
 </div>

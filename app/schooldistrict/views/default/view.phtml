@@ -16,24 +16,37 @@
         </div>
         <div class="lay-u-1-2">
             <div class="base-info">
-                <h2><?php echo $model->getItemData('name')[1]?><span><?php echo $model->getItemData('name')[0]?></span></h2>
+                <h2>
+                    <?php if (\WS::$app->language === 'en-US'):?>
+                        <?php echo $model->getItemData('name')[0]?><span><?php echo $model->getItemData('name')[1]?></span>
+                    <?php else:?>
+                        <?php echo $model->getItemData('name')[1]?><span><?php echo $model->getItemData('name')[0]?></span>
+                    <?php endif?>
+                </h2>
                 <ul class="main-fields">
-                    <li class="field"><label>学区排名</label><span>NO.<?php echo $model->ranking?></span></li>
-                    <li class="field"><label>SAT平均分</label><span><?php echo $model->sat->local[0]?></span></li>
+                    <li class="field"><label><?php _tt('Rank', '学区排名')?></label><span>NO.<?php echo $model->ranking?></span></li>
+                    <li class="field"><label><?php _tt('SAT score', 'SAT平均分')?></label><span><?php echo $model->sat->local[0]?></span></li>
                 </ul>
                 <div class="grid-info">
-                    <h5>基本信息</h5>
+                    <h5><?php _tt('Gerenal information', '基本信息')?></h5>
                     <table class="table-info">
                         <tr>
                             <td class="info-col"><span><?php echo number_format($model->special->population) ?? '未知'?></span><label>人口</label></td>
                             <td class="info-col"><span><?php echo $model->special->jobess_rate ?? '未知'?>%</span><label>失业率</label></td>
-                            <td class="info-col"><span><?php echo number_format($model->special->special3) ?? '未知'?></span><label>人均收入</label></td>
+                            <td class="info-col"><span>
+                                <?php if (\WS::$app->language === 'en-US'):?>
+                                    <?php echo number_format($model->special->special3) ?? 'Unknown'?></span>
+                                <?php else:?>
+                                    <?php echo number_format($model->special->special3 / 10000, 1) ?? 'Unknown'?>万元</span>
+                                <?php endif?>
+                                <label><?php _tt('Avg income', '人均收入(年)')?></label>
+                            </td>
                             <td class="info-col"><span><?php echo $model->special->college_rate ?? '未知'?>%</span><label>大学以上教育比例</label></td>
                         </tr>
                     </table>
                 </div>
                 <div class="racists text-left">
-                    <h5>种族分布</h5>
+                    <h5><?php _tt('Race distributions', '种族分布')?></h5>
                     <ul>
                         <?php foreach ($this->context->racials($model->racials) as $item):?>
                             <li style="width:<?php echo $item->value?>">
@@ -48,20 +61,27 @@
         </div>
     </div>
     <div class="description">
-        <h2>学区介绍</h2>
+        <h2><?php _tt('School introduction', '学区介绍')?></h2>
         <p class="desc"><?php echo $model->description?></p>
-        <p class="ys">优势：<?php echo $model->advantage?></p>
+        <p class="ys"><b><?php _tt('Advantage:', '优势：')?></b> <?php echo $model->advantage?></p>
     </div>
     <div class="hot-houses v-info-blk">
-        <h2>热门房源</h2>
+        <h2><?php _tt('Hot listings', '热门房源')?></h2>
     </div>
     <div class="house-price-dc v-info-blk">
         <h2>学区房价</h2>
         <table class="top-info table-info">
             <tr>
-                <td class="info-col"><span>$<?php echo number_format($model->getSummary('avg_price'))?></span><label>平均房价</label></td>
-                <td class="info-col"><span>$<?php echo number_format($model->getSummary('avg_monthly_rent_price'))?></span><label>平均月租</label></td>
-                <td class="info-col"><span><?php echo $model->getSummary('trading_volume_year')?>套</span><label>年成交量</label></td>
+                <td class="info-col"><span>
+                    <?php if (\WS::$app->language === 'en-US'):?>
+                        $<?php echo $model->getSummary('average-price')?></span>
+                    <?php else:?>
+                        <?php echo number_format(floatval(str_replace(',', '', $model->getSummary('average-price'))) / 10000, 1)?>万美元</span>
+                    <?php endif?>
+                    <label><?php _tt('Avg price', '平均房价')?></label>
+                </td>
+                <td class="info-col"><span>$<?php echo $model->getSummary('avergage-rental-price')?></span><label>平均月租</label></td>
+                <td class="info-col"><span><?php echo $model->getSummary('year-down-total')?>套</span><label>年成交量</label></td>
             </tr>
         </table>
         <!--
@@ -76,15 +96,15 @@
         -->
     </div>
     <div class="sat-scores v-info-blk">
-        <h2>SAT分数</h2>
+        <h2><?php _tt('SAT score', 'SAT分数')?></h2>
         <table class="table-info">
             <tr>
                 <td class="info-col col-1">
                     <span>
                         <?php echo $model->sat->local[0]?>
-                        <i>( 阅读 <span><?php echo $model->sat->local[1][0]?></span> | 
-                        写作 <span><?php echo $model->sat->local[1][1]?></span> | 
-                        数学 <span><?php echo $model->sat->local[1][2]?></span> )</i>
+                        <i>( <?php _tt('Reading', '阅读')?> <span><?php echo $model->sat->local[1][0]?></span> | 
+                        <?php _tt('Writing', '写作')?> <span><?php echo $model->sat->local[1][1]?></span> | 
+                        <?php _tt('Math', '数学')?> <span><?php echo $model->sat->local[1][2]?></span> )</i>
                     </span>
                     <label>本区SAT平均分</label>
                 </td>
@@ -99,8 +119,8 @@
         <table class="table-info">
             <tr>
                 <td class="info-col col-1">
-                    <span><?php echo $model->special->special1 ?? '未知'?></span>
-                    <label>入学人数</label>
+                    <span><?php echo $model->special->special1 ?? _tt('Unknown', '未知')?></span>
+                    <label><?php _tt('Student number', '入学人数')?></label>
                 </td>
                 <td class="info-col"><span>$<?php echo number_format($model->special->special3 ?? '0')?></span><label>人均政府补贴</label></td>
                 <td class="info-col"><span><?php echo $model->special->special4 ?? '0'?>%</span><label>亚裔学生占比</label></td>
@@ -109,30 +129,30 @@
         <table class="school-list">
             <thead>
                 <tr>
-                    <th style="text-align:left">学校</th>
-                    <th style="text-align:left">类型</th>
-                    <th style="text-align:left">官网</th>
+                    <th style="text-align:left"><?php _tt('School', '学校')?></th>
+                    <th style="text-align:left"><?php _tt('Type', '类型')?></th>
+                    <th style="text-align:left"><?php _tt('Website', '官网')?></th>
                 </tr>
             </thead>
             <tbody>
                 <?php foreach ($model->schools->grade as $item):?>
                     <tr>
                         <td><?php echo $item->name?></td>
-                        <td>小学</td>
+                        <td><?php _tt('Elementary school', '小学')?></td>
                         <td><?php echo $item->website?></td>
                     </tr>
                 <?php endforeach?>
                 <?php foreach ($model->schools->middle as $item):?>
                     <tr>
                         <td><?php echo $item->name?></td>
-                        <td>初中</td>
+                        <td><?php _tt('Middle school', '初中')?></td>
                         <td><?php echo $item->website?></td>
                     </tr>
                 <?php endforeach?>
                 <?php foreach ($model->schools->high as $item):?>
                     <tr>
                         <td><?php echo $item->name?></td>
-                        <td>高中</td>
+                        <td><?php _tt('High school', '高中')?></td>
                         <td><?php echo $item->website?></td>
                     </tr>
                 <?php endforeach?>
