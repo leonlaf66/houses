@@ -5,7 +5,7 @@ class TopBanner extends \yii\base\Widget
 {
     public function run()
     {
-        $result = include(APP_ROOT.'/config/news/top_banner.php');
+        $result = \WS::getStaticData('news.banner.top');
 
         return $this->render('top-banners.phtml', [
             'result'=>$result
