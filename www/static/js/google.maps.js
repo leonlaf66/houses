@@ -12,7 +12,8 @@
               position: location,
               map: this,
               draggable:true,
-              animation: google.maps.Animation.DROP
+              animation: google.maps.Animation.DROP,
+              icon: 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png'
           };
           options = $.extend(_default, options);
 

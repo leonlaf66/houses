@@ -9,8 +9,8 @@ class ContactBanner extends \yii\base\Widget
         $infos = [
             'cnPhoneNumber' => '131 6711 1930',
             'usPhoneNumber' => '888-610-3288',
-            'email' => 'usleju.com',
-            'wechat' => 'usleje'
+            'email' => 'contact@usleju.com',
+            'wechat' => 'usleju'
         ];
 
         return $this->render('contact-banner.phtml', [

@@ -25,7 +25,8 @@
         position: new google.maps.LatLng(<?php echo $rets->latitude?>, <?php echo $rets->longitude?>),
         map: map,
         draggable:false,
-        animation: google.maps.Animation.DROP
+        animation: google.maps.Animation.DROP,
+        icon: '/static/img/house-maker.png'
     });
 <?php $this->endBlock()?>
 </script>
