@@ -70,7 +70,7 @@ class HouseController extends Controller
         $rets = \common\estate\Rets::findOne($id);
         
         if(is_null($rets )) {
-            throw new HttpException(404, "Page not found");
+            throw new \yii\web\HttpException(404, "Page not found");
         }
 
         return $this->render("view.phtml", [
