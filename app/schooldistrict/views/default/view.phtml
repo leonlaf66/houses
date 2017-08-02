@@ -7,6 +7,12 @@
     <?php echo \module\page\widgets\Nav::widget()?>
 </div>
 
+<style type="text/css">
+body.en-us .table-info .info-col>label{
+    font-size:14px;
+}
+</style>
+
 <div class="container" id="base-info-container">
     <div class="lay-g">
         <div class="lay-u-1-2">
@@ -28,11 +34,17 @@
                     <li class="field"><label><?php _tt('SAT score', 'SAT平均分')?></label><span><?php echo $model->sat->local[0]?></span></li>
                 </ul>
                 <div class="grid-info">
-                    <h5><?php _tt('Gerenal information', '基本信息')?></h5>
+                    <h5><?php _tt('Gerenal info', '基本信息')?></h5>
                     <table class="table-info">
                         <tr>
-                            <td class="info-col"><span><?php echo number_format($model->special->population) ?? '未知'?></span><label>人口</label></td>
-                            <td class="info-col"><span><?php echo $model->special->jobess_rate ?? '未知'?>%</span><label>失业率</label></td>
+                            <td class="info-col">
+                                <span><?php echo number_format($model->special->population) ?? tt('Unknown', '未知')?></span>
+                                <label><?php _tt('Population', '人口')?></label>
+                            </td>
+                            <td class="info-col">
+                                <span><?php echo $model->special->jobess_rate ?? tt('Unknown', '未知')?>%</span>
+                                <label><?php _tt('Unemployment rate', '失业率')?></label>
+                            </td>
                             <td class="info-col"><span>
                                 <?php if (\WS::$app->language === 'en-US'):?>
                                     <?php echo number_format($model->special->special3) ?? 'Unknown'?></span>
@@ -41,12 +53,15 @@
                                 <?php endif?>
                                 <label><?php _tt('Avg income', '人均收入(年)')?></label>
                             </td>
-                            <td class="info-col"><span><?php echo $model->special->college_rate ?? '未知'?>%</span><label>大学以上教育比例</label></td>
+                            <td class="info-col">
+                                <span><?php echo $model->special->college_rate ?? tt('Unknown', '未知')?>%</span>
+                                <label><?php _tt('Bachelor degree above pct', '大学以上教育比例')?></label>
+                            </td>
                         </tr>
                     </table>
                 </div>
                 <div class="racists text-left">
-                    <h5><?php _tt('Race distributions', '种族分布')?></h5>
+                    <h5><?php _tt('Racial distribution', '种族分布')?></h5>
                     <ul>
                         <?php foreach ($this->context->racials($model->racials) as $item):?>
                             <li style="width:<?php echo $item->value?>">
@@ -61,18 +76,18 @@
         </div>
     </div>
     <div class="description">
-        <h2><?php _tt('School introduction', '学区介绍')?></h2>
+        <h2><?php _tt('Introduction', '学区介绍')?></h2>
         <p class="desc"><?php echo $model->description?></p>
         <p class="ys"><b><?php _tt('Advantage:', '优势：')?></b> <?php echo $model->advantage?></p>
     </div>
     <div class="hot-houses v-info-blk">
-        <h2><?php _tt('Hot listings', '热门房源')?></h2>
+        <h2><?php _tt('Hot houses', '热门房源')?></h2>
         <?php echo \module\schooldistrict\widgets\HouseList::widget([
             'schoolDistrict' => $model
         ])?>
     </div>
     <div class="house-price-dc v-info-blk">
-        <h2>学区房价</h2>
+        <h2><?php _tt('Market here', '学区房价')?></h2>
         <table class="top-info table-info">
             <tr>
                 <td class="info-col"><span>
@@ -83,8 +98,14 @@
                     <?php endif?>
                     <label><?php _tt('Avg price', '平均房价')?></label>
                 </td>
-                <td class="info-col"><span>$<?php echo $model->getSummary('avergage-rental-price')?></span><label>平均月租</label></td>
-                <td class="info-col"><span><?php echo $model->getSummary('year-down-total')?>套</span><label>年成交量</label></td>
+                <td class="info-col"><span>
+                    $<?php echo $model->getSummary('avergage-rental-price')?></span>
+                    <label><?php _tt('Avg rental', '平均月租')?></label>
+                </td>
+                <td class="info-col">
+                    <span><?php echo $model->getSummary('year-down-total')?>套</span>
+                    <label><?php _tt('Annual turnover', '年成交量')?></label>
+                </td>
             </tr>
         </table>
         <!--
@@ -109,24 +130,36 @@
                         <?php _tt('Writing', '写作')?> <span><?php echo $model->sat->local[1][1]?></span> | 
                         <?php _tt('Math', '数学')?> <span><?php echo $model->sat->local[1][2]?></span> )</i>
                     </span>
-                    <label>本区SAT平均分</label>
+                    <label><?php _tt('Avg SAT score of AREA', '本区SAT平均分')?></label>
                 </td>
-                <td class="info-col"><span><?php echo $model->sat->state?></span><label>全州SAT平均分</label></td>
-                <td class="info-col"><span><?php echo $model->sat->country?></span><label>全美SAT平均分</label></td>
+                <td class="info-col">
+                    <span><?php echo $model->sat->state?></span>
+                    <label><?php _tt('Avg SAT score of MA', '全州SAT平均分')?></label>
+                </td>
+                <td class="info-col">
+                    <span><?php echo $model->sat->country?></span>
+                    <label><?php _tt('Avg SAT score of USA', '全美SAT平均分')?></label>
+                </td>
             </tr>
         </table>
     </div>
 
     <div class="school-info v-info-blk">
-        <h2>学校信息</h2>
+        <h2><?php _tt('Schools', '学校信息')?></h2>
         <table class="table-info">
             <tr>
                 <td class="info-col col-1">
                     <span><?php echo $model->special->special1 ?? _tt('Unknown', '未知')?></span>
                     <label><?php _tt('Student number', '入学人数')?></label>
                 </td>
-                <td class="info-col"><span>$<?php echo number_format($model->special->special3 ?? '0')?></span><label>人均政府补贴</label></td>
-                <td class="info-col"><span><?php echo $model->special->special4 ?? '0'?>%</span><label>亚裔学生占比</label></td>
+                <td class="info-col">
+                    <span>$<?php echo number_format($model->special->special3 ?? '0')?></span>
+                    <label><?php _tt('Government subsidies', '人均政府补贴')?></label>
+                </td>
+                <td class="info-col">
+                    <span><?php echo $model->special->special4 ?? '0'?>%</span>
+                    <label><?php _tt('Asian student pct', '亚裔学生占比')?></label>
+                </td>
             </tr>
         </table>
         <table class="school-list">
@@ -165,7 +198,7 @@
 
     <?php if (count($model->comments ?? []) > 0):?>
         <div class="hot-comments v-info-blk">
-            <h2 class="b-line">热门评价</h2>
+            <h2 class="b-line"><?php _tt('Hot posts', '热门评价')?></h2>
             <?php foreach ($model->comments ?? [] as $comment):?>
                 <?php
                     if (! property_exists($comment, 'work_years') && property_exists($comment, 'wordk_years'))
@@ -200,7 +233,7 @@
 
     <?php if (count($model->environments) > 0):?>
         <div class="area-envs v-info-blk">
-            <h2 class="b-line">区域环境</h2>
+            <h2 class="b-line"><?php _tt('Environments', '区域环境')?></h2>
             <?php foreach ($model->environments as $item):?>
                 <div class="env-item">
                     <div class="lay-g">
@@ -218,7 +251,7 @@
 
     <?php if (count($model->features) > 0):?>
         <div class="area-features v-info-blk">
-            <h2 class="b-line">区域特色</h2>
+            <h2 class="b-line"><?php _tt('Features', '区域特色')?></h2>
             <?php foreach ($model->features as $item):?>
                 <div class="env-item">
                     <div class="lay-g">
