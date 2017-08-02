@@ -89,11 +89,11 @@ function getTimeString(timeNumber)
 $('#btn-schedule-tour').click(function(event) {
     $.get('/customer/account/check-login/', {}, function(status){
         if(! status) {
-            window.location.href = "/customer/account/login/?callback="+encodeURI(window.location.href);
+            window.location.href = document.getElementById('login-url').getAttribute('content') + "?callback="+encodeURI(window.location.href);
             return;
         }
         else if(status === 999) {
-            window.location.href = "/umember/profile/?prompt=1&callback="+encodeURI(window.location.href);
+            window.location.href = document.getElementById('member-url').getAttribute('content') + "umember/profile/?prompt=1&callback="+encodeURI(window.location.href);
             return;
         }
 
@@ -105,7 +105,7 @@ $('#btn-schedule-tour').click(function(event) {
         };
         $.post('/gotour/tour/submit/', data, function(result){
             if(result) {
-                alert("<?php _tt('Your appointment has been submitted, please wait for confirm, you can check your appointment in your profile! Thank you!', '您的预约已经提交，请等待确认, 您可以在会员中心查看预约结果! 谢谢！')?>");
+                alert(tt('Your appointment has been submitted, please wait for confirm, you can check your appointment in your profile! Thank you!', '您的预约已经提交，请等待确认, 您可以在会员中心查看预约结果! 谢谢！'));
             }
         }, 'json');
     }, 'json');

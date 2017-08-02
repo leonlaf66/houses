@@ -1,3 +1,7 @@
+function tt(en, cn) {
+    return document.getElementById('language').getAttribute('content') === 'en-US' ? en : cn;
+}
+
 window.location.changeParam = function(name, value) {
     var pattern = new RegExp('(\\?|\\&)('+name+'=).*?(&|$)'),
         url = this.href,

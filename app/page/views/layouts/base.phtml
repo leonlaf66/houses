@@ -18,6 +18,9 @@ module\page\assets\Asset::register($this);
     <link rel="stylesheet" type="text/css" href="<?php echo \WS::$app->params['iconfontUrl']?>">
     
     <meta id="csrf-token" content="<?php echo Yii::$app->request->csrfToken?>">
+    <meta id="language" content="<?php echo Yii::$app->language?>">
+    <meta id="login-url" content="<?php echo Yii::$app->loginUrl?>">
+    <meta id="member-url" content="<?php echo Yii::$app->memberUrl?>">
     <?php $this->head() ?>
     <!--
     <link href='http://fonts.googleapis.com/css?family=Lato&subset=latin,latin-ext' rel='stylesheet' type='text/css'>-->
