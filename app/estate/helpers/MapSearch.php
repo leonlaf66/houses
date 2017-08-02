@@ -87,14 +87,14 @@ class MapSearch
 
         $rules['purchase'] = [
             'prop_type' => [
-                'title' => '类型',
+                'title' => tt('Type', '类型'),
                 'options' => $propertyTypes,
                 'apply' => function ($query, $vals) {
                     $query->andFilterWhere(['in', 'prop_type', $vals]);
                 }
             ],
             'beds' => [
-                'title' => '卧室',
+                'title' => tt('Bedroom', '卧室'),
                 'options' => [
                     1 => '1+',
                     2 => '2+',
@@ -107,7 +107,7 @@ class MapSearch
                 }
             ],
             'baths' => [
-                'title' => '卫生间',
+                'title' => tt('Bathroom', '卫生间'),
                 'options' => [
                     1 => '1+',
                     2 => '2+',
@@ -120,7 +120,7 @@ class MapSearch
                 }
             ],
             'parking' => [
-                'title' => '车位',
+                'title' => tt('Parking', '车位'),
                 'options' => [
                     '1' => '1+',
                     '2' => '2+',
@@ -131,10 +131,10 @@ class MapSearch
                 }
             ],
             'agrage' => [
-                'title' => '车库',
+                'title' => tt('Gerage', '车库'),
                 'options' => [
-                    1 => '有',
-                    2 => '无'
+                    1 => tt('Yes', '有'),
+                    2 => tt('No', '无')
                 ],
                 'apply' => function ($query, $val) {
                     if ($val == 1) {
@@ -143,13 +143,11 @@ class MapSearch
                 }
             ],
             'market-days' => [
-                'title' => '上市天数',
+                'title' => tt('Days on market', '上市天数'),
                 'options' => [
-                    '1' => '最新',
-                    '2' => '本周',
-                    '3' => '本月',
-                    '4' => '本周之前',
-                    '5' => '本月之前'
+                    '1' => tt('New listing', '最新'),
+                    '2' => tt('This week', '本周'),
+                    '3' => tt('This month', '本月')
                 ],
                 'apply' => function ($query, $val) {
                     $getRangeFns = [
@@ -164,14 +162,6 @@ class MapSearch
                         '3'=>function(){
                             $now = time();
                             return [$now - 86400 * 30, $now];
-                        },
-                        '4'=>function(){
-                            $now = time();
-                            return [0, $now - 86400 * 7];
-                        },
-                        '5'=>function(){
-                            $now = time();
-                            return [0, $now - 86400 * 30];
                         }
                     ];
 
@@ -188,12 +178,13 @@ class MapSearch
                 }
             ],
             'price' => [
-                'title' => '价格',
+                'title' => tt('Pirce', '价格'),
                 'options' => [
-                    '0~500000' => '50万以下',
-                    '500000~800000' => '50-80万',
-                    '800000~1200000' => '80-120万',
-                    '2000000~9999999999' => '200万以上'
+                    '0~500000' => tt('0-500,000', '50万以下'),
+                    '500000~1000000' => tt('500,000-1,000,000', '50-100万'),
+                    '1000000~1500000' => tt('1,000,000-1,500,000', '100-150万'),
+                    '1500000~2000000' => tt('1,500,000~2,000,000', '150-200万'),
+                    '2000000~999999999999' => tt('2,000,000+', '200万以上')
                 ],
                 'custom' => [
                     'type' => 'range'
@@ -205,7 +196,7 @@ class MapSearch
                 }
             ],
             'square' => [
-                'title' => '面积',
+                'title' => tt('Living area', '面积'),
                 'options' => [
                     '0~1000' => '0-1000',
                     '1000~2000' => '1000 - 2000',
@@ -225,7 +216,7 @@ class MapSearch
 
         $rules['lease'] = [
             'beds' => [
-                'title' => '卧室',
+                'title' => tt('Bedroom', '卧室'),
                 'options' => [
                     1 => '1+',
                     2 => '2+',
@@ -238,7 +229,7 @@ class MapSearch
                 }
             ],
             'baths' => [
-                'title' => '卫生间',
+                'title' => tt('Bathroom', '卫生间'),
                 'options' => [
                     1 => '1+',
                     2 => '2+',
@@ -251,7 +242,7 @@ class MapSearch
                 }
             ],
             'parking' => [
-                'title' => '车位',
+                'title' => tt('Parking', '车位'),
                 'options' => [
                     '1' => '1+',
                     '2' => '2+',
@@ -262,13 +253,12 @@ class MapSearch
                 }
             ],
             'price' => [
-                'title' => '价格',
+                'title' => tt('Price', '价格'),
                 'options' => [
-                    '0~1000' => '- 1,000',
-                    '1000~1500' => '1,000 - 1,500',
-                    '1500~2000' => '1,500 - 2,000',
-                    '2000~2500' => '2,000 - 2,500',
-                    '2500~99999999' => '2,500 +'
+                    '0~1000' => '0-1,000',
+                    '1000~1500' => '1,000-1,500',
+                    '1500~2000' => '1,500-2,000',
+                    '2000~99999999' => '2,000+'
                 ],
                 'custom' => [
                     'type' => 'range'

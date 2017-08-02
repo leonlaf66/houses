@@ -82,10 +82,10 @@ class MapController extends Controller
             'location' => $retsRender->get('location'),
             'list_price' => $retsRender->get('list_price'),
             'status_name' => $retsRender->get('status_name'),
-            'no_bedrooms' => $retsRender->get('no_bedrooms', ['title'=>'Beds']),
-            'no_full_baths' => $retsRender->get('no_full_baths'),
-            'no_half_baths' => $retsRender->get('no_half_baths'),
-            'square_feet' => $retsRender->get('square_feet', ['title'=>'Living']),
+            'no_bedrooms' => $retsRender->get('no_bedrooms', ['title'=>tt('Beds', '卧室数')]),
+            'no_full_baths' => $retsRender->get('no_full_baths', ['title'=>tt('Full baths', '全卫')]),
+            'no_half_baths' => $retsRender->get('no_half_baths', ['title'=>tt('Half baths', '半卫')]),
+            'square_feet' => $retsRender->get('square_feet', ['title'=>tt('Living', '面积')]),
             'no_list_days' => $retsRender->get('no_list_days')
         ]);
     }

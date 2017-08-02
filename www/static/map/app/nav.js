@@ -5,16 +5,16 @@ define('vc-nav', {
             current: 'areas',
             menuItems: {
                 'areas': {
-                    'text': 'AREAS',
+                    'text': tt('AREAS', '区域搜索'),
                     'icon': 'icon-area'
                 },
                 'schools': {
-                    'text': 'SCHOOLS',
+                    'text': tt('SCHOOLS', '优质学区'),
                     'icon': 'icon-xuequ',
                     'hide': window.$viewData.type === 'lease'
                 },
                 'subwaies': {
-                    'text': 'SUBWAY',
+                    'text': tt('SUBWAY', '地铁搜索'),
                     'icon': 'icon-ditie'
                 }
             },

@@ -132,7 +132,6 @@ define('vc-filters', {
         },
         confirmCustom: function (filterId) {
             this.data.customs[filterId] = this.customs[filterId];
-            console.log(this.data);
         },
         clearAll: function () {
             this.data = {};

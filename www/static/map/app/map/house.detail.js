@@ -29,7 +29,7 @@ var houseDetail = {
                                         '</ul>'+
                                         '<ul class="tags event-none">'+
                                             '<li class="tag">{{ data.status_name[\'value\'] }}</li>'+
-                                            '<li class="tag">已上市{{ data.no_list_days[\'value\'] }}天</li>'+
+                                            '<li class="tag">{{ tt(data.no_list_days[\'value\']+" days on market", "已上市"+data.no_list_days[\'value\']+"天") }}</li>'+
                                         '</ul>'+
                                     '</div>'+
                                 '</a>'+
