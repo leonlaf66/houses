@@ -46,26 +46,26 @@
 }
 </style>
 <div class="container area-container">
-    <h2><?php _t('house', 'Choose location')?></h2>
+    <h2><?php _tt('Choose location', '请选择区域')?></h2>
     <div class="area-blocks lay-g">
         <div class="area-block-col lay-u-1-2">
             <a href="http://ma<?php echo domain()?>" class="image-btn image-btn-a" style="background-image:url(<?php echo media_url('area/ma.jpg')?>)">
                 <span>
-                    <?php _t('city', 'Boston')?>
-                    <i>(<?php _t('state', 'Massachusetts')?></i>
+                    <?php _tt('Boston', '波士顿')?>
+                    <i>(<?php _tt('Massachusetts', '马萨诸塞州')?>)</i>
                 </span>
             </a>
         </div>
         <div class="area-block-col lay-u-1-2">
             <a href="javascript:void(0)" class="image-btn image-btn-b" style="background-image:url(<?php echo media_url('area/b.jpg')?>)">
                 <span>
-                    <?php _t('city', 'New York')?>
-                    <i>(<?php _t('state', 'NYC')?>, <?php _t('state', 'Long island')?>, <?php _t('state', 'Brooklyn')?></i>
+                    <?php _tt('New York', '纽约')?>
+                    <i>(<?php _tt('NYC, Long island, Brooklyn', '纽约市，长岛，布鲁克林')?>)</i>
                 </span>
             </a>
             <a href="javascript:void(0)" class="image-btn image-btn-c" style="background-image:url(<?php echo media_url('area/c.jpg')?>)">
-                <span><?php _t('city', 'Washington')?>
-                    <i>(<?php _t('state', 'DC')?>, <?php _t('state', 'MD')?>, <?php _t('state', 'VA')?></i>
+                <span><?php _tt('Washington', '华盛顿')?>
+                    <i>(<?php _tt('DC, MD, VA', '华盛顿DC，弗吉尼亚，马里兰')?>)</i>
                 </span>
             </a>
         </div>
