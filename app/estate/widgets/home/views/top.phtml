@@ -4,8 +4,8 @@ use module\estate\helpers\RetsHtml;
 ?>
 
 <div class="home-top-houses">
-    <h2>LUXURY HOUSES</h2>
-    <div class="desc">Featuring luxury quality houses in Massachusetts</div>
+    <h2><?php _t('rets', 'LUXURY HOUSE')?></h2>
+    <div class="desc"><?php _t('rets', 'Featuring luxury quality houses in Massachusetts')?></div>
     <?php foreach($groups as $items):?>
         <div class="lay-g row">
             <?php foreach($items as $item):?>

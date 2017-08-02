@@ -67,6 +67,9 @@
     </div>
     <div class="hot-houses v-info-blk">
         <h2><?php _tt('Hot listings', '热门房源')?></h2>
+        <?php echo \module\schooldistrict\widgets\HouseList::widget([
+            'schoolDistrict' => $model
+        ])?>
     </div>
     <div class="house-price-dc v-info-blk">
         <h2>学区房价</h2>

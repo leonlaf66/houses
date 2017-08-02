@@ -66,7 +66,7 @@
                                 </div>
                             </li>
                             <li class="field">
-                                <?php echo RetsHtml::getFieldHtml($rets, 'square_feet', ['title'=>'居住面积'])?>
+                                <?php echo RetsHtml::getFieldHtml($rets, 'square_feet', ['title'=>tt('Living area', '居住面积')])?>
                             </li>
                         </ul>
                     </div>
@@ -82,13 +82,13 @@
         <div class="lay-u-1-6">
             <div class="right-side" style="background:#fff">
                 <div class="side-box">
-                    <div class="side-title"><?php _t('sys', 'Customer service')?></div>
+                    <div class="side-title"><?php _tt('Customer service', '米乐居客服')?></div>
                     <div class="side-content">
                         <?php echo \module\catalog\widgets\ContactBanner::widget()?>
                     </div>
                 </div>
                 <div class="side-box">
-                    <div class="side-title"><?php _t('gour', 'Go Tour This House')?></div>
+                    <div class="side-title"><?php _t('tour', 'Go Tour This House')?></div>
                     <div class="side-content">
                         <?php echo \module\gotour\widgets\Form::widget(['rets' => $rets])?>
                     </div>

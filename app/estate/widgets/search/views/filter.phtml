@@ -10,7 +10,7 @@
     		<?php
     			$mapUrl = '/map/house/'.\WS::$app->share('rets.property').'/#areas';
     		?>
-    		<a class="btn" style="float:right" href="<?php echo $mapUrl?>"><i class="iconfont icon-marker"></i><?php _t('map', 'Map')?></a>
+    		<a class="btn red" style="float:right" href="<?php echo $mapUrl?>"><i class="iconfont icon-marker"></i><?php _t('map', 'Map')?></a>
 
 			<ul class="tabs">
 				<?php foreach($this->context->tabs() as $id=>$text):?>

@@ -1,27 +1,19 @@
 <?php
-    use module\estate\helpers\Rets as RetsHelper;
-    use module\estate\helpers\RetsHtml;
+use module\estate\helpers\Rets as RetsHelper;
+use module\estate\helpers\RetsHtml;
 ?>
-<style type="text/css">
-.rets-recommend-view .image-shower {
-    background-size: cover;
-    background-position: center center;
-    width:223px;
-    height:174px;
-}
-</style>
-<div class="rets-view-block rets-recommend-view">
-    <div class="block-heading"><?php _tt('Recommended houses', '相似房源推荐')?></div>
+
+<div class="house-grid">
     <div class="lay-g row">
-        <?php foreach($nearbyHouses as $_rets):?>
+        <?php foreach($items as $_rets):?>
             <?php
                 $_entity = $_rets->entity();
                 $_render = $_entity->render();
             ?>
-            <div class="col lay-u-1-4">
-                <div class="rets-item" style="margin-bottom:20px">
-                    <div class="image-box" style="min-height:174px">
-                        <a style="display:block;" href="<?php echo RetsHelper::getUrl($_entity)?>" target="_blank">
+            <div class="col lay-u-1-6">
+                <div class="rets-item">
+                    <div class="image-box">
+                        <a href="<?php echo RetsHelper::getUrl($_entity)?>" target="_blank">
                             <div class="image-shower" style="background-image:url(<?php echo $_entity->getPhoto(0, 500, 500)?>)"></div>
                         </a>
                         <span class="price"><?php echo RetsHtml::getValueHtml($_entity, 'list_price')?></span>
