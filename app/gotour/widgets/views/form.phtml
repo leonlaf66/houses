@@ -105,7 +105,7 @@ $('#btn-schedule-tour').click(function(event) {
         };
         $.post('/gotour/tour/submit/', data, function(result){
             if(result) {
-                alert("Your appointment has been submitted, please wait for confirm, you can check your appointment in your profile! Thank you!");
+                alert("<?php _tt('Your appointment has been submitted, please wait for confirm, you can check your appointment in your profile! Thank you!', '您的预约已经提交，请等待确认, 您可以在会员中心查看预约结果! 谢谢！')?>");
             }
         }, 'json');
     }, 'json');

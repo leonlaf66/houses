@@ -14,7 +14,7 @@ class TourController extends Controller
 
         $result = false;
         if($req->isPost && ! WS::$app->user->isGuest) {
-            $tour = new \common\rets\gotour\Tour();
+            $tour = new \common\estate\gotour\Tour();
             $tour->user_id = WS::$app->user->id;
             $tour->list_no = $req->post('listNo');
             $tour->date_start = $req->post('day').' '.$req->post('timeRange')[0] . ':00';
