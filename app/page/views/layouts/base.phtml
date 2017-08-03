@@ -21,6 +21,7 @@ module\page\assets\Asset::register($this);
     <meta id="language" content="<?php echo Yii::$app->language?>">
     <meta id="login-url" content="<?php echo Yii::$app->loginUrl?>">
     <meta id="member-url" content="<?php echo Yii::$app->memberUrl?>">
+    <meta id="login-status" content="<?php echo \WS::$app->user->isGuest ? 'false' : 'true'?>">
     <?php $this->head() ?>
     <!--
     <link href='http://fonts.googleapis.com/css?family=Lato&subset=latin,latin-ext' rel='stylesheet' type='text/css'>-->

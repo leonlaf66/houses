@@ -135,6 +135,11 @@
 
 <script type="text/javascript">
 $('.base-information .btn-like').click(function (event) {
+    if (document.getElementById('login-status').getAttribute('content') === 'false') {
+        window.location.href = document.getElementById('login-url').getAttribute('content') + '?callback=' + encodeURI(window.location.href);
+        return;
+    }
+
     var $that = $(this),
         id = $that.data('id'),
         isActived = $that.hasClass('active');

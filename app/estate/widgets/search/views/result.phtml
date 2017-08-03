@@ -107,6 +107,11 @@ h2.location {
 </div>
 <script type="text/javascript">
 $('.rets-results').delegate('.btn-like', 'click', function (event) {
+	if (document.getElementById('login-status').getAttribute('content') === 'false') {
+		window.location.href = document.getElementById('login-url').getAttribute('content') + '?callback=' + encodeURI(window.location.href);
+		return;
+	}
+
 	var $that = $(this),
 		$item = $that.parents('.item'),
 		id = $item.data('id'),
