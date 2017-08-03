@@ -43,6 +43,7 @@ define('vc-search', {
         },
         handleConfirm: function () {
             if (this.q && $.trim(this.q) !== '') {
+                this.q = this.q.toString()[0].toUpperCase() + this.q.toString().slice(1);
                 this.$emit('input', this.q);
             }
         }
