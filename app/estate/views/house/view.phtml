@@ -19,6 +19,30 @@
 
 <?php echo \module\page\widgets\Nav::widget()?>
 
+<style type="text/css">
+.base-information > h1 {
+    position:relative;
+    padding-right: 15px;
+}
+.base-information .btn-like {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+.base-information .btn-like .iconfont {
+    font-size: 24px;
+    color: #ccc;
+}
+.base-information .btn-like:hover .iconfont{
+    color:#555;
+}
+.base-information .btn-like.active .iconfont {
+    color:#99bd2a;
+}
+.base-information .btn-like.active:hover .iconfont{
+    color:#a9cd3a;
+}
+</style>
 <div class="container mt20">
     <div class="lay-g">
         <div class="lay-u-5-6 pr20">
@@ -28,7 +52,10 @@
                 </div>
                 <div class="lay-u-1-2 pl20">
                     <div class="base-information">
-                        <h1><?php echo $rets->getLocation()?></h1>
+                        <h1>
+                            <?php echo $rets->getLocation()?>
+                            <a data-id="<?php echo $rets->list_no?>" class="btn-like<?php echo $rets->isLiked() ? ' active' : ''?>" href="javascript:void(0)"><span class="iconfont icon-like_fill"></span></a>
+                        </h1>
                         <?php if ($rets->prop_type === 'RN'):?>
                             <p class="price">
                                 <span class="value"><?php echo RetsHtml::getValueHtml($rets, 'list_price')?></span>
@@ -105,3 +132,21 @@
         </div>
     </div>
 </div>
+
+<script type="text/javascript">
+$('.base-information .btn-like').click(function (event) {
+    var $that = $(this),
+        id = $that.data('id'),
+        isActived = $that.hasClass('active');
+
+    $.get('/customer/rets-favorite/update/?list_no='+id, {}, function (result) {
+        if (result) {
+            if (isActived) {
+                $that.removeClass('active');
+            } else {
+                $that.addClass('active');
+            }
+        }
+    }, 'json');
+});
+</script>
