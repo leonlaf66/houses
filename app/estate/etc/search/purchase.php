@@ -16,8 +16,8 @@ return [
             'heading'=>$t('Type'),
             'options'=>$propTypes,
             'apply'=>function ($val, $search) {
-                $val = strtoupper($val);
-                $search->query->andWhere(['=', 'prop_type', $val]);
+                $propTypes = explode('~', strtoupper($val));
+                $search->query->andWhere(['in', 'prop_type', $propTypes]);
             }
         ],
         'price'=>[

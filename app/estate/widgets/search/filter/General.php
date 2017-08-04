@@ -28,6 +28,11 @@ class General extends \yii\base\Widget
 
     public function activeClass($ruleId, $value, $className = 'active')
     {
+        if ($ruleId === 'property') {
+            $values = $this->parseMultipleValues($ruleId);
+            return in_array($value, $values) ? $className : '';
+        }
+
         return WS::$app->request->get($ruleId) === $value ? $className : '';
     }
 
@@ -51,6 +56,69 @@ class General extends \yii\base\Widget
 
     public function createUrl($name, $value)
     {
+        if ($name === 'property') { // 多选支持
+            return $this->createMultipleUrl($name, $value);
+        }
+
         return SearchUrl::to($name, $value);
+    }
+
+    public function createMultipleUrl($name, $value)
+    {
+        if (! $value) {
+            return SearchUrl::to($name, null);
+        }
+
+        $values = $this->parseMultipleValues($name);
+        if (count($values) === 1 && $values[0] === $value) {
+            return SearchUrl::to($name, null);
+        }
+        
+        if (! in_array($value, $values)) {
+            $values[] = $value;
+        } else {
+            if ($finedKey = array_search($value, $values)) {
+                array_splice($values, $finedKey, 1);
+            }
+        }
+
+        if (count($values) === 0) {
+            return SearchUrl::to($name, null);
+        }
+
+        return SearchUrl::to($name, implode('~', $values));
+    }
+
+    public function clearMultipleUrl($name, $value)
+    {
+        $values = $this->parseMultipleValues($name);
+        
+        $finedKey = array_search($value, $values);
+        if (false !== $finedKey) {
+            array_splice($values, $finedKey, 1);
+        }
+
+        if (count($values) === 0) {
+            return SearchUrl::to($name, null);
+        }
+
+        return SearchUrl::to($name, implode('~', $values));
+    }
+
+    public function parseMultipleValues($name)
+    {
+        $values = isset($_GET[$name]) ? $_GET[$name] : null;
+        if ($values) {
+            $values = explode('~', $values);
+        } else {
+            $values = [];
+        }
+        return $values;
+    }
+
+    public function multipleIn($name, $id)
+    {
+        $values = $this->parseMultipleValues($name);
+        return in_array($id, $values);
     }
 }
