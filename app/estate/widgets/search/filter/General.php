@@ -12,6 +12,14 @@ class General extends \yii\base\Widget
 
     public function run()
     {  
+        if (isset($_GET['custom-price'])) {
+            $_GET['price'] = $_GET['custom-price'];
+        }
+
+        if (isset($_GET['custom-square'])) {
+            $_GET['square'] = $_GET['custom-square'];
+        }
+
         $search = $this->search;
         $filters = $this->getRules('generalFilters');
         foreach($filters as $filterId=>$filterOptions) {
@@ -28,6 +36,13 @@ class General extends \yii\base\Widget
 
     public function activeClass($ruleId, $value, $className = 'active')
     {
+        if ($ruleId === 'price' && isset($_GET['custom-price'])) {
+            return '';
+        }
+        if ($ruleId === 'square' && isset($_GET['custom-square'])) {
+            return '';
+        }
+
         if ($ruleId === 'property') {
             $values = $this->parseMultipleValues($ruleId);
             return in_array($value, $values) ? $className : '';
@@ -73,7 +88,7 @@ class General extends \yii\base\Widget
         if (count($values) === 1 && $values[0] === $value) {
             return SearchUrl::to($name, null);
         }
-        
+
         if (! in_array($value, $values)) {
             $values[] = $value;
         } else {

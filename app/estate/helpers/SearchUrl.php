@@ -22,7 +22,15 @@ class SearchUrl
             $url.= '?q='.urlencode($q);
         }
 
-        return \yii\helpers\Url::to($url);
+        $params = [];
+        if ($key !== 'price' && isset($_GET['custom-price'])) {
+            $params['custom-price'] = $_GET['custom-price'];
+        }
+        if ($key !== 'square' && isset($_GET['custom-square'])) {
+            $params['custom-square'] = $_GET['custom-square'];
+        }
+
+        return \yii\helpers\Url::to(array_merge([$url], $params));
     }
 
     public static function replaceTo($key, $value)
