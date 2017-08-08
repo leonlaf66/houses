@@ -10,7 +10,7 @@ use module\estate\helpers\RetsHtml;
                 $_entity = $_rets->entity();
                 $_render = $_entity->render();
             ?>
-            <div class="col lay-u-1-6">
+            <div class="col lay-u-1-5" style="width:20%">
                 <div class="rets-item">
                     <div class="image-box">
                         <a href="<?php echo RetsHelper::getUrl($_entity)?>" target="_blank">
@@ -22,8 +22,9 @@ use module\estate\helpers\RetsHtml;
                         <h2 class="location">
                             <span class="address"><?php echo $_render->get('location')['value']?></span>
                         </h2>
-                        <div class="rooms">
-                            <span><?php echo $_render->get('rooms_descriptions')['value']?></span>
+                        <div class="info2">
+                            <span class="left"><?php echo $_render->get('prop_type_name')['value']?></span>
+                            <span class="right"><?php echo $_render->get('rooms_descriptions')['value']?></span>
                         </div>
                         <div class="clear"></div>
                     </div>

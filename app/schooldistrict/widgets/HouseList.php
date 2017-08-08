@@ -17,7 +17,7 @@ class HouseList extends \yii\base\Widget
             ->andWhere(['>', 'list_price', 700000])
             ->andWhere(['is_show' => true])
             ->orderBy(['id' => 'DESC'])
-            ->limit(6)
+            ->limit(10)
             ->all();
 
         return $this->render('house-list.phtml', ['items'=>$items]);
