@@ -21,7 +21,7 @@ class Asset extends AssetBundle
         '/static/lib/tipped-4.6.0-light/css/tipped/tipped.css',
         // 'https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css',
         '/static/css/jquery.typeahead.min.css',
-        '/static/css/main.css'
+        '/static/css/main.css?v-2.1'
     ];
     public $js = [
         '/static/lib/jquery.min.js',
