@@ -13,6 +13,21 @@ class HouseController extends Controller
         WS::$app->share('rets.property', $type);
         WS::$app->share('rets.tab', $tab);
 
+        if ($type === 'purchase') { // 默认为前三种房源类型，能过cookie做状态切换
+            if ($params === '') {
+                if (! \WS::$app->request->cookies->getValue('def-sell-type-flag', false)) {
+                    return $this->redirect('/house/purchase/pt-sf~mf~cc/');
+                }
+            } elseif ($params !== 'pt-sf~mf~cc') { // 写cookie状态
+                \WS::$app->response->cookies->add(new \yii\web\Cookie([
+                    'name' => 'def-sell-type-flag',
+                    'value' => 1,
+                    'expire' => time() + 3600, // 8 小时
+                    'domain' => domain()
+                ]));
+            }
+        }
+
         UrlParamEncoder::setup($params, [
             'q'=>'q',
             'school-district'=>'sd',
