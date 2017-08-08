@@ -16,7 +16,10 @@ class HouseController extends Controller
         if ($type === 'purchase') { // 默认为前三种房源类型，能过cookie做状态切换
             if ($params === '') {
                 if (! \WS::$app->request->cookies->getValue('def-sell-type-flag', false)) {
-                    return $this->redirect('/house/purchase/pt-sf~mf~cc/');
+                    if ($tab === 'search') {
+                        return $this->redirect('/house/purchase/pt-sf~mf~cc/');
+                    }
+                    return $this->redirect('/house/purchase/'.$tab.'/pt-sf~mf~cc/');
                 }
             } elseif ($params !== 'pt-sf~mf~cc') { // 写cookie状态
                 \WS::$app->response->cookies->add(new \yii\web\Cookie([
