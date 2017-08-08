@@ -20,7 +20,9 @@ use module\estate\helpers\RetsHtml;
                     </div>
                     <div class="info">
                         <h2 class="location">
-                            <span class="address"><?php echo $_render->get('location')['value']?></span>
+                            <a class="address" href="<?php echo RetsHelper::getUrl($_entity)?>" target="_blank">
+                                <?php echo $_render->get('location')['value']?>
+                            </a>
                         </h2>
                         <div class="info2">
                             <span class="left"><?php echo $_render->get('prop_type_name')['value']?></span>
