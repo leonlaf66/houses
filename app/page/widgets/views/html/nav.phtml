@@ -34,17 +34,17 @@ $urlManager = \WS::$app->urlManager;
             </ul>
             <div class="quick-links">
                 <?php if (WS::$app->user->isGuest):?>
-                    <a class="quick-link" href="<?php echo \WS::$app->loginUrl?>"><span class="iconfont icon-login">LOGIN</a>
+                    <a class="quick-link" href="<?php echo \WS::$app->loginUrl?>"><span class="iconfont icon-login"><?php _tt('LOGIN','登陆')?></a>
                 <?php else:?>
                     <div class="my-account">
-                        <a href="#" class="quick-link">
+                        <a href="<?php echo \WS::$app->memberUrl?>umember/profile/" class="quick-link" style="margin-left:0">
                             <span class="iconfont icon-login">
                                 <?php echo WS::$app->user->getIdentity()->username?>
                             </span>
                         </a>
                         <ul class="my-account-menu" style="position: absolute;">
-                            <li><a href="<?php echo \WS::$app->memberUrl?>">Member Center</a></li>
-                            <li><a href="<?php echo \WS::$app->logoutUrl?>">Logout</a></li>
+                            <li><a href="<?php echo \WS::$app->memberUrl?>"><?php _tt('Member Center', '会员中心')?></a></li>
+                            <li style="border-bottom-width:0"><a href="<?php echo \WS::$app->logoutUrl?>"><?php _tt('Logout', '登出')?></a></li>
                         </ul>
                     </div>
                 <?php endif?>
@@ -74,7 +74,7 @@ $urlManager = \WS::$app->urlManager;
         display:inline-block;
     }
     #main-nav .my-account > a {
-        text-decoration:underline;
+        cursor:pointer;
     }
     #main-nav .my-account-menu {
         display:none;
@@ -88,14 +88,21 @@ $urlManager = \WS::$app->urlManager;
         text-align: left;
         line-height: 14px;
     }
+    #main-nav .my-account-menu > li {
+        border-bottom: solid 1px #e2e2e2;
+    }
     #main-nav .my-account-menu > li > a{
         display:block;
-        padding:7px 10px;
-        color:#222;
+        padding: 10px 20px;
+        padding-right:35px;
+        color:#777;
+        cursor:pointer;
         text-decoration:none;
+        font-size:14px;
     }
     #main-nav .my-account-menu > li:hover > a {
-        background:#e5e5e5;
+        background:#eee;
+        color:#222;
     }
     #main-nav .my-account:hover .my-account-menu {
         display:block;

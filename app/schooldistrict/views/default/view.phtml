@@ -22,7 +22,7 @@ body.en-us .table-info .info-col>label{
         </div>
         <div class="lay-u-1-2">
             <div class="base-info">
-                <h2>
+                <h2 style="margin-right:90px;">
                     <?php if (\WS::$app->language === 'en-US'):?>
                         <?php echo $model->getItemData('name')[0]?><span><?php echo $model->getItemData('name')[1]?></span>
                     <?php else:?>
@@ -72,9 +72,35 @@ body.en-us .table-info .info-col>label{
                         </li>
                     </ul>
                 </div>
+                <div class="houses-go">
+                    <a class="go-houses-btn" target="_blank" href="/house/purchase/school-districtss/sd-<?php echo str_replace('/', '%7C', strtolower($model->code))?>/">
+                        <?php echo sprintf(tt('%d on Market', '共%d套在售'), $model->getSummary('total'))?>
+                        <span class="iconfont icon-goto"></span>
+                    </a>
+                </div>
             </div>
         </div>
     </div>
+    <style type="text/css">
+    #base-info-container .base-info {
+        position:relative;
+    }
+    #base-info-container .base-info .houses-go {
+        position:absolute;
+        top:0;right:0;
+    }
+    .go-houses-btn, .go-houses-btn:focus {
+        display: inline-block;
+        color: #f15044;
+        border: solid 1px #f15044;
+        padding: 5px 8px;
+        font-size: 14px
+    }
+    .go-houses-btn:hover {
+        border: solid 1px #f00;
+        color: #f00;
+    }
+    </style>
     <div class="description">
         <h2><?php _tt('Introduction', '学区介绍')?></h2>
         <p class="desc"><?php echo $model->description?></p>

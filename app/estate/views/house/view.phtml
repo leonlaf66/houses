@@ -34,7 +34,7 @@
     color: #ccc;
 }
 .base-information .btn-like:hover .iconfont{
-    color:#555;
+    color:#99bd2a;
 }
 .base-information .btn-like.active .iconfont {
     color:#99bd2a;
@@ -54,7 +54,9 @@
                     <div class="base-information">
                         <h1>
                             <?php echo $rets->getLocation()?>
-                            <a data-id="<?php echo $rets->list_no?>" class="btn-like<?php echo $rets->isLiked() ? ' active' : ''?>" href="javascript:void(0)"><span class="iconfont icon-like_fill"></span></a>
+                            <a data-id="<?php echo $rets->list_no?>" class="btn-like<?php echo $rets->isLiked() ? ' active' : ''?>" href="javascript:void(0)" title="<?php _tt('Favorite', '收藏')?>">
+                                <span class="iconfont icon-like_fill"></span>
+                            </a>
                         </h1>
                         <?php if ($rets->prop_type === 'RN'):?>
                             <p class="price">

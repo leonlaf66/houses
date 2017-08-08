@@ -20,7 +20,7 @@ h2.location {
     color: #ccc;
 }
 .rets-results .btn-like:hover .iconfont{
-	color:#555;
+	color:#99bd2a;
 }
 .rets-results .btn-like.active .iconfont {
 	color:#99bd2a;
@@ -56,7 +56,9 @@ h2.location {
 				<div class="pl15 pr15">
 					<h2 class="location">
 						<a href="<?php echo $url?>"><?php echo $rets->location?></a>
-						<a class="btn-like<?php echo $rets->isLiked() ? ' active' : ''?>" href="javascript:void(0)"><span class="iconfont icon-like_fill"></span></a>
+						<a class="btn-like<?php echo $rets->isLiked() ? ' active' : ''?>" href="javascript:void(0)" title="<?php _tt('Favorite', '收藏')?>">
+							<span class="iconfont icon-like_fill"></span>
+						</a>
 					</h2>
 					<div class="fields1" style="white-space:nowrap">
 						<span><?php $_t('Bedrooms')?> <?php echo RetsHtml::getValueHtml($rets, 'no_bedrooms')?></span> | 
@@ -80,9 +82,9 @@ h2.location {
 							$_tags = $rets->getTags();
 						?>
 						<?php if (count($_tags) > 0):?>
-							<div class="fields3">
+							<div class="fields3" style="margin-bottom:-8px">
 								<?php foreach($_tags as $tag):?>
-									<span><?php echo $tag?></span>
+									<span style="margin-bottom:8px"><?php echo $tag?></span>
 								<?php endforeach?>
 							</div>
 						<?php endif?>
