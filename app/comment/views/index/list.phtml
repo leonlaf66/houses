@@ -1,12 +1,9 @@
-<?php 
-$t = lang('comment');
-?>
 <?php if(count($comments) == 0):?>
     <div class="page-block on page1">
         <div class="no-found" style="margin-bottom:30px">
             <div class="reply essence" id="tie-data-1">
             <div class="inner innerFace clearfix">
-                <?php $t('No comment now.')?>
+                <?php tt('No comment now.', '暂无任何评论内容!')?>
             </div>
             </div>
         </div>
@@ -25,7 +22,7 @@ $t = lang('comment');
                         </span>
                     </span>
                     <span class="from">
-                        <?php $t('User')?>: <?php echo $item->user->username?>
+                        <?php _tt('User', '用户')?>: <?php echo $item->user ? $item->user->username : tt('Unknown', '未知')?>
                     </span>
                     <span class="from-logon">
                         <span class="score">

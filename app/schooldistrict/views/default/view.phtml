@@ -47,9 +47,9 @@ body.en-us .table-info .info-col>label{
                             </td>
                             <td class="info-col"><span>
                                 <?php if (\WS::$app->language === 'en-US'):?>
-                                    <?php echo number_format($model->special->special3) ?? 'Unknown'?></span>
+                                    <?php echo number_format($model->special->special2) ?? 'Unknown'?></span>
                                 <?php else:?>
-                                    <?php echo number_format($model->special->special3 / 10000, 1) ?? 'Unknown'?>万元</span>
+                                    <?php echo number_format($model->special->special2 / 10000, 1) ?? 'Unknown'?>万元</span>
                                 <?php endif?>
                                 <label><?php _tt('Avg income', '人均收入(年)')?></label>
                             </td>

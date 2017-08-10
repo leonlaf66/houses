@@ -9,12 +9,12 @@ $t = function($message, $params=[]){
 };
 
 /* @var $this yii\web\View */
-$this->title = t('yellowpage', 'Pro Services {name}', ['name'=>$model->name]);
+$this->title = sprintf(tt('Pro Services:%s', '管房养房:%s'), $model->name);
 ?>
 
 <?php
     $this->params['breadcrumbs'] = [
-        ['label'=>t('yellowpage', 'Pro Services'), 'url'=>'/yellowpage/'],
+        ['label'=>tt('Pro Services', '管房养房'), 'url'=>'/yellowpage/'],
         $model->name
     ]
 ?>
@@ -39,10 +39,8 @@ $this->title = t('yellowpage', 'Pro Services {name}', ['name'=>$model->name]);
                                     <label><?php $t('Contact:')?></label><?php echo $model->contact?>
                                 </div>
                             </div>
-                            <div class="col-md-6">
-                                <div class="rating-star" style="float:right">
-                                    <em class="rating rating-<?php echo $model->rating?>"></em>
-                                </div>
+                            <div class="col-md-6" style="text-align:right">
+                                <span class="rating"><span style="width:<?php echo $model->rating * 20?>%"></span></span>
                             </div>
                         </div>
                         <div class="short-info">

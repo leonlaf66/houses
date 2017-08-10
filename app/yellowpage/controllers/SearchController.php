@@ -10,7 +10,7 @@ class SearchController extends \yii\web\Controller
 	const SORT_VAR = 'sort';
     const CITY_FILTER_VAR = 'city';
 
-    public function actionResult($type=null, $city=null, $sort=null)
+    public function actionResult($type=null, $city=null, $sort=null, $dir='')
     {
         $collection = YPModel\YellowPage::find();
         
@@ -23,27 +23,28 @@ class SearchController extends \yii\web\Controller
             ]);
         }
         if($city) {
-            $ypids = \WS::$app->db
-                ->createCommand('select distinct yellowpage_id from catalog_yellow_page_cities where city_id='.intval($city))
-                ->queryColumn();
-            $collection->andWhere(['in', 'id', $ypids]);
-            $collection->leftJoin(['city'=>'catalog_yellow_page_cities'], 'city.yellowpage_id=catalog_yellow_page.id');
-            $collection->orWhere('city.city_id is null');
+            $cityId = intval($city);
+            $collection->innerJoinWith([
+                'city'=>function($query) use($cityId) {
+                    $query->where('city_id='.$cityId);
+                }
+            ]);
         }
         $collection->distinct();
         if($sort) {
+            $dir = $dir === '1' ? 'ASC' : 'DESC';
             switch ($sort) {
                 case 'comments':
-                    $collection->orderBy('comments desc');
+                    $collection->orderBy('comments '.$dir);
                     break;
                 case 'rating':
-                    $collection->orderBy('rating desc');
+                    $collection->orderBy('rating '.$dir);
                     break;
                 case 'hits':
-                    $collection->orderBy('hits desc');
+                    $collection->orderBy('hits '.$dir);
                     break;
                 default:
-                    $collection->orderBy('catalog_yellow_page.weight desc');
+                    $collection->orderBy('weight '.$dir);
                     break;
             }
         }

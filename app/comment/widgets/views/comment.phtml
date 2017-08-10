@@ -115,7 +115,7 @@
             success: function(status){
                 isLogined = status;
                 if(! status) {
-                    window.location.href = "/customer/account/login/?callback="+encodeURI(window.location.href);
+                    window.location.href = "<?php echo \WS::$app->loginUrl?>?callback="+encodeURI(window.location.href);
                 }
             }
         });

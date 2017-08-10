@@ -70,17 +70,15 @@ $this->title = t('yellowpage', 'Pro Services');
                         </div>
                     </div>
                     <div class="lay-col col-addi">
-                        <span class="rating-star">
-                            <em class="rating rating-<?php echo $_item->rating?>"></em>
-                        </span>
+                        <span class="rating"><span style="width:<?php echo $_item->rating * 20?>%"></span></span>
                         <span class="comment-value">
                             <?php echo $_item->comments?>
                         </span>
                         <span class="hits-value">
-                            <span class="icon"></span><?php echo $_item->hits?>
+                            <span class="iconfont icon-hit"></span><?php echo $_item->hits?>
                         </span>
                         <div class="button-box">
-                            <a href="<?php echo $_viewUrl?>" class="btn"><span><?php $t('View Detail')?></span></a>
+                            <a href="<?php echo $_viewUrl?>" class="btn"><span><?php tt('View Detail', '查看详情')?></span></a>
                         </div>
                     </div>
                 </div>

@@ -16,6 +16,9 @@ class DefaultController extends \yii\web\Controller
     {
 
     	$yelloePage = YellowPage::findOne($id);
+
+        $yelloePage->hits = intval($yelloePage->hits) + 1;
+        $yelloePage->save();
         
     	return $this->render('view.phtml', ['model'=>$yelloePage]);
     }
