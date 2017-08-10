@@ -7,12 +7,12 @@ $_urlManager = \WS::$app->urlManager;
 $t = function($message, $params=[]){
     echo t('yellowpage', $message, $params);
 };
-$this->title = t('yellowpage', 'Pro Services');
+$this->title = tt('Pro Services', '管房养房');
 ?>
 
 <?php
     $this->params['breadcrumbs'] = [
-        'Pro Services'
+        $this->title
     ]
 ?>
 
