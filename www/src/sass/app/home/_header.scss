@@ -23,7 +23,9 @@
         }
     }
     .quick-links {
-        margin-top:-10px;
+        line-height:30px;
+        margin-left:-20px;
+        margin-top:5px;
         .quick-link {
             margin-right:0;
             margin-left:20px;
@@ -31,12 +33,10 @@
     }
     .menu-items {
         position:absolute;
-        top:72px;
+        top:55px;
         right:0;
         line-height:16px;
         .menu-item {
-            height:16px;
-            line-height:16px;
             margin-right:0;
             margin-left:30px;
         }
