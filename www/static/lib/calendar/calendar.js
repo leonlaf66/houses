@@ -628,6 +628,7 @@
 			},
 			show = function (ev) {
 				var cal = $('#' + $(this).data('datepickerId'));
+
 				if (!cal.is(':visible')) {
 					var calEl = cal.get(0);
 					fill(calEl);
@@ -637,7 +638,8 @@
 					var viewPort = getViewport();
 					var top = pos.top;
 					var left = pos.left;
-					var oldDisplay = $.curCSS(calEl, 'display');
+					//var oldDisplay = $.curCSS(calEl, 'display');
+					$(calEl).css('display', true);
 					cal.css({
 						visibility: 'hidden',
 						display: 'block'

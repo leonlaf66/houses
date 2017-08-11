@@ -20,7 +20,7 @@
 <div class="rets-go-tour">
     <div class="content" id="go-tour-form">
         <div id="date-input-box">
-            <input type="text" readonly="readonly" id="txt_day" style="">
+            <input type="text" id="txt_day" readonly="readonly" style="">
             <i class="iconfont icon-date"></i>
         </div>
         <div style="padding:24px 0">
@@ -39,20 +39,23 @@ today.setSeconds(0);
 today.setMilliseconds(0);
 
 $('#txt_day').val(today.format('yyyy-MM-dd'));
-$('#date-input-box').DatePicker({
-    calendars: 1,
-    starts: 1,
-    date: today.format('yyyy-MM-dd'),
-    onRender: function(date){
-        return {
-            selected: false,
-            disabled: date < today
-        };
-    },
-    onChange: function(date) {
-        $('#txt_day').val(date);
-        $('#date-input-box').DatePickerHide();
-    }
+
+$(document).ready(function() {
+    $('#date-input-box').DatePicker({
+        calendars: 1,
+        starts: 1,
+        date: today.format('yyyy-MM-dd'),
+        onRender: function(date){
+            return {
+                selected: false,
+                disabled: date < today
+            };
+        },
+        onChange: function(date) {
+            $('#txt_day').val(date);
+            $('#date-input-box').DatePickerHide();
+        }
+    });
 });
 </script>
 <link rel="stylesheet" href="/static/lib/time-range/jquery.time.range.css">

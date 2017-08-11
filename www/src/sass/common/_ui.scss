@@ -7,13 +7,16 @@
     border-radius:2px;
     cursor:default;
     border:solid 1px #99bd2a;
+    outline:none !important;
     &:hover {
         color:#fff;
     }
     &:focus {
-        outline:none;
+        outline:none !important;
+        color:#fff;
     }
     &:active {
+        outline:none;
         background:darken(#99bd2a, 8);
     }
     &.sm {
