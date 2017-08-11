@@ -1,6 +1,6 @@
 <?php
 return [
-    'comments'=>['name'=>'Comments', 'index'=>'comments', 'direction'=>'1'],
-    'rating'=>['name'=>'Rating', 'index'=>'rating', 'direction'=>'1'],
-    'hits'=>['name'=>'Hits', 'index'=>'hits', 'direction'=>'1']
+    'comments'=>['name'=>tt('Comments', '评论'), 'index'=>'comments', 'direction'=>'1'],
+    'rating'=>['name'=>tt('Rating', '评分'), 'index'=>'rating', 'direction'=>'1'],
+    'hits'=>['name'=>tt('Hits', '点击数'), 'index'=>'hits', 'direction'=>'1']
 ];

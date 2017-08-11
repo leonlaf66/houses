@@ -12,7 +12,7 @@
 </style>
 <div class="rets-view-block rets-recommend-view">
     <div class="block-heading"><?php _tt('Recommended houses', '相似房源推荐')?></div>
-    <div class="lay-g row">
+    <div class="lay-g row house-grid">
         <?php foreach($nearbyHouses as $_rets):?>
             <?php
                 $_entity = $_rets->entity();
@@ -30,8 +30,9 @@
                         <h2 class="location">
                             <span class="address"><?php echo $_render->get('location')['value']?></span>
                         </h2>
-                        <div class="rooms">
-                            <span><?php echo $_render->get('rooms_descriptions')['value']?></span>
+                        <div class="info2">
+                            <span class="left"><?php echo $_render->get('prop_type_name')['value']?></span>
+                            <span class="right"><?php echo $_render->get('rooms_descriptions')['value']?></span>
                         </div>
                         <div class="clear"></div>
                     </div>

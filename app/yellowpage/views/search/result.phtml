@@ -38,7 +38,7 @@ $this->title = tt('Pro Services', '管房养房');
         <div class="container">
             <?php if(count($yellowPageCollection) === 0):?>
                 <div class="no-records-message">
-                    There are no items matching the selection.
+                    <?php _tt('There are no items matching the selection.', '未发现无任何匹配的内容!')?>
                 </div>
             <?php endif?>
             <?php foreach($yellowPageCollection as $_item):?>

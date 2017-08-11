@@ -38,8 +38,10 @@
                                         <?php 
                                             $_url = $_context->createUrl(['city'=>$city->id]);
                                         ?>
-                                        <li><a href="<?php echo $_url?>" data-value="<?php echo $city->id?>">
-                                            <?php echo $city->name?></a>
+                                        <li>
+                                            <a href="<?php echo $_url?>" data-value="<?php echo $city->id?>">
+                                                <?php echo $city->name?>
+                                            </a>
                                         </li>
                                     <?php endforeach?>
                                 </ul>
