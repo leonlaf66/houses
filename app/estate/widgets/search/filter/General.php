@@ -92,7 +92,8 @@ class General extends \yii\base\Widget
         if (! in_array($value, $values)) {
             $values[] = $value;
         } else {
-            if ($finedKey = array_search($value, $values)) {
+            $finedKey = array_search($value, $values);
+            if ($finedKey !== false) {
                 array_splice($values, $finedKey, 1);
             }
         }
