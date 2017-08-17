@@ -12,12 +12,12 @@ class General extends \yii\base\Widget
 
     public function run()
     {  
-        if (isset($_GET['custom-price'])) {
-            $_GET['price'] = $_GET['custom-price'];
+        if (isset($_GET['cp'])) {
+            $_GET['price'] = $_GET['cp'];
         }
 
-        if (isset($_GET['custom-square'])) {
-            $_GET['square'] = $_GET['custom-square'];
+        if (isset($_GET['cs'])) {
+            $_GET['square'] = $_GET['cs'];
         }
 
         $search = $this->search;
@@ -36,10 +36,10 @@ class General extends \yii\base\Widget
 
     public function activeClass($ruleId, $value, $className = 'active')
     {
-        if ($ruleId === 'price' && isset($_GET['custom-price'])) {
+        if ($ruleId === 'price' && isset($_GET['cp'])) {
             return '';
         }
-        if ($ruleId === 'square' && isset($_GET['custom-square'])) {
+        if ($ruleId === 'square' && isset($_GET['cs'])) {
             return '';
         }
 

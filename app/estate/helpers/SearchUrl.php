@@ -23,11 +23,11 @@ class SearchUrl
         }
 
         $params = [];
-        if ($key !== 'price' && isset($_GET['custom-price'])) {
-            $params['custom-price'] = $_GET['custom-price'];
+        if ($key !== 'price' && isset($_GET['cp'])) {
+            $params['custom-price'] = $_GET['cp'];
         }
-        if ($key !== 'square' && isset($_GET['custom-square'])) {
-            $params['custom-square'] = $_GET['custom-square'];
+        if ($key !== 'square' && isset($_GET['cs'])) {
+            $params['custom-square'] = $_GET['cs'];
         }
 
         return \yii\helpers\Url::to(array_merge([$url], $params));
