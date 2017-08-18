@@ -37,4 +37,18 @@ class News extends \common\news\News
     {
         return \WS::$app->urlManager->createUrl(['news/default/view', 'id'=>$this->id]);
     }
+
+    /*
+    public function getImageUrl($defaultImageFile = '')
+    {
+        $url = parent::getImageUrl($defaultImageFile);
+
+        if ($defaultImageFile && $defaultImageFile !== '') {
+            if (strpos($url, $defaultImageFile) === false) {
+                $url = \WS::$app->WXImage->getLocalImage($url);
+            }
+        }
+        
+        return $url;
+    }*/
 }
