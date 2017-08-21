@@ -2,7 +2,6 @@
     use yii\widgets\LinkPager;
 
     $_urlManager = \WS::$app->urlManager;
-    $t = lang('news');
 ?>
 
 <div class="container news-container">
@@ -23,7 +22,7 @@
                             }
                         ?>
                         <div class="tab-item <?php echo $typeId === $_id ? 'active' : ''?>">
-                            <a href="<?php echo $_urlManager->createUrl($_urlParams)?>"><?php echo $t($_name)?></a>
+                            <a href="<?php echo $_urlManager->createUrl($_urlParams)?>"><?php echo $_name?></a>
                         </div>
                     <?php endforeach?>
                 </div>
