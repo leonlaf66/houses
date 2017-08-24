@@ -7,12 +7,12 @@ define('vc-map', {
             markers: [],
             mapedMarkers: {},
             propTypeNames: {
-                '2': 'Single Family',
-                '3': 'Multi Family',
-                '4': 'Condominium',
-                '5': 'Commercial',
-                '6': 'Business Opportunity',
-                '7': 'Land' 
+                '2': tt('Single Family', '单家庭'),
+                '3': tt('Multi Family', '多家庭'),
+                '4': tt('Condominium', '公寓'),
+                '5': tt('Commercial', '商业用房'),
+                '6': tt('Business Opportunity', '营业用房'),
+                '7': tt('Land', '土地')
             },
             infoWindow: null
         };

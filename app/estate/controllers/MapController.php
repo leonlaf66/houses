@@ -47,7 +47,7 @@ class MapController extends Controller
             list($cityCodes, $cityName) = $locationResult;
             foreach ($cityCodes as $cityCode) {
                 $mapCityId = strtolower(\common\catalog\Town::getMapValue($cityCode, 'name_en'));
-                $cityPolygons = array_merge($cityPolygons, \common\estate\helpers\Config::get('map.city.polygon/'.$mapCityId));
+                $cityPolygons = array_merge($cityPolygons, \common\estate\helpers\Config::get('map.city.polygon/'.$mapCityId, []));
             }
         }
 

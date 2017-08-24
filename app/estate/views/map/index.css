@@ -238,6 +238,7 @@ body {
     font-weight:bold;
     padding-right:10px;
     text-align:right;
+    font-size:12px;
 }
 .gmap-filters .filter > label:after {
     content:':';
@@ -251,7 +252,7 @@ body {
     margin-bottom:10px;
     color:#888;
     cursor:pointer;
-    font-size:13px;
+    font-size:12px;
 }
 .gmap-filters .filter .option:hover {
     color:#99bd2a;

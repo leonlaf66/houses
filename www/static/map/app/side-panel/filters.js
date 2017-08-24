@@ -1,11 +1,11 @@
-/*define('vc-range-input', {
+define('vc-range-input', {
     template: '<li class="custom">'+
-                  '<input v-model="data[0]"/>'+
+                  '<input v-model="data[0]" :placeholder="title"/>'+
                   '<span></span>'+
-                  '<input v-model="data[1]"/>'+
+                  '<input v-model="data[1]" :placeholder="title"/>'+
                   '<button @click="confirm">确认</button>'+
               '</li>',
-    props: ['value'],
+    props: ['value', 'title'],
     data: function () {
         return {
             data: ['', '']
@@ -44,7 +44,7 @@
             this.data = ['', ''];
         }
     }
-});*/
+});
 
 define('vc-filters', {
     template: "#template-filters",
@@ -140,5 +140,8 @@ define('vc-filters', {
         isMultipleChoiceFilter: function (filterId) {
             return this.ableMultipleChoiceFilterIds.indexOf(filterId) !== -1;
         }
-    }
+    },
+    components: requires([
+        'vc-range-input'
+    ])
 });

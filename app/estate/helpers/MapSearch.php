@@ -143,7 +143,7 @@ class MapSearch
                 }
             ],
             'market-days' => [
-                'title' => tt('Days on market', '上市天数'),
+                'title' => tt('Market Days', '上市天数'),
                 'options' => [
                     '1' => tt('New listing', '最新'),
                     '2' => tt('This week', '本周'),
@@ -187,7 +187,8 @@ class MapSearch
                     '2000000~999999999999' => tt('2,000,000+', '200万以上')
                 ],
                 'custom' => [
-                    'type' => 'range'
+                    'type' => 'range',
+                    'title' => tt('$', '万美元')
                 ],
                 'apply' => function ($query, $val) {
                     list($start, $end) = explode('~', $val);
@@ -204,7 +205,8 @@ class MapSearch
                     '3000~999999999999' => tt('3000+', '300+')
                 ],
                 'custom' => [
-                    'type' => 'range'
+                    'type' => 'range',
+                    'title' => tt('Sq.Ft', '平方米')
                 ],
                 'apply' => function ($query, $val) {
                     list($start, $end) = explode('~', $val);
