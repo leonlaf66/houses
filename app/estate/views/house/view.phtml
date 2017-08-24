@@ -20,6 +20,9 @@
 <?php echo \module\page\widgets\Nav::widget()?>
 
 <style type="text/css">
+.base-information {
+    padding-bottom: 5px;
+}
 .base-information > h1 {
     position:relative;
     padding-right: 15px;
@@ -41,6 +44,9 @@
 }
 .base-information .btn-like.active:hover .iconfont{
     color:#a9cd3a;
+}
+body.estate-house-view .base-information .fields .field {
+    padding:6px 0;
 }
 </style>
 <div class="container mt20">
@@ -92,6 +98,14 @@
                                             <?php echo RetsHtml::getFieldHtml($rets, 'no_half_baths')?>
                                         </div>
                                     </div>
+                                </div>
+                            </li>
+                            <li class="field">
+                                <div class="attr-field attr-field-area">
+                                    <label class="attr-label"><?php _tt('Area', '区域')?></label>
+                                    <span class="attr-value-box attr-area-box">
+                                        <span class="attr-value"><?php echo $rets->area ?? tt('Unknown', '未提供')?></span>
+                                    </span>
                                 </div>
                             </li>
                             <li class="field">
