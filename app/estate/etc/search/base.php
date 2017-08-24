@@ -5,7 +5,7 @@ $tAll = tt('ALL', '不限');
 return [
     'generalFilters'=>[
         'square'=>[
-            'heading'=>$t('Living area'),
+            'heading'=>tt('Living area', '居住面积'),
             'options'=>[
                 '1' => '0-1000',
                 '2' => '1000 - 2000',
