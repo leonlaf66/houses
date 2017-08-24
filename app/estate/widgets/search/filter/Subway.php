@@ -17,7 +17,7 @@ class Subway extends \yii\base\Widget
 
         if (isset($_GET['subway-station'])) {
             $subwayStations = $_GET['subway-station'];
-            $subwayStations = explode('~', $subwayStations);
+            $subwayStations = explode('a', $subwayStations);
             $search->query->andWhere(['&&', 'subway_stations', '{'.implode(',', $subwayStations).'}']);
         } elseif (isset($_GET['subway-line'])) { // 否则才检测地铁线
             $search->query->andWhere(['@>', 'subway_lines', '{'.$_GET['subway-line'].'}']);
@@ -52,7 +52,7 @@ class Subway extends \yii\base\Widget
             }
         }
 
-        return SearchUrl::to('subway-station', implode('~', $values));
+        return SearchUrl::to('subway-station', implode('a', $values));
     }
 
     public function clearStationUrl($value)
@@ -68,14 +68,14 @@ class Subway extends \yii\base\Widget
             return SearchUrl::to('subway-station', null);
         }
 
-        return SearchUrl::to('subway-station', implode('~', $values));
+        return SearchUrl::to('subway-station', implode('a', $values));
     }
 
     public function parseValues()
     {
         $values = isset($_GET['subway-station']) ? $_GET['subway-station'] : null;
         if ($values) {
-            $values = explode('~', $values);
+            $values = explode('a', $values);
         } else {
             $values = [];
         }

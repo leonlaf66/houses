@@ -12,19 +12,33 @@ class General extends \yii\base\Widget
 
     public function run()
     {  
+        $search = $this->search;
+
         if (isset($_GET['cp'])) {
-            $_GET['price'] = $_GET['cp'];
+            $cp = $_GET['custom-price'] = $_GET['cp'];
+            list($start, $end) = explode('-', $cp);
+            $start = intval($start);
+            $end = intval($end);
+            if (WS::$app->language === 'zh-CN') { // 万美元单位
+                $start = $start * 10000;
+                $end = $end * 10000;
+            }
+            $search->query->andWhere(['>', 'list_price', intval($start)]);
+            $search->query->andWhere(['<', 'list_price', intval($end)]);
         }
 
         if (isset($_GET['cs'])) {
-            $_GET['square'] = $_GET['cs'];
+            $cs = $_GET['custom-square'] = $_GET['cs'];
+            list($start, $end) = explode('-', $cs);
+            $search->query->andWhere(['>', 'square_feet', intval($start)]);
+            $search->query->andWhere(['<', 'square_feet', intval($end)]);
         }
 
-        $search = $this->search;
         $filters = $this->getRules('generalFilters');
         foreach($filters as $filterId=>$filterOptions) {
             if (isset($_GET[$filterId]) && isset($filterOptions['apply'])) {
-                ($filterOptions['apply'])($_GET[$filterId], $search);
+                $values = $filterOptions['values'] ?? null;
+                ($filterOptions['apply'])($_GET[$filterId], $search, $values);
             }
         }
 
@@ -45,15 +59,18 @@ class General extends \yii\base\Widget
 
         if ($ruleId === 'property') {
             $values = $this->parseMultipleValues($ruleId);
+            if (count($values) === 0 && is_null($value)) {
+                return $className;
+            }
             return in_array($value, $values) ? $className : '';
         }
 
-        return WS::$app->request->get($ruleId) === $value ? $className : '';
+        return WS::$app->request->get($ruleId) == $value ? $className : '';
     }
 
-    public function parseRangeValues($field, $s = '~')
+    public function parseRangeValues($field, $s = '-')
     {
-        $items = explode($s, WS::$app->request->get($field));
+        $items = ['', ''];
         if ($customFieldValue = WS::$app->request->get('custom-'.$field)) {
             $items = explode($s, $customFieldValue);
         }
@@ -102,7 +119,7 @@ class General extends \yii\base\Widget
             return SearchUrl::to($name, null);
         }
 
-        return SearchUrl::to($name, implode('~', $values));
+        return SearchUrl::to($name, implode('2', $values));
     }
 
     public function clearMultipleUrl($name, $value)
@@ -118,14 +135,14 @@ class General extends \yii\base\Widget
             return SearchUrl::to($name, null);
         }
 
-        return SearchUrl::to($name, implode('~', $values));
+        return SearchUrl::to($name, implode('2', $values));
     }
 
     public function parseMultipleValues($name)
     {
         $values = isset($_GET[$name]) ? $_GET[$name] : null;
         if ($values) {
-            $values = explode('~', $values);
+            $values = explode('2', $values);
         } else {
             $values = [];
         }

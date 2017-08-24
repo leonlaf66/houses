@@ -7,16 +7,20 @@ return [
         'square'=>[
             'heading'=>$t('Living area'),
             'options'=>[
-                ['~1000', '0-1000'],
-                ['1000~2000', '1000 - 2000'],
-                ['2000~3000', '2000-3000'],
-                ['3000~', '3000+']
+                '1' => '0-1000',
+                '2' => '1000 - 2000',
+                '3' => '2000-3000',
+                '4' => '3000+'
             ],
-            'apply'=>function ($val, $search) {
-                list($begin, $end) = explode('~', $val);
-                $begin = floatval($begin);
-                $end = floatval($end);
-                if ($end === 0.00) $end = 99999999999999.00;
+            'values' => [
+                '1' => [0, 1000],
+                '2' => [1000, 2000],
+                '3' => [2000, 3000],
+                '4' => [3000, 99999999999999],
+            ],
+            'apply'=>function ($val, $search, $values) {
+                list($begin, $end) = $values[$val];
+
                 $search->query->andWhere(['>', 'square_feet', $begin]);
                 $search->query->andWhere(['<', 'square_feet', $end]);
             }
@@ -24,11 +28,11 @@ return [
         'beds'=>[
             'heading'=>$t('Bedroom'),
             'options'=>[
-                ['1', '1+'],
-                ['2', '2+'],
-                ['3', '3+'],
-                ['4', '4+'],
-                ['5', '5+']
+                '1' => '1+',
+                '2' => '2+',
+                '3' => '3+',
+                '4' => '4+',
+                '5' => '5+'
             ],
             'apply'=>function ($val, $search) {
                 $val = intval($val);
@@ -40,12 +44,11 @@ return [
         'baths'=>[
             'heading'=>tt('Bathroom', '卫生间'),
             'options'=>[
-                [null, $tAll],
-                ['1', '1+'],
-                ['2', '2+'],
-                ['3', '3+'],
-                ['4', '4+'],
-                ['5', '5+']
+                '1' => '1+',
+                '2' => '2+',
+                '3' => '3+',
+                '4' => '4+',
+                '5' => '5+'
             ],
             'apply'=>function ($val, $search) {
                 $val = intval($val);
@@ -55,10 +58,9 @@ return [
         'parking'=>[
             'heading'=>tt('Parking', '车位'),
             'options'=>[
-                [null, $tAll],
-                ['1', '1+'],
-                ['2', '2+'],
-                ['3', '3+'],
+                '1' => '1+',
+                '2' => '2+',
+                '3' => '3+',
             ],
             'apply'=>function ($val, $search) {
                 $val = intval($val);
@@ -68,9 +70,8 @@ return [
         'agrage'=>[
             'heading'=>tt('Garage', '车库'),
             'options'=>[
-                [null, $tAll],
-                ['1', tt('Yes', '有')],
-                ['0', tt('No', '无')]
+                '1' => tt('Yes', '有'),
+                '0' => tt('No', '无')
             ],
             'apply'=>function ($val, $search) {
                 $val = intval($val);
@@ -84,10 +85,9 @@ return [
         'market-days'=>[
             'heading'=>tt('Days on market', '上市天数'),
             'options'=>[
-                [null, $tAll],
-                ['1', tt('New listing', '最新')],
-                ['2', tt('This week', '本周')],
-                ['3', tt('This month', '本月')]
+                '1' => tt('New listing', '最新'),
+                '2' => tt('This week', '本周'),
+                '3' => tt('This month', '本月')
             ],
             'apply'=>function ($value, $search) {
                 if($value !== '') {

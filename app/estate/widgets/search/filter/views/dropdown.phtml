@@ -7,10 +7,12 @@
                 <i class="arrow"></i>
             </label>
             <ul class="dropdown-options">
-                <?php foreach($rule['options'] as $key=>$item):?>
-                    <?php list($value, $name) = $item;?>
+                <li>
+                    <a href="<?php echo $this->context->createUrl($ruleId, null)?>"><?php _tt('All', '不限')?></a>
+                </li>
+                <?php foreach($rule['options'] as $value=>$text):?>
                     <li>
-                        <a href="<?php echo $this->context->createUrl($ruleId, $value)?>"><?php echo $name?></a> 
+                        <a href="<?php echo $this->context->createUrl($ruleId, $value)?>"><?php echo $text?></a> 
                     </li>
                 <?php endforeach?>
             </ul>

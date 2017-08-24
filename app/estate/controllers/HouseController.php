@@ -17,11 +17,11 @@ class HouseController extends Controller
             if ($params === '') {
                 if (! \WS::$app->request->cookies->getValue('def-sell-type-flag', false)) {
                     if ($tab === 'search') {
-                        return $this->redirect('/house/purchase/pt-sf~mf~cc/');
+                        return $this->redirect('/house/purchase/pt-sf2mf2cc/');
                     }
-                    return $this->redirect('/house/purchase/'.$tab.'/pt-sf~mf~cc/');
+                    return $this->redirect('/house/purchase/'.$tab.'/pt-sf2mf2cc/');
                 }
-            } elseif ($params !== 'pt-sf~mf~cc') { // 写cookie状态
+            } elseif ($params !== 'pt-sf2mf2cc') { // 写cookie状态
                 \WS::$app->response->cookies->add(new \yii\web\Cookie([
                     'name' => 'def-sell-type-flag',
                     'value' => 1,

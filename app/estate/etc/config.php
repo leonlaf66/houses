@@ -6,9 +6,9 @@ return [
         'house/<type:(lease|purchase)>/'=>'estate/house/index',
 
         'house/<type:(lease|purchase)>/<tab:(school-districtss|subway)>/'=>'estate/house/index',
-        'house/<type:(lease|purchase)>/<tab:(school-districtss|subway)>/<params:[A-Za-z0-9-_~\s|]+>/'=>'estate/house/index',
+        'house/<type:(lease|purchase)>/<tab:(school-districtss|subway)>/<params:[A-Za-z0-9-_\s|]+>/'=>'estate/house/index',
 
-        'house/<type:(lease|purchase)>/<params:[A-Za-z0-9-_~|\s]+>/'=>'estate/house/index',
+        'house/<type:(lease|purchase)>/<params:[A-Za-z0-9-_|\s]+>/'=>'estate/house/index',
 
         /*详情*/
         '<type:(lease|purchase)>/<id:\d+>/'=>'estate/house/view',

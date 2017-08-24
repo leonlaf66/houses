@@ -5,16 +5,20 @@ return [
         'price'=>[
             'heading'=>$t('Price'),
             'options'=>[
-                ['~1000', '0-1000'],
-                ['1000~1500', '1000-1500'],
-                ['1500~2000', '1500-2000'],
-                ['2000~', '2000+']
+                '1' => '0-1000',
+                '2' => '1000-1500',
+                '3' => '1500-2000',
+                '4' => '2000+'
             ],
-            'apply'=>function ($val, $search) {
-                list($begin, $end) = explode('~', $val);
-                $begin = floatval($begin);
-                $end = floatval($end);
-                if ($end === 0.00) $end = 99999999999999.00;
+            'values' => [
+                '1' => [0, 1000],
+                '2' => [1000, 1500],
+                '3' => [1500, 2000],
+                '4' => [2000, 99999999999999],
+            ],
+            'apply'=>function ($val, $search, $values) {
+                list($begin, $end) = $values[$val];
+
                 $search->query->andWhere(['>', 'list_price', $begin]);
                 $search->query->andWhere(['<', 'list_price', $end]);
             }
