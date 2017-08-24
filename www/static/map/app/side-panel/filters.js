@@ -35,13 +35,8 @@ define('vc-range-input', {
                     this.data[1]
                 ]);
             } else {
-                this.$emit('input', null);
+                this.$emit('input', [null, null]);
             }
-        }
-    },
-    watch: {
-        'value': function () {
-            this.data = ['', ''];
         }
     }
 });
@@ -80,19 +75,18 @@ define('vc-filters', {
     methods: {
         clearItemActive: function (filterId) {
             this.$set(this.data, filterId, null);
-            /*
+            
             if (-1 !== ['price', 'square'].indexOf(filterId)) {
                 this.$set(this.data.customs, filterId, null);
-            }*/
+            }
             this.$emit('input', this.data);
         },
         getItemIsActive: function (filterId, value) {
-            /*
             if (typeof value === 'undefined' && -1 !== ['price', 'square'].indexOf(filterId)) {
                 if (this.data.customs[filterId] !== null) {
                     return false;
                 }
-            }*/
+            }
 
             if (this.isMultipleChoiceFilter(filterId) && value) { // 多选模式 + 有值
                 if (this.data[filterId] instanceof Array) {
@@ -104,10 +98,9 @@ define('vc-filters', {
             return this.data[filterId] == value;
         },
         setItemActive: function (filterId, value) {
-            /*
             if (-1 !== ['price', 'square'].indexOf(filterId)) {
                 this.$set(this.data.customs, filterId, null);
-            }*/
+            }
 
             if (this.isMultipleChoiceFilter(filterId)) { // 多选模式
                 var values = this.data[filterId];

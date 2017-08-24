@@ -12,8 +12,8 @@ define('vc-side-panel', {
             filters: {
                 prop_type: ['SF', 'CC', 'MF'],
                 customs: {
-                    price: null,
-                    square: null
+                    price: [null, null],
+                    square: [null, null]
                 }
             }
         };
