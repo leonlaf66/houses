@@ -14,16 +14,16 @@
                 <?php endforeach?>
                 <?php if ($ruleId === 'price'):?>
                     <li class="custom range range-price" data-field="cp">
-                        <input class="input sm" name="from" placeholder="<?php _tt('$', '万元')?>" size="10" class="form-control" value="<?php echo ($self->parseRangeValues($ruleId))[0]?>" />
+                        <input class="input sm" name="from" placeholder="<?php _tt('$', '万美元')?>" size="10" class="form-control" value="<?php echo ($self->parseRangeValues($ruleId))[0]?>" />
                         <span>-</span>
-                        <input class="input sm" name="to" placeholder="<?php _tt('$', '万元')?>" size="10" value="<?php echo ($self->parseRangeValues($ruleId))[1]?>">
+                        <input class="input sm" name="to" placeholder="<?php _tt('$', '万美元')?>" size="10" value="<?php echo ($self->parseRangeValues($ruleId))[1]?>">
                         <button class="btn sm"><?php _tt('OK', '确认')?></button>
                     </li>
                 <?php elseif ($ruleId === 'square'):?>
                     <li class="custom range range-square" data-field="cs">
-                        <input class="input sm" name="from" placeholder="<?php _tt('Sq.Ft', '平方')?>" size="10" value="<?php echo ($self->parseRangeValues($ruleId))[0]?>"/>
+                        <input class="input sm" name="from" placeholder="<?php _tt('Sq.Ft', '平方米')?>" size="10" value="<?php echo ($self->parseRangeValues($ruleId))[0]?>"/>
                         <span>-</span>
-                        <input class="input sm" name="to" placeholder="<?php _tt('Sq.Ft', '平方')?>" size="10" value="<?php echo ($self->parseRangeValues($ruleId))[1]?>"/>
+                        <input class="input sm" name="to" placeholder="<?php _tt('Sq.Ft', '平方米')?>" size="10" value="<?php echo ($self->parseRangeValues($ruleId))[1]?>"/>
                         <button class="btn sm"><?php _tt('OK', '确认')?></button>
                     </li>
                 <?php endif?>

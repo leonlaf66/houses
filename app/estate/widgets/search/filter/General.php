@@ -19,19 +19,29 @@ class General extends \yii\base\Widget
             list($start, $end) = explode('-', $cp);
             $start = intval($start);
             $end = intval($end);
+
             if (WS::$app->language === 'zh-CN') { // 万美元单位
                 $start = $start * 10000;
                 $end = $end * 10000;
             }
-            $search->query->andWhere(['>', 'list_price', intval($start)]);
-            $search->query->andWhere(['<', 'list_price', intval($end)]);
+
+            $search->query->andWhere(['>', 'list_price', $start]);
+            $search->query->andWhere(['<', 'list_price', $end]);
         }
 
         if (isset($_GET['cs'])) {
             $cs = $_GET['custom-square'] = $_GET['cs'];
             list($start, $end) = explode('-', $cs);
-            $search->query->andWhere(['>', 'square_feet', intval($start)]);
-            $search->query->andWhere(['<', 'square_feet', intval($end)]);
+            $start = intval($start);
+            $end = intval($end);
+
+            if (WS::$app->language === 'zh-CN') { // 平方米单位
+                $start = $start / 0.092903;
+                $end = $end / 0.092903;
+            }
+
+            $search->query->andWhere(['>', 'square_feet', $start]);
+            $search->query->andWhere(['<', 'square_feet', $end]);
         }
 
         $filters = $this->getRules('generalFilters');

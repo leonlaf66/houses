@@ -101,12 +101,7 @@ body.estate-house-view .base-information .fields .field {
                                 </div>
                             </li>
                             <li class="field">
-                                <div class="attr-field attr-field-area">
-                                    <label class="attr-label"><?php _tt('Area', '区域')?></label>
-                                    <span class="attr-value-box attr-area-box">
-                                        <span class="attr-value"><?php echo $rets->area ?? tt('Unknown', '未提供')?></span>
-                                    </span>
-                                </div>
+                                <?php echo RetsHtml::getFieldHtml($rets, 'area')?>
                             </li>
                             <li class="field">
                                 <?php echo RetsHtml::getFieldHtml($rets, 'square_feet', ['title'=>tt('Living area', '居住面积')])?>
