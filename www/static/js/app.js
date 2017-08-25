@@ -1,5 +1,8 @@
 function tt(en, cn) {
-    return document.getElementById('language').getAttribute('content') === 'en-US' ? en : cn;
+    if (! window.hasOwnProperty('language')) {
+       window.language = document.getElementById('language').getAttribute('content');
+    }
+    return window.language === 'en-US' ? en : cn;
 }
 
 window.location.changeParam = function(name, value) {

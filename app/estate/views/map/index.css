@@ -347,6 +347,12 @@ body {
     margin-bottom:-10px;
     z-index:0;
 }
+body.en-us .gmap-html-marker .price:before{
+    content:'$';
+}
+body.zh-cn .gmap-html-marker .price:after{
+    content:'万美元';
+}
 /*扩展信息*/
 .gmap-html-marker .extend {
     position:absolute;

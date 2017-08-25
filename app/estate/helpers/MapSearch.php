@@ -191,7 +191,15 @@ class MapSearch
                     'title' => tt('$', '万美元')
                 ],
                 'apply' => function ($query, $val) {
-                    list($start, $end) = explode('~', $val);
+                    if (substr($val, 0, 1) === '@' && \WS::$app->language === 'zh-CN') { // 需要转换单位(万美元单位)
+                        $val = substr($val, 1);
+                        list($start, $end) = explode('~', $val);
+                        $start *= 10000;
+                        $end *= 10000;
+                    } else {
+                        list($start, $end) = explode('~', $val);
+                    }
+                    
                     $query->andFilterWhere(['>=', 'list_price', $start]);
                     $query->andFilterWhere(['<=', 'list_price', $end]);
                 }
@@ -209,7 +217,14 @@ class MapSearch
                     'title' => tt('Sq.Ft', '平方米')
                 ],
                 'apply' => function ($query, $val) {
-                    list($start, $end) = explode('~', $val);
+                    if (substr($val, 0, 1) === '@' && \WS::$app->language === 'zh-CN') { // 需要转换单位(平方米单位)
+                        $val = substr($val, 1);
+                        list($start, $end) = explode('~', $val);
+                        $start /= 0.092903;
+                        $end /= 0.092903;
+                    } else {
+                        list($start, $end) = explode('~', $val);
+                    }
                     $query->andFilterWhere(['>=', 'square_feet', $start]);
                     $query->andFilterWhere(['<=', 'square_feet', $end]);
                 }

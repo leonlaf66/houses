@@ -88,7 +88,12 @@
                         class="option" 
                         :class="{active: getItemIsActive(filterId, id)}"
                         @click="setItemActive(filterId, id)">{{ text }}</li>
-                    <vc-range-input v-if="filter.custom" :title="filter.custom.title" v-model="data.customs[filterId]"></vc-range-input>
+                    <vc-range-input 
+                        v-if="filter.custom"
+                        :title="filter.custom.title"
+                        :id="filterId"
+                        :value="data.customs[filterId]"
+                        @input="rangeCustomChanged"></vc-range-input>
                 </ul>
             </li>
         </ul>
@@ -212,10 +217,10 @@ window.$viewData = {
     $this->registerJsFile('/static/map/app/nav.js');
 
     $this->registerJsFile('/static/map/app/side-panel/search.js?v2');
-    $this->registerJsFile('/static/map/app/side-panel/filters.js?v2');
+    $this->registerJsFile('/static/map/app/side-panel/filters.js?v2.4');
     $this->registerJsFile('/static/map/app/side-panel/subwaies.js');
     $this->registerJsFile('/static/map/app/side-panel/schools.js');
-    $this->registerJsFile('/static/map/app/side.panel.js');
+    $this->registerJsFile('/static/map/app/side.panel.js?v1.04');
 
     $this->registerJsFile('/static/map/lib/google.map.util.js');
 

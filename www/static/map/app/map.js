@@ -170,7 +170,8 @@ define('vc-map', {
             });
         },
         decodePirce: function (wprice) {
-            return new Number(parseFloat(wprice) * 10000).toLocaleString();
+            return wprice;
+            //return tt('$' + Number(parseFloat(wprice) * 10000).toLocaleString(), Number(parseFloat(wprice)).toLocaleString() + '万美元');
         },
         decodePropType: function (id) {
             return this.propTypeNames[id];

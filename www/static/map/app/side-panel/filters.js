@@ -3,19 +3,18 @@ define('vc-range-input', {
                   '<input v-model="data[0]" :placeholder="title"/>'+
                   '<span></span>'+
                   '<input v-model="data[1]" :placeholder="title"/>'+
-                  '<button @click="confirm">确认</button>'+
+                  '<button @click="confirm">'+tt('OK', '确认')+'</button>'+
               '</li>',
-    props: ['value', 'title'],
-    data: function () {
-        return {
-            data: ['', '']
-        };
+    props: ['id', 'value', 'title'],
+    computed: {
+        data: function () {
+            return this.value;
+        }
     },
     mounted: function () {
         if (this.value && this.value.length === 2) {
             this.data = [this.value[0], this.value[1]];
         }
-        this.data = ['', ''];
     },
     methods: {
         confirm: function () {
@@ -30,12 +29,10 @@ define('vc-range-input', {
             this.data[1] = parseInt(this.data[1]).toString();
 
             if (this.data[1] > this.data[0]) {
-                this.$emit('input', [
+                this.$emit('input', this.id, [
                     this.data[0],
                     this.data[1]
                 ]);
-            } else {
-                this.$emit('input', [null, null]);
             }
         }
     }
@@ -60,6 +57,11 @@ define('vc-filters', {
     },
     mounted: function () {
         var that = this;
+
+        if (this.value) {
+            this.data = this.value;
+        }
+
         app.eventHub.$on('filters:cmd-popup', function () {
             that.visible = true;
         });
@@ -77,7 +79,7 @@ define('vc-filters', {
             this.$set(this.data, filterId, null);
             
             if (-1 !== ['price', 'square'].indexOf(filterId)) {
-                this.$set(this.data.customs, filterId, null);
+                this.$set(this.data.customs, filterId, [null, null]);
             }
             this.$emit('input', this.data);
         },
@@ -99,7 +101,7 @@ define('vc-filters', {
         },
         setItemActive: function (filterId, value) {
             if (-1 !== ['price', 'square'].indexOf(filterId)) {
-                this.$set(this.data.customs, filterId, null);
+                this.$set(this.data.customs, filterId, [null, null]);
             }
 
             if (this.isMultipleChoiceFilter(filterId)) { // 多选模式
@@ -123,8 +125,10 @@ define('vc-filters', {
 
             this.$emit('input', this.data);
         },
-        confirmCustom: function (filterId) {
-            this.data.customs[filterId] = this.customs[filterId];
+        rangeCustomChanged: function (filterId, values) {
+            this.$set(this.data, filterId, null);
+            this.$set(this.data.customs, filterId, values);
+            this.$emit('input', this.data);
         },
         clearAll: function () {
             this.data = {};

@@ -54,7 +54,13 @@ define('vc-side-panel', {
             // 只提交有值的fitlers
             params.filters = {};
             for (var filterId in this.filters) {
-                if (this.filters[filterId]) {
+                if (filterId === 'customs') {
+                    for (var fId in this.filters.customs) {
+                        if (this.filters.customs[fId][0] && this.filters.customs[fId][1]) {
+                            this.filters[fId] = '@' + this.filters.customs[fId][0] + '~' + this.filters.customs[fId][1]; // 这@，以代表后面需要转换单位
+                        }
+                    }
+                } else if (this.filters[filterId]) {
                     params.filters[filterId] = this.filters[filterId];
                 }
             }
