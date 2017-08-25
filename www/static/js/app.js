@@ -1,7 +1,6 @@
+window.language = document.getElementById('language').getAttribute('content');
+
 function tt(en, cn) {
-    if (! window.hasOwnProperty('language')) {
-       window.language = document.getElementById('language').getAttribute('content');
-    }
     return window.language === 'en-US' ? en : cn;
 }
 
