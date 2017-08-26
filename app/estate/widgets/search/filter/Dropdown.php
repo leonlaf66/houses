@@ -57,10 +57,23 @@ class Dropdown extends \yii\base\Widget
             $tab = '/'.$tab;
         }
 
+        $query = [];
+        if (isset($_GET['cp'])) {
+            $query[] = "cp={$_GET['cp']}";
+        }
+        if (isset($_GET['cs'])) {
+            $query[] = "cs={$_GET['cs']}";
+        }
+        if (count($query) > 0) {
+            $query = '?'.implode('&', $query);
+        } else {
+            $query = '';
+        }
+
         $newUrlParamValue = UrlParamEncoder::$inst->setParam($name, $value);
         if ($newUrlParamValue === '') {
-            return \yii\helpers\Url::to('/house/'.$property.$tab.'/');
+            return \yii\helpers\Url::to('/house/'.$property.$tab.'/'.$query);
         }
-        return \yii\helpers\Url::to('/house/'.$property.$tab.'/'.$newUrlParamValue.'/');
+        return \yii\helpers\Url::to('/house/'.$property.$tab.'/'.$newUrlParamValue.'/'.$query);
     }
 }
