@@ -17,7 +17,9 @@ class HouseController extends Controller
             if ($params === '') {
                 if (! \WS::$app->request->cookies->getValue('def-sell-type-flag', false)) {
                     if ($tab === 'search') {
-                        return $this->redirect('/house/purchase/pt-sf2mf2cc/');
+                        $q = '';
+                        if (isset($_GET['q'])) $q = '?q='.$_GET['q'];
+                        return $this->redirect('/house/purchase/pt-sf2mf2cc/'.$q);
                     }
                     return $this->redirect('/house/purchase/'.$tab.'/pt-sf2mf2cc/');
                 }

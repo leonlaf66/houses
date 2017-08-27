@@ -15,7 +15,7 @@
                 ?>
 				<li class="filter-type-item <?php echo $_context->isActive($item['id']) ? 'act' : ''?>">
 					<a class="item-link" href="<?php echo $_context->createTypeUrl($item['id'])?>">
-						<span class="icon" style="background-image: url(/static/img/yellowpage-type/<?php echo $item['icon']?>)"></span>
+						<span class="icon" style="background-image: url(<?php echo media_url('yellowpage/types/'.$item['icon'])?>)"></span>
 						<?php echo t('yp/tag', $item['name'])?>
 					</a>
 				</li>
