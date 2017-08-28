@@ -21,7 +21,7 @@
 
 <style type="text/css">
 .base-information {
-    padding-bottom: 5px;
+    padding-bottom: 12px;
 }
 .base-information > h1 {
     position:relative;
@@ -46,7 +46,10 @@
     color:#a9cd3a;
 }
 body.estate-house-view .base-information .fields .field {
-    padding:6px 0;
+    padding:3px 0;
+}
+#bsWXBox {
+    box-sizing: content-box;
 }
 </style>
 <div class="container mt20">
@@ -105,6 +108,17 @@ body.estate-house-view .base-information .fields .field {
                             </li>
                             <li class="field">
                                 <?php echo RetsHtml::getFieldHtml($rets, 'square_feet', ['title'=>tt('Living area', '居住面积')])?>
+                            </li>
+                            <li style="padding-top:8px">
+                                <div class="bshare-custom">
+                                    <div class="bsPromo bsPromo2"></div>
+                                    <a title="分享到Facebook" class="bshare-facebook"></a>
+                                    <a title="分享到Twitter" class="bshare-twitter"></a>
+                                    <a title="分享到新浪微博" class="bshare-sinaminiblog"></a>
+                                    <a title="分享到微信" class="bshare-weixin"></a>
+                                    <a title="分享到QQ空间" class="bshare-qzone"></a>
+                                </div>
+                                <script type="text/javascript" charset="utf-8" src="http://static.bshare.cn/b/buttonLite.js#style=-1&amp;uuid=&amp;pophcol=1&amp;lang=zh"></script><script type="text/javascript" charset="utf-8" src="http://static.bshare.cn/b/bshareC0.js"></script>
                             </li>
                         </ul>
                     </div>
