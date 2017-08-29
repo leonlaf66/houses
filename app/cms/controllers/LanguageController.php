@@ -16,7 +16,14 @@ class LanguageController extends \yii\web\Controller
             'expire'=>0,
         ]));
 
-        $this->goBack(\Yii::$app->request->headers['referer']);  
+        $url = \Yii::$app->request->headers['referer'];
+        if (strpos($url, '/cn/') !== false) {
+            $url = str_replace('/cn/', '/en/', $url);
+        } elseif(strpos($url, '/en/') !== false) {
+            $url = str_replace('/en/', '/cn/', $url);
+        }
+
+        $this->goBack($url);  
     }
 
     public function actionSave($category, $source, $translation, $lang='zh-CN')

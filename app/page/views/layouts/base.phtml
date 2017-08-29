@@ -15,8 +15,9 @@ module\page\assets\Asset::register($this);
     <link rel="shortcut icon" href="/favicon.ico">
     <?= Html::csrfMetaTags() ?>
     <title><?= Html::encode($this->title) ?></title>
+    <meta name="keywords" content="<?php echo $this->keywords?>">
+    <meta name="description" content="<?php echo $this->description?>">
     <link rel="stylesheet" type="text/css" href="<?php echo \WS::$app->params['iconfontUrl']?>">
-    
     <meta id="csrf-token" content="<?php echo Yii::$app->request->csrfToken?>">
     <meta id="language" content="<?php echo Yii::$app->language?>">
     <meta id="login-url" content="<?php echo Yii::$app->loginUrl?>">

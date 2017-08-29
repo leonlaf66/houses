@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "875470309c88e1717b8e06fbd8328d61",
+    "content-hash": "7da9d824fa590fc5e67b08f8eb69d96c",
     "packages": [
         {
             "name": "bower-asset/bootstrap",
@@ -266,6 +266,47 @@
                 "markdown-extra"
             ],
             "time": "2017-07-16T21:13:23+00:00"
+        },
+        {
+            "name": "codemix/yii2-localeurls",
+            "version": "1.4.12",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/codemix/yii2-localeurls.git",
+                "reference": "6db663426cb204666170924fef4d2a0a1fb4c2eb"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://files.phpcomposer.com/files/codemix/yii2-localeurls/6db663426cb204666170924fef4d2a0a1fb4c2eb.zip",
+                "reference": "6db663426cb204666170924fef4d2a0a1fb4c2eb",
+                "shasum": ""
+            },
+            "require": {
+                "yiisoft/yii2": "*"
+            },
+            "type": "yii2-extension",
+            "autoload": {
+                "psr-4": {
+                    "codemix\\localeurls\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Michael Härtl",
+                    "email": "haertl.mike@gmail.com"
+                }
+            ],
+            "description": "Automatic locale/language management for URLs.",
+            "keywords": [
+                "i18n",
+                "locale",
+                "yii2"
+            ],
+            "time": "2017-05-12T06:21:43+00:00"
         },
         {
             "name": "cyneek/yii2-blade",

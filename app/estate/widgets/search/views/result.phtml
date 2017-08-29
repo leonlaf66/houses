@@ -119,7 +119,8 @@ $('.rets-results').delegate('.btn-like', 'click', function (event) {
 		id = $item.data('id'),
 		isActived = $that.hasClass('active');
 
-	$.get('/customer/rets-favorite/update/?list_no='+id, {}, function (result) {
+	var updateUrl = "<?php echo \Yii::$app->urlManager->createUrl('customer/rets-favorite/update')?>";
+	$.get(updateUrl + '?list_no='+id, {}, function (result) {
 		if (result) {
 			if (isActived) {
 				$that.removeClass('active');

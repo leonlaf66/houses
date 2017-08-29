@@ -13,7 +13,7 @@ return [
         /*详情*/
         '<type:(lease|purchase)>/<id:\d+>/'=>'estate/house/view',
         /*搜索自动完成*/
-        '/house/search/autocomplete/'=>'estate/autocomplete/index',
+        'house/search/autocomplete/'=>'estate/autocomplete/index',
 
         /*地图*/
         'map/house/<type:(lease|purchase)>'=>'estate/map/index',

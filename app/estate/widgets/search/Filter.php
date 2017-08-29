@@ -20,11 +20,16 @@ class Filter extends \yii\base\Widget
 
     public function tabs()
     {
-        return [
+        $tabs = [
             'search'=>t('rets-filter', 'SEARCH'),
             'school-districtss'=>t('rets-filter', 'SCHOOL DISTRICTS'),
             'subway'=>t('rets-filter', 'SUBWAY')
         ];
+        if ($this->getProperty() === 'lease') {
+            unset($tabs['school-districtss']);
+        }
+
+        return $tabs;
     }
 
     public function createUrl($action = 'search')

@@ -8,13 +8,15 @@ return \yii\helpers\ArrayHelper::merge(get_fdn_etc(), [
     'defaultRoute'=>'home/default/index',
     'components' => [
         'urlManager' => [
+            'class' => 'codemix\localeurls\UrlManager',
+            'languages' => ['en'=>'en-US', 'cn'=>'zh-CN'],
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'suffix'=>strpos($_SERVER["REQUEST_URI"], '/rets-photo-') === false ? '/' : '',
             'rules'=>[]
         ],
         'view'=>[
-            'class'=>'yii\web\View',
+            'class'=>'module\core\components\View',
             'defaultExtension'=>'phtml',
             'renderers'=>[
                 'twig' => [

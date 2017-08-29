@@ -108,7 +108,7 @@
         var isLogined = false;
         $.ajax({ 
             type: "get", 
-            url: "/customer/account/check-login/", 
+            url: "<?php echo \Yii::$app->urlManager->createUrl('customer/account/check-login')?>", 
             cache:false, 
             async:false, 
             dataType: "json",

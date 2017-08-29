@@ -4,8 +4,16 @@ namespace module\estate\widgets\search;
 class Input extends \yii\base\Widget 
 {
     public $id = 'q';
-    public $requestUrl = '/house/search/autocomplete/';
-    public $resultUrl = '/house/lease/'; // /purchase/
+    public $requestUrl = 'estate/autocomplete/index';
+    public $resultUrl = ['estate/house/index', 'type' => 'sease']; // /purchase/
+
+    public function init()
+    {
+        $this->requestUrl = create_url($this->requestUrl);
+        $this->resultUrl = create_url($this->resultUrl);
+
+        return parent::init();
+    }
 
     public function run()
     {  

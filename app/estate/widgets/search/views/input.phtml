@@ -12,7 +12,7 @@
                     name="q" 
                     class="form-control search-input" 
                     autocomplete="off"
-                    placeholder="<?php echo WS::text(['en-US'=>'Search City, Zip code, Address, List No', 'zh-CN'=>'搜索城市，邮编，地址，房源号'])?>" 
+                    placeholder="<?php _tt('Search City, Zip code, Address, List No', '搜索城市，邮编，地址，房源号')?>" 
                     value="<?php echo $q?>">
                 <span class="typeahead__button">
                     <a id="go" href="javascript:void(0)"><?php echo t('search', 'SEARCH')?></a>
@@ -49,7 +49,7 @@ $.typeahead({
             display: "title",
             href: "<?php echo $resultUrl?>?q={{title}}",
             ajax: {
-                url: '/house/search/autocomplete/'
+                url: '<?php echo create_url('estate/autocomplete/index')?>'
             }
         }
     },
