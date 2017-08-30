@@ -4,3 +4,4 @@
 /www/node_modules
 /data
 /www/sitemap*.xml
+/config/local.php
