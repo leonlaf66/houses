@@ -52,11 +52,13 @@ $urlManager = \WS::$app->urlManager;
                 <a class="quick-link" href="#"><span class="iconfont icon-message"></span>MESSAGES</a>
                 <a class="quick-link" href="#"><span class="iconfont icon-help"></span>HELP</a>
                 -->
+                <?php echo \module\page\widgets\Language::widget()?>
+                <!--
                 <?php if (\WS::$app->language === 'en-US'):?>
                     <a class="quick-link" href="/language/zh-CN/"><span class="iconfont icon-chinese"></span>中文</a>
                 <?php else:?>
                     <a class="quick-link" href="/language/en-US/"><span class="iconfont icon-english"></span>English</a>
-                <?php endif?>
+                <?php endif?>-->
             </div>
         </div>
     </div>

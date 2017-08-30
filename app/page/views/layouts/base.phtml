@@ -9,7 +9,7 @@ module\page\assets\Asset::register($this);
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
-<html>
+<html lang="<?php echo \WS::$app->language === 'zh-CN' ? 'zh' : 'en'?>">
 <head>
     <meta charset="<?= WS::$app->charset ?>">
     <link rel="shortcut icon" href="/favicon.ico">

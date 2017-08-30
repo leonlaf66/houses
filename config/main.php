@@ -10,6 +10,11 @@ return \yii\helpers\ArrayHelper::merge(get_fdn_etc(), [
         'urlManager' => [
             'class' => 'codemix\localeurls\UrlManager',
             'languages' => ['en'=>'en-US', 'cn'=>'zh-CN'],
+            'languageSessionKey' => 'language',
+            'languageCookieName' => 'language',
+            'languageCookieOptions' => [
+                'domain' => ''
+            ],
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'suffix'=>strpos($_SERVER["REQUEST_URI"], '/rets-photo-') === false ? '/' : '',

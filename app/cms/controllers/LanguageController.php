@@ -6,6 +6,7 @@ use yii\db\Query;
 
 class LanguageController extends \yii\web\Controller
 {
+    /*
     public function actionSwitcher($lang)
     {
         
@@ -24,7 +25,7 @@ class LanguageController extends \yii\web\Controller
         }
 
         $this->goBack($url);  
-    }
+    }*/
 
     public function actionSave($category, $source, $translation, $lang='zh-CN')
     {

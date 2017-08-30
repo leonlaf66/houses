@@ -1,6 +1,7 @@
 <?php
 class App extends \common\web\SiteApp
 {
+    public $autoLanguage = true;
     public $baseUrl = '/';
     public $loginUrl = '';
     public $logoutUrl = '';
