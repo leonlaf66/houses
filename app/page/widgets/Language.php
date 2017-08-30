@@ -19,9 +19,9 @@ class Language extends \yii\base\Widget
         $url = \yii\helpers\Url::to();
 
         if (\WS::$app->language === 'en-US') {    
-            $url = '/cn'.$url;
+            $url = '/zh'.$url;
         } else {
-            $url = str_replace('/cn/', '/en/', $url);
+            $url = str_replace('/zh/', '/en/', $url);
         }
         return $url;
     }

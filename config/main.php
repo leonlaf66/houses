@@ -9,7 +9,7 @@ return \yii\helpers\ArrayHelper::merge(get_fdn_etc(), [
     'components' => [
         'urlManager' => [
             'class' => 'codemix\localeurls\UrlManager',
-            'languages' => ['en'=>'en-US', 'cn'=>'zh-CN'],
+            'languages' => ['en'=>'en-US', 'zh'=>'zh-CN'],
             'languageSessionKey' => 'language',
             'languageCookieName' => 'language',
             'languageCookieOptions' => [
