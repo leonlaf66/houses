@@ -69,7 +69,9 @@ define('vc-side-panel', {
             params._csrf = document.getElementById('csrf-token').content;
 
             app.eventHub.$emit('loading:show');
-            $.post('/map/house/'+window.$viewData.type+'/search/', params, function (result) {
+
+            var url = tt('/map/house/'+window.$viewData.type+'/search/', '/zh/map/house/'+window.$viewData.type+'/search/');
+            $.post(url, params, function (result) {
                 that.onSearched(result);
             });
         },

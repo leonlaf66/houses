@@ -52,15 +52,23 @@
 	}
 
 	.col-info {
-		h2.location {
-			font-size:30px;
-			margin-bottom:15px;
+		h2.title {
+			font-size:24px;
+			font-weight:bold;
+			margin-bottom:7px;
+			margin-top:-6px;
+		}
+		.location {
+			font-size:18px;
+			color:#999;
+			margin-bottom:20px;
 		}
 		.fields1 {
 			font-size:16px;
 			&>span{
 				display:inline-block;
 				margin:0 15px;
+				color:#646464;
 				&:first-child {
 					margin-left:0;
 				}
@@ -80,7 +88,7 @@
 				color:#f15044;
 				margin-left:5px;
 				margin-right:12px;
-				&>span{font-size:24px;color:#333;margin-left:8px;}
+				&>span{font-size:24px;color:#f15044;margin-left:8px;}
 			}
 			&>span.rmb {
 				font-size:18px;
@@ -118,4 +126,8 @@
 			}
 		}
 	}
+}
+
+body.en-us {
+	.rets-results .col-info h2.title {font-size:30px;margin-top:-10px;}
 }

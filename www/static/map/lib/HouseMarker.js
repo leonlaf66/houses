@@ -22,7 +22,7 @@ HouseMarker.prototype.draw = function() {
         if (window.$viewData.type === 'purchase') {
             extendHtml = '<div class="extend">'+self.args.data.prop_type_name+'</div>';
         }
-
+        
         if (window.language === 'en-US') {
             //tt('$' + Number(parseFloat(wprice) * 10000).toLocaleString(), Number(parseFloat(wprice)).toLocaleString() + '万美元');
             self.args.data.list_price = Number(parseFloat(self.args.data.list_price) * 10000).toLocaleString();

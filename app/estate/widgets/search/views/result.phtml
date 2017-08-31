@@ -42,7 +42,7 @@ h2.location {
 			?>
 		<div class="item" data-id="<?php echo $rets->list_no?>">
 			<div class="col col-main-image">
-				<a href="<?php echo $url?>">
+				<a href="<?php echo $url?>" title="<?php echo $rets->title()?>" alt="<?php echo $rets->metaTitle()?>">
 					<div class="image-shower large" style="background-image:url(<?php echo $rets->getPhoto(0, 800, 800)?>)"></div>
 				</a>
 			</div>
@@ -54,12 +54,17 @@ h2.location {
 			</div>
 			<div class="col col-info">
 				<div class="pl15 pr15">
-					<h2 class="location">
-						<a href="<?php echo $url?>"><?php echo $rets->location?></a>
+					<h2 class="title">
+						<a href="<?php echo $url?>" alt="<?php echo $rets->metaTitle()?>">
+							<?php echo $rets->title()?>
+						</a>
 						<a class="btn-like<?php echo $rets->isLiked() ? ' active' : ''?>" href="javascript:void(0)" title="<?php _tt('Favorite', '收藏')?>">
 							<span class="iconfont icon-like_fill"></span>
 						</a>
 					</h2>
+					<div class="location">
+						<?php echo $rets->getLocation()?>
+					</div>
 					<div class="fields1" style="white-space:nowrap">
 						<span><?php $_t('Bedrooms')?> <?php echo RetsHtml::getValueHtml($rets, 'no_bedrooms')?></span> | 
 						<span><?php $_t('Full baths')?> <?php echo RetsHtml::getValueHtml($rets, 'no_full_baths')?></span> 
@@ -87,7 +92,7 @@ h2.location {
 									<span style="margin-bottom:8px"><?php echo $tag?></span>
 								<?php endforeach?>
 							</div>
-						<?php endif?>
+						<?php endif ?>
 					</div>
 				</div>
 			</div>

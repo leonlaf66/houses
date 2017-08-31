@@ -69,11 +69,14 @@ bShare.addEntry({
                 <div class="lay-u-1-2 pl20">
                     <div class="base-information">
                         <h1>
-                            <?php echo $rets->getLocation()?>
+                            <?php echo $rets->title()?>
                             <a data-id="<?php echo $rets->list_no?>" class="btn-like<?php echo $rets->isLiked() ? ' active' : ''?>" href="javascript:void(0)" title="<?php _tt('Favorite', '收藏')?>">
                                 <span class="iconfont icon-like_fill"></span>
                             </a>
                         </h1>
+                        <div class="location">
+                            <?php echo $rets->getLocation()?>
+                        </div>
                         <?php if ($rets->prop_type === 'RN'):?>
                             <p class="price">
                                 <span class="value"><?php echo RetsHtml::getValueHtml($rets, 'list_price')?></span>

@@ -64,6 +64,7 @@ class MapController extends Controller
         }, $search->query->all());
 
         return $this->ajaxJson([
+            'type' => $type,
             'city' => $cityName,
             'cityPolygons' => $cityPolygons,
             'items' => $items
@@ -78,7 +79,7 @@ class MapController extends Controller
         return $this->ajaxJson([
             'id'=>$id,
             'image_url' => $rets->getPhoto(0, 500, 500),
-            'name' => $retsRender->get('name'),
+            'name' => $retsRender->get('title'),
             'location' => $retsRender->get('location'),
             'list_price' => $retsRender->get('list_price'),
             'status_name' => $retsRender->get('status_name'),

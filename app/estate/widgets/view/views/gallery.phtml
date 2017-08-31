@@ -2,7 +2,7 @@
     $photoCount = intval($rets->getJsonData('photo_count'));
 ?>
 
-<div id="estate-media-gallery" class="media-gallery galleria" style="height:318px;">
+<div id="estate-media-gallery" class="media-gallery galleria" style="height:350px;">
     <?php if($photoCount > 0):?>
         <?php for($i=0;$i < $photoCount;$i++):?>
             <a href="<?php echo $rets->getPhoto($i, 400, 330)?>">

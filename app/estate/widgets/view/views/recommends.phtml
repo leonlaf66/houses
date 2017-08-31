@@ -21,18 +21,20 @@
             <div class="col lay-u-1-4">
                 <div class="rets-item" style="margin-bottom:20px">
                     <div class="image-box" style="min-height:174px">
-                        <a style="display:block;" href="<?php echo RetsHelper::getUrl($_entity)?>" target="_blank">
+                        <a style="display:block;" href="<?php echo RetsHelper::getUrl($_entity)?>" alt="<?php echo $_entity->metaTitle()?>" target="_blank">
                             <div class="image-shower" style="background-image:url(<?php echo $_entity->getPhoto(0, 500, 500)?>)"></div>
                         </a>
                         <span class="price"><?php echo RetsHtml::getValueHtml($_entity, 'list_price')?></span>
                     </div>
                     <div class="info">
                         <h2 class="location">
-                            <span class="address"><?php echo $_render->get('location')['value']?></span>
+                            <span class="address"><?php echo $_render->get('title')['value']?></span>
                         </h2>
                         <div class="info2">
                             <span class="left"><?php echo $_render->get('prop_type_name')['value']?></span>
-                            <span class="right"><?php echo $_render->get('rooms_descriptions')['value']?></span>
+                            <span class="right">
+                                <?php echo $_render->get('square_feet')['formatedValue']?>
+                            </span>
                         </div>
                         <div class="clear"></div>
                     </div>

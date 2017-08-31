@@ -57,7 +57,8 @@ var houseDetail = {
             methods: {
                 load: function () {
                     var that = this;
-                    $.get('/map/house/'+mlsId+'/', function (data) {
+                    var url = tt('/map/house/'+mlsId+'/', '/zh/map/house/'+mlsId+'/');
+                    $.get(url, function (data) {
                         that.data = data;
                     });
                 }
