@@ -5,7 +5,7 @@ var houseDetail = {
         this.instance = new Vue({
             el: '#house-detail',
             template: '<div class="house-detail-popup">'+
-                            '<div v-if="!data">Loading...</div>'+
+                            '<div v-if="!data">'+tt('Loading...', '载入中...')+</div>'+
                             '<template v-if="data">'+
                                 '<a :href="houseUrl" target="_blank">'+
                                     '<div class="col">'+
