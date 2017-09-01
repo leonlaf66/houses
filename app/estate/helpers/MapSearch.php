@@ -282,6 +282,9 @@ class MapSearch
                     'title' => tt('$', '美元')
                 ],
                 'apply' => function ($query, $val) {
+                    if (substr($val, 0, 1) === '@') {
+                        $val = substr($val, 1);
+                    }
                     list($start, $end) = explode('~', $val);
                     $query->andFilterWhere(['>=', 'list_price', $start]);
                     $query->andFilterWhere(['<=', 'list_price', $end]);
