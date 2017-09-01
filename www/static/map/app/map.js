@@ -24,9 +24,7 @@ define('vc-map', {
         this.search('BOST');
 
         app.eventHub.$on('items:changed', function (results) {
-            if (that.instance) {
-                that.instance.setZoom(13);
-            }
+            that.instance.setZoom(12);
 
             // 清除边界选区
             gmap.$(that.instance).clearPolygon();
@@ -54,16 +52,6 @@ define('vc-map', {
             }
 
             app.eventHub.$emit('loading:hide');
-        });
-
-        // 构造cluster
-        this.cluster = new MarkerClusterer(this.instance, [], {
-            gridSize: 80, // The grid size of a cluster in pixels.
-            maxZoom: 16, // The maximum zoom level that a marker can be part of a cluster.
-            minimumClusterSize: 3,
-            imagePath: '/static/img/map/cluster/m',
-            styles: gmap.helper.makeClusterStyles(),
-            averageCenter: true,
         });
 
         // 委托所有maker:click事件，弹框显示详细信息
@@ -95,6 +83,16 @@ define('vc-map', {
 
             this.instance.setOptions({styles: mapStyles});
 
+            // 构造cluster
+            this.cluster = new MarkerClusterer(this.instance, [], {
+                gridSize: 80, // The grid size of a cluster in pixels.
+                maxZoom: 16, // The maximum zoom level that a marker can be part of a cluster.
+                minimumClusterSize: 3,
+                imagePath: '/static/img/map/cluster/m',
+                styles: gmap.helper.makeClusterStyles(),
+                averageCenter: true,
+            });
+
             return this.instance;
         },
         search: function (address) {
@@ -120,6 +118,9 @@ define('vc-map', {
                 };
             });
 
+            // 重置聚合
+            this.cluster.resetViewport();
+
             this.markers = gmap.helper.makeMarkers(items, function (marker) {
                 // 映射到mapedMarkers
                 that.mapedMarkers[marker.args.marker_id] = marker;
@@ -127,6 +128,9 @@ define('vc-map', {
                 // 添加至cluster
                 that.cluster.addMarker(marker, true);
             });
+
+            // 首次需要手动绘制
+            this.cluster.redraw();
 
             return this.cluster;
         },
