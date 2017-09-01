@@ -157,7 +157,8 @@ define('vc-map', {
             if (! this.infoWindow) {
                 this.infoWindow = new google.maps.InfoWindow({
                     content: null,
-                    pixelOffset: new google.maps.Size(0, -34)
+                    pixelOffset: new google.maps.Size(0, -34),
+                    height: 124
                 });
 
                 google.maps.event.addListener(this.infoWindow, 'domready', function(){

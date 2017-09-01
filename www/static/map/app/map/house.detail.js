@@ -4,11 +4,11 @@ var houseDetail = {
         this.instance = null;
         this.instance = new Vue({
             el: '#house-detail',
-            template: '<div class="house-detail-popup">'+
-                            '<div v-if="!data">'+tt('Loading...', '载入中...')+</div>'+
+            template: '<div class="house-detail-popup" style="min-height:100px;min-width:400px;">'+
+                            '<div v-if="!data">'+tt('Loading...', '载入中...')+'</div>'+
                             '<template v-if="data">'+
                                 '<a :href="houseUrl" target="_blank">'+
-                                    '<div class="col">'+
+                                    '<div class="col" style="width:120px;height:100px">'+
                                         '<div class="image event-none" :style="{backgroundImage: imageUrl}"></div>'+
                                     '</div>'+
                                     '<div class="col col2">'+
