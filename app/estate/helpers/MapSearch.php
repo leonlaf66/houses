@@ -278,7 +278,8 @@ class MapSearch
                     '2000~99999999' => '2,000+'
                 ],
                 'custom' => [
-                    'type' => 'range'
+                    'type' => 'range',
+                    'title' => tt('$', '美元')
                 ],
                 'apply' => function ($query, $val) {
                     list($start, $end) = explode('~', $val);
