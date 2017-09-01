@@ -2,9 +2,9 @@
 <?php
     $_googleMapSdk = 'http://maps.google.cn/maps/api/js?sensor=false&language=en-US&key=AIzaSyAKfreY6Rf9fOvsJNcxGMsPPNHpXbvj6wo';
     $this->registerJsFile($_googleMapSdk, ['position'=>$this::POS_HEAD]);
-    $this->registerJsFile('/static/map/lib/markerclusterer.js', ['position'=>$this::POS_HEAD]);
+    $this->registerJsFile('/static/map/lib/markerclusterer.js?v2.0.0.1', ['position'=>$this::POS_HEAD]);
     // $this->registerJsFile('/static/map/lib/StyledMarker.js', ['position'=>$this::POS_HEAD]);
-    $this->registerJsFile('/static/map/lib/HouseMarker.js', ['position'=>$this::POS_HEAD]);
+    $this->registerJsFile('/static/map/lib/HouseMarker.js?v2.0.0.1', ['position'=>$this::POS_HEAD]);
     
     $this->registerJsFile('/static/lib/vue.min.js',  ['position'=>$this::POS_HEAD]);
 
@@ -226,8 +226,8 @@ window.$viewData = {
 
     $this->registerJsFile('/static/map/lib/google.map.util.js');
 
-    $this->registerJsFile('/static/map/app/map/house.detail.js');
-    $this->registerJsFile('/static/map/app/map.js?v2');
+    $this->registerJsFile('/static/map/app/map/house.detail.js?v2.0.0.1');
+    $this->registerJsFile('/static/map/app/map.js?v2.0.0.2');
     
-    $this->registerJsFile('/static/map/app.js');
+    $this->registerJsFile('/static/map/app.js?v2.0.0.1');
 ?>

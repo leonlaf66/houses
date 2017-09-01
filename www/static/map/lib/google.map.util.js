@@ -8,21 +8,21 @@ gmap.cache = {};
 
 gmap.helper = {
     //构造markers
-    makeMarkers: function (items, map, callback) {
-        markers = [];
+    makeMarkers: function (items, callback) {
+        var markers = [];
 
-        $.each (items, function(idx, data){
-            var marker = new HouseMarker(new google.maps.LatLng(data.latitude, data.longitude), map, {
+        return items.map(function (data) {
+            var marker = new HouseMarker(new google.maps.LatLng(data.latitude, data.longitude), {
                 data: data,
                 marker_id: data.id
             });
 
-            callback(marker);
+            if (typeof callback === 'function') {
+                callback(marker);
+            }
 
-            markers.push(marker);
+            return marker;
         });
-
-        return markers;
     },
 
     //构造cluster样式集

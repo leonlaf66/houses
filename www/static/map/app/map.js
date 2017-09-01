@@ -56,6 +56,17 @@ define('vc-map', {
             app.eventHub.$emit('loading:hide');
         });
 
+        // 构造cluster
+        this.cluster = new MarkerClusterer(this.instance, [], {
+            gridSize: 80, // The grid size of a cluster in pixels.
+            maxZoom: 16, // The maximum zoom level that a marker can be part of a cluster.
+            minimumClusterSize: 3,
+            imagePath: '/static/img/map/cluster/m',
+            styles: gmap.helper.makeClusterStyles(),
+            averageCenter: true,
+        });
+
+        // 委托所有maker:click事件，弹框显示详细信息
         $('#map').on('click', '.gmap-html-marker', function (event) {
             var mlsId = $(this).data('marker_id');
             that.popupDetailWindow(mlsId);
@@ -65,7 +76,7 @@ define('vc-map', {
     methods: {
         create: function () {
             this.instance = new google.maps.Map(this.$el, {
-                zoom: 15,
+                zoom: 12,
                 mapTypeId: google.maps.MapTypeId.ROADMAP,
                 mapTypeControlOptions: {
                     position: google.maps.ControlPosition.TOP_LEFT
@@ -91,9 +102,38 @@ define('vc-map', {
         },
         setMarkers: function (items) { ////https://github.com/googlemaps/js-marker-clusterer
             var that = this;
-            var markers = [];
             var itemParts;
 
+            // 重置
+            this.reset();
+
+            // 构造markers
+            this.mapedMarkers = {};
+            items = items.map(function (itemStr) {
+                itemParts = itemStr.split('|');
+                return {
+                    id: itemParts[0],
+                    latitude: itemParts[1],
+                    longitude: itemParts[2],
+                    list_price: itemParts[3],
+                    prop_type_name: that.propTypeNames[itemParts[4]]
+                };
+            });
+
+            this.markers = gmap.helper.makeMarkers(items, function (marker) {
+                // 映射到mapedMarkers
+                that.mapedMarkers[marker.args.marker_id] = marker;
+
+                // 添加至cluster
+                that.cluster.addMarker(marker, true);
+            });
+
+            return this.cluster;
+        },
+        updateMarkders: function (markers) {
+            this.markers = gmap.helper.makeMarkers(markers);
+        },
+        reset: function () {
             // 清除markers
             for (var i = 0; i < this.markers.length; i++ ) {
                 this.markers[i].setMap(null);
@@ -104,40 +144,6 @@ define('vc-map', {
             if (this.cluster) {
                 this.cluster.clearMarkers();
             }
-
-            // 构造clusters
-            this.cluster = new MarkerClusterer(this.instance, [], {
-                gridSize: 50,
-                maxZoom: 25,
-                imagePath: '/static/img/map/cluster/m',
-                styles: gmap.helper.makeClusterStyles(),
-                minimumClusterSize:3,
-                averageCenter: true,
-            });
-
-            // 构造markers
-            this.mapedMarkers = {};
-            markers = items.map(function (itemStr) {
-                itemParts = itemStr.split('|');
-                return {
-                    id: itemParts[0],
-                    latitude: itemParts[1],
-                    longitude: itemParts[2],
-                    list_price: that.decodePirce(itemParts[3]),
-                    prop_type_name: that.decodePropType(itemParts[4])
-                };
-            });
-
-            this.markers = gmap.helper.makeMarkers(markers, this.instance, function (marker) {
-                that.cluster.addMarker(marker);
-                // 映射到mapedMarkers
-                that.mapedMarkers[marker.args.marker_id] = marker;
-            });
-
-            return this.cluster;
-        },
-        updateMarkders: function (markers) {
-            this.markers = gmap.helper.makeMarkers(markers);
         },
         makePolygon: function (polygonBlocks) {
             var gmapUtil = gmap.$(this.instance);
@@ -161,20 +167,6 @@ define('vc-map', {
 
             this.infoWindow.setContent('<div id="house-detail"></div>');
             this.infoWindow.open(this.instance, marker);
-        },
-        onMarkerClick: function (callable) {
-            $.each(this.markers, function (idx, marker) {
-                google.maps.event.addListener(marker, 'click', function() {  
-                    callable(marker)
-                });
-            });
-        },
-        decodePirce: function (wprice) {
-            return wprice;
-            //return tt('$' + Number(parseFloat(wprice) * 10000).toLocaleString(), Number(parseFloat(wprice)).toLocaleString() + '万美元');
-        },
-        decodePropType: function (id) {
-            return this.propTypeNames[id];
         }
     }
 });
