@@ -21,7 +21,7 @@ define('vc-search', {
                     city: {
                         display: "title",
                         ajax: {
-                            url: '/estate/autocomplete/',
+                            url: tt('', '/zh') + '/estate/autocomplete/',
                         }
                     }
                 },

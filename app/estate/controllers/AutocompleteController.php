@@ -8,35 +8,39 @@ class AutocompleteController extends Controller
 {
     public function actionIndex()
     {
-        $resultItems = [];
+        $resultItems = WS::$app->cache->get('estate.autocomplete.items', []);
 
-        $towns = \common\catalog\Town::find()->where([
-            'state'=>\WS::$app->stateId
-        ])->all();
+        if (empty($resultItems)) {
+            $towns = \common\catalog\Town::find()->where([
+                'state'=>\WS::$app->stateId
+            ])->all();
 
-        foreach ($towns as $town) {
-            $resultItems[] = [
-                'title' => $town->name,
-                'desc' => $town->name_cn.',MA'
-            ];
-            
-            if ($town->name_cn) {
+            foreach ($towns as $town) {
                 $resultItems[] = [
-                    'title' => $town->name_cn,
-                    'desc' => $town->name.',MA'
+                    'title' => $town->name,
+                    'desc' => $town->name_cn.',MA'
+                ];
+                
+                if ($town->name_cn) {
+                    $resultItems[] = [
+                        'title' => $town->name_cn,
+                        'desc' => $town->name.',MA'
+                    ];
+                }
+            }
+
+            $zipcodes = \common\catalog\Zipcode::find()->where([
+                'state'=>\WS::$app->stateId
+            ])->all();
+
+            foreach ($zipcodes as $zipcode) {
+                $resultItems[] = [
+                    'title' => $zipcode->zip,
+                    'desc' => $zipcode->city_name.','.$zipcode->city_name_cn.',MA'
                 ];
             }
-        }
 
-        $zipcodes = \common\catalog\Zipcode::find()->where([
-            'state'=>\WS::$app->stateId
-        ])->all();
-
-        foreach ($zipcodes as $zipcode) {
-            $resultItems[] = [
-                'title' => $zipcode->zip,
-                'desc' => $zipcode->city_name.','.$zipcode->city_name_cn.',MA'
-            ];
+            WS::$app->cache->set('estate.autocomplete.items', $resultItems);
         }
 
         return $this->ajaxJson($resultItems);
