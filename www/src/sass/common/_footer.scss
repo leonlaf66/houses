@@ -52,10 +52,24 @@
     .about {
         padding-left:100px;
         margin-right:20px;
-        .follow {
-            margin-top:15px;
-            margin-bottom:25px;
-            .iconfont {font-size:32px;margin-right:14px;}
+        white-space:nowrap;
+        .follow-wechat {
+            position: relative;
+            > span {
+                position: absolute;
+                top: 0;
+            }
+            .icon-wechat {font-size:32px;margin-right:8px;}
+            margin-bottom:30px;
+        }
+        .follow-weibo {
+            position: relative;
+            > span {
+                position: absolute;
+                top: 0;
+                margin-top:-5px;
+                margin-left:8px;
+            }
         }
     }
     .app {

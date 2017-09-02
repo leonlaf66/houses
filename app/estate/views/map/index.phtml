@@ -214,20 +214,15 @@ window.$viewData = {
 
 </script>
 <?php
-    $this->registerJsFile('/static/map/require.js');
-
-    $this->registerJsFile('/static/map/app/nav.js');
-
-    $this->registerJsFile('/static/map/app/side-panel/search.js?v2.0.0.1');
-    $this->registerJsFile('/static/map/app/side-panel/filters.js?v2.4');
-    $this->registerJsFile('/static/map/app/side-panel/subwaies.js');
-    $this->registerJsFile('/static/map/app/side-panel/schools.js');
-    $this->registerJsFile('/static/map/app/side.panel.js?v1.04');
-
-    $this->registerJsFile('/static/map/lib/google.map.util.js?v2.0.0.1');
-
-    $this->registerJsFile('/static/map/app/map/house.detail.js?v2.0.0.3');
-    $this->registerJsFile('/static/map/app/map.js?v2.0.0.5');
-    
-    $this->registerJsFile('/static/map/app.js?v2.0.0.1');
+    $this->registerJsFile('static/map/require.js',  ['position'=>$this::POS_END]);
+    $this->registerJsFile('static/map/app/nav.js',  ['position'=>$this::POS_END]);
+    $this->registerJsFile('static/map/app/side-panel/search.js',  ['position'=>$this::POS_END]);
+    $this->registerJsFile('static/map/app/side-panel/filters.js',  ['position'=>$this::POS_END]);
+    $this->registerJsFile('static/map/app/side-panel/subwaies.js',  ['position'=>$this::POS_END]);
+    $this->registerJsFile('static/map/app/side-panel/schools.js',  ['position'=>$this::POS_END]);
+    $this->registerJsFile('static/map/app/side.panel.js',  ['position'=>$this::POS_END]);
+    $this->registerJsFile('static/map/lib/google.map.util.js',  ['position'=>$this::POS_END]);
+    $this->registerJsFile('static/map/app/map/house.detail.js',  ['position'=>$this::POS_END]);
+    $this->registerJsFile('static/map/app/map.js',  ['position'=>$this::POS_END]);
+    $this->registerJsFile('static/map/app.js',  ['position'=>$this::POS_END]);
 ?>

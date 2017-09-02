@@ -5,11 +5,13 @@ use yii\widgets\Block;
 /* @var $this \yii\web\View */
 /* @var $content string */
 
-module\page\assets\Asset::register($this);
 ?>
 <?php $this->beginPage() ?>
+<?php 
+    \module\page\assets\Asset::register($this);
+?>
 <!DOCTYPE html>
-<html lang="<?php echo \WS::$app->language === 'zh-CN' ? 'zh' : 'en'?>">
+<html lang="<?php echo \WS::$app->language === 'zh-CN' ? 'zh' : 'en'?>" xmlns:wb="http://open.weibo.com/wb">
 <head>
     <meta charset="<?= WS::$app->charset ?>">
     <link rel="shortcut icon" href="/favicon.ico">
@@ -23,6 +25,7 @@ module\page\assets\Asset::register($this);
     <meta id="login-url" content="<?php echo Yii::$app->loginUrl?>">
     <meta id="member-url" content="<?php echo Yii::$app->memberUrl?>">
     <meta id="login-status" content="<?php echo \WS::$app->user->isGuest ? 'false' : 'true'?>">
+    <script src="http://tjs.sjs.sinajs.cn/open/api/js/wb.js" type="text/javascript" charset="utf-8"></script>
     <?php $this->head() ?>
     <!--
     <link href='http://fonts.googleapis.com/css?family=Lato&subset=latin,latin-ext' rel='stylesheet' type='text/css'>-->

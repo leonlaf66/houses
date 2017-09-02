@@ -62,20 +62,6 @@ return \yii\helpers\ArrayHelper::merge(get_fdn_etc(), [
                ],
            ],
         ],
-        'assetManager'=>[
-            /*cdn http://developer.baidu.com/wiki/index.php?title=docs/cplat/libs#jQuery*/
-            /*cdn http://www.cdnjs.cn/*/
-            /*cdn http://www.bootcdn.cn/jquery-mobile/*/
-            'assetMap'=>[
-                /*css*/
-                'bootstrap.css'=>'http://cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css',
-                'admin.css'=>'css/styles.css',
-                /*js:jquery:http://lib.sinaapp.com/js/jquery/2.0.3/jquery-2.0.3.min.js*/
-                'jquery.js'=>'/static/lib/jquery.min.js',
-                'bootstrap.js'=>'http://cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js',
-                'app.js'=>'js/app.js'
-            ]
-        ],
         'errorHandler' => [
             'errorAction'=>'page/index/error'
         ],
@@ -106,10 +92,10 @@ return \yii\helpers\ArrayHelper::merge(get_fdn_etc(), [
         'gotour'=>'module\gotour\Module',
         'schooldistrict'=>'module\schooldistrict\Module',
         'translatemanager' => 'lajax\translatemanager\Module',
-        'home'=>'module\home\Module'
+        'home'=>'module\home\Module',
     ],
     'aliases'=>[
         '@bower'=>APP_ROOT.'/vendor/bower',
-        'module'=>APP_ROOT.'/app'
+        'module'=>APP_ROOT.'/app',
     ]
 ], $localConfig);
