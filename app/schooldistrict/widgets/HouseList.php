@@ -16,7 +16,7 @@ class HouseList extends \yii\base\Widget
             ->andWhere(['=', 'prop_type', 'SF'])
             ->andWhere(['>', 'list_price', 700000])
             ->andWhere(['is_show' => true])
-            ->orderBy(['id' => 'DESC'])
+            ->orderBy(['id' => SORT_DESC])
             ->limit(10)
             ->all();
 

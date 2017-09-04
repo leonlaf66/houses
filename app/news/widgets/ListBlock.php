@@ -15,20 +15,26 @@ class ListBlock extends \yii\base\Widget
         switch ($this->type) {
             case 'infomation':
                 $news->andWhere(['=', 'is_infomation', true]);
+                $news->orderBy([
+                    'id' => SORT_DESC
+                ]);
                 break;
             case 'hot':
                 $news->andWhere(['=', 'is_hot', true]);
                 $news->orderBy([
-                    'hits' => 'DESC'
+                    'hits' => SORT_DESC,
+                    'created_at' => SORT_DESC
                 ]);
                 break;
             case 'category':
                 $news->andWhere(['=', 'type_id', $this->theNews->type_id]);
                 $news->andWhere(['<>', 'id', $this->theNews->id]);
+                $news->orderBy([
+                    'created_at' => SORT_DESC
+                ]);
                 break;
         }
 
-        $news->orderBy('id', 'DESC');
         $items = $news->limit(5)->all();
 
         return $this->render('list-block.phtml', [
