@@ -6,6 +6,7 @@ return \yii\helpers\ArrayHelper::merge(get_fdn_etc(), [
     'basePath' => dirname(__DIR__),
     'layout'=>'@module/page/views/layouts/main.phtml',
     'defaultRoute'=>'home/default/index',
+    'bootstrap'    => ['assetsAutoCompress'],
     'components' => [
         'urlManager' => [
             'class' => 'codemix\localeurls\UrlManager',
@@ -61,6 +62,13 @@ return \yii\helpers\ArrayHelper::merge(get_fdn_etc(), [
                    'clientSecret' => 'facebook_client_secret',
                ],
            ],
+        ],
+        'assetsAutoCompress' => [
+            'class' => '\common\web\AssetsCompressComponent',
+            'enabled'           => true,
+            'jsCompress'        => true,
+            'cssFileCompile'    => true,
+            'jsFileCompile'     => true,
         ],
         'errorHandler' => [
             'errorAction'=>'page/index/error'

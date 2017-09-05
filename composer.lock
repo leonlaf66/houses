@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "93ffa6a36d48edd382d85935e6c74925",
+    "content-hash": "b736be42451c7ae26e95a72acbf47b4c",
     "packages": [
         {
             "name": "bower-asset/bootstrap",
@@ -495,6 +495,53 @@
                 "html"
             ],
             "time": "2017-06-03T02:28:16+00:00"
+        },
+        {
+            "name": "iisns/yii2-assets-compress",
+            "version": "v1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/iisns/yii2-assets-compress.git",
+                "reference": "37009a8b0f4b3bcdd417b223db0d3fb6e9c26034"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://files.phpcomposer.com/files/iisns/yii2-assets-compress/37009a8b0f4b3bcdd417b223db0d3fb6e9c26034.zip",
+                "reference": "37009a8b0f4b3bcdd417b223db0d3fb6e9c26034",
+                "shasum": ""
+            },
+            "require": {
+                "mrclay/minify": "*",
+                "natxet/cssmin": "*",
+                "tedivm/jshrink": "*",
+                "yiisoft/yii2": "*"
+            },
+            "type": "yii2-extension",
+            "autoload": {
+                "psr-4": {
+                    "iisns\\assets\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Shiyang",
+                    "email": "dr@shiyang.me"
+                }
+            ],
+            "description": "This solution enables you to dynamically combine js and css files to optimize the html page.",
+            "keywords": [
+                "JS",
+                "assets",
+                "compress",
+                "css",
+                "iisns",
+                "yii2"
+            ],
+            "time": "2016-02-12T14:59:50+00:00"
         },
         {
             "name": "illuminate/container",
@@ -1359,57 +1406,6 @@
                 "psr-3"
             ],
             "time": "2016-10-10T12:19:37+00:00"
-        },
-        {
-            "name": "skeeks/yii2-assets-auto-compress",
-            "version": "1.2.3.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/skeeks-semenov/yii2-assets-auto-compress.git",
-                "reference": "9626882cf35f04fc7cde07a61ea69a819689737f"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://files.phpcomposer.com/files/skeeks-semenov/yii2-assets-auto-compress/9626882cf35f04fc7cde07a61ea69a819689737f.zip",
-                "reference": "9626882cf35f04fc7cde07a61ea69a819689737f",
-                "shasum": ""
-            },
-            "require": {
-                "mrclay/minify": "*",
-                "natxet/cssmin": "*",
-                "tedivm/jshrink": "*",
-                "yiisoft/yii2": "*"
-            },
-            "type": "yii2-extension",
-            "autoload": {
-                "psr-4": {
-                    "skeeks\\yii2\\assetsAuto\\": ""
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "BSD-3-Clause"
-            ],
-            "authors": [
-                {
-                    "name": "Semenov Alexander",
-                    "email": "semenov@skeeks.com"
-                }
-            ],
-            "description": "Automatically compile and merge files js + css",
-            "homepage": "http://www.skeeks.com/",
-            "keywords": [
-                "JS",
-                "Sx",
-                "app",
-                "assets",
-                "auto assets",
-                "css",
-                "framework",
-                "skeeks",
-                "yii"
-            ],
-            "time": "2017-07-14T16:55:12+00:00"
         },
         {
             "name": "swiftmailer/swiftmailer",

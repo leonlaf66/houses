@@ -1,6 +1,8 @@
-/***** css set*****/ 
-body, div, dl, dt, dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,p,blockquote，th,td{margin:0;padding:0;} 
-table{border-collapse:collapse;border-spacing:0;} 
+/***base css***/
+body{margin:0;} /*这个不能删，以解决开始行的body乱码问题*/
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,p,blockquote,th,th{margin:0;padding:0;}
+body,div,dl,dt,dd,table{border-collapse:collapse;border-spacing:0;}
+
 fieldset,img {border:0;} 
 address,caption, cite,code,dfn,em,strong,th,var{font-style:normal;font-weight:normal;} 
 ol,ul {list-style:none;} 

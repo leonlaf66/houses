@@ -1,7 +1,5 @@
-window.language = document.getElementById('language').getAttribute('content');
-
 function tt(en, cn) {
-    return window.language === 'en-US' ? en : cn;
+    return document.getElementById('language').getAttribute('content') === 'en-US' ? en : cn;
 }
 
 window.location.changeParam = function(name, value) {

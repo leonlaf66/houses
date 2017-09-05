@@ -1,12 +1,15 @@
 <!--基础脚本准备-->
 <?php
+    $options = ['position'=>$this::POS_HEAD, 'depends' => '\module\page\assets\Asset'];
+
     $_googleMapSdk = 'http://maps.google.cn/maps/api/js?sensor=false&language=en-US&key=AIzaSyAKfreY6Rf9fOvsJNcxGMsPPNHpXbvj6wo';
-    $this->registerJsFile($_googleMapSdk, ['position'=>$this::POS_HEAD]);
-    $this->registerJsFile('/static/map/lib/markerclusterer.js?v2.0.0.1', ['position'=>$this::POS_HEAD]);
-    // $this->registerJsFile('/static/map/lib/StyledMarker.js', ['position'=>$this::POS_HEAD]);
-    $this->registerJsFile('/static/map/lib/HouseMarker.js?v2.0.0.1', ['position'=>$this::POS_HEAD]);
+    $this->registerJsFile($_googleMapSdk, $options);
+    $this->registerJsFile('/static/map/lib/markerclusterer.js?v2.0.0.1', $options);
+    $this->registerJsFile('/static/map/lib/HouseMarker.js?v2.0.0.1', $options);
     
-    $this->registerJsFile('/static/lib/vue.min.js',  ['position'=>$this::POS_HEAD]);
+    $this->registerJsFile('/static/lib/vue.min.js', $options);
+
+    $this->registerCssFile('/static/map/index.css', $options);
 
     $this->params['activeNavId'] = $type;
 ?>
@@ -197,14 +200,6 @@
     <a id="btn-return" class="btn red" :href="href"><i class="iconfont icon-switch"></i> <?php _tt('List', '返回到列表')?></a>
 </script>
 
-<!--样式-->
-<style type="text/css">
-    <?php $this->beginBlock('mapcss') ?>
-        <?php include(__DIR__.'/index.css')?>
-    <?php $this->endBlock() ?>
-</style>
-<?php $this->registerCss($this->blocks['mapcss'], ['position'=>$this::POS_HEAD])?> 
-
 <!--应用载入-->
 <script type="text/javascript">
 window.$viewData = {
@@ -214,15 +209,15 @@ window.$viewData = {
 
 </script>
 <?php
-    $this->registerJsFile('static/map/require.js',  ['position'=>$this::POS_END]);
-    $this->registerJsFile('static/map/app/nav.js',  ['position'=>$this::POS_END]);
-    $this->registerJsFile('static/map/app/side-panel/search.js',  ['position'=>$this::POS_END]);
-    $this->registerJsFile('static/map/app/side-panel/filters.js',  ['position'=>$this::POS_END]);
-    $this->registerJsFile('static/map/app/side-panel/subwaies.js',  ['position'=>$this::POS_END]);
-    $this->registerJsFile('static/map/app/side-panel/schools.js',  ['position'=>$this::POS_END]);
-    $this->registerJsFile('static/map/app/side.panel.js',  ['position'=>$this::POS_END]);
-    $this->registerJsFile('static/map/lib/google.map.util.js',  ['position'=>$this::POS_END]);
-    $this->registerJsFile('static/map/app/map/house.detail.js',  ['position'=>$this::POS_END]);
-    $this->registerJsFile('static/map/app/map.js',  ['position'=>$this::POS_END]);
-    $this->registerJsFile('static/map/app.js',  ['position'=>$this::POS_END]);
+    $this->registerJsFile('/static/map/require.js',  ['position'=>$this::POS_END]);
+    $this->registerJsFile('/static/map/app/nav.js',  ['position'=>$this::POS_END]);
+    $this->registerJsFile('/static/map/app/side-panel/search.js',  ['position'=>$this::POS_END]);
+    $this->registerJsFile('/static/map/app/side-panel/filters.js',  ['position'=>$this::POS_END]);
+    $this->registerJsFile('/static/map/app/side-panel/subwaies.js',  ['position'=>$this::POS_END]);
+    $this->registerJsFile('/static/map/app/side-panel/schools.js',  ['position'=>$this::POS_END]);
+    $this->registerJsFile('/static/map/app/side.panel.js',  ['position'=>$this::POS_END]);
+    $this->registerJsFile('/static/map/lib/google.map.util.js',  ['position'=>$this::POS_END]);
+    $this->registerJsFile('/static/map/app/map/house.detail.js',  ['position'=>$this::POS_END]);
+    $this->registerJsFile('/static/map/app/map.js',  ['position'=>$this::POS_END]);
+    $this->registerJsFile('/static/map/app.js',  ['position'=>$this::POS_END]);
 ?>

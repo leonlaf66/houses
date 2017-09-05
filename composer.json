@@ -20,7 +20,7 @@
         "yiisoft/yii2-swiftmailer": "~2.0.0",
         "cyneek/yii2-blade": "^1.1",
         "codemix/yii2-localeurls": "^1.4",
-        "skeeks/yii2-assets-auto-compress": "*"
+        "iisns/yii2-assets-compress": "*"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.0.0",
