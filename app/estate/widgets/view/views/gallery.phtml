@@ -41,5 +41,5 @@
         'azur.theme'
     )
 ?>
-<?php $this->registerCssFile('/static/js/azur/galleria/themes/azur/galleria.azur.css', ['position'=>$this::POS_HEAD], 'azur.css')?>
+<?php $this->registerCssFile('/static/js/azur/galleria/themes/azur/galleria.azur.css', ['position'=>$this::POS_HEAD, 'no-merge'=>true], 'azur.css')?>
 <?php $this->registerJs("Galleria.run('.galleria', {fullscreenCrop:false});", $this::POS_READY, 'azur.script')?>
