@@ -16,7 +16,7 @@ use yii\widgets\Block;
     <meta charset="<?= WS::$app->charset ?>">
     <link rel="shortcut icon" href="/favicon.ico">
     <?= Html::csrfMetaTags() ?>
-    <title><?= Html::encode($this->title) ?></title>
+    <title><?= Html::encode(\WS::$app->page->title()) ?></title>
     <meta name="keywords" content="<?php echo $this->keywords?>">
     <meta name="description" content="<?php echo $this->description?>">
     <link rel="stylesheet" type="text/css" href="<?php echo \WS::$app->params['iconfontUrl']?>">

@@ -28,6 +28,9 @@ class DefaultController extends \yii\web\Controller
     public function actionView($id)
     {
         $schoolDistrict = SchoolDistrict::find()->where('id=:id', ['id' => $id])->one();
+
+        WS::$app->page->bindParams(['name' => $schoolDistrict->name]);
+
         return $this->render('view.phtml', [
             'model' => $schoolDistrict
         ]);

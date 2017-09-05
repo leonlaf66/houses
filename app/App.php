@@ -10,6 +10,7 @@ class App extends \common\web\SiteApp
         'ma' => 'MA'
     ];
     public $stateId = null;
+    public $pageMetas = [];
 
     public function bootstrap()
     {

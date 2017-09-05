@@ -78,6 +78,8 @@ class HouseController extends Controller
             }
         }
 
+        WS::$app->page->setId('estate/house/'.$type);
+
         return $this->render('index.phtml', [
             'tab'=>$tab,
             'type'=>$type,
@@ -92,6 +94,9 @@ class HouseController extends Controller
         if(is_null($rets )) {
             throw new \yii\web\HttpException(404, "Page not found");
         }
+
+        WS::$app->page->setId('estate/house/'.$type.'/view');
+        WS::$app->page->bindParams(['name' => $rets->title()]);
 
         return $this->render("view.phtml", [
             'type'=>$type,

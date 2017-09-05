@@ -1,20 +1,13 @@
 <?php
 namespace module\home;
 
-class Module extends \yii\base\Module
+class Module extends \module\core\Module
 {
     public $urlRules = [];
 
-    public function initConfigs()
+    public function getConfigs($name)
     {
-        $configFile = $this->getBasePath().'/etc/config.php';
-        if(file_exists($configFile)) {
-            $configValues = include($configFile);
-            foreach($configValues as $name=>$values) {
-                $this->$name = $values;
-            }
-        }
-
-        \WS::$app->getUrlManager()->addRules($this->urlRules);
+        $file = dirname(__FILE__).'/etc/'.$name.'.php';
+        return include($file);
     }
 }

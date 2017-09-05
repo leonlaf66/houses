@@ -45,6 +45,11 @@ return \yii\helpers\ArrayHelper::merge(get_fdn_etc(), [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
             'cookieValidationKey' => 'AulhaJkw74KJHBBq1JobpnXv90jLd8ba',
         ],
+        'page' => [
+            'class' => '\module\cms\components\Page',
+            'name' => ['Usleju', '米乐居'],
+            'metas' => include(__DIR__.'/metas.php')
+        ],
         'user' => [
             'identityClass' => '\module\customer\models\UserIdentity',
             'enableAutoLogin' => true,

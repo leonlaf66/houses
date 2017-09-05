@@ -40,8 +40,12 @@ class DefaultController extends Controller
 
     public function actionView($id)
     {
+        $news = News::findOne($id);
+
+        WS::$app->page->bindParams(['name' => $news->title]);
+
         return $this->render('view.phtml', [
-            'news'=>News::findOne($id)
+            'news'=>$news
         ]);
     }
 

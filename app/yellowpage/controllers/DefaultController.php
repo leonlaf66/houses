@@ -14,12 +14,12 @@ class DefaultController extends \yii\web\Controller
 
     public function actionView($id)
     {
+    	$yellowpage = YellowPage::findOne($id);
 
-    	$yelloePage = YellowPage::findOne($id);
+        \WS::$app->page->bindParams(['name' => $yellowpage->name]);
 
         YellowPage::hit($id);
-        
-    	return $this->render('view.phtml', ['model'=>$yelloePage]);
+    	return $this->render('view.phtml', ['model'=>$yellowpage]);
     }
 
     public function actionOncomment()
