@@ -22,7 +22,7 @@ return \yii\helpers\ArrayHelper::merge(get_fdn_etc(), [
             'rules'=>[]
         ],
         'view'=>[
-            'class'=>'module\core\components\View',
+            'class'=>'module\cms\components\View',
             'defaultExtension'=>'phtml',
             'renderers'=>[
                 'twig' => [
