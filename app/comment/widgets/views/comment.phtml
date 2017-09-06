@@ -95,18 +95,15 @@
         statusUpdateUrl: '<?php echo $_context->onSubmitExecUrl?>',
         totalElement: jqMain.find('.displayCount>em'),
         itemsElement: jqMain.find('#comment-items'),
-        onSubmitBefore: function() {
-            //jqForm.find('[name=user_id]').val('0');
-        },
         onSubmitAfter: function() {
             jqForm.find('[name=rating]').val('1');
             jqCommentWindow.find('button.close').trigger('click');
-        }
+        },
     });
 
     $('#btn-begin-comment').click(function(){
         var isLogined = false;
-        $.ajax({ 
+        $.ajax({
             type: "get", 
             url: "<?php echo \Yii::$app->urlManager->createUrl('customer/account/check-login')?>", 
             cache:false, 
@@ -117,7 +114,7 @@
                 if(! status) {
                     window.location.href = "<?php echo \WS::$app->loginUrl?>?callback="+encodeURI(window.location.href);
                 }
-            }
+            },
         });
         return isLogined;
     });
