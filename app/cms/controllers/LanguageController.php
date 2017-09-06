@@ -31,7 +31,7 @@ class LanguageController extends \yii\web\Controller
     {
         if (! WS::$app->translationStatus) return false;
 
-        \common\support\Language::submit($category, $source, $translation, $lang);
+        \common\supports\Language::submit($category, $source, $translation, $lang);
 
         echo 1;
         WS::$app->end();

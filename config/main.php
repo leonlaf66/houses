@@ -1,8 +1,6 @@
 <?php
-$localConfig = include(__DIR__.'/local.php');
-
-return \yii\helpers\ArrayHelper::merge(get_fdn_etc(), [
-    'id' => 'usleju-estate',
+return \yii\helpers\ArrayHelper::merge(get_fdn_etc('web'), [
+    'id' => 'usleju-house',
     'basePath' => dirname(__DIR__),
     'layout'=>'@module/page/views/layouts/main.phtml',
     'defaultRoute'=>'home/default/index',
@@ -69,7 +67,7 @@ return \yii\helpers\ArrayHelper::merge(get_fdn_etc(), [
            ],
         ],
         'assetsAutoCompress' => [
-            'class' => '\common\web\AssetsCompressComponent',
+            'class' => '\module\cms\components\AssetsCompressComponent',
             'enabled'           => true,
             'jsCompress'        => true,
             'cssFileCompile'    => true,
@@ -111,4 +109,4 @@ return \yii\helpers\ArrayHelper::merge(get_fdn_etc(), [
         '@bower'=>APP_ROOT.'/vendor/bower',
         'module'=>APP_ROOT.'/app',
     ]
-], $localConfig);
+], include(__DIR__.'/local.php'));
