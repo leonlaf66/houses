@@ -235,6 +235,9 @@ footer.footer{
 .pager li>a, .pager li>span {
     border-radius:0;
 }
+.pagination > li {
+    margin-right:8px;
+}
 .pagination > li > a:hover, .pagination > li > span:hover, .pagination > li > a:focus, .pagination > li > span:focus{
     color:#99bd2a;
 }
