@@ -90,7 +90,7 @@ body.en-us .table-info .info-col>label{
                     <h5><?php _tt('Racial distribution', '种族分布')?></h5>
                     <ul>
                         <?php foreach ($this->context->racials($model->racials) as $item):?>
-                            <li style="width:<?php echo $item->value?>">
+                            <li style="width:<?php echo $item->width_value?>">
                                 <div title="<?php echo $item->name.' '.$item->value?>" class="tooltip-lk bar bar-" style="background:<?php echo $item->bgColor?>;height:<?php echo $item->height?>;"></div>
                                 <!--<label><?php echo $item->name?></label>-->
                             </li>
