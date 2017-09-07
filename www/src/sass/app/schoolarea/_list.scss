@@ -74,13 +74,22 @@
             display:inline-block;
             &>a {
                 display:inline-block;
-                color: #99bd2a;
-                border: solid 1px #99bd2a;
+                color: #f15044;
+                border: solid 1px #f15044;
                 padding: 3px;
             }
             .sub-links {
                 display:none;
             }
+            .iconfont {
+                vertical-align: middle;
+            }
+        }
+        .invalid {
+            display:inline-block;
+            color: #999;
+            border: solid 1px #999;
+            padding: 3px;
         }
     }
 }

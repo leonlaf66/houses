@@ -2,6 +2,32 @@
     $this->params['activeNavId'] = 'schooldistrict';
 ?>
 
+<style type="text/css">
+#base-info-container .base-info {
+    position:relative;
+}
+#base-info-container .base-info .houses-go {
+    position:absolute;
+    top:0;right:0;
+}
+.go-houses-btn, .go-houses-btn:focus {
+    display: inline-block;
+    color: #f15044;
+    border: solid 1px #f15044;
+    padding: 5px 8px;
+    font-size: 14px
+}
+.go-houses-btn:hover {
+    border: solid 1px #f00;
+    color: #f00;
+}
+.houses-go .invalid {
+    display:inline-block;
+    color: #999;
+    border: solid 1px #999;
+    padding: 3px;
+}
+</style>
 
 <div id="header">
     <?php echo \module\page\widgets\Nav::widget()?>
@@ -73,78 +99,64 @@ body.en-us .table-info .info-col>label{
                     </ul>
                 </div>
                 <div class="houses-go">
-                    <a class="go-houses-btn" target="_blank" href="/house/purchase/school-districtss/sd-<?php echo str_replace('/', '%7C', strtolower($model->code))?>/">
-                        <?php echo sprintf(tt('%d on Market', '共%d套在售'), $model->getSummary('total'))?>
-                        <span class="iconfont icon-goto"></span>
-                    </a>
+                    <?php if ($model->getSummary('total') > 0):?>
+                        <a class="go-houses-btn" target="_blank" href="/house/purchase/school-districtss/sd-<?php echo str_replace('/', '%7C', strtolower($model->code))?>/">
+                            <?php echo sprintf(tt('%d on Market', '共%d套在售'), $model->getSummary('total'))?>
+                            <span class="iconfont icon-goto"></span>
+                        </a>
+                    <?php else:?>
+                        <span class="invalid"><?php _tt('No property available', '暂无可售房源')?></span>
+                    <?php endif?>
                 </div>
             </div>
         </div>
     </div>
-    <style type="text/css">
-    #base-info-container .base-info {
-        position:relative;
-    }
-    #base-info-container .base-info .houses-go {
-        position:absolute;
-        top:0;right:0;
-    }
-    .go-houses-btn, .go-houses-btn:focus {
-        display: inline-block;
-        color: #f15044;
-        border: solid 1px #f15044;
-        padding: 5px 8px;
-        font-size: 14px
-    }
-    .go-houses-btn:hover {
-        border: solid 1px #f00;
-        color: #f00;
-    }
-    </style>
+    
     <div class="description">
         <h2><?php _tt('Introduction', '学区介绍')?></h2>
         <p class="desc"><?php echo $model->description?></p>
         <p class="ys"><b><?php _tt('Advantage:', '优势：')?></b> <?php echo $model->advantage?></p>
     </div>
-    <div class="hot-houses v-info-blk">
-        <h2><?php _tt('Hot houses', '热门房源')?></h2>
-        <?php echo \module\schooldistrict\widgets\HouseList::widget([
-            'schoolDistrict' => $model
-        ])?>
-    </div>
-    <div class="house-price-dc v-info-blk">
-        <h2><?php _tt('Market here', '学区房价')?></h2>
-        <table class="top-info table-info">
-            <tr>
-                <td class="info-col"><span>
-                    <?php if (\WS::$app->language === 'en-US'):?>
-                        $<?php echo $model->getSummary('average-price')?></span>
-                    <?php else:?>
-                        <?php echo number_format(floatval(str_replace(',', '', $model->getSummary('average-price'))) / 10000, 1)?>万美元</span>
-                    <?php endif?>
-                    <label><?php _tt('Avg price', '平均房价')?></label>
-                </td>
-                <td class="info-col"><span>
-                    $<?php echo $model->getSummary('avergage-rental-price')?></span>
-                    <label><?php _tt('Avg rental', '平均月租')?></label>
-                </td>
-                <td class="info-col">
-                    <span><?php echo $model->getSummary('year-down-total')?>套</span>
-                    <label><?php _tt('Annual turnover', '年成交量')?></label>
-                </td>
-            </tr>
-        </table>
-        <!--
-        <div class="lay-g">
-            <div class="lay-u-1-2">
-                #近三年学区房每季度成交量
+    
+    <?php echo \module\schooldistrict\widgets\HouseList::widget([
+        'schoolDistrict' => $model
+    ])?>
+
+    <?php if ($model->getSummary('total') > 0):?>
+        <div class="house-price-dc v-info-blk">
+            <h2><?php _tt('Market here', '学区房价')?></h2>
+            <table class="top-info table-info">
+                <tr>
+                    <td class="info-col"><span>
+                        <?php if (\WS::$app->language === 'en-US'):?>
+                            $<?php echo $model->getSummary('average-price')?></span>
+                        <?php else:?>
+                            <?php echo number_format(floatval(str_replace(',', '', $model->getSummary('average-price'))) / 10000, 1)?>万美元</span>
+                        <?php endif?>
+                        <label><?php _tt('Avg price', '平均房价')?></label>
+                    </td>
+                    <td class="info-col"><span>
+                        $<?php echo $model->getSummary('avergage-rental-price')?></span>
+                        <label><?php _tt('Avg rental', '平均月租')?></label>
+                    </td>
+                    <td class="info-col">
+                        <span><?php echo $model->getSummary('year-down-total')?>套</span>
+                        <label><?php _tt('Annual turnover', '年成交量')?></label>
+                    </td>
+                </tr>
+            </table>
+            <!--
+            <div class="lay-g">
+                <div class="lay-u-1-2">
+                    #近三年学区房每季度成交量
+                </div>
+                <div class="lay-u-1-2">
+                    #近五年学区房每季度房价走势
+                </div>
             </div>
-            <div class="lay-u-1-2">
-                #近五年学区房每季度房价走势
-            </div>
+            -->
         </div>
-        -->
-    </div>
+    <?php endif?>
     <div class="sat-scores v-info-blk">
         <h2><?php _tt('SAT score', 'SAT分数')?></h2>
         <table class="table-info">

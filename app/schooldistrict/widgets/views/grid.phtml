@@ -34,10 +34,14 @@
                     <?php _tt('Details', '学区详情')?> <span class="iconfont icon-arraw-r"></span>
                 </a>
                 <div class="rets-links">
-                    <a target="_blank" href="/house/purchase/school-districtss/sd-<?php echo str_replace('/', '%7C', strtolower($item->code))?>/">
-                        <?php echo sprintf(tt('%d on Market', '共%d套在售'), $item->getSummary('total'))?>
-                        <span class="iconfont icon-arraw-r"></span>
-                    </a>
+                    <?php if ($item->getSummary('total') > 0):?>
+                        <a target="_blank" href="/house/purchase/school-districtss/sd-<?php echo str_replace('/', '%7C', strtolower($item->code))?>/">
+                            <?php echo sprintf(tt('%d on Market', '共%d套在售'), $item->getSummary('total'))?>
+                            <span class="iconfont icon-goto"></span>
+                        </a>
+                    <?php else:?>
+                        <span class="invalid"><?php _tt('No property available', '暂无可售房源')?></span>
+                    <?php endif?>
                     <!--
                     <ul class="sub-links">
                         <li class="sub-link-item"><a href="#">独栋别墅320套 <span class="iconfont icon-arraw-r"></a></li>
