@@ -129,14 +129,14 @@ body.en-us .table-info .info-col>label{
                 <tr>
                     <td class="info-col"><span>
                         <?php if (\WS::$app->language === 'en-US'):?>
-                            $<?php echo $model->getSummary('average-price')?></span>
+                            $<?php echo number_format($model->getSummary('average-price'), 0)?></span>
                         <?php else:?>
                             <?php echo number_format(floatval(str_replace(',', '', $model->getSummary('average-price'))) / 10000, 1)?>万美元</span>
                         <?php endif?>
                         <label><?php _tt('Avg price', '平均房价')?></label>
                     </td>
                     <td class="info-col"><span>
-                        $<?php echo $model->getSummary('avergage-rental-price')?></span>
+                        $<?php echo number_format($model->getSummary('avergage-rental-price'), 0)?></span>
                         <label><?php _tt('Avg rental', '平均月租')?></label>
                     </td>
                     <td class="info-col">

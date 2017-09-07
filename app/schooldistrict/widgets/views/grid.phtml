@@ -81,7 +81,7 @@
                             <?php if (\WS::$app->language === 'zh-CN'):?>
                                 <span><?php echo number_format(floatval(str_replace(',', '', $item->getSummary('average-price'))) / 10000, 1)?>万美元</span>
                             <?php else:?>
-                                <span>$<?php echo $item->getSummary('average-price')?></span>
+                                <span>$<?php echo number_format($item->getSummary('average-price'), 0)?></span>
                             <?php endif?>
                             <?php _tt('Avg price', '平均房价')?>
                         </td>
