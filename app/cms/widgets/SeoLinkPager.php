@@ -6,6 +6,8 @@ use yii\helpers\Html;
 
 class SeoLinkPager extends \yii\widgets\LinkPager
 {
+    public $firstPageLabel = true;
+    public $lastPageLabel = true;
     public $createUrlFn = null;
 
     protected function renderPageButton($label, $page, $class, $disabled, $active)
