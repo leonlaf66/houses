@@ -98,7 +98,7 @@
                 <div class="racists text-left">
                     <div class="header"><?php _tt('Racial distribution', '种族分布')?></div>
                     <ul>
-                        <?php foreach ($this->context->racials($item->racials) as $item):?>
+                        <?php foreach (\module\schooldistrict\helpers\Racial::renderProcess($item->racials, 4) as $item):?>
                             <li style="width:<?php echo $item->width_value?>">
                                 <div title="<?php echo $item->name.' '.$item->value?>" class="tooltip-lk bar bar-" style="background:<?php echo $item->bgColor?>;height:<?php echo $item->height?>;"></div>
                                 <!--<label><?php echo $item->name?></label>-->
