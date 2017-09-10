@@ -5,6 +5,7 @@ use WS;
 
 class View extends \yii\web\View
 {
+    public $compressEnabled = false;
     public $keywords = '';
     public $description = '';
     
@@ -20,7 +21,12 @@ class View extends \yii\web\View
             self::PH_BODY_END => $this->renderBodyEndHtml($ajaxMode),
         ]);
 
-        echo $this->higridCompressHtml($content);
+        if ($this->compressEnabled) {
+            echo $this->higridCompressHtml($content);
+        } else {
+            echo $content;
+        }
+        
 
         $this->clear();
     }

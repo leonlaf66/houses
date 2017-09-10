@@ -1,25 +1,25 @@
 <?php
-    //$this->registerJsFile('http://www.google.cn/maps/api/js?sensor=false&language=zh-CN&key=AIzaSyAKfreY6Rf9fOvsJNcxGMsPPNHpXbvj6wo');
-    $this->registerJsFile('http://maps.google.cn/maps/api/js?sensor=false&language=zh-CN&key=AIzaSyAKfreY6Rf9fOvsJNcxGMsPPNHpXbvj6wo');
+    $_language = \WS::$app->language;
+    $_googleMapKey = \WS::$app->params['googleMap']['key'];
+
+    $this->registerJsFile('http://maps.google.cn/maps/api/js?sensor=false&language='.$_language.'&key='.$_googleMapKey);
     $this->registerJsFile('https://googlemaps.github.io/js-marker-clusterer/src/markerclusterer.js');
 ?>
 
-<script> <!-- 编写script标签是为了编辑器识别js代码，可以省略 -->  
+<script type="text/javascript"> 
 <?php $this->beginBlock('js_end') ?>
     var map = new google.maps.Map(document.getElementById("google-map"), {
-        zoom: 15, //放大比例
-        center: new google.maps.LatLng(<?php echo $rets->latitude?>, <?php echo $rets->longitude?>), //经纬度
-        mapTypeId: google.maps.MapTypeId.ROADMAP, //地图类型ROADMAP、SATELLITE、HYBRID
-        panControl: false, //方向盘
-        scaleControl: false, //比例尺
-        mapTypeControl: false, //可以选的地图类型，下面是配置
-        //mapTypeControlOptions: {style: google.maps.MapTypeControlStyle.DROPDOWN_MENU},
-        streetViewControl:false,//街头小人
-        zoomControl: true, //放大按钮，下面是配置
+        zoom: 15,
+        center: new google.maps.LatLng(<?php echo $rets->latitude?>, <?php echo $rets->longitude?>),
+        mapTypeId: google.maps.MapTypeId.ROADMAP,
+        panControl: false,
+        scaleControl: false,
+        mapTypeControl: false,
+        streetViewControl:false,
+        zoomControl: true,
         zoomControlOptions: {
-            style: google.maps.ZoomControlStyle.SMALL//LARGE
-            //position: google.maps.ControlPosition.LEFT_CENTER
-        }
+            style: google.maps.ZoomControlStyle.SMALL,
+        },
     });
     var marker = new google.maps.Marker({
         position: new google.maps.LatLng(<?php echo $rets->latitude?>, <?php echo $rets->longitude?>),
@@ -33,10 +33,7 @@
 <?php $this->registerJs($this->blocks['js_end'],\yii\web\View::POS_LOAD)?>
 
 <div class="rets-view-block rets-around-view">
-    <!--<div class="block-heading">周边房源</div>-->
     <div class="map">
         <div id="google-map" style="height:400px"></div>
     </div>
 </div>
-
-<!--townPolygons-->

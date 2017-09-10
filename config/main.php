@@ -22,6 +22,7 @@ return \yii\helpers\ArrayHelper::merge(get_fdn_etc('web'), [
         'view'=>[
             'class'=>'module\cms\components\View',
             'defaultExtension'=>'phtml',
+            'compressEnabled' => true,
             'renderers'=>[
                 'twig' => [
                     'class' => 'yii\twig\ViewRenderer',

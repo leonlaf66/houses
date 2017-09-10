@@ -29,14 +29,14 @@ use yii\widgets\Block;
     <?php $this->head() ?>
     <!--
     <link href='http://fonts.googleapis.com/css?family=Lato&subset=latin,latin-ext' rel='stylesheet' type='text/css'>-->
-    <script>
+    <script type="text/javascript">
     var urlQuery = <?php echo json_encode(\WS::$app->request->get(null, []))?>;
     </script>
     <?php if (\Yii::$app->translationStatus):?>
         <style>
          t{border:dotted 1px red;}
         </style>
-        <script>
+        <script type="text/javascript">
             $(function(){
                 $('body').delegate('t', 'contextmenu', function(event) {
                     var $self = $(this),
