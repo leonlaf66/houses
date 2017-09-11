@@ -85,10 +85,12 @@
           var encodedpoints = [];
           var map = this;
 
-          $.each(coordinates, function(idx, item){
+          $.each(coordinates, function(idx, points){
+            $.each(points, function (idx, item) {
               encodedpoints.push(
                  new google.maps.LatLng(item[1], item[0])
               );
+            });
           });
 
           var polyOptions = {
@@ -96,7 +98,7 @@
                 strokeColor: "#99bd2a",
                 strokeOpacity: 0.9,
                 strokeWeight: 2,
-                fillColor: "#99bd2a",
+                fillColor: "#ffffff",
                 fillOpacity: 0.3
           }
 

@@ -3,15 +3,16 @@
     $_googleMapKey = \WS::$app->params['googleMap']['key'];
 
     $this->registerJsFile('http://maps.google.cn/maps/api/js?sensor=false&language='.$_language.'&key='.$_googleMapKey);
-    $this->registerJsFile('https://googlemaps.github.io/js-marker-clusterer/src/markerclusterer.js');
+    $this->registerJsFile('/static/js/google.maps.js');
 ?>
 
 <script type="text/javascript"> 
 <?php $this->beginBlock('js_end') ?>
-    var map = new google.maps.Map(document.getElementById("google-map"), {
-        zoom: 15,
-        center: new google.maps.LatLng(<?php echo $rets->latitude?>, <?php echo $rets->longitude?>),
-        mapTypeId: google.maps.MapTypeId.ROADMAP,
+    var latlng = new google.maps.LatLng(<?php echo $rets->latitude?>, <?php echo $rets->longitude?>);
+
+    var map = $('#google-map').gmap3({
+        zoom: 12,
+        center: latlng,
         panControl: false,
         scaleControl: false,
         mapTypeControl: false,
@@ -21,13 +22,13 @@
             style: google.maps.ZoomControlStyle.SMALL,
         },
     });
-    var marker = new google.maps.Marker({
-        position: new google.maps.LatLng(<?php echo $rets->latitude?>, <?php echo $rets->longitude?>),
-        map: map,
-        draggable:false,
-        animation: google.maps.Animation.DROP,
+
+    map.createMarker('default', latlng, {
         icon: '/static/img/house-maker.png'
     });
+
+    map.displayCityPolygon(<?php echo json_encode($polygons)?>);
+
 <?php $this->endBlock()?>
 </script>
 <?php $this->registerJs($this->blocks['js_end'],\yii\web\View::POS_LOAD)?>

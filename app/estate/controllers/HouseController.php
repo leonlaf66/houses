@@ -98,9 +98,14 @@ class HouseController extends Controller
         WS::$app->page->setId('estate/house/'.$type.'/view');
         WS::$app->page->bindParams(['name' => $rets->title()]);
 
+        // 获取城市边界
+        $mapCityId = strtolower(\common\catalog\Town::getMapValue($rets->town, 'name_en'));
+        $cityPolygons = \common\estate\helpers\Config::get('map.city.polygon/'.$mapCityId, []);
+
         return $this->render("view.phtml", [
             'type'=>$type,
-            'rets'=>$rets
+            'rets'=>$rets,
+            'polygons' => $cityPolygons
         ]);
     }
 

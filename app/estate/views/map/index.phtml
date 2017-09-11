@@ -1,15 +1,16 @@
 <!--基础脚本准备-->
 <?php
-    $options = ['position'=>$this::POS_HEAD, 'depends' => '\module\page\assets\Asset'];
+    $_language = \WS::$app->language;
+    $_googleMapKey = \WS::$app->params['googleMap']['key'];
+    $_options = ['position'=>$this::POS_HEAD, 'depends' => '\module\page\assets\Asset'];
 
-    $_googleMapSdk = 'http://maps.google.cn/maps/api/js?sensor=false&language=en-US&key=AIzaSyAKfreY6Rf9fOvsJNcxGMsPPNHpXbvj6wo';
-    $this->registerJsFile($_googleMapSdk, $options);
-    $this->registerJsFile('/static/map/lib/markerclusterer.js?v2.0.0.1', $options);
-    $this->registerJsFile('/static/map/lib/HouseMarker.js?v2.0.0.1', $options);
+    $this->registerJsFile('http://maps.google.cn/maps/api/js?sensor=false&language='.$_language.'&key='.$_googleMapKey, $_options);
+    $this->registerJsFile('/static/map/lib/markerclusterer.js?v2.0.0.1', $_options);
+    $this->registerJsFile('/static/map/lib/HouseMarker.js?v2.0.0.1', $_options);
     
-    $this->registerJsFile('/static/lib/vue.min.js', $options);
+    $this->registerJsFile('/static/lib/vue.min.js', $_options);
 
-    $this->registerCssFile('/static/map/index.css', $options);
+    $this->registerCssFile('/static/map/index.css', $_options);
 
     $this->params['activeNavId'] = $type;
 ?>
