@@ -21,13 +21,13 @@
                     display:block;
                     &:hover{
                         text-decoration:none;
-                        border-bottom: dotted 1px #fff;
+                        border-bottom: solid 1px #fff;
                     }
                 }
                 &.active {
                     .menu-link {
                         cursor:default;
-                        border-bottom: dotted 1px #fff;
+                        border-bottom: solid 1px #fff;
                         &:hover{text-decoration:none;}
                     }
                 }
