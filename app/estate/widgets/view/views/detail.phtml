@@ -7,7 +7,7 @@
     
     <?php foreach($detail as $group):?>
         <div class="detail-block">
-            <div class="title"><?php echo $group['title']?></div>
+            <div class="title"><?php _t('rets', $group['title'])?></div>
             <div class="body">
                 <?php foreach($group['items'] as $item):?>
                     <?php echo RetsHtml::parseFieldHtml($item)?>
