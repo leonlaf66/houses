@@ -13,8 +13,9 @@
             <label class="calculate-item">
                 <span class="calculate-label"><?php $t('Purchase Price')?></span>
                 <span class="calculate-input">
-                    <div class="div-input" contenteditable="plaintext-only" id="ma"><?php echo $dataParams['ma']?></div>
-                    <span class="suffix">USD</span>
+                    <div class="div-input" contenteditable="plaintext-only" id="ma">
+                        <?php _tt('$'.number_format($dataParams['ma'], 0), number_format($dataParams['ma'] / 10000, 2).'万美元')?>
+                    </div>
                 </span>
             </label>
         </li>
@@ -41,7 +42,7 @@
                 <span class="calculate-label"><?php $t('Mortgage Term')?></span>
                 <span class="calculate-input">
                     <div class="div-input" contenteditable="plaintext-only" id="mt"><?php echo $dataParams['mt']?></div>
-                    <span class="suffix">years</span>
+                    <span class="suffix"><?php _tt('years', '年')?></span>
                 </span>
             </label>
         </li>
