@@ -78,7 +78,8 @@ body.estate-house-view {
         .attr-label {
             color:#777;
             &:after {
-                content: ': '
+                content: ':';
+                margin-right:4px;
             }
         }
     }
