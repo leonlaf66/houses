@@ -1,3 +1,12 @@
+.attr-field{
+    .attr-prefix {
+        margin-right:3px;
+    }
+    .attr-suffix {
+        margin-left:3px;
+    }
+}
+
 @import "map";
 @import "search-input";
 @import "search-header";

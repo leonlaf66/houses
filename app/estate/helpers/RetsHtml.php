@@ -24,9 +24,7 @@ class RetsHtml
 
         return "
             <span class=\"attr-value-box attr-{$result['id']}-box\">
-                {$prefixHtml}
-                <span class=\"attr-value\">{$result['value']}</span>
-                {$suffixHtml}
+                {$prefixHtml}<span class=\"attr-value\">{$result['value']}</span>{$suffixHtml}
             </span>
         ";
     }
