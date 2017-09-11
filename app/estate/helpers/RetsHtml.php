@@ -39,8 +39,7 @@ class RetsHtml
         $result['title'] = t('rets', $result['title']);
 
         return "<{$containerTag} class=\"attr-field attr-field-{$result['id']}\">
-                    <label class=\"attr-label\">{$result['title']}</label>
-                    {$formatedValueHtml}
+                    <label class=\"attr-label\">{$result['title']}</label>{$formatedValueHtml}
                 </{$containerTag}>";
     }
 
