@@ -95,7 +95,7 @@
 
           var polyOptions = {
                 path: encodedpoints,
-                strokeColor: "#99bd2a",
+                strokeColor: "#f15044",
                 strokeOpacity: 0.9,
                 strokeWeight: 2,
                 fillColor: "#ffffff",
