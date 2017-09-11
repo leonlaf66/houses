@@ -9,6 +9,13 @@
       }
     }
 
+    .item > a {
+        display:inline-block;
+    }
+    .icon, .heading, .info {
+        display:block;
+    }
+
     text-align:center;
     .icon{width:52px;height:52px;background:url('/static/img/marking-icons.png') no-repeat;display:block;margin-left:auto;margin-right:auto;}
     .heading{margin-top:10px;font-size:15px;}

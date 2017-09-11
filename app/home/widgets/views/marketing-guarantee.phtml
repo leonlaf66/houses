@@ -2,11 +2,12 @@
     <div class="container">
         <div class="lay-g">
             <?php foreach($items as $_className=>$_item):?>
-                <?php $_info = isset($_item[\Yii::$app->language]) ? $_item[\Yii::$app->language] : $_item['en-US'];?>
                 <div class="lay-u-1-4 item <?php echo $_className?>">
-                    <div class="icon"></div>
-                    <div class="heading"><?php echo $_info['heading']?></div>
-                    <div class="info"><?php echo $_info['info']?></div>
+                    <a href="<?php echo $_item['targetUrl']?>" target="_blank" alt="<?php _tt($_item['title'])?> - <?php _tt($_item['info'])?>">
+                        <span class="icon"></span>
+                        <span class="heading"><?php _tt($_item['title'])?></span>
+                        <span class="info"><?php _tt($_item['info'])?></span>
+                    </a>
                 </div>
             <?php endforeach?>
         </div>
