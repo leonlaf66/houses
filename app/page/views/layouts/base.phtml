@@ -44,7 +44,7 @@ use yii\widgets\Block;
                         source = $self.data('source');
 
                     if($transText = window.prompt(source)) {
-                        $.get('<?php _tt('', '/cn')?>/cms/language/save/', {category: type, source: source, 'translation':$transText}, function(){
+                        $.get('<?php _tt('', '/zh')?>/cms/language/save/', {category: type, source: source, 'translation':$transText}, function(){
                             $self.text($transText);
                         });
                     }
