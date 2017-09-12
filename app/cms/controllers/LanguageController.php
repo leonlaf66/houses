@@ -33,6 +33,14 @@ class LanguageController extends \yii\web\Controller
 
         \common\supports\Language::submit($category, $source, $translation, $lang);
 
+        $cacheKey = [
+            'yii\i18n\DbMessageSource',
+            $category,
+            $lang,
+        ];
+        $cacheKey = WS::$app->cache->buildKey($cacheKey);
+        WS::$app->cache->delete($cacheKey);
+
         echo 1;
         WS::$app->end();
     }
