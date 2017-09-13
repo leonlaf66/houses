@@ -1,6 +1,13 @@
 $('.rets-calculator .div-input').keydown(function (e) {
     return e.keyCode !== 13;
 });
+$('.rets-calculator .calculate-item').click(function () {
+    $input = $(this).find('.div-input');
+    if (document.activeElement !== $input.get(0)) {
+        $input.focus();
+        selectText($input.get(0));
+    }
+});
 
 window.chartPie = function (dataset, monthPay) {
     var ele = $('#charts-result').get(0);
@@ -102,7 +109,7 @@ window.chartPie = function (dataset, monthPay) {
         .attr('font-size', '18px');
 };
 
-window.executeCalculate = function (pt) {
+window.executeCalculate = function (pt, is_english) {
     var d = {
         ma: document.getElementById('ma').innerText,
         dp: document.getElementById('dp').innerText,
@@ -111,8 +118,31 @@ window.executeCalculate = function (pt) {
         pt: pt,
     }
 
+    if (! is_english) {
+        d.ma = d.ma * 10000;
+    }
+
     var calcu = new calculate(d.ma, d.dp, d.mt, d.ir, d.pt);
     if (result = calcu.result()) {
         chartPie([result.monthPay - result.tax / 12, result.tax], result.monthPay);
     }
 };
+
+function selectText(text) {
+    if (document.body.createTextRange) {
+        var range = document.body.createTextRange();
+        range.moveToElementText(text);
+        range.select();
+    } else if (window.getSelection) {
+        var selection = window.getSelection();
+        var range = document.createRange();
+        range.selectNodeContents(text);
+        selection.removeAllRanges();
+        selection.addRange(range);
+        /*if(selection.setBaseAndExtent){
+            selection.setBaseAndExtent(text, 0, text, 1);
+        }*/
+    } else {
+        alert("none");
+    }
+}

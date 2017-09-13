@@ -13,9 +13,13 @@
             <label class="calculate-item">
                 <span class="calculate-label"><?php $t('Purchase Price')?></span>
                 <span class="calculate-input">
-                    <div class="div-input" contenteditable="plaintext-only" id="ma">
-                        <?php _tt('$'.number_format($dataParams['ma'], 0), number_format($dataParams['ma'] / 10000, 2).'万美元')?>
-                    </div>
+                    <?php if (is_english()):?>
+                        <div class="div-input" contenteditable="plaintext-only" id="ma"><?php echo number_format($dataParams['ma'], 0, '', '')?></div>
+                        <span class="suffix">USD</span>
+                    <?php else:?>
+                        <div class="div-input" contenteditable="plaintext-only" id="ma"><?php echo number_format($dataParams['ma'] / 10000.0, 2)?></div>
+                        <span class="suffix">万美元</span>
+                    <?php endif?>
                 </span>
             </label>
         </li>
@@ -55,9 +59,9 @@
 
 <script type="text/javascript" src="/static/js/house-view/calculator.js"></script>
 <script type="text/javascript">
-executeCalculate('<?php echo $dataParams['pt']?>'); 
+executeCalculate('<?php echo $dataParams['pt']?>', <?php echo json_encode(is_english())?>); 
 $('#btn-calculate').click(function () {
-    executeCalculate('<?php echo $dataParams['pt']?>');
+    executeCalculate('<?php echo $dataParams['pt']?>', <?php echo json_encode(is_english())?>);
 });
 </script>
 <style type="text/css">
