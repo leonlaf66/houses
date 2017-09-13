@@ -3,6 +3,10 @@
 	use module\estate\widgets\search as SearchWidgets;
 	use module\estate\widgets\search\filter as FilterWidgets;
 ?>
+<style type="text/css">
+#rets-filters .tabs>li>a#btn-map{font-size:20px;color:#f15044;}
+#rets-filters .tabs>li>a#btn-map > .iconfont{font-size:24px;}
+</style>
 <div id="rets-filters">
 
     <div class="tab-container text-center">
@@ -10,14 +14,15 @@
     		<?php
     			$mapUrl = '/map/house/'.\WS::$app->share('rets.property').'/#areas';
     		?>
-    		<a class="btn red" style="float:right" href="<?php echo $mapUrl?>"><i class="iconfont icon-marker"></i><?php _t('map', 'Map')?></a>
-
 			<ul class="tabs">
 				<?php foreach($this->context->tabs() as $id=>$text):?>
 					<li class="<?php echo $this->context->isActivedTab($id) ? 'active' : ''?>">
 						<a href="<?php echo $this->context->createUrl($id)?>"><?php echo $text?></a>
 					</li>
 				<?php endforeach?>
+				<li>
+					<a id="btn-map" href="<?php echo $mapUrl?>"><i class="iconfont icon-marker"></i><?php _t('map', 'Map')?></a>
+				</li>
 			</ul>
 		</div>
 	</div>
