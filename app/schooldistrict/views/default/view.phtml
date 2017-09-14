@@ -234,10 +234,16 @@ body.en-us .table-info .info-col>label{
         </table>
     </div>
 
-    <?php if (count($model->comments ?? []) > 0):?>
+    <?php
+        $_comments = $model->comments;
+        $_comments = array_filter($_comments, function ($item) {
+            return strlen(trim($item->content)) > 20;
+        });
+    ?>
+    <?php if (count($_comments ?? []) > 0):?>
         <div class="hot-comments v-info-blk">
             <h2 class="b-line"><?php _tt('Hot posts', '热门评价')?></h2>
-            <?php foreach ($model->comments ?? [] as $comment):?>
+            <?php foreach ($_comments ?? [] as $comment):?>
                 <?php
                     if (! property_exists($comment, 'work_years') && property_exists($comment, 'wordk_years'))
                         $comment->work_years = $comment->wordk_years; // 兼容错误
@@ -287,10 +293,16 @@ body.en-us .table-info .info-col>label{
         </div>
     <?php endif?>
 
-    <?php if (count($model->features) > 0):?>
+    <?php
+        $_features = $model->features;
+        $_features = array_filter($_features, function ($item) {
+            return strlen(trim($item->description)) > 20;
+        });
+    ?>
+    <?php if (count($_features) > 0):?>
         <div class="area-features v-info-blk">
             <h2 class="b-line"><?php _tt('Features', '区域特色')?></h2>
-            <?php foreach ($model->features as $item):?>
+            <?php foreach ($_features as $item):?>
                 <div class="env-item">
                     <div class="lay-g">
                         <div class="lay-u-1-8">
