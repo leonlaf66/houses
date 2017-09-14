@@ -36,14 +36,17 @@ $('#<?php echo $id?>').bind('keydown', function (e) {
     }
 });
 
+// http://www.runningcoder.org/jquerytypeahead/documentation/
 $.typeahead({
     input: '#<?php echo $id?>',
     minLength: 1,
     hint: true,
     highlight: true,
+    searchOnFocus: true,
     delay: 500,
     order: "asc",
     display: 'title',
+    cache: true,
     source: {
         cities: {
             display: "title",
