@@ -15,7 +15,6 @@ class App extends \common\supports\SiteApp
     public function bootstrap()
     {
         $this->initSite();
-        
         parent::bootstrap();
     }
 

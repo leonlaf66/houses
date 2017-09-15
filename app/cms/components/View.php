@@ -21,12 +21,14 @@ class View extends \yii\web\View
             self::PH_BODY_END => $this->renderBodyEndHtml($ajaxMode),
         ]);
 
+        // 结束page对象
+        WS::$app->page->end();
+
         if ($this->compressEnabled) {
             echo $this->higridCompressHtml($content);
         } else {
             echo $content;
         }
-        
 
         $this->clear();
     }

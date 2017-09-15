@@ -20,6 +20,13 @@ class Page extends \yii\base\Component
         return parent::init();
     }
 
+    public function end()
+    {
+        if (is_mobile_request()) {
+            $this->rewriteToMobilePage();
+        }
+    }
+
     public function setId($id)
     {
         $this->id = $id;
@@ -28,6 +35,32 @@ class Page extends \yii\base\Component
         }
 
         return $this;
+    }
+
+    // 支持webapp跳转
+    protected function rewriteToMobilePage()
+    {
+        $rewrites = include(APP_ROOT.'/config/mobile.rewrites.php');
+
+        $targetUrl = '';
+        if (isset($rewrites[$this->id])) {
+            $webAppPath = ($rewrites[$this->id])(WS::$app->request);
+            if (is_string($webAppPath)) {
+                $webAppPath = [$webAppPath];
+            }
+            $webAppPath['language'] = tt('en', 'cn');
+
+            $targetUrl = $webAppPath[0];
+            unset($webAppPath[0]);
+            if (count($webAppPath) > 0) {
+                $targetUrl .= '?'.http_build_query($webAppPath);
+            }
+        } else {
+            $targetUrl = '/';
+        }
+
+        WS::$app->controller->redirect(WS::$app->params['webApp']['baseUrl'].$targetUrl);
+        WS::$app->end();
     }
 
     public function bindParams($params)

@@ -61,7 +61,8 @@
     },
     "autoload": {
         "files": [
-            "./../fdn/helpers.php"
+            "./../fdn/helpers.php",
+            "./../fdn/web_helpers.php"
         ],
         "psr-4": {
             "common\\": "./../fdn",
