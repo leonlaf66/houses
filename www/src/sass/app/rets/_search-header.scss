@@ -83,8 +83,8 @@
 							-webkit-appearance:none;
 							width: 20px;
 						    height: 20px;
-						    border: solid 2px #F8C68B;
-						    border-radius: 10px;
+						    border: solid 1px #F8C68B;
+						    border-radius: 4px;
 						    vertical-align: middle;
 						    position:relative;
 						    margin-top:-2px;
@@ -99,16 +99,22 @@
 						    	width:16px;
 						    	height:16px;
 						    	background:#fff;
-						    	border-radius:8px;
+						    	border-radius:4px;
+
+						    	border:solid 2px #fff;
+						    	width:10px;
+						    	height:10px;
+						    	background:#f0f0f0;
+						    	border-radius:4px;
+						    	top: 2px;
+    							left: 2px;
 						    }
 						    &:checked:after {
 						    	border:solid 2px #fff;
 						    	width:10px;
 						    	height:10px;
 						    	background:#F8C68B;
-						    	border-radius:8px;
-						    	top: 1px;
-    							left: 1px;
+						    	border-radius:4px;
 						    }
 						}
 						> span {
