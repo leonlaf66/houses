@@ -20,6 +20,7 @@ class Page extends \yii\base\Component
         return parent::init();
     }
 
+    // 由app bootstrap中调用
     public function end()
     {
         if (is_mobile_request()) {
