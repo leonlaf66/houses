@@ -15,15 +15,14 @@
                     <input type="hidden" value="<?php echo $line['id']?>" name="subway-line" />
                     <ul class="stations line-<?php echo $line['code']?>">
                         <?php foreach($line->stations as $station):?>
-                        <li class="station">
+                        <li class="station <?php echo $self->stationIn($station->id) ? 'active' : '' ?>">
                             <label>
                                 <input class="ck" 
                                     type="checkbox" 
                                     value="<?php echo $station->id?>"
                                     targetUrl="<?php echo $this->context->createStationUrl($station->id)?>"
                                     clearUrl="<?php echo $this->context->clearStationUrl($station->id)?>"
-                                    <?php echo $self->stationIn($station->id) ? 'checked="checked"' : '' ?> />
-                                <span><?php echo $station->name?></span>
+                                    <?php echo $self->stationIn($station->id) ? 'checked="checked"' : '' ?> /><span><?php echo $station->name?></span>
                             </label>
                         </li>
                         <?php endforeach?>
