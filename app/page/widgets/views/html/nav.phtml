@@ -39,7 +39,7 @@ $urlManager = \WS::$app->urlManager;
                     <div class="my-account">
                         <a href="<?php echo \WS::$app->memberUrl?>umember/profile/" class="quick-link" style="margin-left:0">
                             <span class="iconfont icon-login">
-                                <?php echo WS::$app->user->getIdentity()->username?>
+                                <?php echo WS::$app->user->getIdentity()->getName()?>
                             </span>
                         </a>
                         <ul class="my-account-menu" style="position: absolute;">
