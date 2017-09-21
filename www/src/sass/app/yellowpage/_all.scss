@@ -8,6 +8,21 @@
 @import "detail-description";
 @import "media-gallery";
 
+.yellowpage-default-index {
+    #main-nav .menubar > .container {
+        padding-left:0;
+        padding-right:0;
+        &:before, &:after {
+            display:none;
+        }
+    }
+    .logo {
+        top:0 !important;
+        margin-top:-2px;
+        > a {display:inline-block;}
+    }
+}
+
 .module-yellowpage.default-view
 {
     .page-title {
@@ -41,3 +56,4 @@
 .navbar-brand.city-btn {
     margin-left:0 !important;
 }
+

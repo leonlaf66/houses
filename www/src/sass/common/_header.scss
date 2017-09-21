@@ -5,7 +5,7 @@
         height:82px;
         line-height:82px;
         .logo {
-            position:absolute;top:0;z-index:999;
+            position:absolute;top:5px;z-index:999;
             max-height:100%;
             img {height:70px;}
         }
@@ -37,7 +37,7 @@
             float:right;
             text-align:right;
             line-height:35px;
-            margin-top:20px;
+            margin-top:24px;
             .quick-link {
                 display:inline-block;
                 font-size:14px;
