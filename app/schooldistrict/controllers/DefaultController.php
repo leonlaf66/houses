@@ -6,6 +6,21 @@ use common\catalog\SchoolDistrict;
 
 class DefaultController extends \yii\web\Controller
 {
+    public function behaviors()
+    {
+        return [
+            [
+                'class' => 'yii\filters\PageCache',
+                'only' => ['index', 'view'],
+                'duration' => '86400',
+                'variations' => [
+                    WS::$app->language,
+                    WS::$app->user->isGuest
+                ]
+            ]
+        ];
+    }
+
     public function actionIndex()
     {
         $items = SchoolDistrict::xFind()->all();

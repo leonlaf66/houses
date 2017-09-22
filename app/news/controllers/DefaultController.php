@@ -8,6 +8,31 @@ use module\news\models\News;
 
 class DefaultController extends Controller
 {
+    public function behaviors()
+    {
+        return [
+            [
+                'class' => 'yii\filters\PageCache',
+                'only' => ['index', 'view'],
+                'duration' => '86400',
+                'variations' => [
+                    WS::$app->request->get('type', 0),
+                    WS::$app->language,
+                    WS::$app->user->isGuest
+                ]
+            ],
+            [
+                'class' => 'yii\filters\PageCache',
+                'only' => ['view'],
+                'duration' => '86400',
+                'variations' => [
+                    WS::$app->language,
+                    WS::$app->user->isGuest
+                ]
+            ]
+        ];
+    }
+
     public function actionIndex()
     {   
         $typeId = intval(\WS::$app->request->get('type', 0));
