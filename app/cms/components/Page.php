@@ -49,7 +49,7 @@ class Page extends \yii\base\Component
             if (is_string($webAppPath)) {
                 $webAppPath = [$webAppPath];
             }
-            $webAppPath['language'] = tt('en', 'cn');
+            $webAppPath['language'] = WS::$app->language;
 
             $targetUrl = $webAppPath[0];
             unset($webAppPath[0]);
