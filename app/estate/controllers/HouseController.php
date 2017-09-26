@@ -7,6 +7,7 @@ use \module\cms\helpers\UrlParamEncoder;
 
 class HouseController extends Controller
 {
+    /*
     public function behaviors()
     {
         return [
@@ -25,7 +26,7 @@ class HouseController extends Controller
                 ]
             ]
         ];
-    }
+    }*/
 
     public function actionIndex($type = 'lease', $tab = 'search', $q='', $params='')
     {

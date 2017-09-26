@@ -8,6 +8,7 @@ use module\news\models\News;
 
 class DefaultController extends Controller
 {
+    /*
     public function behaviors()
     {
         return [
@@ -31,7 +32,7 @@ class DefaultController extends Controller
                 ]
             ]
         ];
-    }
+    }*/
 
     public function actionIndex()
     {   

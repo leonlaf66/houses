@@ -11,6 +11,8 @@ class View extends \yii\web\View
     
     public function endPage($ajaxMode = false)
     {
+        WS::$app->page->end();
+
         $this->trigger(self::EVENT_END_PAGE);
 
         $content = ob_get_clean();
@@ -20,9 +22,6 @@ class View extends \yii\web\View
             self::PH_BODY_BEGIN => $this->renderBodyBeginHtml(),
             self::PH_BODY_END => $this->renderBodyEndHtml($ajaxMode),
         ]);
-
-        // 结束page对象
-        WS::$app->page->end();
 
         if ($this->compressEnabled) {
             echo $this->higridCompressHtml($content);

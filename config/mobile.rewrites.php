@@ -7,7 +7,7 @@ return [
         return '/purchase.html';
     },
     'estate/house/lease' => function ($req) {
-        return '/lease.html';
+        return '/rental.html';
     },
     'estate/house/purchase/view' => function ($req) {
         return ['/home.html', 'id' => $req->get('id')];
@@ -16,9 +16,9 @@ return [
         return ['/home.html', 'id' => $req->get('id')];
     },
     'news/default/index' => function ($req) {
-        return '/newsMore.html';   
+        return '/newsMore.html';
     },
     'news/default/view' => function ($req) {
-        return ['/news.html', 'id'=>$req->get('id')]
+        return ['/news.html', 'id'=>$req->get('id')];
     }
 ];

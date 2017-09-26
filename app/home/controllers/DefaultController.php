@@ -5,6 +5,7 @@ use WS;
 
 class DefaultController extends \yii\web\Controller
 {
+    /*
     public function behaviors()
     {
         return [
@@ -19,7 +20,7 @@ class DefaultController extends \yii\web\Controller
                 ]
             ]
         ];
-    }
+    }*/
 
     public function actionIndex()
     {

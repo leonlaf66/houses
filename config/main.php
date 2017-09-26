@@ -19,6 +19,11 @@ return \yii\helpers\ArrayHelper::merge(get_fdn_etc('web'), [
             'suffix'=>strpos($_SERVER["REQUEST_URI"], '/rets-photo-') === false ? '/' : '',
             'rules'=>[]
         ],
+        'page' => [
+            'class' => '\module\cms\components\Page',
+            'name' => ['Usleju', '米乐居'],
+            'metas' => include(__DIR__.'/metas.php')
+        ],
         'view'=>[
             'class'=>'module\cms\components\View',
             'defaultExtension'=>'phtml',
@@ -43,11 +48,6 @@ return \yii\helpers\ArrayHelper::merge(get_fdn_etc('web'), [
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
             'cookieValidationKey' => 'AulhaJkw74KJHBBq1JobpnXv90jLd8ba',
-        ],
-        'page' => [
-            'class' => '\module\cms\components\Page',
-            'name' => ['Usleju', '米乐居'],
-            'metas' => include(__DIR__.'/metas.php')
         ],
         'user' => [
             'identityClass' => '\module\customer\models\UserIdentity',
