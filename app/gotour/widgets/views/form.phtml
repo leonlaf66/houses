@@ -90,7 +90,8 @@ function getTimeString(timeNumber)
 }
 
 $('#btn-schedule-tour').click(function(event) {
-    $.get('/customer/account/check-login/', {}, function(status){
+    var langPrefix = tt('', '/zh');
+    $.get(langPrefix + '/customer/account/check-login/', {}, function(status){
         if(! status) {
             window.location.href = document.getElementById('login-url').getAttribute('content') + "?callback="+encodeURI(window.location.href);
             return;
@@ -106,7 +107,7 @@ $('#btn-schedule-tour').click(function(event) {
             timeRange: [getTimeString(timeRange[0]), getTimeString(timeRange[1])],
             listNo: '<?php echo $rets->list_no?>'
         };
-        $.post('/gotour/tour/submit/', data, function(result){
+        $.post(langPrefix + '/gotour/tour/submit/', data, function(result){
             if(result) {
                 alert(tt('Your appointment has been submitted, please wait for confirm.', '预约成功，请耐心等待我们的回复!'));
             }
