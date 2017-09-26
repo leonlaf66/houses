@@ -11,13 +11,23 @@ class DefaultController extends \yii\web\Controller
         return [
             [
                 'class' => 'yii\filters\PageCache',
-                'only' => ['index', 'view'],
+                'only' => ['index'],
                 'duration' => '86400',
                 'variations' => [
                     WS::$app->language,
                     WS::$app->user->isGuest
                 ]
-            ]
+            ],
+            [
+                'class' => 'yii\filters\PageCache',
+                'only' => ['view'],
+                'duration' => '86400',
+                'variations' => [
+                    WS::$app->language,
+                    WS::$app->user->isGuest,
+                    WS::$app->request->get('id')
+                ]
+            ],
         ];
     }
 
