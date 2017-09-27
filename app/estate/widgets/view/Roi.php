@@ -25,7 +25,13 @@ class Roi extends \yii\base\Widget
         $aveResult = WS::$app->db->createCommand('select * from rets_ave_roi where "ZIP_CODE"=:zip', [
                 ':zip' => $zipCode
             ])->queryOne();
-        if (!$aveResult) $aveResult = [];
+        if (! $aveResult) {
+            $aveResult = [
+                'AVE_ROI_CASH' => 0,
+                'EST_ANNUAL_INCOME_CASH' => 0,
+                'AVE_ANNUAL_INCOME_CASH' => 0
+            ];
+        }
 
         $result = array_merge($result, $aveResult);
 
