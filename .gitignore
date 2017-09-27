@@ -6,3 +6,4 @@
 /data
 /www/sitemap*.xml
 /config/local.php
+/config/metas.php
