@@ -9,8 +9,8 @@ body {
     height: 65px;
     line-height: 65px;
 }
-#main-nav .menubar .logo{margin-top:0;height: 65px;}
-#main-nav .menubar .logo img{height:65px;}
+#main-nav .menubar .logo{margin-top:0;height:55px;}
+#main-nav .menubar .logo img{height:55px;}
 
 .gmap {
     position: absolute;overflow: hidden;
@@ -510,4 +510,8 @@ body.zh-cn .gmap-html-marker .price:after{
 }
 .gmap-loading img {
     vertical-align: bottom;
+}
+
+#main-nav .menubar .quick-links {
+    margin-top: 15px;
 }
