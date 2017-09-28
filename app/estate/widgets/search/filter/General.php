@@ -20,7 +20,7 @@ class General extends \yii\base\Widget
             $start = intval($start);
             $end = intval($end);
 
-            if (WS::$app->language === 'zh-CN') { // 万美元单位
+            if (WS::$app->language === 'zh-CN' && WS::$app->request->get('type') === 'purchase') { // 万美元单位
                 $start = $start * 10000;
                 $end = $end * 10000;
             }
