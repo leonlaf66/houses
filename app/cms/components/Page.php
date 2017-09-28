@@ -7,9 +7,8 @@ class Page extends \yii\base\Component
 {
     public $id = '';
     public $name = ['', ''];
-    public $values = [];
+    public $metas = null;
     public $params = [];
-    public $metas = [];
 
     public function init()
     {
@@ -31,10 +30,6 @@ class Page extends \yii\base\Component
     public function setId($id)
     {
         $this->id = $id;
-        if (isset($this->metas[$id])) {
-            $this->values = $this->metas[$id];
-        }
-
         return $this;
     }
 
@@ -72,23 +67,33 @@ class Page extends \yii\base\Component
 
     public function title()
     {
-        return $this->getValue('title');
+        return $this->getMeta('title');
     }
 
     public function metaKeywords()
     {
-        return $this->getValue('keywords');
+        return $this->getMeta('keywords');
     }
 
     public function metaDescription($desc)
     {
-        return $this->getValue('description');
+        return $this->getMeta('description');
     }
 
-    public function getValue($field)
+    public function getMeta($field)
     {
-        if (isset($this->values[$field])) {
-            $text = tt($this->values[$field]);
+        if(! $this->id || $this->id === '') return '';
+
+        static $metasCache = [];
+        if (! isset($metasCache[$this->id])) {
+            $metasCache[$this->id] = \common\cms\models\SiteSeoMeta::findOne($this->id);
+        }
+
+        $metas = $metasCache[$this->id];
+        if (! $metas) return '';
+
+        if (isset($metas[$field])) {
+            $text = tt($metas[$field]);
             if (preg_match_all('/%([a-z_\-0-9]+)%/', $text, $matches)) {
                 foreach ($matches[1] as $paramId) {
                     if (isset($this->params[$paramId])) {

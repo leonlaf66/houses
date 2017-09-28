@@ -21,8 +21,7 @@ return \yii\helpers\ArrayHelper::merge(get_fdn_etc('web'), [
         ],
         'page' => [
             'class' => '\module\cms\components\Page',
-            'name' => ['Usleju', '米乐居'],
-            'metas' => include(__DIR__.'/metas.php')
+            'name' => ['Usleju', '米乐居']
         ],
         'view'=>[
             'class'=>'module\cms\components\View',
