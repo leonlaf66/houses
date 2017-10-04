@@ -29,7 +29,7 @@ class Sort extends \yii\base\Widget
                 $this->search->query->orderBy($sortExpr);
             }
         } else {
-            $this->search->query->orderBy('list_date DESC');
+            $this->search->query->orderBy('list_date DESC, id DESC');
         }
 
         return $this->render('sort.phtml', [
