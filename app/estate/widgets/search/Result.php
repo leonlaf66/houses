@@ -1,7 +1,6 @@
 <?php
 namespace module\estate\widgets\search;
 
-use yii\data\Pagination;
 use module\estate\helpers\SearchUrl;
 
 class Result extends \yii\base\Widget
