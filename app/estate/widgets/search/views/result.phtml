@@ -3,6 +3,8 @@
     use module\estate\helpers\Rets as RetsHelper;
     use module\cms\widgets\SeoLinkPager as LinkPager;
 
+    $context = $this->context;
+    
     $list = RetsHelper::result($search);
     $_t = lang('rets');
 ?>
@@ -102,13 +104,12 @@ h2.location {
 	</div>
 	<div class="pager">
 		<?php
-			$context = $this->context;
 			echo LinkPager::widget([
 			    'pagination' => $search->pagination,
 			    'createUrlFn'=>function($page) use($context) {
 			    	return $context->createPageUrl($page);
 			    }
-			]);
+			])
 		?>
 	</div>
 </div>

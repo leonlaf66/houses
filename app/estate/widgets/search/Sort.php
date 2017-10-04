@@ -16,10 +16,10 @@ class Sort extends \yii\base\Widget
             '4'=>tt('Bedrooms up', '卧室由少到多')
         ];
         $map = [
-            '1'=>'list_price ASC',
-            '2'=>'list_price DESC',
-            '3'=>'no_bedrooms DESC',
-            '4'=>'no_bedrooms ASC'
+            '1'=>'list_price ASC, id DESC',
+            '2'=>'list_price DESC, id DESC',
+            '3'=>'no_bedrooms DESC, id DESC',
+            '4'=>'no_bedrooms ASC, id DESC'
         ];
 
         if(isset($_GET['sort'])) {
