@@ -71,6 +71,8 @@ class HouseController extends Controller
             'page'=>'p'
         ]);
 
+        $_GET['per-page'] = '15'; // 解决奇怪的分页bug, 必须与common\estate\RetsIndex::search中的分页参数一致
+
         // 类型
         $search = \common\estate\RetsIndex::search();
         if ($type === 'lease') {
