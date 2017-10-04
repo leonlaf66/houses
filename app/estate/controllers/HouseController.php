@@ -99,6 +99,14 @@ class HouseController extends Controller
             }
         }
 
+        // 分页处理
+        /*
+        $page = $req->get('page');
+        if (! $page) $page = 1;
+        $search->pagination->setPage(intval($page) - 1);
+        $search->pagination->setPageSize(5);
+        */
+
         WS::$app->page->setId('estate/house/'.$type);
 
         return $this->render('index.phtml', [

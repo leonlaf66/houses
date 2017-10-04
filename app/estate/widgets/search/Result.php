@@ -12,7 +12,7 @@ class Result extends \yii\base\Widget
     {  
         $search = $this->search;
 
-        $search->pagination->pageSize = 10;
+        // $search->pagination->pageSize = 10;
 
         return $this->render('result.phtml', [
             'search'=>$search

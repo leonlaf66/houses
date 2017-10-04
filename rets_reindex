@@ -1,1 +1,0 @@
-sqlcmd -S vendors.mlspin.com -U AC0820 -P l2ac0oy -Q  "Select * from view_history_bulk where New_Value = 'KIL' and Update_date > '2015-01-01'" | grep -v LIST | grep -v ^- | awk -F ' ' '{print $4}' | ./yii rets-index/reindex
