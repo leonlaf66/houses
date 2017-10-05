@@ -5,11 +5,11 @@
         <?php foreach($groups as $group):?>
             <div class="lay-u-1-3">
                 <div class="group">
-                    <div class="heading"><a href="<?php echo $group['url']?>"><?php _t('yellopage', $group['name'])?></a></div>
+                    <div class="heading"><a href="<?php echo $group['url']?>" target="_blank"><?php _t('yellopage', $group['name'])?></a></div>
                     <ul class="lay-g items">
                         <?php foreach($group['items'] as $_yellowpage):?>
                             <li class="lay-u-1-3">
-                                <a class="item" href="/pro-service/<?php echo $_yellowpage->id?>/">
+                                <a class="item" href="/pro-service/<?php echo $_yellowpage->id?>/" target="_blank">
                                     <img class="yp-img" src="<?php echo $_yellowpage->getPhotoImageInstance()->resize(90, 90)?>">
                                     <div class="name"><?php echo $_yellowpage->name?></div>
                                     <div class="rating-box">

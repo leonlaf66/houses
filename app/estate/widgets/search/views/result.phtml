@@ -44,7 +44,7 @@ h2.location {
 			?>
 		<div class="item" data-id="<?php echo $rets->list_no?>">
 			<div class="col col-main-image">
-				<a href="<?php echo $url?>" title="<?php echo $rets->title()?>" alt="<?php echo $rets->metaTitle()?>">
+				<a href="<?php echo $url?>" title="<?php echo $rets->title()?>" alt="<?php echo $rets->metaTitle()?>" target="_blank">
 					<div class="image-shower large" style="background-image:url(<?php echo $rets->getPhoto(0, 800, 800)?>)"></div>
 				</a>
 			</div>
@@ -57,7 +57,7 @@ h2.location {
 			<div class="col col-info">
 				<div class="pl15 pr15">
 					<h2 class="title">
-						<a href="<?php echo $url?>" alt="<?php echo $rets->metaTitle()?>">
+						<a href="<?php echo $url?>" alt="<?php echo $rets->metaTitle()?>" target="_blank">
 							<?php echo $rets->title()?>
 						</a>
 						<a class="btn-like<?php echo $rets->isLiked() ? ' active' : ''?>" href="javascript:void(0)" title="<?php _tt('Favorite', '收藏')?>">
@@ -76,7 +76,11 @@ h2.location {
 					<div class="price">
 						 <label><?php $_t('Pirce')?></label>
 						 <span class="default"><?php echo RetsHtml::getValueHtml($rets, 'list_price')?></span>
-						 <span class="rmb">约人民币<?php echo number_format(intval($rets->list_price) * 6.9506 / 10000, 1)?>万</span>
+						 <?php if (WS::$app->share('rets.property') === 'purchase'):?>
+						 	<span class="rmb">约人民币<?php echo number_format(intval($rets->list_price) * 6.9506 / 10000, 1)?>万</span>
+						 <?php else:?>
+						 	<span class="rmb">约人民币<?php echo number_format(intval($rets->list_price) * 6.9506, 0)?>元</span>
+						 <?php endif?>
 					</div>
 
 					<div class="tag-lines">
