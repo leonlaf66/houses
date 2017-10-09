@@ -7,27 +7,6 @@ use \module\cms\helpers\UrlParamEncoder;
 
 class HouseController extends Controller
 {
-    /*
-    public function behaviors()
-    {
-        return [
-            [
-                'class' => 'yii\filters\PageCache',
-                'only' => ['index'],
-                'duration' => 86400,
-                'variations' => [
-                    implode('/', \WS::$app->request->getQueryParams()),
-                    \WS::$app->language,
-                    \WS::$app->user->isGuest
-                ],
-                'dependency' => [
-                    'class' => 'yii\caching\DbDependency',
-                    'sql' => 'SELECT max(index_at) FROM rets_mls_index',
-                ]
-            ]
-        ];
-    }*/
-
     public function actionIndex($type = 'lease', $tab = 'search', $q='', $params='')
     {
         $req = WS::$app->request;

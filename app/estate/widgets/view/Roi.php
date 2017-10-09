@@ -12,7 +12,7 @@ class Roi extends \yii\base\Widget
         $listNo = $this->rets->list_no;
         $zipCode = $this->rets->zip_code;
 
-        $result = WS::$app->db->createCommand('select * from rets_roi where "LIST_NO"=:id', [
+        $result = WS::$app->db->createCommand('select * from house_info_roi where "LIST_NO"=:id', [
                 ':id' => $listNo
             ])->queryOne();
         if (! $result) {
@@ -22,7 +22,7 @@ class Roi extends \yii\base\Widget
             ];
         }
 
-        $aveResult = WS::$app->db->createCommand('select * from rets_ave_roi where "ZIP_CODE"=:zip', [
+        $aveResult = WS::$app->db->createCommand('select * from zipcode_roi_ave where "ZIP_CODE"=:zip', [
                 ':zip' => $zipCode
             ])->queryOne();
         if (! $aveResult) {

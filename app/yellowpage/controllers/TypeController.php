@@ -33,7 +33,7 @@ class TypeController extends \yii\web\Controller
                     $collection->orderBy('hits desc');
                     break;
                 default:
-                    $collection->orderBy('catalog_yellow_page.weight desc');
+                    $collection->orderBy('yellow_page.weight desc');
                     break;
             }
         }
