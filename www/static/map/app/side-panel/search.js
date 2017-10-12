@@ -18,11 +18,13 @@ define('vc-search', {
                 delay: 500,
                 order: "desc",
                 source: {
-                    city: {
+                    cities: {
                         display: "title",
+                        /*
                         ajax: {
                             url: tt('', '/zh') + '/estate/autocomplete/',
-                        }
+                        },*/
+                        data: window.$viewData.searchAutocompleteItems
                     }
                 },
                 template: function (query, item) {

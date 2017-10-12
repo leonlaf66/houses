@@ -2,7 +2,7 @@
 namespace module\schooldistrict\widgets;
 
 use WS;
-use common\catalog\SchoolDistrict;
+use models\SchoolDistrict;
 
 class Grid extends \yii\base\Widget
 {

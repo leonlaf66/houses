@@ -1,48 +1,46 @@
 <?php
-namespace module\estate\controllers;
+namespace module\estate\helpers;
 
 use WS;
-use module\core\Controller;
 
-class AutocompleteController extends Controller
+class SearchAutocomplete
 {
-    public function actionIndex()
+    public static function map()
     {
-        $resultItems = WS::$app->cache->get('estate.autocomplete.items', []);
-
-        if (empty($resultItems)) {
-            $towns = \common\catalog\Town::find()->where([
+        $items = WS::$app->cache->get('estate.autocomplete.items', []);
+        if (empty($items)) {
+            $towns = \models\Town::find()->where([
                 'state'=>\WS::$app->stateId
             ])->all();
 
             foreach ($towns as $town) {
-                $resultItems[] = [
+                $items[] = [
                     'title' => $town->name,
                     'desc' => $town->name_cn.',MA'
                 ];
                 
                 if ($town->name_cn) {
-                    $resultItems[] = [
+                    $items[] = [
                         'title' => $town->name_cn,
                         'desc' => $town->name.',MA'
                     ];
                 }
             }
 
-            $zipcodes = \common\catalog\Zipcode::find()->where([
+            $zipcodes = \models\ZipcodeTown::find()->where([
                 'state'=>\WS::$app->stateId
             ])->all();
 
             foreach ($zipcodes as $zipcode) {
-                $resultItems[] = [
+                $items[] = [
                     'title' => $zipcode->zip,
                     'desc' => $zipcode->city_name.','.$zipcode->city_name_cn.',MA'
                 ];
             }
 
-            WS::$app->cache->set('estate.autocomplete.items', $resultItems);
+            WS::$app->cache->set('estate.autocomplete.items', $items);
         }
 
-        return $this->ajaxJson($resultItems);
+        return $items;
     }
 }

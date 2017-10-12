@@ -1,7 +1,7 @@
 <?php
 namespace module\news\models;
 
-class News extends \common\news\News
+class News extends \models\News
 {
     public static function search($typeId=1)
     {
@@ -37,18 +37,4 @@ class News extends \common\news\News
     {
         return \WS::$app->urlManager->createUrl(['news/default/view', 'id'=>$this->id]);
     }
-
-    /*
-    public function getImageUrl($defaultImageFile = '')
-    {
-        $url = parent::getImageUrl($defaultImageFile);
-
-        if ($defaultImageFile && $defaultImageFile !== '') {
-            if (strpos($url, $defaultImageFile) === false) {
-                $url = \WS::$app->WXImage->getLocalImage($url);
-            }
-        }
-        
-        return $url;
-    }*/
 }

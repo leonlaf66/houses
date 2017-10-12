@@ -1,8 +1,9 @@
 <?php
 namespace module\estate\controllers;
 
+use WS;
 use module\core\Controller;
-use module\estate\helpers\MapSearch as MapSearchHelper;
+use module\estate\helpers;
 
 class MapController extends Controller
 {
@@ -13,10 +14,11 @@ class MapController extends Controller
         return $this->render('index.phtml', [
             'type' => $type,
             'dicts' => [
-                'filterRules' => MapSearchHelper::filterRules()[$type],
-                'schools' => \common\catalog\SchoolDistrict::dictOptions(),
-                'subwaies' => \common\catalog\subway\Station::dictOptions(),
-            ]
+                'filterRules' => helpers\MapSearch::filterRules()[$type],
+                'schools' => \models\SchoolDistrict::dictOptions(),
+                'subwaies' => \models\SubwayStation::dictOptions(),
+            ],
+            'searchAutocompleteItems' => helpers\SearchAutocomplete::map()
         ]);
     }
 
@@ -24,13 +26,13 @@ class MapController extends Controller
     {
         $req = \Yii::$app->request;
 
-        $search = \common\estate\RetsIndex::search();
+        $search = \common\estate\HouseIndex::search();
         $search->query
             ->andFilterWhere([$type === 'lease' ? '=' : '<>', 'prop_type', 'RN'])
             ->andFilterWhere(['=', 'is_show', true]);
 
-        $locationResult = MapSearchHelper::applySearchLocation($search, $req->post('mode_val', null), $req->post('mode', 'areas'));
-        MapSearchHelper::applyFilters($search, $req->post('filters', []), MapSearchHelper::filterRules()[$type]);
+        $locationResult = helpers\MapSearch::applySearchLocation($search, $req->post('mode_val', null), $req->post('mode', 'areas'));
+        helpers\MapSearch::applyFilters($search, $req->post('filters', []), helpers\MapSearch::filterRules()[$type]);
 
         if ($locationResult[1] === '') {
             return $this->ajaxJson([
@@ -46,7 +48,7 @@ class MapController extends Controller
         if (is_array($locationResult) && count($locationResult) === 2) {
             list($cityCodes, $cityName) = $locationResult;
             foreach ($cityCodes as $cityCode) {
-                $mapCityId = strtolower(\common\catalog\Town::getMapValue($cityCode, 'name_en'));
+                $mapCityId = strtolower(\models\Town::getMapValue($cityCode, 'name_en'));
                 $cityPolygons = array_merge($cityPolygons, \common\estate\helpers\Config::get('map.city.polygon/'.$mapCityId, []));
             }
         }
@@ -67,7 +69,7 @@ class MapController extends Controller
             'type' => $type,
             'city' => $cityName,
             'cityPolygons' => $cityPolygons,
-            'items' => $items
+            'items' => $items,
         ]);
     }
 

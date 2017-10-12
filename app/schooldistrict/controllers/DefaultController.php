@@ -2,36 +2,10 @@
 namespace module\schooldistrict\controllers;
 
 use WS;
-use common\catalog\SchoolDistrict;
+use models\SchoolDistrict;
 
 class DefaultController extends \yii\web\Controller
 {
-    /*
-    public function behaviors()
-    {
-        return [
-            [
-                'class' => 'yii\filters\PageCache',
-                'only' => ['index'],
-                'duration' => '86400',
-                'variations' => [
-                    WS::$app->language,
-                    WS::$app->user->isGuest
-                ]
-            ],
-            [
-                'class' => 'yii\filters\PageCache',
-                'only' => ['view'],
-                'duration' => '86400',
-                'variations' => [
-                    WS::$app->language,
-                    WS::$app->user->isGuest,
-                    WS::$app->request->get('id')
-                ]
-            ],
-        ];
-    }*/
-
     public function actionIndex()
     {
         $items = SchoolDistrict::xFind()->all();

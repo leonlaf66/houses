@@ -5,7 +5,7 @@ class CitySelector extends \yii\base\Widget
 {  
     public function run()
     {  
-        $cities = \common\catalog\Town::getQueuedDefaultCitys();
+        $cities = \models\Town::getQueuedDefaultCitys();
         return $this->render('city-selector.phtml', [
             'cities'=>$cities
         ]);  
@@ -16,7 +16,7 @@ class CitySelector extends \yii\base\Widget
         $currentCityId = isset($_GET['city']) ? intval($_GET['city']) : 0;
         if(! $currentCityId) return \WS::$app->stateId;
 
-        $m = \common\catalog\Town::findOne($currentCityId);
+        $m = \models\Town::findOne($currentCityId);
         return $m->name ? $m->name : \WS::$app->stateId;
     }
 

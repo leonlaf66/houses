@@ -10,7 +10,7 @@ class Top extends \yii\base\Widget
 
     public function getItems()
     {
-        return \module\yellowpage\models\YellowPage::find()
+        return \models\YellowPage::find()
             ->orderBy('weight DESC')
             ->where('is_top=:istop', [':istop'=>1])
             ->all();

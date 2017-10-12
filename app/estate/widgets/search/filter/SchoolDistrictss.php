@@ -62,6 +62,6 @@ class SchoolDistrictss extends \yii\base\Widget
             }
 
             return [$code, $name];
-        }, \common\catalog\SchoolDistrict::xFind()->all());
+        }, \models\SchoolDistrict::xFind()->all());
     }
 }

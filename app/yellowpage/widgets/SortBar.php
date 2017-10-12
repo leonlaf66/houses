@@ -1,7 +1,7 @@
 <?php
 namespace module\yellowpage\widgets;
 
-use module\yellowpage\models\YellowPage;
+use models\YellowPage;
 
 class SortBar extends \yii\base\Widget 
 {  

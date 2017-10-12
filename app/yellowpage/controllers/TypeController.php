@@ -2,7 +2,6 @@
 namespace module\yellowpage\controllers;
 
 use module\core\models as coreModel;
-use module\yellowpage\models as model;
 
 class TypeController extends \yii\web\Controller
 {
@@ -13,7 +12,7 @@ class TypeController extends \yii\web\Controller
     {
         $yellowPageType = coreModel\TaxonomyTerm::find()->where('id=:id', [':id'=>$id])->one();
         
-        $collection = model\YellowPage::find();
+        $collection = \models\YellowPage::find();
         if($id) {
             $collection->innerJoinWith([
                 'type'=>function($query) use($id) {

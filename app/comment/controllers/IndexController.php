@@ -1,15 +1,16 @@
 <?php
 namespace module\comment\controllers;
 
-use module\comment\models as model;
+use models\Comment;
+use models\CommentPage;
 
 class IndexController extends \yii\web\Controller
 {	
 	public function actionList($path)
 	{
-		$commentPage = model\CommentPage::find()->where('url=:url', [':url'=>$path])->one();
-		
-		$comments = $commentPage ? $commentPage->comment : array();
+		$commentPage = CommentPage::find()->where('url=:url', [':url'=>$path])->one();
+
+		$comments = $commentPage->comments ?? [];
 
 		return $this->renderPartial('list.phtml', array(
 			'comments'=>$comments
@@ -18,20 +19,20 @@ class IndexController extends \yii\web\Controller
 
 	public function actionSubmit($path)
 	{
-		$commentPage = model\CommentPage::find()->where(['url'=>$path])->one();
+		$commentPage = CommentPage::find()->where(['url'=>$path])->one();
 		if(! $commentPage) {
-			$commentPage = new model\CommentPage();
+			$commentPage = new CommentPage();
 			$commentPage->url = $path;
 			$commentPage->hash = md5($path);
 			$commentPage->save();
 		}
 
-		$comment = new model\Comment();
+		$comment = new Comment();
 		$comment->attributes = $_POST;
 		$comment->user_id = \WS::$app->user->id;
 		$comment->page_id = $commentPage->id;
-		$result = $comment->save();
+		$comment->save();
 
-		echo json_encode($result);
+		echo json_encode($comment->getErrors());
 	}
 }

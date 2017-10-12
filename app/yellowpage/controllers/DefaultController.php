@@ -1,7 +1,7 @@
 <?php
 namespace module\yellowpage\controllers;
 
-use module\yellowpage\models\YellowPage;
+use models\YellowPage;
 
 class DefaultController extends \yii\web\Controller
 {

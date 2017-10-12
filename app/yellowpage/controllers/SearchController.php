@@ -3,7 +3,6 @@ namespace module\yellowpage\controllers;
 
 use WS;
 use module\core\models as coreModel;
-use module\yellowpage\models as YPModel;
 
 class SearchController extends \yii\web\Controller
 {
@@ -12,7 +11,7 @@ class SearchController extends \yii\web\Controller
 
     public function actionResult($type=null, $city=null, $sort=null, $dir='')
     {
-        $collection = YPModel\YellowPage::find();
+        $collection = \models\YellowPage::find();
         
         if($type) {
             $typeId = intval($type);

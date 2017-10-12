@@ -1,6 +1,9 @@
 <?php
 namespace module\estate\widgets\search;
 
+use WS;
+use module\estate\helpers;
+
 class Input extends \yii\base\Widget 
 {
     public $id = 'q';
@@ -21,7 +24,8 @@ class Input extends \yii\base\Widget
             'id'=>$this->id,
             'q'=>$this->getQueryText(),
             'requestUrl'=>$this->requestUrl,
-            'resultUrl'=>$this->resultUrl
+            'resultUrl'=>$this->resultUrl,
+            'searchAutocompleteItems' => helpers\SearchAutocomplete::map()
         ]);  
     }
 

@@ -86,7 +86,7 @@ class Page extends \yii\base\Component
 
         static $metasCache = [];
         if (! isset($metasCache[$this->id])) {
-            $metasCache[$this->id] = \common\cms\models\SiteSeoMeta::findOne($this->id);
+            $metasCache[$this->id] = \models\SiteSeoMeta::findOne($this->id);
         }
 
         $metas = $metasCache[$this->id];

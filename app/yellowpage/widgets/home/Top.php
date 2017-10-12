@@ -1,7 +1,7 @@
 <?php
 namespace module\yellowpage\widgets\home;
 
-use module\yellowpage\models\YellowPage;
+use models\YellowPage;
 
 class Top extends \yii\base\Widget 
 {  

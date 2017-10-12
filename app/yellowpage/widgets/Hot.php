@@ -10,7 +10,7 @@ class Hot extends \yii\base\Widget
 
     public function getItems()
     {
-        return \module\yellowpage\models\YellowPage::find()
+        return \models\YellowPage::find()
             ->where('is_top=:istop', [':istop'=>1])
             ->limit(5)
             ->all();

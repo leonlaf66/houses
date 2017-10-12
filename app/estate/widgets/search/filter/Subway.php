@@ -13,7 +13,7 @@ class Subway extends \yii\base\Widget
     {  
         $search = $this->search;
 
-        $stations = \common\catalog\subway\Station::getAllStations();
+        $stations = \module\catalog\models\SubwayStation::getAllStations();
 
         if (isset($_GET['subway-station'])) {
             $subwayStations = $_GET['subway-station'];

@@ -1,7 +1,7 @@
 <?php
 namespace module\estate\widgets\detail;
 
-use \common\core\Configure;
+use models\SiteSetting;
 
 class Calculator extends \yii\base\Widget 
 {  
@@ -14,7 +14,7 @@ class Calculator extends \yii\base\Widget
                 'ma' => $this->rets->list_price,
                 'dp' => 20,
                 'mt' => 30,
-                'ir' => Configure::get('purchase.mortgage-calculator.interest-rate.default', 4.5),
+                'ir' => SiteSetting::get('purchase.mortgage-calculator.interest-rate.default', 4.5),
                 'pt' => $this->rets->taxes
             ]
         ]);  

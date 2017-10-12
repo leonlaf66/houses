@@ -51,9 +51,11 @@ $.typeahead({
         cities: {
             display: "title",
             href: "<?php echo $resultUrl?>?q={{title}}",
+            /*
             ajax: {
                 url: '<?php echo create_url('estate/autocomplete/index')?>'
-            }
+            },*/
+            data: <?php echo json_encode($searchAutocompleteItems)?>
         }
     },
     template: function (query, item) {

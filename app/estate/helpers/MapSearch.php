@@ -19,14 +19,14 @@ class MapSearch
         $townCode = '';
         $townName = '';
 
-        $town = \common\catalog\Town::searchKeywords($q);
+        $town = \models\Town::searchKeywords($q);
         if ($town) { // 城市
             $search->query->andWhere(['town' => $town->short_name]);
 
             $townCode = $town->short_name;
             $townName = $town->name;
         } else {
-            $zipcode = \common\catalog\Zipcode::searchKeywords($q);
+            $zipcode = \models\ZipcodeTown::searchKeywords($q);
             if ($zipcode) { // zip
                 $search->query->andWhere(['town' => $zipcode->city_short_name]);
 
@@ -47,12 +47,12 @@ class MapSearch
 
     public static function applySchools($search, $schoolId)
     {
-        $code = \common\catalog\SchoolDistrict::findOne($schoolId)->code;
+        $code = \models\SchoolDistrict::findOne($schoolId)->code;
         $codes = explode('/', $code);
         $search->query->andFilterWhere(['in', 'town', $codes]);
 
         // 应用条件
-        $townName = \common\catalog\Town::getMapValue($codes[0], 'name');
+        $townName = \models\Town::getMapValue($codes[0], 'name');
 
         return [$codes, $townName];
     }

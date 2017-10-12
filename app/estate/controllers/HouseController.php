@@ -51,7 +51,7 @@ class HouseController extends Controller
         ]);
 
         // 类型
-        $search = \common\estate\RetsIndex::search();
+        $search = \common\estate\HouseIndex::search();
         if ($type === 'lease') {
             $search->query->andFilterWhere(['=', 'prop_type', 'RN']);
         } else {
@@ -60,11 +60,11 @@ class HouseController extends Controller
 
         $q = $req->get('q', '');
         if ($q && strlen($q) > 0) {
-            $town = \common\catalog\Town::searchKeywords($q);
+            $town = \models\Town::searchKeywords($q);
             if ($town) { // 城市
                 $search->query->andWhere(['town' => $town->short_name]);
             } else {
-                $zipcode = \common\catalog\Zipcode::searchKeywords($q);
+                $zipcode = \models\ZipcodeTown::searchKeywords($q);
                 if ($zipcode) { // zip
                     $search->query->andWhere(['town' => $zipcode->city_short_name]);
                 } else { // 普通搜索
@@ -99,7 +99,7 @@ class HouseController extends Controller
         WS::$app->page->bindParams(['name' => $rets->title()]);
 
         // 获取城市边界
-        $mapCityId = strtolower(\common\catalog\Town::getMapValue($rets->town, 'name_en'));
+        $mapCityId = strtolower(\models\Town::getMapValue($rets->town, 'name_en'));
         $cityPolygons = \common\estate\helpers\Config::get('map.city.polygon/'.$mapCityId, []);
 
         return $this->render("view.phtml", [

@@ -7,6 +7,7 @@ $.fn.commentServcie = function(options) {
         totalElement: null,
         itemsElement: null,
         itemSelector: '.comment-item',
+        onSubmitBefore: function () {}
     };
     var opts = $.extend(defaults, options);
     var commentElement = this;

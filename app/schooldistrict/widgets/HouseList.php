@@ -11,7 +11,7 @@ class HouseList extends \yii\base\Widget
     {
         $towns = explode('/', $this->schoolDistrict->code);
 
-        $items = \common\estate\RetsIndex::find()
+        $items = \common\estate\HouseIndex::find()
             ->where(['in', 'town', $towns])
             ->andWhere(['=', 'prop_type', 'SF'])
             ->andWhere(['>', 'list_price', 700000])

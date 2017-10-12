@@ -1,6 +1,8 @@
 <?php
 namespace module\yellowpage\widgets;
 
+use models\TaxonomyTerm;
+
 class TypeSelector extends \yii\base\Widget
 {
     public function init()
@@ -10,7 +12,7 @@ class TypeSelector extends \yii\base\Widget
 
     public function getTreeItems()
     {
-        return \module\core\models\TaxonomyTerm::getTreeNav();
+        return TaxonomyTerm::getTreeItems(TaxonomyTerm::YELLOW_PAGE);
     }
 
     public function renderItem($item)
@@ -39,7 +41,7 @@ class TypeSelector extends \yii\base\Widget
 
         if($actTypeId === $typeId) return true;
 
-        $m = \common\core\TaxonomyTerm::findOne($actTypeId);
+        $m = TaxonomyTerm::findOne($actTypeId);
         if(! $m) return false;
 
         return $m->parent_id === $typeId;
