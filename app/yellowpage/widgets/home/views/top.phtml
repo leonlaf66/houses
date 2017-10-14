@@ -13,7 +13,7 @@
                                     <img class="yp-img" src="<?php echo $_yellowpage->getPhotoImageInstance()->resize(90, 90)?>">
                                     <div class="name"><?php echo $_yellowpage->name?></div>
                                     <div class="rating-box">
-                                        <span class="rating"><span style="width:45%"></span></span>
+                                        <span class="rating"><span style="width:<?php echo $_yellowpage->rating * 20?>%"></span></span>
                                     </div>
                                 </a>
                             </li>
