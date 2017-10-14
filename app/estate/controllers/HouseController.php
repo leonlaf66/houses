@@ -9,6 +9,10 @@ class HouseController extends Controller
 {
     public function actionIndex($type = 'lease', $tab = 'search', $q='', $params='')
     {
+        if (isset($_GET['q'])) {
+            $_GET['q'] = str_replace('/', '', $_GET['q']);
+        }
+
         $req = WS::$app->request;
         WS::$app->share('rets.property', $type);
         WS::$app->share('rets.tab', $tab);
