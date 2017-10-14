@@ -17,12 +17,13 @@ class SearchUrl
             $url = '/house/'.$property.$tab.'/'.$newUrlParamValue.'/';
         }
         
+        $params = [];
+
         $q = \yii::$app->request->get('q');
         if ($q) {
-            $url.= '?q='.urlencode($q);
+            $params['q'] = urlencode($q);
         }
-
-        $params = [];
+        
         if ($key !== 'price' && isset($_GET['cp'])) {
             $params['cp'] = $_GET['cp'];
         }
