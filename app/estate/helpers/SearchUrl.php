@@ -21,7 +21,7 @@ class SearchUrl
 
         $q = \yii::$app->request->get('q');
         if ($q) {
-            $params['q'] = urlencode($q);
+            $params['q'] = $q;
         }
         
         if ($key !== 'price' && isset($_GET['cp'])) {
