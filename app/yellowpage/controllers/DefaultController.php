@@ -14,6 +14,8 @@ class DefaultController extends \yii\web\Controller
 
     public function actionView($id)
     {
+        \WS::$app->assetsAutoCompress->enabled = false;
+
     	$yellowpage = YellowPage::findOne($id);
 
         \WS::$app->page->bindParams(['name' => $yellowpage->name]);
