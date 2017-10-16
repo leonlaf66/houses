@@ -1,4 +1,9 @@
-<?php 
+<?php
+    $_options = ['position'=>$this::POS_HEAD, 'depends' => '\module\page\assets\Asset'];
+
+    $this->registerJsFile('/static/js/jquery.raty.js', $_options);
+    $this->registerJsFile('/static/js/comment.js', $_options);
+
     $_context = $this->context;
     $t = lang('comment');
 ?>
@@ -45,9 +50,7 @@
                                         <?php _tt('Rating', '评分')?>
                                     </span>
                                     <div class="form-control" id="comment-rating" style="float:none;cursor: pointer;"></div>
-                                    <script type="text/javascript" src="/static/js/jquery.raty.js"></script>
                                     <script type="text/javascript">
-                                        $.easing.def = 'easeOutQuad';
                                     $(function(){
                                         $('#comment-rating').raty({
                                             hintList: [
@@ -83,7 +86,6 @@
     </div>
 </div>
 
-<script type="text/javascript" src="/static/js/comment.js"></script>
 <script type="text/javascript">
 (function($){
     var jqMain = $('#comment-body'),
