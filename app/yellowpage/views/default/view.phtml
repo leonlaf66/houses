@@ -36,7 +36,7 @@ $this->title = sprintf(tt('Pro Services:%s', '管房养房:%s'), $model->name);
                         <div class="row col-2">
                             <div class="col-md-6">
                                 <div class="item">
-                                    <label><?php $t('Contact:')?></label><?php echo $model->contact?>
+                                    <label><?php _tt('Contact', '联系人')?>:</label><?php echo $model->contact?>
                                 </div>
                             </div>
                             <div class="col-md-6" style="text-align:right">
@@ -45,22 +45,22 @@ $this->title = sprintf(tt('Pro Services:%s', '管房养房:%s'), $model->name);
                         </div>
                         <div class="short-info">
                             <div class="item">
-                                <label><?php $t('Address:')?></label><?php echo $model->address?>
+                                <label><?php _tt('Address', '地址')?>:</label><?php echo $model->address?>
                             </div>
                             <div class="item">
-                                <label><?php echo $t('Phone:')?></label><?php echo $model->phone?>
+                                <label><?php echo _tt('Phone', '电话')?>:</label><?php echo $model->phone?>
                             </div>
                             <div class="item">
-                                <label><?php echo $t('Website:')?></label><a href="<?php echo $model->website?>" target="_blank">
+                                <label><?php echo _tt('Website', '网站')?>:</label><a href="<?php echo $model->website?>" target="_blank">
                                     <?php echo $model->website?>
                                 </a>
                             </div>
                             <div class="item">
-                                <label><?php $t('Email:')?></label>
+                                <label><?php _tt('Email', '邮件')?>:</label>
                                 <a href="mailto:<?php echo $model->email?>"><?php echo $model->email?></a>
                             </div>
                             <div class="item">
-                                <label><?php $t('License:')?></label><?php echo $model->license?>
+                                <label><?php _tt('License', '专业资质')?>：</label><?php echo $model->license?>
                             </div>
                         </div>
                     </div>
@@ -70,7 +70,7 @@ $this->title = sprintf(tt('Pro Services:%s', '管房养房:%s'), $model->name);
                 <div class="table-info">
                     <div class="bar">
                         <div class="title">
-                            <?php $t('Business')?>
+                            <?php _tt('Business', '业务范围')?>
                         </div>
                         <div class="value">
                             <?php echo $model->business?>
