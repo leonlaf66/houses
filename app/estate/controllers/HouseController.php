@@ -95,7 +95,7 @@ class HouseController extends Controller
             throw new \yii\web\HttpException(404, "Page not found");
         }
         if (!in_array($rets->state, WS::$app->area->stateIds)) {
-            throw new \yii\web\HttpException(404, "Page not found");
+            //throw new \yii\web\HttpException(404, "Page not found");
         }
 
         WS::$app->page->setId('estate/house/'.$type.'/view');
