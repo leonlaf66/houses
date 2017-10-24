@@ -9,9 +9,8 @@ class SearchAutocomplete
     {
         $items = WS::$app->cache->get('estate.autocomplete.items', []);
         if (empty($items)) {
-            $towns = \models\Town::find()->where([
-                'state'=>\WS::$app->stateId
-            ])->all();
+            $towns = \models\Town::find()
+                ->where(['in', 'state', \WS::$app->area->stateIds])->all();
 
             foreach ($towns as $town) {
                 $items[] = [
@@ -27,9 +26,9 @@ class SearchAutocomplete
                 }
             }
 
-            $zipcodes = \models\ZipcodeTown::find()->where([
-                'state'=>\WS::$app->stateId
-            ])->all();
+            $zipcodes = \models\ZipcodeTown::find()
+                ->where(['in', 'state', \WS::$app->area->stateIds])
+                ->all();
 
             foreach ($zipcodes as $zipcode) {
                 $items[] = [

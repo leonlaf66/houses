@@ -11,7 +11,7 @@ class Recommends extends \yii\base\Widget
     {  
         return $this->render('recommends.phtml', [
             'rets'=>$this->rets,
-            'nearbyHouses'=>\common\estate\HouseIndex::findOne($this->rets->list_no)->nearbyHouses()
+            'nearbyHouses'=>\common\estate\HouseIndex::findOne($this->rets->list_no)->nearbyHouses(WS::$app->area->stateIds)
         ]);
     }
 }

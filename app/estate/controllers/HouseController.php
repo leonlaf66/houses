@@ -51,7 +51,7 @@ class HouseController extends Controller
         ]);
 
         // 类型
-        $search = \common\estate\HouseIndex::search();
+        $search = \common\estate\HouseIndex::search(WS::$app->area->stateIds);
         if ($type === 'lease') {
             $search->query->andFilterWhere(['=', 'prop_type', 'RN']);
         } else {
@@ -91,7 +91,10 @@ class HouseController extends Controller
     {   
         $rets = \common\estate\Rets::findOne($id);
         
-        if(is_null($rets )) {
+        if (is_null($rets )) {
+            throw new \yii\web\HttpException(404, "Page not found");
+        }
+        if (!in_array($rets->state, WS::$app->area->stateIds)) {
             throw new \yii\web\HttpException(404, "Page not found");
         }
 
@@ -112,5 +115,11 @@ class HouseController extends Controller
     public function actionTest($id) {
         $rets = \common\estate\Rets::findOne($id);
         dd($rets->render()->detail());
+    }
+
+    public function actionData($id)
+    {
+        $rets = \common\estate\Rets::findOne($id);
+        return dd($rets);
     }
 }

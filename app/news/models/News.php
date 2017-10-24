@@ -26,8 +26,8 @@ class News extends \models\News
     {
         $query = parent::find();
 
-        $query->andWhere('(is_public=true or towns @> :towns)', [
-            ':towns' => '{'.\WS::$app->stateId.'}'
+        $query->andWhere('(is_public=true or area_id @> :area_id)', [
+            ':area_id' => '{'.\WS::$app->area->id.'}'
         ]);
 
         return $query;

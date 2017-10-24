@@ -7,7 +7,7 @@ class DefaultController extends \yii\web\Controller
 {
     public function actionIndex()
     {
-        if (! \WS::$app->stateId) {
+        if (! \WS::$app->area->id) {
             $this->redirect(['/home/default/area']);
         }
 

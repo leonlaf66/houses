@@ -6,10 +6,6 @@ class App extends \common\supports\SiteApp
     public $loginUrl = '';
     public $logoutUrl = '';
     public $memberUrl = '';
-    public $siteMaps = [
-        'ma' => 'MA'
-    ];
-    public $stateId = null;
     public $pageMetas = [];
 
     public function bootstrap()
@@ -21,21 +17,23 @@ class App extends \common\supports\SiteApp
     protected function initSite()
     {
         $cookies = \WS::$app->response->cookies;
-        $siteId = null;
 
-        if (isset($cookies['state_id'])) {
-            $siteId = $cookies->getValue('state_id');
+        $areaId = null;
+
+        if (isset($cookies['area_id'])) {
+            $areaId = $cookies->getValue('area_id');
+            $this->area->initArea($areaId);
         } else {
             $parts = explode('.', $_SERVER["HTTP_HOST"]);
-            if (isset($this->siteMaps[$parts[0]])) {
-                $siteId = $parts[0];
+            $areaId = $parts[0];
 
-                $this->stateId = $this->siteMaps[$siteId];
+            $this->area->initArea($areaId);
 
-                // 记录城市 
+            if ($this->area->id) {
+                // 记录区域
                 \WS::$app->response->cookies->add(new \yii\web\Cookie([
-                    'name' => 'state_id',
-                    'value' => $this->stateId,
+                    'name' => 'area_id',
+                    'value' => $areaId,
                     'expire' => 0,
                     'domain' => domain()
                 ]));

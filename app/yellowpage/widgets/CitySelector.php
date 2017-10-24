@@ -14,10 +14,10 @@ class CitySelector extends \yii\base\Widget
     public function getCurrentCityName()
     {
         $currentCityId = isset($_GET['city']) ? intval($_GET['city']) : 0;
-        if(! $currentCityId) return \WS::$app->stateId;
+        if(! $currentCityId) return strtoupper(\WS::$app->area->id);
 
         $m = \models\Town::findOne($currentCityId);
-        return $m->name ? $m->name : \WS::$app->stateId;
+        return $m->name ? $m->name : strtoupper(\WS::$app->area->id);
     }
 
     public function createUrl($args)
