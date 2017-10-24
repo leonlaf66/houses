@@ -18,6 +18,7 @@ return [
         'map/house/<type:(lease|purchase)>/search'=>'estate/map/search',
         'map/house/<id:\d+>'=>'estate/map/detail',
         /*测试*/
-        'house/test/<id:\d+>/'=>'estate/house/test'
+        'house/test/<id:\d+>/'=>'estate/house/test',
+        'house/<id:\d+>/data/'=>'estate/house/data'
     ]
 ];

@@ -120,6 +120,9 @@ class HouseController extends Controller
     public function actionData($id)
     {
         $rets = \common\estate\Rets::findOne($id);
-        return dd($rets);
+        $data = $rets->attributes;
+        $data = array_merge($data, (array)$rets->json);
+        unset($data['json_data']);
+        echo json_encode($data);exit;
     }
 }
