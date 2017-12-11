@@ -10,8 +10,8 @@ class Hot extends \yii\base\Widget
 
     public function getItems()
     {
-        return \models\YellowPage::find()
-            ->where('is_top=:istop', [':istop'=>1])
+        return \models\YellowPage::query(\WS::$app->area->id)
+            ->andWhere('is_top=:istop', [':istop'=>1])
             ->limit(5)
             ->all();
     }

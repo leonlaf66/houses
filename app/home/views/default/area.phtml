@@ -1,4 +1,7 @@
 <style>
+    #main-nav {
+        margin-bottom:20px;
+    }
 .area-container > h2{
     font-size:18px;font-weight:700;
 }
@@ -18,14 +21,11 @@
     background-size: 100% 100%;
     background-repeat: no-repeat;
 }
-.image-btn-a {
-    height:590px;
+.image-btn-h1 {
+    height:285px;
 }
-.image-btn-b, .image-btn-c {
-    height:287px;
-}
-.image-btn-c {
-    margin-top:15px;
+.image-btn-h2 {
+    height:288px;
 }
 .image-btn > span {
     display:block;
@@ -52,7 +52,7 @@
     <h2><?php _tt('Choose location', '请选择区域')?></h2>
     <div class="area-blocks lay-g">
         <div class="area-block-col lay-u-1-2">
-            <a href="http://ma<?php echo domain()?>" class="image-btn image-btn-a" style="background-image:url(<?php echo media_url('area/ma.jpg')?>)">
+            <a href="http://ma<?php echo domain()?>" class="image-btn image-btn-h1" style="background-image:url(<?php echo media_url('area/ma.jpg')?>)">
                 <span>
                     <?php _tt('Boston', '波士顿')?>
                     <i>(<?php _tt('Massachusetts', '马萨诸塞州')?>)</i>
@@ -60,15 +60,36 @@
             </a>
         </div>
         <div class="area-block-col lay-u-1-2">
-            <a href="javascript:void(0)" class="image-btn image-btn-b" style="background-image:url(<?php echo media_url('area/b.jpg')?>)">
+            <a href="http://ny<?php echo domain()?>" class="image-btn image-btn-h1" style="background-image:url(<?php echo media_url('area/ny.jpg')?>)">
                 <span>
                     <?php _tt('New York', '纽约')?>
-                    <i>(<?php _tt('NYC, Long island, Brooklyn', '纽约市，长岛，布鲁克林')?>)</i>
+                    <!--<i>(<?php _tt('New York', '纽约')?>)</i>-->
                 </span>
             </a>
-            <a href="javascript:void(0)" class="image-btn image-btn-c" style="background-image:url(<?php echo media_url('area/c.jpg')?>)">
-                <span><?php _tt('Washington', '华盛顿')?>
-                    <i>(<?php _tt('DC, MD, VA', '华盛顿DC，弗吉尼亚，马里兰')?>)</i>
+        </div>
+    </div>
+    <div class="area-blocks lay-g" style="margin-top:15px">
+        <div class="area-block-col lay-u-1-3">
+            <a href="http://ga<?php echo domain()?>" class="image-btn image-btn-h2" style="background-image:url(<?php echo media_url('area/a.jpg')?>)">
+                <span>
+                    <?php _tt('Atlanta', '亚特兰大')?>
+                    <i>(<?php _tt('Georgia', '佐治亚州')?>)</i>
+                </span>
+            </a>
+        </div>
+        <div class="area-block-col lay-u-1-3">
+            <a href="http://ca<?php echo domain()?>" class="image-btn image-btn-h2" style="background-image:url(<?php echo media_url('area/b.jpg')?>)">
+                <span>
+                    <?php _tt('Los Angel', '洛杉矶')?>
+                    <i>(<?php _tt('California', '加利福尼亚')?>)</i>
+                </span>
+            </a>
+        </div>
+        <div class="area-block-col lay-u-1-3">
+            <a href="http://il<?php echo domain()?>" class="image-btn image-btn-h2" style="background-image:url(<?php echo media_url('area/c.jpg')?>)">
+                <span>
+                    <?php _tt('Chicago', '芝加哥')?>
+                    <i>(<?php _tt('Illinois', '伊利诺斯')?>)</i>
                 </span>
             </a>
         </div>

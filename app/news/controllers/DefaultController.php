@@ -11,7 +11,7 @@ class DefaultController extends Controller
     public function actionIndex()
     {   
         $typeId = intval(\WS::$app->request->get('type', 0));
-        $newsProvider = News::search($typeId);
+        $newsProvider = News::search('ma', $typeId);
 
         //$types = News::types();
         $types = TaxonomyTerm::find()

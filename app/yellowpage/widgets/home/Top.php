@@ -7,7 +7,7 @@ class Top extends \yii\base\Widget
 {  
     public function run()
     {  
-        $groups = \WS::getStaticData('home.yellowpage.top');
+        $groups = \WS::getStaticData('home.yellowpage.top.'.\WS::$app->area->id);
 
         $this->buildYellowPageToResults($groups);
 

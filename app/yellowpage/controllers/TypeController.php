@@ -12,7 +12,8 @@ class TypeController extends \yii\web\Controller
     {
         $yellowPageType = coreModel\TaxonomyTerm::find()->where('id=:id', [':id'=>$id])->one();
         
-        $collection = \models\YellowPage::find();
+        $collection = \models\YellowPage::query('ma');
+
         if($id) {
             $collection->innerJoinWith([
                 'type'=>function($query) use($id) {

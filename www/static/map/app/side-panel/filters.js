@@ -84,10 +84,11 @@ define('vc-filters', {
             this.$emit('input', this.data);
         },
         getItemIsActive: function (filterId, value) {
-            if (typeof value === 'undefined' && -1 !== ['price', 'square'].indexOf(filterId)) {
-                if (this.data.customs[filterId] !== null) {
-                    return false;
+            if (-1 !== ['price', 'square'].indexOf(filterId)) {
+                if (typeof value === 'undefined') {
+                    return this.data[filterId] == null;
                 }
+                return this.data[filterId] == value;
             }
 
             if (this.isMultipleChoiceFilter(filterId) && value) { // 多选模式 + 有值
@@ -131,7 +132,14 @@ define('vc-filters', {
             this.$emit('input', this.data);
         },
         clearAll: function () {
-            this.data = {};
+            for (filterId in this.items) {
+                if (-1 !== ['price', 'square'].indexOf(filterId)) {
+                    this.$set(this.data, filterId, null);
+                }
+            }
+            this.$set(this.data.customs, 'price', [null, null]);
+            this.$set(this.data.customs, 'square', [null, null]);
+
             this.$emit('input', this.data);
         },
         isMultipleChoiceFilter: function (filterId) {

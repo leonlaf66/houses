@@ -47,4 +47,15 @@ class App extends \common\supports\SiteApp
             }
         }
     }
+
+    public function beforeAction($action)
+    {
+        $isSelfRote = $action->id === 'area' && $action->controller->id === 'default' && $action->controller->module->id === 'home';
+
+        if (! $isSelfRote && ! \WS::$app->area->isAreaSite) {
+            return $action->controller->redirect(['/home/default/area']);
+        }
+
+        return parent::beforeAction($action);
+    }
 }

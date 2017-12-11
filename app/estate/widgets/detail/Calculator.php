@@ -14,7 +14,7 @@ class Calculator extends \yii\base\Widget
                 'ma' => $this->rets->list_price,
                 'dp' => 20,
                 'mt' => 30,
-                'ir' => SiteSetting::get('purchase.mortgage-calculator.interest-rate.default', 4.5),
+                'ir' => SiteSetting::get('purchase.mortgage-calculator.interest-rate.default', \WS::$app->area->id),
                 'pt' => $this->rets->taxes
             ]
         ]);  

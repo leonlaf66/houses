@@ -9,26 +9,26 @@ use \yii\helpers\ArrayHelper as AH;
  */
 class MapSearch
 {
-    public static function applySearchLocation($search, $modeValue, $modeName)
+    public static function applySearchLocation($query, $modeValue, $modeName)
     {
         $callName = 'apply'.ucfirst($modeName);
-        return self::$callName($search, $modeValue);
+        return self::$callName($query, $modeValue);
     }
-    public static function applyAreas($search, $q)
+    public static function applyAreas($query, $q)
     {
         $townCode = '';
         $townName = '';
 
         $town = \models\Town::searchKeywords($q);
         if ($town) { // 城市
-            $search->query->andWhere(['town' => $town->short_name]);
+            $query->andWhere(['town' => $town->short_name]);
 
             $townCode = $town->short_name;
             $townName = $town->name;
         } else {
             $zipcode = \models\ZipcodeTown::searchKeywords($q);
             if ($zipcode) { // zip
-                $search->query->andWhere(['town' => $zipcode->city_short_name]);
+                $query->andWhere(['zip_code' => $zipcode->zip]);
 
                 $townCode = $zipcode->city_short_name;
                 $townName = $zipcode->city_name;
@@ -36,20 +36,18 @@ class MapSearch
         }
 
         // 应用条件
-        if ($townCode) {
-            $search->query->andFilterWhere(['=', 'town', $townCode]);
-        } else {
-            $search->query->andFilterWhere(['=', '1', '2']);
+        if (!$townCode === '') {
+            $query->andWhere('1=2');
         }
 
         return [[$townCode], $townName];
     }
 
-    public static function applySchools($search, $schoolId)
+    public static function applySchools($query, $schoolId)
     {
         $code = \models\SchoolDistrict::findOne($schoolId)->code;
         $codes = explode('/', $code);
-        $search->query->andFilterWhere(['in', 'town', $codes]);
+        $query->andFilterWhere(['in', 'town', $codes]);
 
         // 应用条件
         $townName = \models\Town::getMapValue($codes[0], 'name');
@@ -57,24 +55,22 @@ class MapSearch
         return [$codes, $townName];
     }
 
-    public static function applySubwaies($search, $subway)
+    public static function applySubwaies($query, $subway)
     {
         $stationIds = $subway['stationIds'];
         $stationIdsExpr = '{'.implode(',', $stationIds).'}';
-        $search->query->andFilterWhere(['&&', 'subway_stations', $stationIdsExpr]);
+        $query->andFilterWhere(['&&', 'subway_stations', $stationIdsExpr]);
 
         return null;
     }
 
-    public static function applyFilters($search, $filters, $filterRules)
+    public static function applyFilters($query, $filters, $filterRules)
     {
-        $query = $search->query;
-
         foreach ($filters as $filterId => $val) {
             if (isset($filterRules[$filterId])) {
                 $filterRule = $filterRules[$filterId];
                 if (isset($filterRule['apply'])) {
-                    ($filterRule['apply'])($search->query, $val, $filterRule);
+                    ($filterRule['apply'])($query, $val, $filterRule);
                 }
             }
         }

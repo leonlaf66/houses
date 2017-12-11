@@ -5,7 +5,7 @@ class Top extends \yii\base\Widget
 {
     public function run()
     {
-        $items = \models\SiteSetting::getJson('home.luxury.houses', true);
+        $items = \models\SiteSetting::getJson('home.luxury.houses', 'ma');
         
         /*分列 以便更容易渲染输出*/
         $groups = [];

@@ -26,13 +26,19 @@ class MapController extends Controller
     {
         $req = \Yii::$app->request;
 
-        $search = \common\estate\HouseIndex::search();
-        $search->query
-            ->andFilterWhere([$type === 'lease' ? '=' : '<>', 'prop_type', 'RN'])
-            ->andFilterWhere(['=', 'is_show', true]);
+        $query = (new \yii\db\Query())
+            ->from('house_index')
+            ->select('id,list_price,prop_type,latitude,longitude')
+            ->limit(4000);
 
-        $locationResult = helpers\MapSearch::applySearchLocation($search, $req->post('mode_val', null), $req->post('mode', 'areas'));
-        helpers\MapSearch::applyFilters($search, $req->post('filters', []), helpers\MapSearch::filterRules()[$type]);
+        if ($type === 'purchase') {
+            $query->andWhere(['<>', 'prop_type', 'RN']);
+        } else {
+            $query->andWhere(['prop_type' => 'RN']);
+        }
+
+        $locationResult = helpers\MapSearch::applySearchLocation($query, $req->post('mode_val', null), $req->post('mode', 'areas'));
+        helpers\MapSearch::applyFilters($query, $req->post('filters', []), helpers\MapSearch::filterRules()[$type]);
 
         if ($locationResult[1] === '') {
             return $this->ajaxJson([
@@ -53,17 +59,17 @@ class MapController extends Controller
             }
         }
 
-        $propTypeCodeIds = \common\estate\Rets::propertyTypeOptions();
-        $items = array_map(function ($item) use($propTypeCodeIds) {
-            $rets = $item->entity();
+        $porpTypeOptions = \common\estate\Rets::propertyTypeOptions();
+        $items = array_map(function ($d) use ($porpTypeOptions) {
+
             return implode('|', [
-                $item->id,
-                $item->latitude,
-                $item->longitude,
-                floatval($item->list_price) / 10000,
-                $rets->propId()
+                $d['id'],
+                $d['latitude'],
+                $d['longitude'],
+                floatval($d['list_price']) / 10000,
+                $porpTypeOptions[$d['prop_type']] ?? ''
             ]);
-        }, $search->query->all());
+        }, $query->all());
 
         return $this->ajaxJson([
             'type' => $type,

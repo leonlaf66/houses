@@ -11,7 +11,7 @@ class ListBlock extends \yii\base\Widget
 
     public function run()
     {
-        $news = News::find();
+        $news = News::query(\WS::$app->area->id);
         switch ($this->type) {
             case 'infomation':
                 $news->andWhere(['=', 'is_infomation', true]);
