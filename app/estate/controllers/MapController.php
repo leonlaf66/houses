@@ -29,7 +29,7 @@ class MapController extends Controller
         $query = (new \yii\db\Query())
             ->from('house_index')
             ->select('id,list_price,prop_type,latitude,longitude')
-            ->where('is_show', true)
+            ->where(['is_show' => true])
             ->limit(4000);
 
         if ($type === 'purchase') {
