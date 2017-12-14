@@ -82,28 +82,23 @@
       };
 
       google.maps.Map.prototype.displayCityPolygon = function(coordinates) {
-          var encodedpoints = [];
-          var map = this;
+          for (var i = 0; i < coordinates.length; i ++) {
+              var encodedpoints = coordinates[i].map(function (item) {
+                  return new google.maps.LatLng(item[1], item[0]);
+              });
 
-          $.each(coordinates, function(idx, points){
-            $.each(points, function (idx, item) {
-              encodedpoints.push(
-                 new google.maps.LatLng(item[1], item[0])
-              );
-            });
-          });
+              var polyOptions = {
+                  path: encodedpoints,
+                  strokeColor: "#f15044",
+                  strokeOpacity: 0.9,
+                  strokeWeight: 3,
+                  fillColor: "#ffffff",
+                  fillOpacity: 0
+              }
 
-          var polyOptions = {
-                path: encodedpoints,
-                strokeColor: "#f15044",
-                strokeOpacity: 0.9,
-                strokeWeight: 2,
-                fillColor: "#ffffff",
-                fillOpacity: 0.3
+              var it = new google.maps.Polygon(polyOptions);
+              it.setMap(this);
           }
-
-          var it = new google.maps.Polygon(polyOptions);
-          it.setMap(map);
       };
 
       google.maps.Map.prototype.createKmlLayer = function(kml) {
