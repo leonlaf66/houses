@@ -23,11 +23,16 @@ HouseMarker.prototype.onAdd = function () {
     if (window.$viewData.type === 'purchase') {
         extendHtml = '<div class="extend">'+self.args.data.prop_type_name+'</div>';
     }
-    
+
+    listPirce = parseFloat(self.args.data.list_price);
     if (document.getElementById('language').getAttribute('content') === 'en-US') {
-        self.args.data.list_price = Number(parseFloat(self.args.data.list_price) * 10000).toLocaleString();
+        self.args.data.list_price = Number(listPirce).toLocaleString();
     } else {
-        self.args.data.list_price = Number(parseFloat(self.args.data.list_price)).toLocaleString(2);
+        if (window.$viewData.type === 'purchase') {
+          self.args.data.list_price = Number(listPirce / 10000).toLocaleString(2);
+        } else {
+          self.args.data.list_price = Number(listPirce).toLocaleString(2);
+        }
     }
 
     div.innerHTML = '<div class="marker-container overlay">'+
@@ -40,7 +45,6 @@ HouseMarker.prototype.onAdd = function () {
     }
     
     google.maps.event.addDomListener(div, "click", function(event) {
-        // alert('You clicked on a custom marker!');
         google.maps.event.trigger(self, "click");
     });
     

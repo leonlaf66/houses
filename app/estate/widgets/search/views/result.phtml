@@ -74,7 +74,9 @@ h2.location {
 						<span><?php $_t('Living area')?> <?php echo RetsHtml::getValueHtml($rets, 'square_feet', ['suffix'=>'m<sup>2</sup>'])?></span>
 					</div>
 					<div class="price">
-						 <label><?php $_t('Pirce')?></label>
+						 <label>
+                 <?php echo tt('Pirce', \WS::$app->share('rets.property') === 'purchase' ? '售价' : '价格')?>
+             </label>
 						 <span class="default"><?php echo RetsHtml::getValueHtml($rets, 'list_price')?></span>
 						 <?php if (WS::$app->share('rets.property') === 'purchase'):?>
 						 	<span class="rmb">约人民币<?php echo number_format(intval($rets->list_price) * 6.9506 / 10000, 1)?>万</span>

@@ -67,7 +67,7 @@ class MapController extends Controller
                 $d['id'],
                 $d['latitude'],
                 $d['longitude'],
-                floatval($d['list_price']) / 10000,
+                floatval($d['list_price']),
                 $porpTypeOptions[$d['prop_type']] ?? ''
             ]);
         }, $query->all());
