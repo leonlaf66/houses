@@ -92,28 +92,35 @@ bShare.addEntry({
                             <li class="field">
                                 <?php echo RetsHtml::getFieldHtml($rets, 'prop_type_name')?>
                             </li>
-                            <li class="field">
-                                <?php echo RetsHtml::getFieldHtml($rets, 'no_bedrooms')?>
-                            </li>
-                            <li class="field-group">
-                                <div class="lay-g">
-                                    <div class="lay-u-1-2">
-                                        <div class="field">
-                                            <?php echo RetsHtml::getFieldHtml($rets, 'no_full_baths')?>
-                                        </div>
-                                    </div>
-                                    <div class="lay-u-1-2">
-                                        <div class="field">
-                                            <?php echo RetsHtml::getFieldHtml($rets, 'no_half_baths')?>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
+                            <?php if (!$rets->isLand()):?>
+                              <li class="field">
+                                  <?php echo RetsHtml::getFieldHtml($rets, 'no_bedrooms')?>
+                              </li>
+                              <li class="field-group">
+                                  <div class="lay-g">
+                                      <div class="lay-u-1-2">
+                                          <div class="field">
+                                              <?php echo RetsHtml::getFieldHtml($rets, 'no_full_baths')?>
+                                          </div>
+                                      </div>
+                                      <div class="lay-u-1-2">
+                                          <div class="field">
+                                              <?php echo RetsHtml::getFieldHtml($rets, 'no_half_baths')?>
+                                          </div>
+                                      </div>
+                                  </div>
+                              </li>
+                            <?php endif?>
                             <li class="field">
                                 <?php echo RetsHtml::getFieldHtml($rets, 'area')?>
                             </li>
                             <li class="field">
-                                <?php echo RetsHtml::getFieldHtml($rets, 'square_feet', ['title'=>tt('Living area', '居住面积')])?>
+                                <?php if ($rets->isLand()):?>
+                                    <?php echo RetsHtml::getFieldHtml($rets, 'lot_size', ['title'=>tt('Lot size', '面积')])?>
+                                    <div style="margin-bottom:60px"></div>
+                                <?php else:?>
+                                    <?php echo RetsHtml::getFieldHtml($rets, 'square_feet', ['title'=>tt('Living area', '居住面积')])?>
+                                <?php endif?>
                             </li>
                             <li style="padding-top:8px">
                                 <div class="bshare-custom">

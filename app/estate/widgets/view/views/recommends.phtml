@@ -33,7 +33,11 @@
                         <div class="info2">
                             <span class="left"><?php echo $_render->get('prop_type_name')['value']?></span>
                             <span class="right">
-                                <?php echo $_render->get('square_feet')['formatedValue']?>
+                              <?php if ($_rets->prop_type === 'LD'):?>
+                                  <?php echo $_render->get('lot_size')['formatedValue']?>
+                              <?php else:?>
+                                  <?php echo $_render->get('square_feet')['formatedValue']?>
+                              <?php endif?>
                             </span>
                         </div>
                         <div class="clear"></div>

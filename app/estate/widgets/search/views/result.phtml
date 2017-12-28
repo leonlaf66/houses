@@ -71,10 +71,16 @@ h2.location {
 						<?php echo $rets->getLocation()?>
 					</div>
 					<div class="fields1" style="white-space:nowrap">
-						<span><?php $_t('Bedrooms')?> <?php echo RetsHtml::getValueHtml($rets, 'no_bedrooms')?></span> | 
-						<span><?php $_t('Full baths')?> <?php echo RetsHtml::getValueHtml($rets, 'no_full_baths')?></span> 
-						<span><?php $_t('Half baths')?> <?php echo RetsHtml::getValueHtml($rets, 'no_half_baths')?></span> | 
-						<span><?php $_t('Living area')?> <?php echo RetsHtml::getValueHtml($rets, 'square_feet')?></span>
+            <?php if (! $rets->isLand()):?>
+						  <span><?php $_t('Bedrooms')?> <?php echo RetsHtml::getValueHtml($rets, 'no_bedrooms')?></span> |
+						  <span><?php $_t('Full baths')?> <?php echo RetsHtml::getValueHtml($rets, 'no_full_baths')?></span>
+						  <span><?php $_t('Half baths')?> <?php echo RetsHtml::getValueHtml($rets, 'no_half_baths')?></span> |
+						<?php endif?>
+            <?php if ($rets->isLand()):?>
+              <span><?php $_t('Lot size')?> <?php echo RetsHtml::getValueHtml($rets, 'lot_size')?></span>
+            <?php else:?>
+              <span><?php $_t('Living area')?> <?php echo RetsHtml::getValueHtml($rets, 'square_feet')?></span>
+            <?php endif?>
 					</div>
 					<div class="price">
 						 <label>
