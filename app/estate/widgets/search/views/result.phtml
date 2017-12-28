@@ -30,6 +30,9 @@ h2.location {
 .rets-results .btn-like.active:hover .iconfont{
     color:#a9cd3a;
 }
+<?php if (\WS::$app->language === 'en-US'):?>
+  .attr-suffix {margin-left:5px;}
+  <?php endif?>
 </style>
 <div class="rets-results">
 	<?php if(empty($list)):?>
