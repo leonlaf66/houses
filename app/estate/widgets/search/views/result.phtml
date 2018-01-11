@@ -84,7 +84,7 @@ h2.location {
 					</div>
 					<div class="price">
 						 <label>
-                 <?php echo tt('Pirce', \WS::$app->share('rets.property') === 'purchase' ? '售价' : '价格')?>
+                 <?php echo tt('Pirce', \WS::$app->share('rets.property') === 'purchase' ? '售价' : '租金')?>
              </label>
 						 <span class="default"><?php echo RetsHtml::getValueHtml($rets, 'list_price')?></span>
 						 <?php if (WS::$app->share('rets.property') === 'purchase'):?>

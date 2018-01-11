@@ -25,14 +25,17 @@ HouseMarker.prototype.onAdd = function () {
     }
 
     listPirce = parseFloat(self.args.data.list_price);
-    if (document.getElementById('language').getAttribute('content') === 'en-US') {
+    if (!self.args.data.hasOwnProperty('price_flag')) {
+      if (document.getElementById('language').getAttribute('content') === 'en-US') {
         self.args.data.list_price = Number(listPirce).toLocaleString();
-    } else {
+      } else {
         if (window.$viewData.type === 'purchase') {
           self.args.data.list_price = Number(listPirce / 10000).toLocaleString(2);
         } else {
           self.args.data.list_price = Number(listPirce).toLocaleString(2);
         }
+      }
+      self.args.data.price_flag = true
     }
 
     div.innerHTML = '<div class="marker-container overlay">'+
