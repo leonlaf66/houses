@@ -46,7 +46,7 @@ class Page extends \yii\base\Component
             }
             $webAppPath['language'] = WS::$app->language;
 
-            $targetUrl = $webAppPath[0];
+            $targetUrl = '/'.WS::$app->area->id.$webAppPath[0];
             unset($webAppPath[0]);
             if (count($webAppPath) > 0) {
                 $targetUrl .= '?'.http_build_query($webAppPath);
