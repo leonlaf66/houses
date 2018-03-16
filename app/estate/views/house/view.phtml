@@ -46,7 +46,18 @@
     color:#a9cd3a;
 }
 body.estate-house-view .base-information .fields .field {
-    padding:3px 0;
+    padding:1px 0;
+}
+body.estate-house-view .prop-type-rn .base-information .fields .field {
+  padding:3px 0;
+}
+.base-information .price .est-value {
+  display:block;
+  font-size:14px;
+  color:#f15044;
+}
+.base-information .price .est-value > i {
+  margin-right:4px;
 }
 #bsWXBox {
     box-sizing: content-box;
@@ -59,7 +70,7 @@ bShare.addEntry({
 });
 
 </script>
-<div class="container mt20">
+<div class="container mt20 prop-type-<?php echo strtolower($rets->prop_type)?>">
     <div class="lay-g">
         <div class="lay-u-5-6 pr20">
             <div class="lay-g" style="border-bottom: solid 1px #ddd;margin-bottom: 20px;">
@@ -86,6 +97,10 @@ bShare.addEntry({
                             <p class="price">
                                 <span class="value"><?php echo RetsHtml::getValueHtml($rets, 'list_price')?></span>
                                 <span class="value-addi">(约人民币<?php echo number_format(intval($rets->list_price) * 6.9506 / 10000, 1)?>万)</span>
+                                <span class="est-value">
+                                  <i class="iconfont icon-bi"></i>
+                                    <?php _tt('UStamite', '米乐居估价')?>&nbsp;<?php echo $rets->getEstPrice()?>
+                                </span>
                             </p>
                         <?php endif?>
                         <ul class="fields">
