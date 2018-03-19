@@ -34,6 +34,7 @@ class Roi extends \yii\base\Widget
         $aveResult = WS::$app->db->createCommand('select * from zipcode_roi_ave where "ZIP_CODE"=:zip', [
                 ':zip' => $zipCode
             ])->queryOne();
+        $aveResult['AVE_ROI_CASH'] = $aveResult['AVE_ROI_CASH'] * 100;
         if (! $aveResult) {
             $aveResult = [
                 'AVE_ROI_CASH' => null,
