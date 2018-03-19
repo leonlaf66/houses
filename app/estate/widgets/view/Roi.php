@@ -12,15 +12,23 @@ class Roi extends \yii\base\Widget
         $listNo = $this->rets->list_no;
         $zipCode = $this->rets->zip_code;
 
-        $result = WS::$app->mlsdb->createCommand('select est_roi * 100 as "EST_ROI_CASH", est_rental * 12 as "EST_ANNUAL_INCOME_CASH" from mls_rets where "list_no"=:id', [
-                ':id' => $listNo
-            ])->queryOne();
+        $result = [
+            'EST_ROI_CASH' => null,
+            'EST_ANNUAL_INCOME_CASH' => null
+        ];
 
-        if (! $result) {
-            $result = [
-                'EST_ROI_CASH' => null,
-                'EST_ANNUAL_INCOME_CASH' => null
-            ];
+        $estimation = WS::$app->mlsdb->createCommand('select estimation from mls_rets where "list_no"=:id', [
+                ':id' => $listNo
+            ])->queryScalar();
+
+        if ($estimation) {
+            $estimation = json_decode($estimation);
+            if ($estimation->est_roi) {
+                $result['EST_ROI_CASH'] = $estimation->est_roi * 100;
+            }
+            if ($estimation->est_rental) {
+                $result['EST_ANNUAL_INCOME_CASH'] = $estimation->est_rental * 12;
+            }
         }
 
         $aveResult = WS::$app->db->createCommand('select * from zipcode_roi_ave where "ZIP_CODE"=:zip', [
