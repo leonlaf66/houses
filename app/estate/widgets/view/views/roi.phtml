@@ -45,7 +45,7 @@
                        <span>
                         <?php if ($result['AVE_ANNUAL_INCOME_CASH']):?>
                           <?php if (\WS::$app->language === 'en-US'):?>
-                              $<?php echo number_format($result['AVE_ANNUAL_INCOME_CASH'], 2)?>
+                              $<?php echo number_format($result['AVE_ANNUAL_INCOME_CASH'], 0)?>
                           <?php else:?>
                               <?php echo number_format($result['AVE_ANNUAL_INCOME_CASH'] / 10000, 2)?>万美元
                           <?php endif?>
