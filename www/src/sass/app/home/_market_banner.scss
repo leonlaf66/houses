@@ -23,3 +23,12 @@
         }
     }
 }
+
+.home-market-banner {
+    .market-price.up::after {
+        content: '↑';
+    }
+    .market-price.down::after {
+        content: '↓';
+    }
+}

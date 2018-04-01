@@ -129,3 +129,98 @@ body.estate-house-view {
         }
     }
 }
+
+body.estate-house-view {
+    .base-information .attr-label {
+        font-weight:200;
+        color:#666;
+    }
+    .base-information .attr-label:after {
+        content: ':';
+    }
+
+    .base-information {
+        padding-bottom: 12px;
+    }
+    .base-information > h1 {
+        position:relative;
+        padding-right: 15px;
+    }
+    .base-information .btn-like {
+        position: absolute;
+        top: 0;
+        right: 0;
+    }
+    .base-information .btn-like .iconfont {
+        font-size: 24px;
+        color: #ccc;
+    }
+    .base-information .btn-like:hover .iconfont{
+        color:#99bd2a;
+    }
+    .base-information .btn-like.active .iconfont {
+        color:#99bd2a;
+    }
+    .base-information .btn-like.active:hover .iconfont{
+        color:#a9cd3a;
+    }
+    .base-information .fields .field {
+        padding:1px 0;
+    }
+    .prop-type-rn .base-information .fields .field {
+        padding:3px 0;
+    }
+    .base-information .price .est-value {
+        display:block;
+        font-size:14px;
+        color:#f15044;
+    }
+    .base-information .price .est-value > i {
+        margin-right:4px;
+    }
+    #bsWXBox {
+        box-sizing: content-box;
+    }
+}
+
+body.estate-house-view {
+    .rets-recommend-view .image-shower {
+        background-size: cover;
+        background-position: center center;
+        width:223px;
+        height:174px;
+    }
+}
+
+body.estate-house-view {
+    .catalog-contact-banner {}
+    .catalog-contact-banner > li {padding:3px 0;color:#777;font-size:14px;}
+    .catalog-contact-banner > li > i.iconfont{display:inline-block;margin-right:5px;font-size:20px;vertical-align:middle;}
+}
+
+body.estate-house-view {
+    .rets-go-tour{}
+    #go-tour-form{padding:10px 0;}
+    #date-input-box{border:solid 1px #ddd;margin-bottom: 10px;}
+    #txt_day{width:80%;padding: 6px 3px;border-width:0}
+    .rets-go-tour .icon-date{
+        display:inline-block;display: inline-block;
+        float: right;
+        margin-right: 5px;
+        font-size: 24px;
+        color: #999;
+    }
+    #date-input-box:hover .icon-date{color:#666;}
+    .rets-go-tour .bottom-btns{margin-top:20px;text-align:center;}
+
+    .slider-container .scale > span:nth-child(1) {
+        left:10%;
+    }
+}
+
+body.estate-house-view {
+    #calculator-form-window .list-group-item>.badge {
+        background: transparent;
+        color: #333;
+    }
+}

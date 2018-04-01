@@ -5,7 +5,24 @@ use WS;
 
 class SearchAutocomplete
 {
-    public static function map()
+    public static function map($isLease)
+    {
+        $stateId = WS::$app->area->stateId;
+
+        if ($stateId === 'MA') {
+            return self::getSearchListForMA();
+        }
+
+        return \models\City::getSearchList($stateId, function ($query) use ($isLease) {
+            if ($isLease) {
+                $query->innerJoin('listhub_index i', "e.id=i.city_id and i.prop_type='RN'");
+            } else {
+                $query->innerJoin('listhub_index i', "e.id=i.city_id and i.prop_type<>'RN'");
+            }
+        });
+    }
+
+    public static function getSearchListForMA()
     {
         $items = WS::$app->cache->get('estate.autocomplete.items', []);
         if (empty($items)) {

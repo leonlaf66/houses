@@ -1,59 +1,39 @@
+<?php
+  use module\estate\helpers\FieldHtml;
+  use module\estate\helpers\FieldFilter;
+?>
 <style>
 .rets-roi-view .info-col.invalid > span{color:#aaa;font-weight:200;}
 </style>
-<?php if ($result):?>
+<?php if ($data):?>
     <div class="rets-view-block rets-roi-view">
         <div class="block-heading"><?php _tt('Uestimate', '投资回报率')?></div>
         <table class="table-info">
             <tbody>
                 <th>
-                    <td class="info-col <?php echo is_null($result['EST_ROI_CASH']) ? 'invalid' : ''?>">
+                    <td class="info-col <?php echo is_null($data['est_roi_cash']) ? 'invalid' : ''?>">
                         <span>
-                            <?php if ($result['EST_ROI_CASH']):?>
-                                <?php echo number_format($result['EST_ROI_CASH'], 2)?>%
-                            <?php else:?>
-                              <?php _tt('Unknown', '未提供')?>
-                            <?php endif?>
+                            <?php echo FieldHtml::valueHtml($data['est_roi_cash'], 'percent')?>
                         </span>
                         <label><?php _tt('Uestimated ROI (Cash)', '投资回报(全款)')?></label>
                     </td>
-                    <td class="info-col <?php echo is_null($result['AVE_ROI_CASH']) ? 'invalid' : ''?>">
+                    <td class="info-col <?php echo is_null($data['ave_roi_cash']) ? 'invalid' : ''?>">
                         <span>
-                            <?php if ($result['AVE_ROI_CASH']):?>
-                              <?php echo number_format($result['AVE_ROI_CASH'], 2)?>%
-                            <?php else:?>
-                              <?php _tt('Unknown', '未提供')?>
-                            <?php endif?>
+                            <?php echo FieldHtml::valueHtml($data['ave_roi_cash'], 'percent')?>
                         </span>
                         <label><?php _tt('Area ROI (Cash)', '周边投资回报(全款)')?></label>
                     </td>
-                    <td class="info-col <?php echo is_null($result['EST_ANNUAL_INCOME_CASH']) ? 'invalid' : ''?>">
+                    <td class="info-col <?php echo is_null($data['est_annual_income_cash']) ? 'invalid' : ''?>">
                        <span>
-                        <?php if ($result['EST_ANNUAL_INCOME_CASH']):?>
-                          <?php if (\WS::$app->language === 'en-US'):?>
-                              $<?php echo number_format($result['EST_ANNUAL_INCOME_CASH'], 0)?>
-                          <?php else:?>
-                              <?php echo number_format($result['EST_ANNUAL_INCOME_CASH'] / 10000, 2)?>万美元
-                          <?php endif?>
-                        <?php else:?>
-                            <?php _tt('Unknown', '未提供')?>
-                        <?php endif?>
+                         <?php echo FieldHtml::valueHtml($data['est_annual_income_cash'], 'money')?>
                        </span>
                         <label><?php _tt('Net Income (Cash)', '年净收入预期(全款)')?></label>
                     </td>
-                    <td class="info-col <?php echo is_null($result['AVE_ANNUAL_INCOME_CASH']) ? 'invalid' : ''?>">
+                    <td class="info-col <?php echo is_null($data['ave_annual_income_cash']) ? 'invalid' : ''?>">
                        <span>
-                        <?php if ($result['AVE_ANNUAL_INCOME_CASH']):?>
-                          <?php if (\WS::$app->language === 'en-US'):?>
-                              $<?php echo number_format($result['AVE_ANNUAL_INCOME_CASH'], 0)?>
-                          <?php else:?>
-                              <?php echo number_format($result['AVE_ANNUAL_INCOME_CASH'] / 10000, 2)?>万美元
-                          <?php endif?>
-                        <?php else:?>
-                           <?php _tt('Unknown', '未提供')?>
-                        <?php endif?>
+                         <?php echo FieldHtml::valueHtml($data['ave_annual_income_cash'], 'money')?>
                        </span>
-                        <label><?php _tt('Area Avg. Net Income (Cash) ', '区域平均年净收入(全款)')?></label>
+                       <label><?php _tt('Area Avg. Net Income (Cash) ', '区域平均年净收入(全款)')?></label>
                     </td>
                 </th>
             </tbody>

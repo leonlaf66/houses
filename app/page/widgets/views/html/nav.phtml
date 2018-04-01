@@ -14,23 +14,45 @@ $currentUrl = \WS::$app->request->getHostInfo().\WS::$app->request->url;
             </div>
             <?php if (WS::$app->controller->module->id.'-'.WS::$app->controller->id.'-'.WS::$app->controller->action->id === 'home-default-index'):?>
                 <a href="http://www<?php echo domain()?>/" class="area-switcher-btn" href="javascript:void(0)">
-                    <i class="iconfont icon-area"></i><?php _t('city', 'Boston')?>
+                    <i class="iconfont icon-area"></i><?php echo tt(\WS::$app->area->getName())?>
                 </a>
             <?php endif?>
             <?php 
                 $_menuItems = [
-                    ['label' => t('app/nav', 'BUY & SELL'), 'url' => '/house/purchase/', 'active'=>$_actionNavId === 'purchase'],
-                    ['label' => t('app/nav', 'SCHOLL DISTRICTSS'), 'url' => ['/schooldistrict/default/index'], 'active'=>$_actionNavId === 'schooldistrict'],
-                    ['label' => t('app/nav', 'RENTAL'), 'url' => '/house/lease/', 'active'=>$_actionNavId === 'lease'],
-                    ['label' => t('app/nav', 'PRO SERVICE'), 'url' => ['/yellowpage/default/index'], 'active'=>$_actionNavId === 'yellowpage'],
-                    ['label' => t('app/nav', 'NEWS'), 'url' => ['/news/default/index'], 'active'=>$_actionNavId === 'news']
+                    [
+                        'label' => t('app/nav', 'BUY & SELL'),
+                        'url' => '/house/purchase/',
+                        'active'=>$_actionNavId === 'purchase'
+                    ],
+                    [
+                        'label' => t('app/nav', 'SCHOLL DISTRICTSS'),
+                        'url' => ['/schooldistrict/default/index'],
+                        'active'=>$_actionNavId === 'school-district',
+                        'disabled' => \WS::$app->area->id !== 'ma'
+                    ],
+                    [
+                        'label' => t('app/nav', 'RENTAL'),
+                        'url' => '/house/lease/',
+                        'active'=>$_actionNavId === 'lease'],
+                    [
+                        'label' => t('app/nav', 'PRO SERVICE'),
+                        'url' => ['/yellowpage/default/index'],
+                        'active'=>$_actionNavId === 'yellowpage'
+                    ],
+                    [
+                        'label' => t('app/nav', 'NEWS'),
+                        'url' => ['/news/default/index'],
+                        'active'=>$_actionNavId === 'news'
+                    ]
                 ];
             ?>
             <ul class="menu-items">
                 <?php foreach($_menuItems as $_item):?>
+                    <?php if (!array_get($_item, 'disabled', false)):?>
                     <li class="menu-item <?php echo $_item['active'] ? 'active' : ''?> <?php echo isset($_item['class']) ? $_item['class'] : ''?>">
                         <a class="menu-link" href="<?php echo $urlManager->createUrl($_item['url'])?>"><?php echo $_item['label']?></a>
                     </li>
+                    <?php endif?>
                 <?php endforeach?>
             </ul>
             <div class="quick-links">
@@ -49,20 +71,10 @@ $currentUrl = \WS::$app->request->getHostInfo().\WS::$app->request->url;
                         </ul>
                     </div>
                 <?php endif?>
-                <!--
-                <a class="quick-link" href="#"><span class="iconfont icon-message"></span>MESSAGES</a>
-                <a class="quick-link" href="#"><span class="iconfont icon-help"></span>HELP</a>
-                -->
                 <?php echo \module\page\widgets\Language::widget()?>
-                <!--
-                <?php if (\WS::$app->language === 'en-US'):?>
-                    <a class="quick-link" href="/language/zh-CN/"><span class="iconfont icon-chinese"></span>中文</a>
-                <?php else:?>
-                    <a class="quick-link" href="/language/en-US/"><span class="iconfont icon-english"></span>English</a>
-                <?php endif?>-->
             </div>
         </div>
     </div>
 </nav>
 
-<div style="float:none;clear:both;"></div>
+<div class="clear"></div>

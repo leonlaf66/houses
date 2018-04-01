@@ -5,15 +5,13 @@ use module\estate\helpers\SearchUrl;
 
 class Result extends \yii\base\Widget
 {
-    public $search = null;
+    public $results = [];
 
     public function run()
-    {  
-        $search = $this->search;
-
+    {
         return $this->render('result.phtml', [
-            'search'=>$search
-        ]);  
+            'results' => $this->results
+        ]);
     }
 
     public function createPageUrl($page)

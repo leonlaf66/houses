@@ -100,7 +100,7 @@ body.en-us .table-info .info-col>label{
                 </div>
                 <div class="houses-go">
                     <?php if ($model->getSummary('total') > 0):?>
-                        <a class="go-houses-btn" target="_blank" href="/house/purchase/school-districtss/sd-<?php echo str_replace('/', '%7C', strtolower($model->code))?>/">
+                        <a class="go-houses-btn" target="_blank" href="/house/purchase/school-district/sd-<?php echo str_replace('/', '%7C', strtolower($model->code))?>/">
                             <?php echo sprintf(tt('%d on Market', '共%d套在售'), $model->getSummary('total'))?>
                             <span class="iconfont icon-goto"></span>
                         </a>

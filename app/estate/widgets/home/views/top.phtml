@@ -1,33 +1,34 @@
 <?php
-use module\estate\helpers\Rets as RetsHelper;
-use module\estate\helpers\RetsHtml;
+use module\estate\helpers\FieldFilter;
+use module\estate\helpers\FieldHtml;
 ?>
 
 <div class="home-top-houses">
-    <h2><?php _t('rets', 'LUXURY HOUSE')?></h2>
-    <div class="desc"><?php _t('rets', 'Featuring luxury quality houses in Massachusetts')?></div>
+  <h2><?php _t('rets', 'LUXURY HOUSE')?></h2>
+  <div class="desc">
+      <?php _tt('Featuring luxury quality houses in '.\WS::$app->area->getName()[0], \WS::$app->area->getName()[1].'地区精品豪宅')?>
+  </div>
     <?php foreach($groups as $items):?>
         <div class="lay-g row">
             <?php foreach($items as $item):?>
-                <?php 
-                    $_rets = \common\estate\Rets::findOne($item['id']);
-                    if (! $_rets) continue;
-                    $_render = $_rets->render();
+                <?php
+                    if (!isset($item['house'])) continue;
+                    $_house = $item['house'];
                 ?>
                 <div class="col lay-u-<?php echo $item['col_rule']?>">
                     <div class="rets-item">
                         <div class="image-box">
-                            <a style="display:block;" href="<?php echo RetsHelper::getUrl($_rets)?>" target="_blank">
+                            <a style="display:block;" href="<?php echo FieldFilter::viewUrl($_house)?>" target="_blank">
                                 <img src="<?php echo media_url($item['image'])?>">
                             </a>
-                            <span class="price"><?php echo RetsHtml::getValueHtml($_rets, 'list_price')?></span>
+                            <span class="price"><?php echo FieldHtml::valueHtml($_house['price'], 'money')?></span>
                         </div>
                         <div class="info">
                             <h2 class="location">
-                                <span class="address"><?php echo $_render->get('title')['value']?></span>
+                                <span class="address"><?php echo $_house['nm']?></span>
                             </h2>
                             <div class="rooms">
-                                <span><?php echo $_render->get('square_feet')['formatedValue']?></span>
+                                <span><?php echo FieldHtml::valueHtml($_house['square'], 'square')?></span>
                             </div>
                             <div class="clear"></div>
                         </div>
@@ -39,6 +40,7 @@ use module\estate\helpers\RetsHtml;
 </div>
 
 <script type="text/javascript">
+<?php $this->beginBlock('home-top-header')?>
 (function($){
     var $header = $('#header');
     var $window = $(window);
@@ -46,4 +48,7 @@ use module\estate\helpers\RetsHtml;
         $header.css('background-position-y', '-' + ($window.scrollTop() * 0.2) + 'px');
     });
 })(jQuery);
+<?php $this->endBlock()?>
 </script>
+
+<?php $this->registerJs($this->blocks['home-top-header'], $this::POS_END)?>

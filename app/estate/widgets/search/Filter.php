@@ -5,15 +5,10 @@ use WS;
 use yii\helpers\Url;
 
 class Filter extends \yii\base\Widget 
-{  
-    public $search = null;
-
+{
     public function run()
-    {  
-    	$search = $this->search;
-
+    {
         return $this->render('filter.phtml', [
-            'search'=>$search,
             'filters'=>[]
         ]);
     }
@@ -22,11 +17,11 @@ class Filter extends \yii\base\Widget
     {
         $tabs = [
             'search'=>t('rets-filter', 'SEARCH'),
-            'school-districtss'=>t('rets-filter', 'SCHOOL DISTRICTS'),
+            'school-district'=>t('rets-filter', 'SCHOOL DISTRICTS'),
             'subway'=>t('rets-filter', 'SUBWAY')
         ];
         if ($this->getProperty() === 'lease') {
-            unset($tabs['school-districtss']);
+            unset($tabs['school-district']);
         }
 
         return $tabs;

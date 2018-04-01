@@ -8,11 +8,11 @@
                 <span class="iconfont icon-search"></span>
                 <input id="<?php echo $id?>"
                     autocomplete="off"
-                    type="search" 
-                    name="q" 
-                    class="form-control search-input" 
+                    type="search"
+                    name="q"
+                    class="form-control search-input"
                     autocomplete="off"
-                    placeholder="<?php _tt('Search City, Zip code, Address, List No', '搜索城市，邮编，地址，房源号')?>" 
+                    placeholder="<?php _tt('Search City, Zip code, Address, List No', '搜索城市，邮编，地址，房源号')?>"
                     value="<?php echo $q?>">
                 <span class="typeahead__button">
                     <a id="go" href="javascript:void(0)"><?php echo t('search', 'SEARCH')?></a>
@@ -22,6 +22,7 @@
     </form>
 </div>
 <script type="text/javascript">
+<?php $this->beginBlock('search-input') ?>
 $('#go').on('click', function(){
     $(this).parents('form').submit();
     return false;
@@ -36,7 +37,9 @@ $('#<?php echo $id?>').bind('keydown', function (e) {
     }
 });
 
-/*http://www.runningcoder.org/jquerytypeahead/documentation/*/
+<?php
+ // http://www.runningcoder.org/jquerytypeahead/documentation/
+?>
 
 $.typeahead({
     input: '#<?php echo $id?>',
@@ -51,10 +54,6 @@ $.typeahead({
         cities: {
             display: "title",
             href: "<?php echo $resultUrl?>?q={{title}}",
-            /*
-            ajax: {
-                url: '<?php echo create_url('estate/autocomplete/index')?>'
-            },*/
             data: <?php echo json_encode($searchAutocompleteItems)?>
         }
     },
@@ -67,4 +66,7 @@ $.typeahead({
         }
     }
 })
+<?php $this->endBlock(); ?>
 </script>
+
+<?php $this->registerJs($this->blocks['search-input'], $this::POS_END)?>

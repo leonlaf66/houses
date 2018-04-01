@@ -19,13 +19,15 @@ class Input extends \yii\base\Widget
     }
 
     public function run()
-    {  
+    {
+        $isLease = WS::$app->share('rets.property') === 'lease';
+
         return $this->render('input.phtml', [
             'id'=>$this->id,
             'q'=>$this->getQueryText(),
             'requestUrl'=>$this->requestUrl,
             'resultUrl'=>$this->resultUrl,
-            'searchAutocompleteItems' => helpers\SearchAutocomplete::map()
+            'searchAutocompleteItems' => helpers\SearchAutocomplete::map($isLease)
         ]);  
     }
 

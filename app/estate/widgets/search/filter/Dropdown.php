@@ -7,13 +7,9 @@ use module\estate\helpers\Rets as RetsHelper;
 use module\cms\helpers\UrlParamEncoder;
 
 class Dropdown extends \yii\base\Widget 
-{  
-    public $search = null;
-
+{
     public function run()
-    {  
-        $search = $this->search;
-
+    {
         $filters = $this->getRules('dropdownFilters');
         foreach($filters as $filterId=>$filterOptions) {
             if (isset($_GET[$filterId]) && isset($filterOptions['apply'])) {

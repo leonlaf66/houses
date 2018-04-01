@@ -24,9 +24,11 @@
 </div>
 
 <div style="background:#f8f8f8">
-    <div class="container mt40">
-        <?php echo SchooldistrictWidgets\Top::widget()?>
-    </div>
+    <?php if (\WS::$app->area->id === 'ma'):?>
+      <div class="container mt40">
+          <?php echo SchooldistrictWidgets\Top::widget()?>
+      </div>
+    <?php endif?>
 
     <?php echo HomeWidgets\Market::widget()?>
 

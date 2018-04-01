@@ -5,12 +5,12 @@ use WS;
 
 class Gallery extends \yii\base\Widget 
 {  
-    public $rets = null;
+    public $data = [];
 
     public function run()
     {  
         return $this->render('gallery.phtml', [
-            'rets'=>$this->rets
+            'data'=>$this->data
         ]);
     }
 }

@@ -23,12 +23,12 @@ class Asset extends AssetBundle
         'static/css/main.css'
     ];
     public $js = [
-        'static/lib/jquery.min.js',
+        // 'static/lib/jquery.min.js',
         'static/lib/tipped-4.6.0-light/js/tipped/tipped.js',
         'static/js/jquery.typeahead.min.js',
         'static/js/app.js'
     ];
-    public $depends = [];
+    public $depends = ['\yii\web\JqueryAsset'];
 
     public $jsOptions = ['position'=>\yii\web\View::POS_HEAD];
 }

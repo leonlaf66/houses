@@ -1,9 +1,14 @@
 <div class="home-top-scholl-areas">
     <h2><?php _t('default', 'TOP PUBLIC SCHOOL DISTRICTS')?></h2>
-    <div class="desc"><?php _t('default', 'Top 30 Public Districts in Massachusetts.')?> <a href="/school-districts/" style="font-size:14px;text-decoration:underline;margin-left:7px"><?php _t('default', 'For more details')?></a></div>
+    <div class="desc"><?php _t('default', 'Top 30 Public Districts in Massachusetts.')?> <a href="/school-district/" style="font-size:14px;text-decoration:underline;margin-left:7px"><?php _t('default', 'For more details')?></a></div>
     <?php foreach($groups as $items):?>
         <div class="lay-g row">
             <?php foreach($items as $item):?>
+                <?php
+                  if (strpos($item['url'], '/school-districtss/') !== false) {
+                      $item['url'] = str_replace('/school-districtss/', '/school-district/', $item['url']);
+                  }
+                ?>
                 <div class="col lay-u-<?php echo $item['colRule']?>">
                     <a href="<?php echo $item['url']?>" target="_blank">
                         <div class="school-area">

@@ -17,6 +17,6 @@ class TopBanner extends \yii\base\Widget
 
     public function totals()
     {
-        return \common\estate\Report::totals();
+        return \module\estate\helpers\Summary::totals(\WS::$app->area->id);
     }
 }

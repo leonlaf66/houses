@@ -16,6 +16,7 @@
     		?>
 			<ul class="tabs">
 				<?php foreach($this->context->tabs() as $id=>$text):?>
+          <?php if (\WS::$app->area->id !== 'ma' && in_array($id, ['school-district', 'subway'])) continue;?>
 					<li class="<?php echo $this->context->isActivedTab($id) ? 'active' : ''?>">
 						<a href="<?php echo $this->context->createUrl($id)?>"><?php echo $text?></a>
 					</li>
@@ -42,41 +43,35 @@
 			</div>
 		<?php endif?>
 
-		<?php if ($_currentTabType === 'school-districtss'):?>
-			<div class="container">
-				<?php echo FilterWidgets\SchoolDistrictss::widget([
-					'search'=>$search
-				])?>
-			</div>
-		<?php endif?>
+    <?php if (\WS::$app->area->id === 'ma'):?>
+      <?php if ($_currentTabType === 'school-district'):?>
+        <div class="container">
+          <?php echo FilterWidgets\SchoolDistrict::widget()?>
+        </div>
+      <?php endif?>
+    <?php endif?>
 
-		<?php if ($_currentTabType === 'subway'):?>
-			<div class="container">
-				<?php echo FilterWidgets\Subway::widget([
-					'search'=>$search
-				])?>
-			</div>
-		<?php endif?>
+    <?php if (\WS::$app->area->id === 'ma'):?>
+      <?php if ($_currentTabType === 'subway'):?>
+        <div class="container">
+          <?php echo FilterWidgets\Subway::widget()?>
+        </div>
+      <?php endif?>
+    <?php endif?>
 	</div>
 	<div class="filters-container">
 		<div class="container">
-			<?php echo FilterWidgets\General::widget([
-				'search'=>$search
-			])?>
+			<?php echo FilterWidgets\General::widget()?>
 		</div>
 	</div>
 
 	<div class="toolbar-container mt20">
 		<div class="container lay-g">
 			<div class="lay-u-1-2">
-				<?php echo FilterWidgets\Dropdown::widget([
-					'search'=>$search
-				])?>
+				<?php echo FilterWidgets\Dropdown::widget()?>
 			</div>
 			<div class="lay-u-1-2 text-right">
-				<?php echo SearchWidgets\Sort::widget([
-					'search'=>$search
-				]);?>
+				<?php echo SearchWidgets\Sort::widget();?>
 			</div>
 		</div>
 	</div>

@@ -33,11 +33,12 @@ class HouseController extends Controller
             }
         }
 
+        // url编码参数映射
         UrlParamEncoder::setup($params, [
             'q'=>'q',
             'school-district'=>'sd',
             'subway-line'=>'sl',
-            'subway-station'=>'ss',
+            'subway-stations'=>'ss',
             'property'=>'pt',
             'price'=>'pr',
             'square'=>'sq',
@@ -50,79 +51,103 @@ class HouseController extends Controller
             'page'=>'p'
         ]);
 
-        // 类型
-        $search = \common\estate\HouseIndex::search(WS::$app->area->stateIds);
-        if ($type === 'lease') {
-            $search->query->andFilterWhere(['=', 'prop_type', 'RN']);
-        } else {
-            $search->query->andFilterWhere(['<>', 'prop_type', 'RN']);
-        }
+        $params = [
+            'type' => $type,
+            'q' => $q,
+            'page' => $req->get('page', 1),
+            'filters' => [],
+            'sort' => $req->get('sort', 0)
+        ];
 
-        $q = $req->get('q', '');
-        if ($q && strlen($q) > 0) {
-            $town = \models\Town::searchKeywords($q);
-            if ($town) { // 城市
-                $search->query->andWhere(['town' => $town->short_name]);
-            } else {
-                $zipcode = \models\ZipcodeTown::searchKeywords($q);
-                if ($zipcode) { // zip
-                    $search->query->andWhere(['town' => $zipcode->city_short_name]);
-                } else { // 普通搜索
-                    $qWhere = "to_tsvector('english', location) @@ plainto_tsquery('english', '{$q}')";
-                    $search->query->andWhere($qWhere);
+        $filterKeys = 'school-district,subway-line,subway-stations,property,price,square,beds,baths,parking,agrage,market-days,cp,cs';
+        $filterMaps = [
+            'school-district' => function ($townCode) {
+                $townCode = strtoupper($townCode);
+                $cityId = (new \yii\db\Query())
+                    ->select('id')
+                    ->from('town')
+                    ->where(['short_name' => $townCode])
+                    ->scalar();
+
+                return [
+                    'city_id',
+                    intval($cityId)
+                ];
+            },
+            'subway-stations' => function ($vals) {
+                return ['subway-stations', explode('a', $vals)];
+            },
+            'property' => function ($codes) {
+                $codes = explode('2', $codes);
+                return ['prop', $codes];
+            },
+            'cp' => function ($range) use ($type) {
+                $range = explode('-', $range);
+                $range = array_map(function ($d) use ($type) {
+                    return intval($d) * (\WS::$app->language === 'zh-CN' && $type === 'purchase' ? 10000 : 1);
+                }, $range);
+
+                return ['price', $range];
+            },
+            'cs' => function ($range) {
+                $range = explode('-', $range);
+                $range = array_map(function ($d) {
+                    return intval($d) * (\WS::$app->language === 'zh-CN' ? 0.092903 : 1);
+                }, $range);
+                return ['square', $range];
+            }
+        ];
+        foreach (explode(',', $filterKeys) as $filterKey) {
+            if ($filterValue = $req->get($filterKey)) { // 需要参数变换
+                if (isset($filterMaps[$filterKey])) {
+                    if (is_string($filterMaps[$filterKey])) {
+                        $filterKey = $filterMaps[$filterKey];
+                    } elseif (get_class($filterMaps[$filterKey]) === 'Closure') {
+                        if ($mapResult = ($filterMaps[$filterKey])($filterValue)) {
+                            list($filterKey, $filterValue) = $mapResult;
+                        }
+                    }
                 }
-            }
 
-            if (is_numeric($q)) { // mls id
-                $search->query->orWhere(['id' => $q]);
+                $params['filters'][$filterKey] = $filterValue;
             }
         }
+
+        // api 数据请求
+        $results = \WS::$app->houseApi->create("house/search")
+            ->setParams($params)
+            ->send()
+            ->asData();
 
         WS::$app->page->setId('estate/house/'.$type);
 
         return $this->render('index.phtml', [
             'tab'=>$tab,
             'type'=>$type,
-            'search'=>$search
+            'results'=>$results
         ]);
     }
 
     public function actionView($type = 'lease', $id = null)
-    {   
-        $rets = \common\estate\Rets::findOne($id);
-        
-        if (is_null($rets )) {
-            throw new \yii\web\HttpException(404, "Page not found");
-        }
-        if (!in_array($rets->state, WS::$app->area->stateIds)) {
-            //throw new \yii\web\HttpException(404, "Page not found");
-        }
+    {
+        $fields = 'id,nm,loc,prop,img_cnt,price,est_sale,sub_tnm,beds,baths,area,square,lot_size,latlng,polygons,roi,details,recommends,taxes,mls_id,area_id,tour,liked';
+
+        $houseData = \WS::$app->houseApi->create("house/{$id}")
+            ->setParams([
+                'fields' => $fields,
+                'recommends_options' => [
+                    'limit' => 4
+                ]
+            ])
+            ->send()
+            ->asData();
 
         WS::$app->page->setId('estate/house/'.$type.'/view');
-        WS::$app->page->bindParams(['name' => $rets->title()]);
-
-        // 获取城市边界
-        $mapCityId = strtolower(\models\Town::getMapValue($rets->town, 'name_en'));
-        $cityPolygons = \common\estate\helpers\Config::get('map.city.polygon/'.$mapCityId, []);
+        WS::$app->page->bindParams(['name' => $houseData['nm']]);
 
         return $this->render("view.phtml", [
             'type'=>$type,
-            'rets'=>$rets,
-            'polygons' => $cityPolygons
+            'data'=>$houseData
         ]);
-    }
-
-    public function actionTest($id) {
-        $rets = \common\estate\Rets::findOne($id);
-        dd($rets->render()->detail());
-    }
-
-    public function actionData($id)
-    {
-        $rets = \common\estate\Rets::findOne($id);
-        $data = $rets->attributes;
-        $data = array_merge($data, (array)$rets->json);
-        unset($data['json_data']);
-        echo json_encode($data);exit;
     }
 }

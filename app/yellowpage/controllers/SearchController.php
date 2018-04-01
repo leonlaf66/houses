@@ -11,7 +11,7 @@ class SearchController extends \yii\web\Controller
 
     public function actionResult($type=null, $city=null, $sort=null, $dir='')
     {
-        $collection = \models\YellowPage::query('ma');
+        $collection = \models\YellowPage::query(\WS::$app->area->id);
         
         if($type) {
             $typeId = intval($type);

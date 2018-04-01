@@ -5,23 +5,11 @@ use WS;
 use yii\helpers\Url;
 use module\estate\helpers\SearchUrl;
 
-class SchoolDistrictss extends \yii\base\Widget 
+class SchoolDistrict extends \yii\base\Widget
 {  
-    public $search = null;
-
     public function run()
-    {  
-        $search = $this->search;
-
-        if (isset($_GET['school-district'])) {
-            $schoolDistricts = explode('|', $_GET['school-district']);
-            foreach($schoolDistricts as $i=>$d) {
-                $schoolDistricts[$i] = strtoupper($d);
-            }
-            $search->query->andWhere(['in', 'town', $schoolDistricts]);
-        }
-
-        return $this->render('school-districtss.phtml', [
+    {
+        return $this->render('school-district.phtml', [
             'self'=>$this,
             'items'=>$this->getItems()
         ]);

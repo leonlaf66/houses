@@ -5,14 +5,12 @@ use WS;
 
 class Around extends \yii\base\Widget 
 {  
-    public $rets = null;
-    public $polygons = [];
+    public $data = [];
 
     public function run()
     {  
         return $this->render('around.phtml', [
-            'rets'=>$this->rets,
-            'polygons' => $this->polygons
+            'data'=>$this->data,
         ]);
     }
 }

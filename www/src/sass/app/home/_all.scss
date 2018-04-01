@@ -7,3 +7,20 @@ body.home-default-index {
 	@import "top_yellowpages";
 	@import "user_story";
 }
+
+body.home-default-index {
+	.search-content {
+		margin-top:0;
+		.type-tab .type-item.active:after{
+			z-index:1;
+		}
+		.type-tab.active{
+			color:#fff;
+		}
+		.tab-content {display:none;}
+		.tab-content.active {
+			display:block;
+			margin-top: -2px;
+		}
+	}
+}

@@ -1,18 +1,25 @@
-<?php 
-  use module\estate\helpers\RetsHtml;
-?>
 <div class="rets-view-block rets-detail-view">
-    
-    <div class="block-heading"><?php _t('rets', ' Property info')?></div>
-    
+  <div class="block-heading"><?php _t('rets', ' Property info')?></div>
+
     <?php foreach($detail as $group):?>
-        <div class="detail-block">
-            <div class="title"><?php _t('rets', $group['title'])?></div>
-            <div class="body">
-                <?php foreach($group['items'] as $item):?>
-                    <?php echo RetsHtml::parseFieldHtml($item)?>
-                <?php endforeach?>
-            </div>
+      <div class="detail-block">
+        <div class="title"><?php _t('rets', $group['title'])?></div>
+        <div class="body">
+            <?php foreach($group['items'] as $fieldId => $item):?>
+              <div class="attr-field attr-field-<?php echo $fieldId?>">
+                <label class="attr-label"><?php echo $item['title']?></label>
+                <span class="attr-value-box attr-no_rooms-box">
+                  <?php if (isset($item['prefix'])):?>
+                    <span class="attr-prefix"><?php echo $item['prefix']?></span>
+                  <?php endif?>
+                  <span class="attr-value"><?php echo $item['value']?></span>
+                  <?php if (isset($item['suffix'])):?>
+                    <span class="attr-suffix"><?php echo $item['suffix']?></span>
+                  <?php endif?>
+                </span>
+              </div>
+            <?php endforeach?>
         </div>
+      </div>
     <?php endforeach?>
 </div>

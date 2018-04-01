@@ -5,14 +5,12 @@ use WS;
 
 class Detail extends \yii\base\Widget 
 {  
-    public $rets = null;
+    public $data = [];
 
     public function run()
-    {  
-        $detail = $this->rets->render()->detail();
-
+    {
         return $this->render('detail.phtml', [
-            'detail'=>$detail
+            'detail'=>$this->data
         ]);
     }
 }

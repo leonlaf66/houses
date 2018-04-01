@@ -5,8 +5,9 @@ class Top extends \yii\base\Widget
 {
     public function run()
     {
-        $items = \models\SiteSetting::get('home.luxury.houses', 'ma');
-        
+        $items = \models\SiteSetting::get('home.luxury.houses', \WS::$app->area->id);
+        $this->fillHouses($items);
+
         /*分列 以便更容易渲染输出*/
         $groups = [];
         $groupIndex = 0;
@@ -30,5 +31,28 @@ class Top extends \yii\base\Widget
             'groups'=>$groups,
             'imageRoot'=>media_url('rets/home-top')
         ]);
+    }
+
+    public function fillHouses(& $items)
+    {
+        $listNos = array_map(function ($d) {
+            return $d['id'];
+        }, $items);
+
+        $houses = \WS::$app->houseApi->create('house/list-by-ids')
+            ->setParams([
+                'ids' => $listNos
+            ])
+            ->send()
+            ->asData();
+
+        $houses = \yii\helpers\ArrayHelper::index($houses, 'id');
+
+        foreach ($items as $idx => $item) {
+            $listNo = $item['id'];
+            if (isset($houses[$listNo])) {
+                $items[$idx]['house'] = $houses[$listNo];
+            }
+        }
     }
 }

@@ -36,7 +36,7 @@ return [
             ],
             'apply'=>function ($val, $search) {
                 $val = intval($val);
-                $search->query->andWhere(['>=', 'no_bedrooms', $val]);
+                $search->query->andWhere(['>=', 'no_beds', $val]);
             }
         ]
     ],
@@ -52,7 +52,7 @@ return [
             ],
             'apply'=>function ($val, $search) {
                 $val = intval($val);
-                $search->query->andWhere(['>=', 'no_bathrooms', $val]);
+                $search->query->andWhere('no_baths[1] >= :no', [':no' => $val]);
             }
         ],
         'parking'=>[

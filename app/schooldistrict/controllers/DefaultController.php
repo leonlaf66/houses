@@ -2,7 +2,7 @@
 namespace module\schooldistrict\controllers;
 
 use WS;
-use models\SchoolDistrict;
+use module\schooldistrict\models\SchoolDistrict;
 
 class DefaultController extends \yii\web\Controller
 {

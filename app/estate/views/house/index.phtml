@@ -5,11 +5,13 @@
 <?php echo \module\page\widgets\Nav::widget()?>
 
 <div class="filters-container">
-    <?php echo \module\estate\widgets\search\Filter::widget(['search'=>$search])?>
+    <?php echo \module\estate\widgets\search\Filter::widget()?>
 </div>
 
 <div class="result-container">
     <div class="container">
-        <?php echo \module\estate\widgets\search\Result::widget(['search'=>$search])?>
+        <?php echo \module\estate\widgets\search\Result::widget([
+            'results' => $results
+        ])?>
     </div>
 </div>

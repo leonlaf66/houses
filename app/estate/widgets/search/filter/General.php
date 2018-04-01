@@ -7,50 +7,10 @@ use module\estate\helpers\Rets as RetsHelper;
 use module\estate\helpers\SearchUrl;
 
 class General extends \yii\base\Widget 
-{  
-    public $search = null;
-
+{
     public function run()
-    {  
-        $search = $this->search;
-
-        if (isset($_GET['cp'])) {
-            $cp = $_GET['custom-price'] = $_GET['cp'];
-            list($start, $end) = explode('-', $cp);
-            $start = intval($start);
-            $end = intval($end);
-
-            if (WS::$app->language === 'zh-CN' && WS::$app->request->get('type') === 'purchase') { // 万美元单位
-                $start = $start * 10000;
-                $end = $end * 10000;
-            }
-
-            $search->query->andWhere(['>', 'list_price', $start]);
-            $search->query->andWhere(['<', 'list_price', $end]);
-        }
-
-        if (isset($_GET['cs'])) {
-            $cs = $_GET['custom-square'] = $_GET['cs'];
-            list($start, $end) = explode('-', $cs);
-            $start = intval($start);
-            $end = intval($end);
-
-            if (WS::$app->language === 'zh-CN') { // 平方米单位
-                $start = $start / 0.092903;
-                $end = $end / 0.092903;
-            }
-
-            $search->query->andWhere(['>', 'square_feet', $start]);
-            $search->query->andWhere(['<', 'square_feet', $end]);
-        }
-
+    {
         $filters = $this->getRules('generalFilters');
-        foreach($filters as $filterId=>$filterOptions) {
-            if (isset($_GET[$filterId]) && isset($filterOptions['apply'])) {
-                $values = $filterOptions['values'] ?? null;
-                ($filterOptions['apply'])($_GET[$filterId], $search, $values);
-            }
-        }
 
         return $this->render('general.phtml', [
             'self'=>$this,

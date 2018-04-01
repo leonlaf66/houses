@@ -15,14 +15,6 @@ class Subway extends \yii\base\Widget
 
         $stations = \module\catalog\models\SubwayStation::getAllStations();
 
-        if (isset($_GET['subway-station'])) {
-            $subwayStations = $_GET['subway-station'];
-            $subwayStations = explode('a', $subwayStations);
-            $search->query->andWhere(['&&', 'subway_stations', '{'.implode(',', $subwayStations).'}']);
-        } elseif (isset($_GET['subway-line'])) { // 否则才检测地铁线
-            $search->query->andWhere(['@>', 'subway_lines', '{'.$_GET['subway-line'].'}']);
-        }
-
         return $this->render('subway.phtml', [
             'self'=>$this,
             'stations'=>$stations,
@@ -52,7 +44,7 @@ class Subway extends \yii\base\Widget
             }
         }
 
-        return SearchUrl::to('subway-station', implode('a', $values));
+        return SearchUrl::to('subway-stations', implode('a', $values));
     }
 
     public function clearStationUrl($value)
@@ -65,15 +57,15 @@ class Subway extends \yii\base\Widget
         }
 
         if (count($values) === 0) {
-            return SearchUrl::to('subway-station', null);
+            return SearchUrl::to('subway-stations', null);
         }
 
-        return SearchUrl::to('subway-station', implode('a', $values));
+        return SearchUrl::to('subway-stations', implode('a', $values));
     }
 
     public function parseValues()
     {
-        $values = isset($_GET['subway-station']) ? $_GET['subway-station'] : null;
+        $values = isset($_GET['subway-stations']) ? $_GET['subway-stations'] : null;
         if ($values) {
             $values = explode('a', $values);
         } else {

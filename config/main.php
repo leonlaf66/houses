@@ -109,4 +109,4 @@ return \yii\helpers\ArrayHelper::merge(get_fdn_etc('web'), [
         '@bower'=>APP_ROOT.'/vendor/bower',
         'module'=>APP_ROOT.'/app',
     ]
-], include(__DIR__.'/local.php'));
+], include(__DIR__.'/api.php'), include(__DIR__.'/local.php'));

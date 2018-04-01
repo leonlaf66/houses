@@ -23,13 +23,6 @@ class InputAll extends \yii\base\Widget
     public function run()
     {  
         $types = $this->types;
-        /*
-        $types[0]['requestUrl'] = create_url($types[0]['requestUrl']);
-        $types[0]['resultUrl'] = create_url($types[0]['resultUrl']);
-
-        $types[1]['requestUrl'] = create_url($types[1]['requestUrl']);
-        $types[1]['resultUrl'] = create_url($types[1]['resultUrl']);
-        */
 
         return $this->render('input-all.phtml', [
             'types'=>$types

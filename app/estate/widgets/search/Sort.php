@@ -18,21 +18,11 @@ class Sort extends \yii\base\Widget
             '4'=>tt('Bedrooms up', '卧室由少到多')
         ];
         $map = [
-            '1'=>'list_price ASC, id DESC',
-            '2'=>'list_price DESC, id DESC',
-            '3'=>'no_bedrooms DESC, id DESC',
-            '4'=>'no_bedrooms ASC, id DESC'
+            '1'=>'list_price ASC, list_no DESC',
+            '2'=>'list_price DESC, list_no DESC',
+            '3'=>'no_bedrooms DESC, list_no DESC',
+            '4'=>'no_bedrooms ASC, list_no DESC'
         ];
-
-        if(isset($_GET['sort'])) {
-            $sort = $_GET['sort'];
-            if (isset($map[$sort])) {
-                $sortExpr = $map[$sort];
-                $this->search->query->orderBy($sortExpr);
-            }
-        } else {
-            $this->search->query->orderBy('list_date DESC, id DESC');
-        }
 
         return $this->render('sort.phtml', [
             'self'=>$this,

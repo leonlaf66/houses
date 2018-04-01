@@ -1,11 +1,3 @@
-<style>
-.home-market-banner .market-price.up::after {
-    content: '↑';
-}
-.home-market-banner .market-price.down::after {
-    content: '↓';
-}
-</style>
 <?php $t = lang('marketing')?>
 <div class="home-market-banner" style="height:<?php echo $market['height']?>px;background-image:url('<?php echo $market['backgroundImageUrl']?>')">
     <h3 class="heading"><?php $t($market['title'])?></h3>

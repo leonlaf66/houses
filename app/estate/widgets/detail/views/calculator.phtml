@@ -1,10 +1,13 @@
 <?php
-    $_rets = $this->context->rets;
     $t = lang('rets/calculator');
 ?>
 <?php 
     $this->registerJsFile('/static/js/calculate.js', ['position'=>$this::POS_HEAD]);
     $this->registerJsFile('http://d3js.org/d3.v3.min.js', ['position'=>$this::POS_HEAD]);
+    $this->registerJsFile('/static/js/house-view/calculator.js', [
+        'position'=>$this::POS_HEAD,
+        'depends'=>[\yii\web\JqueryAsset::className()],
+    ]);
 ?>
 
 <div class="rets-calculator side-block">
@@ -57,16 +60,12 @@
     <svg id="charts-result" width="100%" height="185px" style="margin-top:20px"></svg>
 </div>
 
-<script type="text/javascript" src="/static/js/house-view/calculator.js?v1.0.0.1"></script>
 <script type="text/javascript">
-executeCalculate('<?php echo $dataParams['pt']?>', <?php echo json_encode(is_english())?>); 
+<?php $this->beginBlock('house-view-calculator')?>
+executeCalculate('<?php echo $dataParams['pt']?>', <?php echo json_encode(is_english())?>);
 $('#btn-calculate').click(function () {
     executeCalculate('<?php echo $dataParams['pt']?>', <?php echo json_encode(is_english())?>);
 });
+<?php $this->endBlock()?>
 </script>
-<style type="text/css">
-    #calculator-form-window .list-group-item>.badge {
-        background: transparent;
-        color: #333;
-    }
-</style>
+<?php $this->registerJs($this->blocks['house-view-calculator'], $this::POS_END)?>

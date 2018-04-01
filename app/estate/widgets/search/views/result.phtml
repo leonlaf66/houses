@@ -2,10 +2,12 @@
     use module\estate\helpers\RetsHtml;
     use module\estate\helpers\Rets as RetsHelper;
     use module\cms\widgets\SeoLinkPager as LinkPager;
+    use module\estate\helpers\FieldFilter;
+    use module\estate\helpers\FieldHtml;
 
     $context = $this->context;
     
-    $list = RetsHelper::result($search);
+    $list = $results['items'];
     $_t = lang('rets');
 ?>
 <style type="text/css">
@@ -42,66 +44,59 @@ h2.location {
 	<?php endif?>
 	<div class="grid">
 		<?php foreach($list as $rets):?>
-			<?php
-				$url = RetsHelper::getUrl($rets);
-			?>
-		<div class="item" data-id="<?php echo $rets->list_no?>">
+		<div class="item" data-id="<?php echo array_get($rets, 'id')?>">
 			<div class="col col-main-image">
-				<a href="<?php echo $url?>" title="<?php echo $rets->title()?>" alt="<?php echo $rets->metaTitle()?>" target="_blank">
-					<div class="image-shower large" style="background-image:url(<?php echo $rets->getPhoto(0, 800, 800)?>)"></div>
+				<a href="<?php echo FieldFilter::viewUrl($rets)?>" title="<?php echo array_get($rets, 'nm')?>" alt="<?php echo ''?>" target="_blank">
+					<div class="image-shower large" style="background-image:url(<?php echo FieldFilter::photoUrl($rets, 0, 800, 800)?>)"></div>
 				</a>
 			</div>
 			<div class="col col-sub-images">
 				<div class="pl15 pr15">
-					<div class="image-shower smoll" style="background-image:url(<?php echo $rets->getPhoto(1, 600, 600)?>"></div>
-					<div class="image-shower smoll" style="background-image:url(<?php echo $rets->getPhoto(2, 600, 600)?>"></div>
+					<div class="image-shower smoll" style="background-image:url(<?php echo FieldFilter::photoUrl($rets, 1, 600, 600)?>"></div>
+					<div class="image-shower smoll" style="background-image:url(<?php echo FieldFilter::photoUrl($rets, 2, 600, 600)?>"></div>
 				</div>
 			</div>
 			<div class="col col-info">
 				<div class="pl15 pr15">
 					<h2 class="title">
-						<a href="<?php echo $url?>" alt="<?php echo $rets->metaTitle()?>" target="_blank">
-							<?php echo $rets->title()?>
+						<a href="<?php echo FieldFilter::viewUrl($rets)?>" alt="" target="_blank">
+							<?php echo array_get($rets, 'nm')?>
 						</a>
-						<a class="btn-like<?php echo $rets->isLiked() ? ' active' : ''?>" href="javascript:void(0)" title="<?php _tt('Favorite', '收藏')?>">
+						<a class="btn-like<?php echo array_get($rets, 'liked') ? ' active' : ''?>" href="javascript:void(0)" title="<?php _tt('Favorite', '收藏')?>">
 							<span class="iconfont icon-like_fill"></span>
 						</a>
 					</h2>
 					<div class="location">
-						<?php echo $rets->getLocation()?>
+						<?php echo array_get($rets, 'loc')?>
 					</div>
 					<div class="fields1" style="white-space:nowrap">
-            <?php if (! $rets->isLand()):?>
-						  <span><?php $_t('Bedrooms')?> <?php echo RetsHtml::getValueHtml($rets, 'no_bedrooms')?></span> |
-						  <span><?php $_t('Full baths')?> <?php echo RetsHtml::getValueHtml($rets, 'no_full_baths')?></span>
-						  <span><?php $_t('Half baths')?> <?php echo RetsHtml::getValueHtml($rets, 'no_half_baths')?></span> |
+            <?php if (array_get($rets, 'prop') !== 'LD'):?>
+						  <span><?php $_t('Bedrooms')?><?php echo FieldHtml::valueHtml($rets['beds'], 'unknown')?></span> |
+						  <span><?php $_t('Full baths')?> <?php echo FieldHtml::valueHtml($rets['baths'][0], 'unknown')?></span>
+						  <span><?php $_t('Half baths')?> <?php echo FieldHtml::valueHtml($rets['baths'][1], 'unknown')?></span> |
 						<?php endif?>
-            <?php if ($rets->isLand()):?>
-              <span><?php $_t('Lot size')?> <?php echo RetsHtml::getValueHtml($rets, 'lot_size')?></span>
+            <?php if (array_get($rets, 'prop') === 'LD'):?>
+              <span><?php $_t('Lot size')?> <?php echo FieldHtml::valueHtml($rets['lot_size'], 'square')?></span>
             <?php else:?>
-              <span><?php $_t('Living area')?> <?php echo RetsHtml::getValueHtml($rets, 'square_feet')?></span>
+              <span><?php $_t('Living area')?> <?php echo FieldHtml::valueHtml($rets['square'], 'square')?></span>
             <?php endif?>
 					</div>
 					<div class="price">
 						 <label>
                  <?php echo tt('Pirce', \WS::$app->share('rets.property') === 'purchase' ? '售价' : '租金')?>
              </label>
-						 <span class="default"><?php echo RetsHtml::getValueHtml($rets, 'list_price')?></span>
-						 <?php if (WS::$app->share('rets.property') === 'purchase'):?>
-						 	<span class="rmb">约人民币<?php echo number_format(intval($rets->list_price) * 6.9506 / 10000, 1)?>万</span>
-						 <?php else:?>
-						 	<span class="rmb">约人民币<?php echo number_format(intval($rets->list_price) * 6.9506, 0)?>元</span>
-						 <?php endif?>
+						 <span class="default"><?php echo FieldHtml::valueHtml($rets['price'], 'money')?></span>
+            <span class="rmb">约人民币<?php echo FieldHtml::valueHtml($rets['price'], 'moneyRmb')?></span>
 					</div>
 
 					<div class="tag-lines">
 						<div class="fields2">
-							<span style="color:#5F7FFF;border:solid 1px #5F7FFF"><?php echo $rets->propTypeName()?></span>
-							<span class="status"><?php echo $rets->statusName()?></span>
-							<span class="days"><?php echo $rets->getListDaysDescription()?></span>
+							<span style="color:#5F7FFF;border:solid 1px #5F7FFF"><?php echo FieldHtml::valueHtml($rets['prop'], 'housePropName')?></span>
+							<span class="status"><?php echo FieldFilter::statusName($rets['status'], $rets['prop'])?></span>
+							<span class="days"><?php echo FieldFilter::listDayDesc($rets['l_days'])?></span>
 						</div>
-						<?php 
-							$_tags = $rets->getTags();
+						<?php
+							$_tags = FieldFilter::tags(array_get($rets, 'tags', '00000'));
 						?>
 						<?php if (count($_tags) > 0):?>
 							<div class="fields3" style="margin-bottom:-8px">
@@ -119,8 +114,9 @@ h2.location {
 	</div>
 	<div class="pager">
 		<?php
+      $pagination = new yii\data\Pagination(['totalCount' =>$results['page_count'], 'pageSize' => $results['page_size'], 'page' => $results['current'] - 1]);
 			echo LinkPager::widget([
-			    'pagination' => $search->pagination,
+			    'pagination' => $pagination,
 			    'createUrlFn'=>function($page) use($context) {
 			    	return $context->createPageUrl($page);
 			    }

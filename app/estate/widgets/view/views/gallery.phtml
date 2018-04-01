@@ -1,19 +1,21 @@
 <?php
-    $photoCount = intval($rets->getJsonData('photo_count'));
+    use module\estate\helpers\FieldFilter;
+
+    $photoCount = intval($data['img_cnt']);
 ?>
 
 <div id="estate-media-gallery" class="media-gallery galleria" style="height:320px;">
     <?php if($photoCount > 0):?>
         <?php for($i=0;$i < $photoCount;$i++):?>
-            <a href="<?php echo $rets->getPhoto($i, 400, 330)?>">
-                <img src="<?php echo $rets->getPhoto($i, 70, 53)?>" 
-                    data-big="<?php echo $rets->getPhoto($i, 1920, 1080)?>">
+            <a href="<?php echo FieldFilter::photoUrl($data, $i, 400, 330)?>">
+                <img src="<?php echo FieldFilter::photoUrl($data, $i, 70, 53)?>"
+                    data-big="<?php echo FieldFilter::photoUrl($data, $i, 1920, 1080)?>">
             </a>
         <?php endfor?>
     <?php else:?>
-        <a href="<?php echo $rets->getPhoto(0, 400, 330)?>">
-            <img src="<?php echo $rets->getPhoto(0, 70, 53)?>" 
-                data-big="<?php echo $rets->getPhoto(0, 1920, 1080)?>">
+        <a href="<?php echo FieldFilter::photoUrl($data, 0, 400, 330)?>">
+            <img src="<?php echo FieldFilter::photoUrl($data, 0, 70, 53)?>"
+                data-big="<?php echo FieldFilter::photoUrl($data, 0, 1920, 1080)?>">
         </a>
     <?php endif?>
 </div>
