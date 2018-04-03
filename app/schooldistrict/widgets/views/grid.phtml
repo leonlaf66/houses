@@ -48,7 +48,7 @@
         <div class="row-body">
             <div class="col col1">
                 <a href="/school-district/<?php echo $item->id?>/">
-                    <img src="<?php echo media_url('school-area/images')?>/<?php echo str_replace('/', '&', strtoupper($item->code))?>.jpg">
+                    <img class="lazy" data-src="<?php echo media_url('school-area/images')?>/<?php echo str_replace('/', '&', strtoupper($item->code))?>.jpg">
                 </a>
             </div>
             <div class="col col2">

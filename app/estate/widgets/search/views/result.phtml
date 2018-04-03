@@ -47,13 +47,13 @@ h2.location {
 		<div class="item" data-id="<?php echo array_get($rets, 'id')?>">
 			<div class="col col-main-image">
 				<a href="<?php echo FieldFilter::viewUrl($rets)?>" title="<?php echo array_get($rets, 'nm')?>" alt="<?php echo ''?>" target="_blank">
-					<div class="image-shower large" style="background-image:url(<?php echo FieldFilter::photoUrl($rets, 0, 800, 800)?>)"></div>
+					<div class="image-shower large lazy" data-src="<?php echo FieldFilter::photoUrl($rets, 0, 800, 800)?>"></div>
 				</a>
 			</div>
 			<div class="col col-sub-images">
 				<div class="pl15 pr15">
-					<div class="image-shower smoll" style="background-image:url(<?php echo FieldFilter::photoUrl($rets, 1, 600, 600)?>"></div>
-					<div class="image-shower smoll" style="background-image:url(<?php echo FieldFilter::photoUrl($rets, 2, 600, 600)?>"></div>
+					<div class="image-shower smoll lazy" data-src="<?php echo FieldFilter::photoUrl($rets, 1, 600, 600)?>"></div>
+					<div class="image-shower smoll lazy" data-src="<?php echo FieldFilter::photoUrl($rets, 2, 600, 600)?>"></div>
 				</div>
 			</div>
 			<div class="col col-info">

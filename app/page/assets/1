@@ -23,7 +23,7 @@ class Asset extends AssetBundle
         'static/css/main.css'
     ];
     public $js = [
-	'/static/lib/lazyload.min.js',
+	'https://cdn.jsdelivr.net/npm/lazyload@2.0.0-beta.2/lazyload.js',
         // 'static/lib/jquery.min.js',
         'static/lib/tipped-4.6.0-light/js/tipped/tipped.js',
         'static/js/jquery.typeahead.min.js',
