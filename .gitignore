@@ -1,7 +1,7 @@
 .idea
 /config/local.php
 /vendor
-/www/.sass-cache
+/www/.sass-cache/
 /www/assets
 /www/node_modules
 /data
