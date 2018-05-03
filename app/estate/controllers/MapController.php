@@ -18,7 +18,7 @@ class MapController extends Controller
                 'schools' => \models\SchoolDistrict::dictOptions(),
                 'subwaies' => \models\SubwayStation::dictOptions(),
             ],
-            'searchAutocompleteItems' => helpers\SearchAutocomplete::map()
+            'searchAutocompleteItems' => helpers\SearchAutocomplete::map($type !== 'purchase')
         ]);
     }
 
