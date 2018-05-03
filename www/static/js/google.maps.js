@@ -1,6 +1,6 @@
 (function($){
       var currentClickMarker = null;
-
+      
       google.maps.Map.prototype.markers = [];
 
       google.maps.Map.prototype.createLocation = function(b, k) {
@@ -35,7 +35,7 @@
                     marker.infowindow.open(options.map, marker);
                 });
           }
-
+          
           return this.markers[id] = marker;
       };
 
@@ -105,9 +105,7 @@
           var georssLayer = new google.maps.KmlLayer(kml);
           georssLayer.setMap(this);
       };
-
-  console.log('google.gmap3.load');
-
+      
       $.fn.gmap3 = function(options) {
         var _default = {
            zoom: 8,

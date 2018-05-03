@@ -1,9 +1,9 @@
 <div class="rets-view-block rets-detail-view">
-  <div class="block-heading"><?php _t('rets', ' Property info')?></div>
+  <h2 class="block-heading"><?php _t('rets', ' Property info')?></h2>
 
     <?php foreach($detail as $group):?>
       <div class="detail-block">
-        <div class="title"><?php _t('rets', $group['title'])?></div>
+        <h3 class="title"><?php _t('rets', $group['title'])?></h3>
         <div class="body">
             <?php foreach($group['items'] as $fieldId => $item):?>
               <div class="attr-field attr-field-<?php echo $fieldId?>">

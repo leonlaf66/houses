@@ -13,11 +13,15 @@
     </select>
 </label>
 
-<script type="text/javascript">
+<script>
+<?php $this->beginBlock('search-sort') ?>
 (function($){
 $('#sort-selector').change(function () {
     var value = $(this).val();
     window.location.href = $(this).find('option[value='+value+']').attr('target');
 });
 })(jQuery);
+<?php $this->endBlock();?>
 </script>
+
+<?php $this->registerJs($this->blocks['search-sort'], $this::POS_END)?>

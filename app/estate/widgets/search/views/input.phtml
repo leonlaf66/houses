@@ -21,7 +21,7 @@
         </div>
     </form>
 </div>
-<script type="text/javascript">
+<script>
 <?php $this->beginBlock('search-input') ?>
 $('#go').on('click', function(){
     $(this).parents('form').submit();
@@ -40,7 +40,6 @@ $('#<?php echo $id?>').bind('keydown', function (e) {
 <?php
  // http://www.runningcoder.org/jquerytypeahead/documentation/
 ?>
-
 $.typeahead({
     input: '#<?php echo $id?>',
     minLength: 1,
@@ -65,7 +64,7 @@ $.typeahead({
             window.location.href = item.href
         }
     }
-})
+});
 <?php $this->endBlock(); ?>
 </script>
 

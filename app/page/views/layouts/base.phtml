@@ -31,16 +31,14 @@ use yii\widgets\Block;
     <meta id="login-status" content="<?php echo \WS::$app->user->isGuest ? 'false' : 'true'?>">
     <script src="http://tjs.sjs.sinajs.cn/open/api/js/wb.js" type="text/javascript" charset="utf-8"></script>
     <?php $this->head() ?>
-    <!--
-    <link href='http://fonts.googleapis.com/css?family=Lato&subset=latin,latin-ext' rel='stylesheet' type='text/css'>-->
-    <script type="text/javascript">
-    var urlQuery = <?php echo json_encode(\WS::$app->request->get(null, []))?>;
+    <script>
+    window.urlQuery = <?php echo json_encode(\WS::$app->request->get(null, []))?>;
     </script>
     <?php if (\Yii::$app->translationStatus):?>
         <style>
          t{border:dotted 1px red;}
         </style>
-        <script type="text/javascript">
+        <script>
             $(function(){
                 $('body').delegate('t', 'contextmenu', function(event) {
                     var $self = $(this),
@@ -71,7 +69,7 @@ use yii\widgets\Block;
 <?php $this->beginBody() ?>
     <?php echo $content;?>
 <?php $this->endBody() ?>
-<?php // echo \module\cms\widgets\LiveChat::widget()?>
+<?php echo \module\cms\widgets\LiveChat::widget()?>
 </body>
 </html>
 <?php $this->endPage() ?>

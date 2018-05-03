@@ -142,8 +142,14 @@ a {text-decoration:none;}
 .pr50{padding-right:50px;} 
 .pr100{padding-right:100px;} 
 
+.inline {
+    display:inline;
+}
 .inline-block {
     display:inline-block;
+}
+.block {
+    display:block;
 }
 
 /*grid*/

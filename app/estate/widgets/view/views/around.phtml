@@ -1,17 +1,22 @@
 <?php
     $_language = \WS::$app->language;
     $_googleMapKey = \WS::$app->params['googleMap']['key'];
-    $_options = ['position'=>$this::POS_HEAD, 'depends' => '\module\page\assets\Asset'];
+    $_options = ['position'=>$this::POS_END];
 
     $this->registerJsFile('http://maps.google.cn/maps/api/js?sensor=false&language='.$_language.'&key='.$_googleMapKey, $_options);
-    $this->registerJsFile('/static/js/google.maps.js', ['depends' => [\module\page\assets\Asset::className()]]);
+    $this->registerJsFile('/static/js/google.maps.js?t=6', $_options);
 ?>
 
-<script type="text/javascript"> 
-<?php $this->beginBlock('js_end') ?>
+<div class="rets-view-block rets-around-view">
+    <div class="map">
+        <div id="house-around-google-map" style="height:400px"></div>
+    </div>
+</div>
+
+<script>
+    <?php $this->beginBlock('house-around-map')?>
     var latlng = new google.maps.LatLng("<?php echo $data['latlng'][0]?>", "<?php echo $data['latlng'][1]?>");
-    console.log($.fn.gmap3);
-    var map = $('#google-map').gmap3({
+    var map = $('#house-around-google-map').gmap3({
         zoom: 12,
         center: latlng,
         panControl: false,
@@ -21,21 +26,13 @@
         zoomControl: true,
         zoomControlOptions: {
             style: google.maps.ZoomControlStyle.SMALL,
-        },
+        }
     });
-
     map.createMarker('default', latlng, {
         icon: '/static/img/house-maker.png'
     });
 
     map.displayCityPolygon(<?php echo json_encode($data['polygons'])?>);
-
-<?php $this->endBlock()?>
+    <?php $this->endBlock()?>
 </script>
-<?php $this->registerJs($this->blocks['js_end'], $this::POS_END)?>
-
-<div class="rets-view-block rets-around-view">
-    <div class="map">
-        <div id="google-map" style="height:400px"></div>
-    </div>
-</div>
+<?php $this->registerJs($this->blocks['house-around-map'], $this::POS_END)?>

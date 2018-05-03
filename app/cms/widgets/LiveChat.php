@@ -7,7 +7,7 @@ class LiveChat extends\yii\base\Widget
     {
         echo <<<EOT
             <!-- Start of LiveChat (www.livechatinc.com) code -->
-            <script type="text/javascript">
+            <script>
             window.__lc = window.__lc || {};
             window.__lc.license = 7739171;
             (function() {

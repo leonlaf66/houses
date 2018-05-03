@@ -50,7 +50,8 @@
                                         <?php _tt('Rating', '评分')?>
                                     </span>
                                     <div class="form-control" id="comment-rating" style="float:none;cursor: pointer;"></div>
-                                    <script type="text/javascript">
+                                    <script>
+                                    <?php $this->beginBlock('comment.raty.js')?>
                                     $(function(){
                                         $('#comment-rating').raty({
                                             hintList: [
@@ -66,7 +67,9 @@
                                             onClick: function(score) {}
                                         });
                                     });
+                                    <?php $this->endBlock()?>
                                     </script>
+                                    <?php $this->registerJs($this->blocks['comment.raty.js'], $this::POS_END)?>
                                 </div>
                             </div>
                             <textarea accesskey="r" class="form-control" cols="80" rows="8" name="comments"></textarea>
@@ -86,7 +89,8 @@
     </div>
 </div>
 
-<script type="text/javascript">
+<script>
+<?php $this->beginBlock('comment.main.js')?>
 (function($){
     var jqMain = $('#comment-body'),
         jqCommentWindow = $('#comment-form-window'),
@@ -122,4 +126,6 @@
         return isLogined;
     });
 })(jQuery);
+<?php $this->endBlock()?>
 </script>
+<?php $this->registerJs($this->blocks['comment.main.js'], $this::POS_END)?>

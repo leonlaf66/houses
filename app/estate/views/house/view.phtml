@@ -12,12 +12,15 @@
 <?php echo \module\page\widgets\Nav::widget()?>
 
 <script type="text/javascript" src="http://static.bshare.cn/b/buttonLite.js"></script>
-<script type="text/javascript">
+<script>
+<?php $this->beginBlock('house-view-bshare')?>
 bShare.addEntry({
     pic: "<?php echo FieldFilter::photoUrl($data, 0, 400, 330)?>"
 });
-
+<?php $this->endBlock()?>
 </script>
+<?php $this->registerJs($this->blocks['house-view-bshare'], $this::POS_END)?>
+
 <div class="container mt20 prop-type-<?php echo strtolower($data['prop'])?>">
     <div class="lay-g">
         <div class="lay-u-5-6 pr20">
@@ -110,7 +113,10 @@ bShare.addEntry({
                                     <a title="分享到微信" class="bshare-weixin"></a>
                                     <a title="分享到QQ空间" class="bshare-qzone"></a>
                                 </div>
-                                <script type="text/javascript" charset="utf-8" src="http://static.bshare.cn/b/buttonLite.js#style=-1&amp;uuid=&amp;pophcol=1&amp;lang=zh"></script><script type="text/javascript" charset="utf-8" src="http://static.bshare.cn/b/bshareC0.js"></script>
+                                <?php
+                                    $this->registerJsFile('http://static.bshare.cn/b/buttonLite.js#style=-1&amp;uuid=&amp;pophcol=1&amp;lang=zh', ['position' => $this::POS_END]);
+                                    $this->registerJsFile('http://static.bshare.cn/b/bshareC0.js', ['position' => $this::POS_END]);
+                                ?>
                             </li>
                         </ul>
                     </div>
@@ -126,20 +132,20 @@ bShare.addEntry({
         <div class="lay-u-1-6">
             <div class="right-side" style="background:#fff">
                 <div class="side-box">
-                    <div class="side-title"><?php _tt('Customer service', '米乐居客服')?></div>
+                    <h2 class="side-title"><?php _tt('Customer service', '米乐居客服')?></h2>
                     <div class="side-content">
                         <?php echo \module\catalog\widgets\ContactBanner::widget()?>
                     </div>
                 </div>
                 <div class="side-box">
-                    <div class="side-title"><?php _t('tour', 'Go Tour This House')?></div>
+                    <h2 class="side-title"><?php _t('tour', 'Go Tour This House')?></h2>
                     <div class="side-content">
                         <?php echo \module\gotour\widgets\Form::widget(['listNo' => $data['id']])?>
                     </div>
                 </div>
                 <?php if ($data['prop'] !== 'RN'):?>
                     <div class="side-box">
-                        <div class="side-title"><?php _t('rets', 'Mortgage calculator')?></div>
+                        <h2 class="side-title"><?php _t('rets', 'Mortgage calculator')?></h2>
                         <div class="side-content">
                             <?php echo \module\estate\widgets\detail\Calculator::widget([
                                 'price' => $data['price'],
@@ -153,7 +159,7 @@ bShare.addEntry({
     </div>
 </div>
 
-<script type="text/javascript">
+<script>
 <?php $this->beginBlock('house-view') ?>
 $('.base-information .btn-like').click(function (event) {
     if (document.getElementById('login-status').getAttribute('content') === 'false') {

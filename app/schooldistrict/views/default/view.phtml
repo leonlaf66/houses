@@ -2,7 +2,8 @@
     $this->params['activeNavId'] = 'schooldistrict';
 ?>
 
-<style type="text/css">
+<style>
+<?php $this->beginBlock('schooldistrict-view')?>
 #base-info-container .base-info {
     position:relative;
 }
@@ -27,17 +28,16 @@
     border: solid 1px #999;
     padding: 3px;
 }
+body.en-us .table-info .info-col>label{
+    font-size:14px;
+}
+<?php $this->endBlock()?>
 </style>
+<?php $this->registerCss($this->blocks['schooldistrict-view'], ['position' => $this::POS_HEAD])?>
 
 <div id="header">
     <?php echo \module\page\widgets\Nav::widget()?>
 </div>
-
-<style type="text/css">
-body.en-us .table-info .info-col>label{
-    font-size:14px;
-}
-</style>
 
 <div class="container" id="base-info-container">
     <div class="lay-g">
@@ -48,19 +48,17 @@ body.en-us .table-info .info-col>label{
         </div>
         <div class="lay-u-1-2">
             <div class="base-info">
-                <h2 style="margin-right:90px;">
-                    <?php if (\WS::$app->language === 'en-US'):?>
-                        <?php echo $model->getItemData('name')[0]?><span><?php echo $model->getItemData('name')[1]?></span>
-                    <?php else:?>
-                        <?php echo $model->getItemData('name')[1]?><span><?php echo $model->getItemData('name')[0]?></span>
-                    <?php endif?>
-                </h2>
+                <h1 style="margin-right:90px;">
+                    <?php $_name = $model->getItemData('name')?>
+                    <?php _tt($_name)?>
+                    <span><?php _tt($_name[1], $_name[0])?></span>
+                </h1>
                 <ul class="main-fields">
                     <li class="field"><label><?php _tt('Rank', '学区排名')?></label><span>NO.<?php echo $model->ranking?></span></li>
                     <li class="field"><label><?php _tt('SAT score', 'SAT平均分')?></label><span><?php echo $model->sat->local[0]?></span></li>
                 </ul>
                 <div class="grid-info">
-                    <h5><?php _tt('Gerenal info', '基本信息')?></h5>
+                    <h2><?php _tt('Gerenal info', '基本信息')?></h2>
                     <table class="table-info">
                         <tr>
                             <td class="info-col">
@@ -87,12 +85,11 @@ body.en-us .table-info .info-col>label{
                     </table>
                 </div>
                 <div class="racists text-left">
-                    <h5><?php _tt('Racial distribution', '种族分布')?></h5>
+                    <h2><?php _tt('Racial distribution', '种族分布')?></h2>
                     <ul>
                         <?php foreach (\module\schooldistrict\helpers\Racial::renderProcess($model->racials, 3) as $item):?>
                             <li style="width:<?php echo $item->width_value?>">
                                 <div title="<?php echo $item->name.' '.$item->value?>" class="tooltip-lk bar bar-" style="background:<?php echo $item->bgColor?>;height:<?php echo $item->height?>;"></div>
-                                <!--<label><?php echo $item->name?></label>-->
                             </li>
                         <?php endforeach?>
                         </li>

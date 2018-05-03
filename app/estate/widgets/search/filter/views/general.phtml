@@ -40,7 +40,8 @@
         </div>
     <?php endforeach?>
 </div>
-<script type="text/javascript">
+<script>
+<?php $this->beginBlock('search-filter-general') ?>
 (function ($) {
     $('.general-filters .range-price, .general-filters .range-square').find('button').click(function () {
         var $item = $(this).parent('li.range');
@@ -65,4 +66,7 @@
         window.location.changeParam($item.data('field'), parseInt(fromValue) + '-' + parseInt(toValue));
     });
 })(jQuery);
+<?php $this->endBlock()?>
 </script>
+
+<?php $this->registerJs($this->blocks['search-filter-general'], $this::POS_END)?>

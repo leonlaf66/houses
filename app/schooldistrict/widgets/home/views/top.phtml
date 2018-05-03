@@ -1,6 +1,7 @@
 <div class="home-top-scholl-areas">
     <h2><?php _t('default', 'TOP PUBLIC SCHOOL DISTRICTS')?></h2>
-    <div class="desc"><?php _t('default', 'Top 30 Public Districts in Massachusetts.')?> <a href="/school-district/" style="font-size:14px;text-decoration:underline;margin-left:7px"><?php _t('default', 'For more details')?></a></div>
+    <div class="desc">
+        <h3 class="inline"><?php _t('default', 'Top 30 Public Districts in Massachusetts.')?></h3><a href="/school-district/" style="font-size:14px;text-decoration:underline;margin-left:7px"><?php _t('default', 'For more details')?></a></div>
     <?php foreach($groups as $items):?>
         <div class="lay-g row">
             <?php foreach($items as $item):?>
@@ -13,10 +14,10 @@
                     <a href="<?php echo $item['url']?>" target="_blank">
                         <div class="school-area">
                             <div class="bg"></div>
-                            <img src="<?php echo $imageRoot?><?php echo $item['image']?>">
+                            <img src="<?php echo $imageRoot?><?php echo $item['image']?>" alt="<?php _tt($item['name'], $item['name_cn'])?>">
                             <div class="desc">
-                                <h3 class="name-cn"><?php echo tt($item['name'], $item['name_cn'])?></h3>
-                                <h3 class="name"><?php echo tt($item['name_cn'], $item['name'])?></h3>
+                                <h3 class="name-cn"><?php _tt($item['name'], $item['name_cn'])?></h3>
+                                <h3 class="name"><?php _tt($item['name_cn'], $item['name'])?></h3>
                             </div>
                         </div>
                     </a>

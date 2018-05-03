@@ -10,6 +10,7 @@ class DefaultController extends \yii\web\Controller
             return $this->redirect('/area/');
         }
 
+        \WS::share('isHome', true);
         return $this->render('index.phtml');
     }
 

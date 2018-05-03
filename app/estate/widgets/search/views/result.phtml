@@ -10,7 +10,8 @@
     $list = $results['items'];
     $_t = lang('rets');
 ?>
-<style type="text/css">
+<style>
+<?php $this->beginBlock('search-result-css') ?>
 h2.location {
 	padding-right: 15px;
 }
@@ -35,7 +36,10 @@ h2.location {
 <?php if (\WS::$app->language === 'en-US'):?>
   .attr-suffix {margin-left:5px;}
   <?php endif?>
+<?php $this->endBlock(); ?>
 </style>
+<?php $this->registerCss($this->blocks['search-result-css'])?>
+
 <div class="rets-results">
 	<?php if(empty($list)):?>
 		<div style="padding:10px;margin-top:-10px;background:#f6f6f6;font-size:18px;color:#999;">
@@ -124,7 +128,8 @@ h2.location {
 		?>
 	</div>
 </div>
-<script type="text/javascript">
+<script>
+<?php $this->beginBlock('search-result') ?>
 $('.rets-results').delegate('.btn-like', 'click', function (event) {
 	if (document.getElementById('login-status').getAttribute('content') === 'false') {
 		window.location.href = document.getElementById('login-url').getAttribute('content') + '?callback=' + encodeURI(window.location.href);
@@ -147,4 +152,7 @@ $('.rets-results').delegate('.btn-like', 'click', function (event) {
 		}
 	}, 'json');
 });
+<?php $this->endBlock(); ?>
 </script>
+
+<?php $this->registerJs($this->blocks['search-result'], $this::POS_END)?>

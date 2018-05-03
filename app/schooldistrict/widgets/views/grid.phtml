@@ -11,26 +11,21 @@
                 <span class="sa-no">
                     NO.<span><?php echo $item->sort_order?></span> <label>/<?php _tt('Rank', '排名')?></label>
                 </span>
-                <span class="sa-name-cn">
-                    <?php if (\WS::$app->language === 'zh-CN'):?>
-                        <?php echo $item->getItemData('name')[1]?>
-                    <?php else:?>
-                        <?php echo $item->getItemData('name')[0]?>
-                    <?php endif?>
-                </span>
+                <?php
+                    $_name = $item->getItemData('name');
+                ?>
+                <h2 class="inline sa-name-cn">
+                    <?php _tt($_name)?>
+                </h2>
                 <span class="sa-name">
-                    <?php if (\WS::$app->language === 'zh-CN'):?>
-                        <?php echo $item->getItemData('name')[0]?>
-                    <?php else:?>
-                        <?php echo $item->getItemData('name')[1]?>
-                    <?php endif?>
+                    <?php _tt($_name[1], $_name[0])?>
                 </span>
                 <span class="sa-rating">
                     <span class="rating"><span style="width:<?php echo $item->rating * 0.1 * 100?>%"></span></span>
                 </span>
             </div>
             <div class="btn-links col col2 text-right">
-                <a class="btn btn-primary" href="/school-district/<?php echo $item->id?>/">
+                <a class="btn btn-primary" href="/school-district/<?php echo $item->id?>/" title="<?php _tt($item->getItemData('name'))?>">
                     <?php _tt('Details', '学区详情')?> <span class="iconfont icon-arraw-r"></span>
                 </a>
                 <div class="rets-links">
@@ -47,8 +42,8 @@
         </div><!--end header-->
         <div class="row-body">
             <div class="col col1">
-                <a href="/school-district/<?php echo $item->id?>/">
-                    <img class="lazy" data-src="<?php echo media_url('school-area/images')?>/<?php echo str_replace('/', '&', strtoupper($item->code))?>.jpg">
+                <a href="/school-district/<?php echo $item->id?>/" title="<?php _tt($_name)?>">
+                    <img class="lazy" data-src="<?php echo media_url('school-area/images')?>/<?php echo str_replace('/', '&', strtoupper($item->code))?>.jpg" alt="<?php _tt($_name)?>">
                 </a>
             </div>
             <div class="col col2">
@@ -107,7 +102,7 @@
     </div>
 <?php endforeach?>
 </div>
-<script type="text/javascript">
+<script>
 window.createSchoolPie = function (ele, dataset) {
     var pie = d3.layout.pie();
     var arc = d3.svg.arc()  

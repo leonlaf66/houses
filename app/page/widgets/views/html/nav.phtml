@@ -9,9 +9,25 @@ $currentUrl = \WS::$app->request->getHostInfo().\WS::$app->request->url;
     <?php $_actionNavId = isset($this->params['activeNavId']) ? $this->params['activeNavId'] : null;?>
     <div class="menubar">
         <div class="container">
-            <div class="logo">
-                <a href="/" title="北美房产一网打尽" alt="北美房产一网打尽"><img src="/static/img/logo.png" alt="<?php _tt('USLEJU', '米乐居')?>"></a>
-            </div>
+            <?php if(\WS::share('isHome')):?>
+                <h1 class="logo">
+                    <a href="/" title="北美房产一网打尽">
+                        <?php
+                            $_areaName = \WS::$app->area->getName();
+                        ?>
+                        <img src="/static/img/logo.png" alt="<?php _tt($_areaName[0].' USLEJU', $_areaName[1].'米乐居')?>">
+                    </a>
+                </h1>
+            <?php else:?>
+                <div class="logo">
+                    <a href="/" title="北美房产一网打尽">
+                        <?php
+                            $_areaName = \WS::$app->area->getName();
+                        ?>
+                        <img src="/static/img/logo.png" alt="<?php _tt($_areaName[0].' USLEJU', $_areaName[1].'米乐居')?>">
+                    </a>
+                </div>
+            <?php endif?>
             <?php if (WS::$app->controller->module->id.'-'.WS::$app->controller->id.'-'.WS::$app->controller->action->id === 'home-default-index'):?>
                 <a href="http://www<?php echo domain()?>/" class="area-switcher-btn" href="javascript:void(0)">
                     <i class="iconfont icon-area"></i><?php echo tt(\WS::$app->area->getName())?>

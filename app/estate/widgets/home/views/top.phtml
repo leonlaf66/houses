@@ -5,9 +5,9 @@ use module\estate\helpers\FieldHtml;
 
 <div class="home-top-houses">
   <h2><?php _t('rets', 'LUXURY HOUSE')?></h2>
-  <div class="desc">
+  <h3 class="desc">
       <?php _tt('Featuring luxury quality houses in '.\WS::$app->area->getName()[0], \WS::$app->area->getName()[1].'地区精品豪宅')?>
-  </div>
+  </h3>
     <?php foreach($groups as $items):?>
         <div class="lay-g row">
             <?php foreach($items as $item):?>
@@ -19,7 +19,7 @@ use module\estate\helpers\FieldHtml;
                     <div class="rets-item">
                         <div class="image-box">
                             <a style="display:block;" href="<?php echo FieldFilter::viewUrl($_house)?>" target="_blank">
-                                <img src="<?php echo media_url($item['image'])?>">
+                                <img src="<?php echo media_url($item['image'])?>" alt="<?php echo $_house['nm']?>">
                             </a>
                             <span class="price"><?php echo FieldHtml::valueHtml($_house['price'], 'money')?></span>
                         </div>
@@ -39,7 +39,7 @@ use module\estate\helpers\FieldHtml;
     <?php endforeach?>
 </div>
 
-<script type="text/javascript">
+<script>
 <?php $this->beginBlock('home-top-header')?>
 (function($){
     var $header = $('#header');

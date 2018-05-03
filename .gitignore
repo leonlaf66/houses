@@ -2,6 +2,7 @@
 /config/local.php
 /vendor
 /www/.sass-cache/
+www/src/.sass-cache/
 /www/assets
 /www/node_modules
 /data

@@ -32,7 +32,8 @@
         <?php endforeach?>
     </div>
 </div>
-<script type="text/javascript">
+<script>
+<?php $this->beginBlock('search-filter-subway') ?>
 (function ($) {
     $('.subway-all-stations form').delegate('.ck', 'change', function(){
         if($(this).is(':checked')) {
@@ -42,10 +43,15 @@
         }
     });
 })(jQuery)
+<?php $this->endBlock()?>
 </script>
+<?php $this->registerJs($this->blocks['search-filter-subway'], $this::POS_END)?>
 
 <style>
+<?php $this->beginBlock('search-filter-subway-css') ?>
 .subway-filter .lines li.active > a{
     background:#f0f0f0;
 }
+<?php $this->endBlock()?>
 </style>
+<?php $this->registerJs($this->blocks['search-filter-subway-css'], $this::POS_HEAD)?>

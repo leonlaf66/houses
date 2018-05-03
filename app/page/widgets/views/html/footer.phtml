@@ -1,11 +1,14 @@
 <footer id="footer" class="page-footer-container">
     <div class="container">
         <div class="copyright">
-            Copyright 2015-2016 The Fine Technology, Inc. All rights reserved.
+            蜀ICP备18012254号-1 Copyright 2015-2016 The Fine Technology, Inc. All rights reserved.
         </div>
     </div>
 </footer>
 
 <script>
+  <?php $this->beginBlock('pbulic-image-lazy')?>
   $(".lazy").lazyload();
+  <?php $this->endBlock()?>
 </script>
+<?php $this->registerJs($this->blocks['pbulic-image-lazy'], $this::POS_END)?>

@@ -2,6 +2,10 @@
     $this->params['activeNavId'] = $type;
 ?>
 
+<h1 class="none">
+  <?php _tt(\WS::$app->area->getName())?> <?php _tt('BUY & SELL Search Result', '买房搜索结果, 按学区、按地铁, 地图搜房')?>    
+</h1>
+
 <?php echo \module\page\widgets\Nav::widget()?>
 
 <div class="filters-container">
