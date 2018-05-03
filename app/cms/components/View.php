@@ -37,7 +37,6 @@ class View extends \yii\web\View
         $chunks = preg_split( '/(<pre.*?\/pre>)/ms', $html, -1, PREG_SPLIT_DELIM_CAPTURE ); 
         $html = '';//[higrid.net]修改压缩html : 清除换行符,清除制表符,去掉注释标记 
         foreach ( $chunks as $c ) { 
-            /*
             if ( strpos( $c, '<pre' ) !== 0 ) { 
                 //[higrid.net] remove new lines & tabs 
                 $c = preg_replace( '/[\\n\\r\\t]+/', ' ', $c ); 
@@ -47,7 +46,7 @@ class View extends \yii\web\View
                 $c = preg_replace( '/>\\s</', '><', $c ); 
                 // [higrid.net] remove CSS & JS comments 
                 $c = preg_replace( '/\\/\\*.*?\\*\\//i', '', $c ); 
-            }*/
+            }
             $html .= $c; 
         }
 
