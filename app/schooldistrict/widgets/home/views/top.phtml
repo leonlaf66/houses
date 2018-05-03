@@ -9,6 +9,9 @@
                   if (strpos($item['url'], '/school-districtss/') !== false) {
                       $item['url'] = str_replace('/school-districtss/', '/school-district/', $item['url']);
                   }
+                  if (\WS::$app->language === 'zh-CN') {
+                    $item['url'] = '/zh'.$item['url'];
+                  }
                 ?>
                 <div class="col lay-u-<?php echo $item['colRule']?>">
                     <a href="<?php echo $item['url']?>" target="_blank">
