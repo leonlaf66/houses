@@ -1,11 +1,11 @@
 <?php
-$this->registerCssFile('/static/lib/calendar/calendar.css', ['position'=>$this::POS_HEAD]);
-$this->registerCssFile('/static/lib/time-range/jquery.time.range.css', ['position'=>$this::POS_HEAD]);
-$this->registerJsFile('/static/lib/calendar/calendar.js', [
+$this->registerCssFile('/static/common/calendar/calendar.css', ['position'=>$this::POS_HEAD]);
+$this->registerCssFile('/static/common/time-range/jquery.time.range.css', ['position'=>$this::POS_HEAD]);
+$this->registerJsFile('/static/common/calendar/calendar.js', [
     'position'=>$this::POS_HEAD,
     'depends'=>[\yii\web\JqueryAsset::className()],
 ], 'calendar');
-$this->registerJsFile('/static/lib/time-range/jquery.time.range.js', [
+$this->registerJsFile('/static/common/time-range/jquery.time.range.js', [
     'position'=>$this::POS_HEAD,
     'depends'=>[\yii\web\JqueryAsset::className()],
 ], 'time.range');

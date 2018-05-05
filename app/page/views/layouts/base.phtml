@@ -29,7 +29,7 @@ use yii\widgets\Block;
     <meta id="login-url" content="<?php echo Yii::$app->loginUrl?>">
     <meta id="member-url" content="<?php echo Yii::$app->memberUrl?>">
     <meta id="login-status" content="<?php echo \WS::$app->user->isGuest ? 'false' : 'true'?>">
-    <script src="http://tjs.sjs.sinajs.cn/open/api/js/wb.js" type="text/javascript" charset="utf-8"></script>
+    <script src="//tjs.sjs.sinajs.cn/open/api/js/wb.js" type="text/javascript" charset="utf-8"></script>
     <?php $this->head() ?>
     <script>
     window.urlQuery = <?php echo json_encode(\WS::$app->request->get(null, []))?>;

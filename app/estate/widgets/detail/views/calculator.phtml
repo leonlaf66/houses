@@ -3,7 +3,7 @@
 ?>
 <?php 
     $this->registerJsFile('/static/js/calculate.js', ['position'=>$this::POS_HEAD]);
-    $this->registerJsFile('http://d3js.org/d3.v3.min.js', ['position'=>$this::POS_HEAD]);
+    $this->registerJsFile('//d3js.org/d3.v3.min.js', ['position'=>$this::POS_HEAD]);
     $this->registerJsFile('/static/js/house-view/calculator.js', [
         'position'=>$this::POS_HEAD,
         'depends'=>[\yii\web\JqueryAsset::className()],

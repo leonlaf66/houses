@@ -17,6 +17,9 @@ use yii\web\View;
  */
 class AssetsCompressComponent extends \iisns\assets\AssetsCompressComponent
 {
+    public $basePath = '';
+    public $baseUrl = '';
+
     /**
      * @param array $files
      * @return array
@@ -25,8 +28,8 @@ class AssetsCompressComponent extends \iisns\assets\AssetsCompressComponent
     {
         //$fileName   =  md5( implode(array_keys($files)) . $this->getSettingsHash()) . '.js';
         $fileName   = $this->buildFileName($files, '.js'); 
-        $publicUrl  = Yii::getAlias('@web/assets/js-compress/' . $fileName);
-        $rootDir    = Yii::getAlias('@webroot/assets/js-compress');
+        $publicUrl  = Yii::getAlias($this->baseUrl.'/js/' . $fileName);
+        $rootDir    = Yii::getAlias($this->basePath.'/js/');
         $rootUrl    = $rootDir . '/' . $fileName;
 
         if (file_exists($rootUrl)) {
@@ -85,9 +88,9 @@ class AssetsCompressComponent extends \iisns\assets\AssetsCompressComponent
     protected function _processingCssFiles($files = [])
     {
         //$fileName   =  md5( implode(array_keys($files)) . $this->getSettingsHash() ) . '.css';
-        $fileName   = $this->buildFileName($files, '.css'); 
-        $publicUrl  = Yii::getAlias('@web/assets/css-compress/' . $fileName);
-        $rootDir    = Yii::getAlias('@webroot/assets/css-compress');
+        $fileName   = $this->buildFileName($files, '.css');
+        $publicUrl  = Yii::getAlias($this->baseUrl.'/css/' . $fileName);
+        $rootDir    = Yii::getAlias($this->basePath.'/css/');
         $rootUrl    = $rootDir . '/' . $fileName;
 
         if (file_exists($rootUrl)) {
