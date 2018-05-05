@@ -10,7 +10,7 @@
                         <?php foreach($group['items'] as $_yellowpage):?>
                             <li class="lay-u-1-3">
                                 <a class="item" href="/pro-service/<?php echo $_yellowpage->id?>/" target="_blank">
-                                    <img class="yp-img" src="<?php echo $_yellowpage->getPhotoImageInstance()->resize(90, 90)?>" alt="<?php echo $_yellowpage->name?>">
+                                    <img class="yp-img" src="<?php echo media_url('yellowpage/placeholder.jpg')?>" alt="<?php echo $_yellowpage->name?>">
                                     <div class="name"><?php echo $_yellowpage->name?></div>
                                     <div class="rating-box">
                                         <span class="rating"><span style="width:<?php echo $_yellowpage->rating * 20?>%"></span></span>
