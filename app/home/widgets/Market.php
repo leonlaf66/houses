@@ -8,7 +8,7 @@ class Market extends \yii\base\Widget
         $markets = [
             'ma' => [
                 'height'=>312,
-                'backgroundImageUrl'=>static_url('res/img/banners/home-md.jpg'),
+                'backgroundImageUrl'=>static_url('rets/img/banners/home-md.jpg'),
                 'title'=>tt('HOUSING MARKET OF MASSACHUSETTS', '麻州房市走势')
             ],
             'ny' => [
