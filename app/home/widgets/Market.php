@@ -23,7 +23,7 @@ class Market extends \yii\base\Widget
             ],
             'il' => [
                 'height'=>312,
-                'backgroundImageUrl'=>static_url'img/banners/home-md.jpg'),
+                'backgroundImageUrl'=>static_url('img/banners/home-md.jpg'),
                 'title'=>tt('HOUSING MARKET OF ILLINOIS', '芝加哥房市走势')
             ],
             'ca' => [
