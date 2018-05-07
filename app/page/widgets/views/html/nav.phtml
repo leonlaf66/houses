@@ -15,7 +15,7 @@ $currentUrl = \WS::$app->request->getHostInfo().\WS::$app->request->url;
                         <?php
                             $_areaName = \WS::$app->area->getName();
                         ?>
-                        <img src="<?php echo static_url('rets/img/logo.png')?>" alt="<?php _tt($_areaName[0].' USLEJU', $_areaName[1].'米乐居')?>">
+                        <img src="<?php echo static_url('img/logo.png')?>" alt="<?php _tt($_areaName[0].' USLEJU', $_areaName[1].'米乐居')?>">
                     </a>
                 </h1>
             <?php else:?>
@@ -24,7 +24,7 @@ $currentUrl = \WS::$app->request->getHostInfo().\WS::$app->request->url;
                         <?php
                             $_areaName = \WS::$app->area->getName();
                         ?>
-                        <img src="<?php echo static_url('rets/img/logo.png')?>" alt="<?php _tt($_areaName[0].' USLEJU', $_areaName[1].'米乐居')?>">
+                        <img src="<?php echo static_url('img/logo.png')?>" alt="<?php _tt($_areaName[0].' USLEJU', $_areaName[1].'米乐居')?>">
                     </a>
                 </div>
             <?php endif?>
@@ -43,7 +43,7 @@ $currentUrl = \WS::$app->request->getHostInfo().\WS::$app->request->url;
                     [
                         'label' => t('app/nav', 'SCHOLL DISTRICTSS'),
                         'url' => ['/schooldistrict/default/index'],
-                        'active'=>$_actionNavId === 'school-district',
+                        'active'=>$_actionNavId === 'schooldistrict',
                         'disabled' => \WS::$app->area->id !== 'ma'
                     ],
                     [

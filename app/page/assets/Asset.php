@@ -18,14 +18,14 @@ class Asset extends AssetBundle
     public $basePath = '@webroot';
     public $baseUrl = '@web';
     public $css = [
-        'static/common/tipped-4.6.0-light/css/tipped/tipped.css',
+        'static/lib/tipped-4.6.0-light/css/tipped/tipped.css',
         'static/css/jquery.typeahead.min.css',
         'static/css/main.css?v1.03'
     ];
     public $js = [
-	    'static/common/lazyload.min.js',
-        'static/common/tipped-4.6.0-light/js/tipped/tipped.js',
-        'static/common/jquery.typeahead.min.js',
+	    'static/lib/lazyload.min.js',
+        'static/lib/tipped-4.6.0-light/js/tipped/tipped.js',
+        'static/lib/jquery.typeahead.min.js',
         'static/js/app.js'
     ];
     public $depends = ['\yii\web\JqueryAsset'];

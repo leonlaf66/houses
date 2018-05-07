@@ -8,27 +8,27 @@ class Market extends \yii\base\Widget
         $markets = [
             'ma' => [
                 'height'=>312,
-                'backgroundImageUrl'=>static_url('rets/img/banners/home-md.jpg'),
+                'backgroundImageUrl'=>static_url('img/banners/home-md.jpg'),
                 'title'=>tt('HOUSING MARKET OF MASSACHUSETTS', '麻州房市走势')
             ],
             'ny' => [
                 'height'=>312,
-                'backgroundImageUrl'=>static_url('rets/img/banners/home-md.jpg'),
+                'backgroundImageUrl'=>static_url('img/banners/home-md.jpg'),
                 'title'=>tt('HOUSING MARKET OF NEW YORK', '纽约房市走势')
             ],
             'ga' => [
                 'height'=>312,
-                'backgroundImageUrl'=>static_url('rets/img/banners/home-md.jpg'),
+                'backgroundImageUrl'=>static_url('img/banners/home-md.jpg'),
                 'title'=>tt('HOUSING MARKET OF GEORGIA', '亚特兰大房市走势')
             ],
             'il' => [
                 'height'=>312,
-                'backgroundImageUrl'=>static_url('rets/img/banners/home-md.jpg'),
+                'backgroundImageUrl'=>static_url('img/banners/home-md.jpg'),
                 'title'=>tt('HOUSING MARKET OF ILLINOIS', '芝加哥房市走势')
             ],
             'ca' => [
                 'height'=>312,
-                'backgroundImageUrl'=>static_url('rets/img/banners/home-md.jpg'),
+                'backgroundImageUrl'=>static_url('img/banners/home-md.jpg'),
                 'title'=>tt('HOUSING MARKET OF DISTRICT OF COLOMBIA', '洛杉矶房市走势')
             ],
         ];

@@ -29,7 +29,7 @@ class Top extends \yii\base\Widget
 
         return $this->render('top.phtml', [
             'groups'=>$groups,
-            'imageRoot'=>media_url('rets/home-top')
+            'imageRoot'=>media_url('home-top')
         ]);
     }
 
