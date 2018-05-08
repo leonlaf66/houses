@@ -1,17 +1,18 @@
 <div class="search-content inline-block text-center">
     <ul class="type-tab">
-        <?php foreach($types as $_options):?>
-            <li class="type-item <?php echo $_options['active'] ? 'active' : ''?>" ref="#tab-content-<?php echo $_options['id']?>">
-                <a class="type-item-link"><?php echo t('app/nav', $_options['name'])?></a>
+        <?php foreach($types as $type):?>
+            <li class="type-item <?php echo $type['active'] ? 'active' : ''?>" ref="#tab-content-<?php echo $type['id']?>">
+                <a class="type-item-link"><?php echo t('app/nav', $type['name'])?></a>
             </li>
         <?php endforeach?>
     </ul>
-    <?php foreach($types as $_options):?>
-        <div class="tab-content <?php echo $_options['active'] ? 'active' : ''?>" id="tab-content-<?php echo $_options['id']?>">
+    <?php foreach($types as $type):?>
+        <div class="tab-content <?php echo $type['active'] ? 'active' : ''?>" id="tab-content-<?php echo $type['id']?>">
             <?php
                 echo \module\estate\widgets\search\Input::widget([
-                    'id'=>$_options['id'],
-                    'resultUrl'=>$_options['resultUrl']
+                    'id'=>$type['id'],
+                    'resultUrl'=>$type['resultUrl'],
+                    'type' => $type['type']
                 ])
             ?>
         </div>

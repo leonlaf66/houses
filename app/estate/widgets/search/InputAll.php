@@ -9,14 +9,16 @@ class InputAll extends \yii\base\Widget
             'name'=>'Buy & Sell', 
             'requestUrl'=>'estate/autocomplete/index',
             'resultUrl'=>['estate/house/index', 'type' => 'purchase'],
-            'active'=>true
+            'active'=>true,
+            'type' => 'purchase'
         ],
         [
             'id'=>'q-lease',
             'name'=>'Rental',
             'requestUrl'=>'estate/autocomplete/index',
             'resultUrl'=>['estate/house/index', 'type' => 'lease'],
-            'active'=>false
+            'active'=>false,
+            'type' => 'lease'
         ]
     ];
 

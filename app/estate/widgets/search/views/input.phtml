@@ -53,7 +53,9 @@ $.typeahead({
         cities: {
             display: "title",
             href: "<?php echo $resultUrl?>?q={{title}}",
-            data: <?php echo json_encode($searchAutocompleteItems)?>
+            ajax: {
+                url: '/zh/estate/search-complete/?type=<?php echo $type?>'
+            }
         }
     },
     template: function (query, item) {
