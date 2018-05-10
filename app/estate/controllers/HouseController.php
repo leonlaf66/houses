@@ -143,7 +143,9 @@ class HouseController extends Controller
             ->asData();
 
         WS::$app->page->setId('estate/house/'.$type.'/view');
-        WS::$app->page->bindParams(['name' => $houseData['nm']]);
+        WS::$app->page->bindParams([
+            'name' => $houseData['nm']
+        ]);
 
         return $this->render("view.phtml", [
             'type'=>$type,

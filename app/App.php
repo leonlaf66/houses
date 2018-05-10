@@ -45,6 +45,9 @@ class App extends \common\supports\SiteApp
                     'domain' => domain()
                 ]));
             }
+            $this->page->bindParams([
+                'area' => tt($this->area->getName())
+            ]);
         }
     }
 

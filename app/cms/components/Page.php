@@ -61,7 +61,7 @@ class Page extends \yii\base\Component
 
     public function bindParams($params)
     {
-        $this->params = $params;
+        $this->params = array_merge($this->params, $params);
         return $this;
     }
 
