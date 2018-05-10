@@ -25,7 +25,7 @@
 
 <?php 
     $this->registerJsFile(
-        '/static/common/azur/galleria/galleria-1.4.2.min.js', 
+        '/static/lib/azur/galleria/galleria-1.4.2.min.js', 
         [
             'position'=>$this::POS_HEAD,
             'depends'=>[\module\page\assets\Asset::className()]
@@ -35,7 +35,7 @@
 ?>
 <?php 
     $this->registerJsFile(
-        '/static/common/azur/galleria/themes/azur/galleria.azur.min.js', 
+        '/static/lib/azur/galleria/themes/azur/galleria.azur.min.js', 
         [
             'position'=>$this::POS_HEAD,
             'depends'=>[\module\page\assets\Asset::className()]
@@ -43,5 +43,5 @@
         'azur.theme'
     )
 ?>
-<?php $this->registerCssFile('/static/common/azur/galleria/themes/azur/galleria.azur.css', ['position'=>$this::POS_HEAD, 'no-merge'=>true], 'azur.css')?>
+<?php $this->registerCssFile('/static/lib/azur/galleria/themes/azur/galleria.azur.css', ['position'=>$this::POS_HEAD, 'no-merge'=>true], 'azur.css')?>
 <?php $this->registerJs("Galleria.run('.galleria', {fullscreenCrop:false});", $this::POS_READY, 'azur.script')?>

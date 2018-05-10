@@ -1,4 +1,5 @@
 .idea
+/www/static/compres/
 /config/local.php
 /vendor
 /www/.sass-cache/
