@@ -3,6 +3,8 @@
     $_googleMapKey = \WS::$app->params['googleMap']['key'];
     $_options = ['position'=>$this::POS_END];
 
+    // maps.google.cn/maps/api/js
+    // ditu.google.cn/maps/api/js
     $this->registerJsFile('//ditu.google.cn/maps/api/js?sensor=false&language='.$_language.'&key='.$_googleMapKey, $_options);
     $this->registerJsFile('/static/js/google.maps.js?t=6', $_options);
 ?>
