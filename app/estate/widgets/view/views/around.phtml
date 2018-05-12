@@ -6,8 +6,8 @@
     // maps.google.cn/maps/api/js
     // ditu.google.cn/maps/api/js
     //$this->registerJsFile('//maps.google.cn/maps/api/js?sensor=false&language='.$_language.'&key='.$_googleMapKey, $_options);
-    //$this->registerJsFile('/static/js/google-maps-js.js', $_options);
-    //$this->registerJsFile('/static/js/google.maps.js?t=6', $_options);
+    $this->registerJsFile('//maps.google.cn/maps/api/js?sensor=false&language='.$_language.'&key='.$_googleMapKey, $_options);
+    $this->registerJsFile('/static/js/google.maps.js?t=6', $_options);
 ?>
 
 <div class="rets-view-block rets-around-view">
@@ -15,9 +15,6 @@
         <div id="house-around-google-map" style="height:400px"></div>
     </div>
 </div>
-
-<script src="/static/js/google-map-js.js"></script>
-<script src="/static/js/google.maps.js?t=6"></script>
 
 <script>
     <?php $this->beginBlock('house-around-map')?>
