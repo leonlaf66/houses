@@ -84,9 +84,15 @@ class Page extends \yii\base\Component
     {
         if(! $this->id || $this->id === '') return '';
 
-        static $metasCache = [];
+        static $metasCache = [
+            'home/default/area' => [
+                'title' => ['Area Section', '区域选择'],
+                'keywords' => ['', ''],
+                'description' => ['', '']
+            ]
+        ];
         if (! isset($metasCache[$this->id])) {
-            $metasCache[$this->id] = \models\SiteSeoMeta::findOne($this->id);
+            $metasCache[$this->id] = \models\SiteSeoMeta::find()->where(['area_id' => \WS::$app->area->id, 'path' => $this->id])->one();
         }
 
         $metas = $metasCache[$this->id];
