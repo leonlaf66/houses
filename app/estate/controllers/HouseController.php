@@ -113,6 +113,18 @@ class HouseController extends Controller
             }
         }
 
+        //排序处理
+        if (isset($params['sort']) && $params['sort'] < 5) {
+            $sorts = [
+                ['ldays', 'desc'],
+                ['price', 'asc'],
+                ['price', 'desc'],
+                ['beds', 'desc'],
+                ['beds', 'asc']
+            ];
+            $params['sort'] = $sorts[$params['sort']];
+        }
+
         // api 数据请求
         $results = \WS::$app->houseApi->create("house/search")
             ->setParams($params)
