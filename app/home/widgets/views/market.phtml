@@ -1,3 +1,6 @@
+<?php
+use module\estate\helpers\FieldFilter;
+?>
 <?php $t = lang('marketing')?>
 <div class="home-market-banner" style="height:<?php echo $market['height']?>px;background-image:url('<?php echo $market['backgroundImageUrl']?>')">
     <h3 class="heading"><?php $t($market['title'])?></h3>
@@ -6,7 +9,7 @@
         <div class="lay-g detail">
             <div class="lay-u-1-4 col1">
                 <span class="market-price <?php echo $marketings[1]->dir?>">
-                    <?php echo $marketings[1]->value?>
+                    $<?php echo $marketings[1]->value?>
                 </span>
                 <span class="market-name"><?php $t('Average Housing Price')?></span>
             </div>
