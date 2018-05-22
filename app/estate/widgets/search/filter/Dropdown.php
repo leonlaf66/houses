@@ -11,11 +11,12 @@ class Dropdown extends \yii\base\Widget
     public function run()
     {
         $filters = $this->getRules('dropdownFilters');
+        /*
         foreach($filters as $filterId=>$filterOptions) {
             if (isset($_GET[$filterId]) && isset($filterOptions['apply'])) {
                 ($filterOptions['apply'])($_GET[$filterId], $search);
             }
-        }
+        }*/
 
         return $this->render('dropdown.phtml', [
             'self'=>$this,
