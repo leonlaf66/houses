@@ -1,41 +1,43 @@
-<?php
-    $_language = \WS::$app->language;
-    $_googleMapKey = \WS::$app->params['googleMap']['key'];
-    $_options = ['position'=>$this::POS_END];
+<?php if(count($data['latlng']) === 2):?>
+    <?php
+        $_language = \WS::$app->language;
+        $_googleMapKey = \WS::$app->params['googleMap']['key'];
+        $_options = ['position'=>$this::POS_END];
 
-    // maps.google.cn/maps/api/js
-    // ditu.google.cn/maps/api/js
-    //$this->registerJsFile('//maps.google.cn/maps/api/js?sensor=false&language='.$_language.'&key='.$_googleMapKey, $_options);
-    $this->registerJsFile('//maps.google.cn/maps/api/js?sensor=false&language='.$_language.'&key='.$_googleMapKey, $_options);
-    $this->registerJsFile('/static/js/google.maps.js?t=6', $_options);
-?>
+        // maps.google.cn/maps/api/js
+        // ditu.google.cn/maps/api/js
+        //$this->registerJsFile('//maps.google.cn/maps/api/js?sensor=false&language='.$_language.'&key='.$_googleMapKey, $_options);
+        $this->registerJsFile('//maps.google.cn/maps/api/js?sensor=false&language='.$_language.'&key='.$_googleMapKey, $_options);
+        $this->registerJsFile('/static/js/google.maps.js?t=6', $_options);
+    ?>
 
-<div class="rets-view-block rets-around-view">
-    <div class="map">
-        <div id="house-around-google-map" style="height:400px"></div>
+    <div class="rets-view-block rets-around-view">
+        <div class="map">
+            <div id="house-around-google-map" style="height:400px"></div>
+        </div>
     </div>
-</div>
 
-<script>
-    <?php $this->beginBlock('house-around-map')?>
-    var latlng = new google.maps.LatLng("<?php echo $data['latlng'][0]?>", "<?php echo $data['latlng'][1]?>");
-    var map = $('#house-around-google-map').gmap3({
-        zoom: 12,
-        center: latlng,
-        panControl: false,
-        scaleControl: false,
-        mapTypeControl: false,
-        streetViewControl:false,
-        zoomControl: true,
-        zoomControlOptions: {
-            style: google.maps.ZoomControlStyle.SMALL,
-        }
-    });
-    map.createMarker('default', latlng, {
-        icon: '/static/img/house-maker.png'
-    });
+    <script>
+        <?php $this->beginBlock('house-around-map')?>
+        var latlng = new google.maps.LatLng("<?php echo $data['latlng'][0]?>", "<?php echo $data['latlng'][1]?>");
+        var map = $('#house-around-google-map').gmap3({
+            zoom: 12,
+            center: latlng,
+            panControl: false,
+            scaleControl: false,
+            mapTypeControl: false,
+            streetViewControl:false,
+            zoomControl: true,
+            zoomControlOptions: {
+                style: google.maps.ZoomControlStyle.SMALL,
+            }
+        });
+        map.createMarker('default', latlng, {
+            icon: '/static/img/house-maker.png'
+        });
 
-    map.displayCityPolygon(<?php echo json_encode($data['polygons'])?>);
-    <?php $this->endBlock()?>
-</script>
-<?php $this->registerJs($this->blocks['house-around-map'], $this::POS_END)?>
+        map.displayCityPolygon(<?php echo json_encode($data['polygons'])?>);
+        <?php $this->endBlock()?>
+    </script>
+    <?php $this->registerJs($this->blocks['house-around-map'], $this::POS_END)?>
+<?php endif?>

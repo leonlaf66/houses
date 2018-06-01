@@ -75,7 +75,7 @@ class Page extends \yii\base\Component
         return $this->getMeta('keywords');
     }
 
-    public function metaDescription($desc)
+    public function metaDescription()
     {
         return $this->getMeta('description');
     }
@@ -87,8 +87,8 @@ class Page extends \yii\base\Component
         static $metasCache = [
             'home/default/area' => [
                 'title' => ['Area Section', '区域选择'],
-                'keywords' => ['', ''],
-                'description' => ['', '']
+                'keywords' => '',
+                'description' => ''
             ]
         ];
         if (! isset($metasCache[$this->id])) {
@@ -99,7 +99,7 @@ class Page extends \yii\base\Component
         if (! $metas) return '';
 
         if (isset($metas[$field])) {
-            $text = tt($metas[$field]);
+            $text = is_array($metas[$field]) ? tt($metas[$field]) : $metas[$field];
             if (preg_match_all('/%([a-z_\-0-9]+)%/', $text, $matches)) {
                 foreach ($matches[1] as $paramId) {
                     if (isset($this->params[$paramId])) {
@@ -109,6 +109,7 @@ class Page extends \yii\base\Component
             }
             return $text;
         }
+
         return '';
     }
 }

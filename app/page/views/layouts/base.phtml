@@ -21,8 +21,8 @@ use yii\widgets\Block;
     <link rel="bookmark" href="/favicon.ico" type="image/x-icon"　/>
     <?= Html::csrfMetaTags() ?>
     <title><?= Html::encode(\WS::$app->page->title()) ?> - <?php _tt('USLEJU', '米乐居')?></title>
-    <meta name="keywords" content="<?php echo $this->keywords?>">
-    <meta name="description" content="<?php echo $this->description?>">
+    <meta name="keywords" content="<?= Html::encode(\WS::$app->page->metaKeywords()) ?>">
+    <meta name="description" content="<?= Html::encode(\WS::$app->page->metaDescription()) ?>">
     <link rel="stylesheet" type="text/css" href="<?php echo \WS::$app->params['iconfontUrl']?>">
     <meta id="csrf-token" content="<?php echo Yii::$app->request->csrfToken?>">
     <meta id="language" content="<?php echo Yii::$app->language?>">
