@@ -14,7 +14,8 @@ class BaiduTongji extends\yii\base\Widget
 
     public function run()
     {
-        $siteKey = self::SITES[$this->getSiteId()];
+        //$siteKey = self::SITES[$this->getSiteId()];
+        $siteKey = '4d0d9ad874d5a3191ba35eb4a1d6615f';
 
         echo <<<EOT
 <script>
