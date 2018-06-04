@@ -7,7 +7,7 @@ class Page extends \yii\base\Component
 {
     public $id = '';
     public $name = ['', ''];
-    public $metas = null;
+    public $metas = [];
     public $params = [];
 
     public function init()
@@ -82,6 +82,10 @@ class Page extends \yii\base\Component
 
     public function getMeta($field)
     {
+        if (isset($this->metas[$field]) && strlen(trim($this->metas[$field])) > 0) {
+            return $this->metas[$field];
+        }
+
         if(! $this->id || $this->id === '') return '';
 
         static $metasCache = [

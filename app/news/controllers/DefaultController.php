@@ -44,6 +44,12 @@ class DefaultController extends Controller
 
         WS::$app->page->bindParams(['name' => $news->title]);
 
+        \WS::$app->page->metas = [
+            'title' => $news->meta_title,
+            'keywords' => $news->meta_keywords,
+            'description' => $news->meta_description
+        ];
+
         return $this->render('view.phtml', [
             'news'=>$news
         ]);
