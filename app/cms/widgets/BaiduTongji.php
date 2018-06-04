@@ -4,7 +4,7 @@ namespace module\cms\widgets;
 class BaiduTongji extends\yii\base\Widget
 {
     const SITES = [
-        'www' => '22f222fddd9d31aa33e31c4d297fd077',
+        'www' => '4d0d9ad874d5a3191ba35eb4a1d6615f',
         'ma' => '5a473bb36d48517a68e3ed045a03824a',
         'ny' => '0e551836ce91d9b1ae5f7e011b102fff',
         'ca' => 'eafa8a567eb6a60cf634a20cf7d117ee',
