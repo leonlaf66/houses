@@ -19,5 +19,10 @@ require(APP_ROOT . '/app/App.php');
 
 $config = require(APP_ROOT . '/config/main.php');
 
+// 修正url末尾的'/'
+if (substr($_SERVER['REQUEST_URI'], strlen($_SERVER['REQUEST_URI']) - 1, 1) !== '/') {
+  $_SERVER['REQUEST_URI'] .= '/';
+}
+
 $app = new App($config);
 $app->run();
