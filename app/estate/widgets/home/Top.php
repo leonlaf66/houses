@@ -5,26 +5,31 @@ class Top extends \yii\base\Widget
 {
     public function run()
     {
-        $items = \models\SiteSetting::get('home.luxury.houses', \WS::$app->area->id);
-        $this->fillHouses($items);
+        $groups = \WS::$app->fetchCache('estate.home.top');
 
-        /*分列 以便更容易渲染输出*/
-        $groups = [];
-        $groupIndex = 0;
-        $colTotal = 0;
-        foreach ($items as $item) {
-            list($colWidth, $cols) = explode('-', $item['col_rule']);
-            $colWidth = intval($colWidth);
-            $cols = intval($cols);
+        if (!$groups) {
+            $items = \models\SiteSetting::get('home.luxury.houses', \WS::$app->area->id);
+            $this->fillHouses($items);
 
-            if ($colTotal + $colWidth < $cols) { // 当前组内
-                $groups[$groupIndex][] = (array)$item;
-                $colTotal += $colWidth;
-            } else { // 到达组内最后一个
-                $groups[$groupIndex][] = (array)$item; // 实际是前一组的最后一个
-                $colTotal = 0;
-                $groupIndex ++;
+            /*分列 以便更容易渲染输出*/
+            $groups = [];
+            $groupIndex = 0;
+            $colTotal = 0;
+            foreach ($items as $item) {
+                list($colWidth, $cols) = explode('-', $item['col_rule']);
+                $colWidth = intval($colWidth);
+                $cols = intval($cols);
+
+                if ($colTotal + $colWidth < $cols) { // 当前组内
+                    $groups[$groupIndex][] = (array)$item;
+                    $colTotal += $colWidth;
+                } else { // 到达组内最后一个
+                    $groups[$groupIndex][] = (array)$item; // 实际是前一组的最后一个
+                    $colTotal = 0;
+                    $groupIndex ++;
+                }
             }
+            \WS::$app->saveCache('estate.home.top', $groups);
         }
 
         return $this->render('top.phtml', [

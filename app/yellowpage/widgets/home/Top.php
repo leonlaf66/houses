@@ -7,9 +7,13 @@ class Top extends \yii\base\Widget
 {  
     public function run()
     {  
-        $groups = \WS::getStaticData('home.yellowpage.top.'.\WS::$app->area->id);
+        $groups = \WS::$app->fetchCache('home.yellowpage.top');
+        if (!$groups) {
+            $groups = \WS::getStaticData('home.yellowpage.top.'.\WS::$app->area->id);
+            $this->buildYellowPageToResults($groups);
 
-        $this->buildYellowPageToResults($groups);
+            \WS::$app->saveCache('home.yellowpage.top', $groups);
+        }
 
         return $this->render('top.phtml', ['groups'=>$groups]);  
     }

@@ -17,6 +17,12 @@ class TopBanner extends \yii\base\Widget
 
     public function totals()
     {
-        return \module\estate\helpers\Summary::totals(\WS::$app->area->id);
+        $totals = \WS::$app->fetchCache('home.topbanner.totals');
+        if (!$totals) {
+            $totals = \module\estate\helpers\Summary::totals(\WS::$app->area->id);
+            \WS::$app->saveCache('home.topbanner.totals', $totals);
+        }
+
+        return $totals;
     }
 }
