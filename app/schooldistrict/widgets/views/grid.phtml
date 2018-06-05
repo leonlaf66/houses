@@ -1,5 +1,6 @@
 <?php 
     $this->registerJsFile('//d3js.org/d3.v3.min.js', ['position'=>$this::POS_HEAD]);
+    $langId = \WS::$app->language === 'zh-CN' ? '/zh/' : '/';
 ?>
 
 <div id="school-area-list">
@@ -25,12 +26,12 @@
                 </span>
             </div>
             <div class="btn-links col col2 text-right">
-                <a class="btn btn-primary" href="/school-district/<?php echo $item->id?>/" title="<?php _tt($item->getItemData('name'))?>">
+                <a class="btn btn-primary" href="<?php echo $langId?>school-district/<?php echo $item->id?>/" title="<?php _tt($item->getItemData('name'))?>">
                     <?php _tt('Details', '学区详情')?> <span class="iconfont icon-arraw-r"></span>
                 </a>
                 <div class="rets-links">
                     <?php if ($item->getSummary('total') > 0):?>
-                        <a target="_blank" href="/house/purchase/school-district/sd-<?php echo str_replace('/', '%7C', strtolower($item->code))?>/">
+                        <a target="_blank" href="<?php echo $langId?>house/purchase/school-district/sd-<?php echo str_replace('/', '%7C', strtolower($item->code))?>/">
                             <?php echo sprintf(tt('%d on Market', '共%d套在售'), $item->getSummary('total'))?>
                             <span class="iconfont icon-goto"></span>
                         </a>
@@ -42,7 +43,7 @@
         </div><!--end header-->
         <div class="row-body">
             <div class="col col1">
-                <a href="/school-district/<?php echo $item->id?>/" title="<?php _tt($_name)?>">
+                <a href="<?php echo $langId?>school-district/<?php echo $item->id?>/" title="<?php _tt($_name)?>">
                     <img class="lazy" data-src="<?php echo media_url('school-area/images')?>/<?php echo str_replace('/', '&', strtoupper($item->code))?>.jpg" alt="<?php _tt($_name)?>">
                 </a>
             </div>
