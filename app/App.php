@@ -72,6 +72,9 @@ class App extends \common\supports\SiteApp
     public function saveCache($key, $data, $time = 0)
     {
         $key = \WS::$app->area->id.'-'.\WS::$app->language.'.'.$key;
-        return \WS::$app->cache->set($key, $data, $time);
+        if (\WS::$app->cache->exists($key)) {
+            return \WS::$app->cache->set($key, $data, $time);
+        }
+        return \WS::$app->cache->add($key, $data, $time);
     }
 }

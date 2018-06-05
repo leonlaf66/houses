@@ -13,7 +13,11 @@ class Subway extends \yii\base\Widget
     {  
         $search = $this->search;
 
-        $stations = \module\catalog\models\SubwayStation::getAllStations();
+        $stations = \WS::$app->fetchCache('estate.search.subway.data');
+        if (!$stations) {
+            $stations = \module\catalog\models\SubwayStation::getAllStations();
+            \WS::$app->saveCache('estate.search.subway.data', $stations);
+        }
 
         return $this->render('subway.phtml', [
             'self'=>$this,
