@@ -20,7 +20,7 @@ class TopBanner extends \yii\base\Widget
         $totals = \WS::$app->fetchCache('home.topbanner.totals');
         if (!$totals) {
             $totals = \module\estate\helpers\Summary::totals(\WS::$app->area->id);
-            \WS::$app->saveCache('home.topbanner.totals', $totals);
+            \WS::$app->saveCache('home.topbanner.totals', $totals, 86400);
         }
 
         return $totals;

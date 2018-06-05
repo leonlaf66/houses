@@ -36,7 +36,7 @@ class Market extends \yii\base\Widget
         $marketings = \WS::$app->fetchCache('home.marketings');
         if (!$marketings) {
             $marketings = $this->getMarketingValues();
-            \WS::$app->saveCache('home.marketings', $marketings);
+            \WS::$app->saveCache('home.marketings', $marketings, 86400);
         }
 
         return $this->render('market.phtml', [

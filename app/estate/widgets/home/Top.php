@@ -29,7 +29,7 @@ class Top extends \yii\base\Widget
                     $groupIndex ++;
                 }
             }
-            \WS::$app->saveCache('estate.home.top', $groups);
+            \WS::$app->saveCache('estate.home.top', $groups, 86400);
         }
 
         return $this->render('top.phtml', [

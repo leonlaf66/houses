@@ -63,15 +63,15 @@ class App extends \common\supports\SiteApp
         return parent::beforeAction($action);
     }
 
-    public function fetchCache($key, $def = null)
+    public function fetchCache($key)
     {
         $key = \WS::$app->area->id.'-'.\WS::$app->language.'.'.$key;
-        return \WS::$app->cache->get($key, $def);
+        return \WS::$app->cache->get($key);
     }
 
-    public function saveCache($key, $data)
+    public function saveCache($key, $data, $time = 0)
     {
         $key = \WS::$app->area->id.'-'.\WS::$app->language.'.'.$key;
-        return \WS::$app->cache->set($key, $data);
+        return \WS::$app->cache->set($key, $data, $time);
     }
 }

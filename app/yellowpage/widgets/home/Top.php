@@ -12,7 +12,7 @@ class Top extends \yii\base\Widget
             $groups = \WS::getStaticData('home.yellowpage.top.'.\WS::$app->area->id);
             $this->buildYellowPageToResults($groups);
 
-            \WS::$app->saveCache('home.yellowpage.top', $groups);
+            \WS::$app->saveCache('home.yellowpage.top', $groups, 86400);
         }
 
         return $this->render('top.phtml', ['groups'=>$groups]);  
