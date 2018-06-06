@@ -118,7 +118,7 @@ h2.location {
 	</div>
 	<div class="pager">
 		<?php
-      $pagination = new yii\data\Pagination(['totalCount' =>$results['page_count'], 'pageSize' => $results['page_size'], 'page' => $results['current'] - 1]);
+      $pagination = new yii\data\Pagination(['totalCount' =>$results['total'], 'pageSize' => $results['page_size'], 'page' => $results['current'] - 1]);
 			echo LinkPager::widget([
 			    'pagination' => $pagination,
 			    'createUrlFn'=>function($page) use($context) {
