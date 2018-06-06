@@ -48,6 +48,15 @@ class App extends \common\supports\SiteApp
         }
     }
 
+    protected function initLanguage()
+    {
+        if ($this->isSeoCrawlerAccess()) {
+            $this->language = 'zh-CN';
+            return;
+        }
+        parent::initLanguage();
+    }
+
     public function beforeAction($action)
     {
         $isSelfRote = $action->id === 'area' && $action->controller->id === 'default' && $action->controller->module->id === 'home';
@@ -76,5 +85,64 @@ class App extends \common\supports\SiteApp
             return \WS::$app->cache->set($key, $data, $time);
         }
         return \WS::$app->cache->add($key, $data, $time);
+    }
+
+    public function isSeoCrawlerAccess ()
+    {
+        $userAgent = strtolower($_SERVER['HTTP_USER_AGENT']);
+        $spiderSite= [ 
+            "Googlebot",
+            "TencentTraveler", 
+            "Baiduspider+", 
+            "BaiduGame", 
+            "Googlebot", 
+            "msnbot", 
+            "Sosospider+", 
+            "Sogou web spider", 
+            "ia_archiver", 
+            "Yahoo! Slurp", 
+            "YoudaoBot", 
+            "Yahoo Slurp", 
+            "MSNBot", 
+            "Java (Often spam bot)", 
+            "BaiDuSpider", 
+            "Voila", 
+            "Yandex bot", 
+            "BSpider", 
+            "twiceler", 
+            "Sogou Spider", 
+            "Speedy Spider", 
+            "Google AdSense", 
+            "Heritrix", 
+            "Python-urllib", 
+            "Alexa (IA Archiver)", 
+            "Ask", 
+            "Exabot", 
+            "Custo", 
+            "OutfoxBot/YodaoBot", 
+            "yacy", 
+            "SurveyBot", 
+            "legs", 
+            "lwp-trivial", 
+            "Nutch", 
+            "StackRambler", 
+            "The web archive (IA Archiver)", 
+            "Perl tool", 
+            "MJ12bot", 
+            "Netcraft", 
+            "MSIECrawler", 
+            "WGet tools", 
+            "larbin", 
+            "Fish search"
+        ];
+
+        foreach($spiderSite as $val) { 
+            $str = strtolower($val); 
+            if (strpos($userAgent, $str) !== false) { 
+                return true; 
+            } 
+        }
+
+        return false;
     }
 }
