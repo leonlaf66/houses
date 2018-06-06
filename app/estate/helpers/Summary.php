@@ -10,6 +10,7 @@ class Summary
             ->from('house_index_v2')
             ->where(['area_id' => $areaId])
             ->andWhere(['is_online_abled' => true])
+            ->andWhere(['>', 'list_price', 0])
             ->groupBy('prop_type')
             ->all();
 
