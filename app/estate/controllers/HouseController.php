@@ -13,7 +13,7 @@ class HouseController extends Controller
         WS::$app->share('rets.property', $type);
         WS::$app->share('rets.tab', $tab);
 
-        if ($type === 'purchase') { // 默认为前三种房源类型，能过cookie做状态切换
+        if ($type === 'purchase' && empty($q)) { // 默认为前三种房源类型，能过cookie做状态切换
             if ($params === '') {
                 if (! \WS::$app->request->cookies->getValue('def-sell-type-flag', false)) {
                     if ($tab === 'search') {
