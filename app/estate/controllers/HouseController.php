@@ -157,25 +157,47 @@ class HouseController extends Controller
 
         WS::$app->page->setId('estate/house/'.$type.'/view');
 
-        $cityName2propName = explode(',', $houseData['nm'])[0];
-        $roomsName = explode(',', $houseData['nm'])[1];
-        $propName = FieldFilter::housePropName($houseData['prop']);
-
-        $squareField = $houseData['prop'] === 'LD' ? 'lot_size' : 'square';
-
-        WS::$app->page->bindParams([
-            'name' => $houseData['nm'],
-            'city' => str_replace($propName, '', $cityName2propName),
-            'property' => $propName,
-            'price' => implode('', FieldFilter::money($houseData['price'])),
-            'rooms' => $roomsName,
-            'square' => implode('', FieldFilter::square($houseData[$squareField])),
-            'location' => $houseData['loc']
-        ]);
+        // seo参数
+        WS::$app->page->bindParams($this->getHouseSeoParams($houseData));
 
         return $this->render("view.phtml", [
             'type'=>$type,
             'data'=>$houseData
         ]);
+    }
+
+    private function getHouseSeoParams($data)
+    {
+        $cityName2propName = explode(',', $data['nm'])[0];
+        $roomsName = explode(',', $data['nm'])[1];
+        $propName = FieldFilter::housePropName($data['prop']);
+
+        $squareField = $data['prop'] === 'LD' ? 'lot_size' : 'square';
+
+        $params = [
+            'name' => $data['nm'],
+            'city' => str_replace($propName, '', $cityName2propName),
+            'property' => $propName,
+            'price' => implode('', FieldFilter::money($data['price'])),
+            'rooms' => $roomsName,
+            'square' => implode('', FieldFilter::square($data[$squareField])),
+            'location' => $data['loc']
+        ];
+
+        if ($data['prop'] === 'RN') {
+            foreach ($data['details'] as $group) {
+                foreach ($group['items'] as $field => $item) {
+                    if ($field === 'appliances') {
+                        $params['appliances'] = $item['value'];
+                        break;
+                    }
+                }
+                if (isset($params['appliances'])) {
+                    break;
+                }
+            }
+        }
+
+        return $params;
     }
 }

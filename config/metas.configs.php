@@ -15,7 +15,7 @@ return [
     ],
     'estate/house/lease/view' => [
         'name' => '租房房源详情页',
-        'variables' => '%name% %city% %property% %price% %rooms% %square% %location%',
+        'variables' => '%name% %city% %price% %rooms% %square% %location% %appliances%',
     ],
     'schooldistrict/default/index' => [
         'name' => '学区首页',
