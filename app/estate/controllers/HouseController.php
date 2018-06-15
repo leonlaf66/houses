@@ -173,6 +173,12 @@ class HouseController extends Controller
         $propName = FieldFilter::housePropName($data['prop']);
 
         $squareField = $data['prop'] === 'LD' ? 'lot_size' : 'square';
+        $square = FieldFilter::square($data[$squareField]);
+        if (is_array($square)) {
+            $square = implode('', $square);
+        } else {
+            $square = '';
+        }
 
         $params = [
             'name' => $data['nm'],
@@ -180,7 +186,7 @@ class HouseController extends Controller
             'property' => $propName,
             'price' => implode('', FieldFilter::money($data['price'])),
             'rooms' => $roomsName,
-            'square' => implode('', FieldFilter::square($data[$squareField])),
+            'square' => $square,
             'location' => $data['loc']
         ];
 
