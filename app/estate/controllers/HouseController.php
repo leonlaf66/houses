@@ -4,6 +4,7 @@ namespace module\estate\controllers;
 use WS;
 use yii\web\Controller;
 use \module\cms\helpers\UrlParamEncoder;
+use \module\estate\helpers\FieldFilter;
 
 class HouseController extends Controller
 {
@@ -155,8 +156,21 @@ class HouseController extends Controller
             ->asData();
 
         WS::$app->page->setId('estate/house/'.$type.'/view');
+
+        $cityName2propName = explode(',', $houseData['nm'])[0];
+        $roomsName = explode(',', $houseData['nm'])[1];
+        $propName = FieldFilter::housePropName($houseData['prop']);
+
+        $squareField = $houseData['prop'] === 'LD' ? 'lot_size' : 'square';
+
         WS::$app->page->bindParams([
-            'name' => $houseData['nm']
+            'name' => $houseData['nm'],
+            'city' => str_replace($propName, '', $cityName2propName),
+            'property' => $propName,
+            'price' => implode('', FieldFilter::money($houseData['price'])),
+            'rooms' => $roomsName,
+            'square' => implode('', FieldFilter::square($houseData[$squareField])),
+            'location' => $houseData['loc']
         ]);
 
         return $this->render("view.phtml", [

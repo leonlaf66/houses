@@ -11,11 +11,11 @@ return [
     ],
     'estate/house/purchase/view' => [
         'name' => '购房房源详情页',
-        'variables' => '%name%',
+        'variables' => '%name% %city% %property% %price% %rooms% %square% %location%',
     ],
     'estate/house/lease/view' => [
         'name' => '租房房源详情页',
-        'variables' => '%name%',
+        'variables' => '%name% %city% %property% %price% %rooms% %square% %location%',
     ],
     'schooldistrict/default/index' => [
         'name' => '学区首页',
