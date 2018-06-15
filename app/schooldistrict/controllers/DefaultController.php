@@ -38,6 +38,9 @@ class DefaultController extends \yii\web\Controller
         }
 
         WS::$app->page->bindParams(['name' => $schoolDistrict->name]);
+        if ($schoolDistrict->seo) {
+            WS::$app->page->metas = (Array)$schoolDistrict->seo;
+        }
 
         return $this->render('view.phtml', [
             'model' => $schoolDistrict
