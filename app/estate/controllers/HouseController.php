@@ -136,6 +136,18 @@ class HouseController extends Controller
 
         WS::$app->page->setId('estate/house/'.$type);
 
+        // 分类标题
+        WS::$app->page->bindParams(['props' => '']);
+        if (WS::$app->language === 'zh-CN' && $type === 'purchase' && isset($params['filters']['prop'])) {
+            $props = array_map(function ($prop) {
+                return strtoupper($prop);
+            }, $params['filters']['prop']);
+
+            WS::$app->page->bindParams([
+                'props' => '-'.\module\estate\helpers\FieldFilter::housePropsNames($props)
+            ]);
+        }
+
         return $this->render('index.phtml', [
             'tab'=>$tab,
             'type'=>$type,

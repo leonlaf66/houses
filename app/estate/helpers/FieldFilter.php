@@ -126,6 +126,28 @@ class FieldFilter
         return tt($props[$prop]);
     }
 
+    public static function housePropsNames($props, $separator = '_')
+    {
+        $propsMap = [
+            'RN' => ['Rental', '租房'],
+            'SF' => ['Single Family', '单家庭'],
+            'MF' => ['Multi Family', '多家庭'],
+            'CC' => ['Condominium', '公寓'],
+            'CI' => ['Commercial', '商业用房'],
+            'BU' => ['Business Opportunity', '营业用房'],
+            'LD' => ['Land', '土地']
+        ];
+
+        $names = [];
+        foreach ($propsMap as $prop => $name) {
+            if (in_array($prop, $props)) {
+                $names[] = tt($name);
+            }
+        }
+
+        return implode($separator, $names);
+    }
+
     public static function photoUrl($data, $idx, $w, $h)
     {
         $areaId = $data['area_id'];
