@@ -1,4 +1,32 @@
+<style type="text/css">
+#footer-before .areas-container {
+    background: rgba(255,255,255,0.05);
+    border-bottom: solid 1px #000;
+    min-height: 0;
+    padding: 5px 0;
+}
+#footer-before .areas {
+    text-align:center;
+}
+#footer-before .areas > li {
+    display:inline-block;
+    padding:0 5px;
+}
+</style>
+<?php
+    $goUrlEndChars = \WS::$app->language === 'zh-CN' ? '/zh/' : '/';
+?>
 <div id="footer-before" class="page-footer-before">
+    <div class="areas-container">
+        <ul class="areas">
+            <li><?php _tt('Choose location: ', '选择区域：')?></li>
+            <?php foreach($this->context->getAreas() as $areaId => $name):?>
+                <?php if (\WS::$app->area->id !== $areaId):?>
+                    <li><a href="//<?php echo $areaId?><?php echo domain().$goUrlEndChars?>"><?php echo $name?></a></li>
+                <?php endif?>
+            <?php endforeach?>
+        </ul>
+    </div>
     <div class="container">
         <div class="lay-g">
             <div class="lay-u-1-3">
