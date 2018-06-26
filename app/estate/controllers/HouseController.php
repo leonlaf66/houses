@@ -64,15 +64,17 @@ class HouseController extends Controller
         $filterMaps = [
             'school-district' => function ($townCode) {
                 $townCode = strtoupper($townCode);
+                $townCode = explode('|', $townCode);
                 $cityId = (new \yii\db\Query())
                     ->select('id')
                     ->from('town')
-                    ->where(['short_name' => $townCode])
-                    ->scalar();
+                    ->where(['in', 'short_name', $townCode])
+                    ->column();
+                if (count($cityId) === 1) $cityId = $cityId[0];
 
                 return [
-                    'city_id',
-                    intval($cityId)
+                    'city-id',
+                    $cityId
                 ];
             },
             'subway-stations' => function ($vals) {
