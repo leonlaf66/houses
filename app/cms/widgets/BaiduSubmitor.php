@@ -5,6 +5,8 @@ class BaiduSubmitor extends\yii\base\Widget
 {
     public function run()
     {
+        if (YII_ENV === 'dev') return; 
+        
         echo <<<EOT
 <script>
 (function(){

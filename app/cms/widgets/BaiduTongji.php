@@ -5,6 +5,8 @@ class BaiduTongji extends\yii\base\Widget
 {
     public function run()
     {
+        if (YII_ENV === 'dev') return; 
+
         echo <<<EOT
 <script>
     var _hmt = _hmt || [];
