@@ -24,12 +24,14 @@
       </div>
     </div>
 
-    <div class="ti"><?php _tt('SCHOLL DISTRICTSS', '优质学区')?></div>
-    <div class="box">
-      <?php foreach (SitemapHelper::getSchoolDistricts() as $id => $d):?>
-        <a href="<?php echo $urlEnd?>school-district/<?php echo $id?>/"><?php _tt($d['name'])?></a>
-      <?php endforeach?>
-    </div>
+    <?php if (\WS::$app->area->id === 'ma'):?>
+      <div class="ti"><?php _tt('SCHOLL DISTRICTSS', '优质学区')?></div>
+      <div class="box">
+        <?php foreach (SitemapHelper::getSchoolDistricts() as $id => $d):?>
+          <a href="<?php echo $urlEnd?>school-district/<?php echo $id?>/"><?php _tt($d['name'])?></a>
+        <?php endforeach?>
+      </div>
+    <?php endif?>
 
     <div class="ti"><?php _tt('BUY & SELL', '房屋买卖')?></div>
     <div class="box">
@@ -39,18 +41,20 @@
           <a href="<?php echo $urlEnd?>house/purchase/pt-<?php echo strtolower($id)?>/"><?php _tt($name)?></a>
         <?php endforeach?>
       </div>
-      <div class="group">
-        <div class="ti"><span><?php _tt('SCHOLL DISTRICTSS HOUSES', '学区房')?></span></div>
-        <?php foreach (SitemapHelper::getSchoolDistricts() as $id => $d):?>
-          <a href="<?php echo $urlEnd?>house/purchase/school-district/sd-<?php echo strtolower($d['code'])?>/"><?php _tt($d['name'])?></a>
-        <?php endforeach?>
-      </div>
-      <div class="group">
-        <div class="ti"><span><?php _tt('SUBWAY HOUSES', '地铁房')?></span></div>
-        <?php foreach (SitemapHelper::getSubwayLines() as $id => $name):?>
-          <a href="<?php echo $urlEnd?>house/purchase/subway/sl-<?php echo $id?>/"><?php _tt($name)?></a>
-        <?php endforeach?>
-      </div>
+      <?php if (\WS::$app->area->id === 'ma'):?>
+        <div class="group">
+          <div class="ti"><span><?php _tt('SCHOLL DISTRICTSS HOUSES', '学区房')?></span></div>
+          <?php foreach (SitemapHelper::getSchoolDistricts() as $id => $d):?>
+            <a href="<?php echo $urlEnd?>house/purchase/school-district/sd-<?php echo strtolower($d['code'])?>/"><?php _tt($d['name'])?></a>
+          <?php endforeach?>
+        </div>
+        <div class="group">
+          <div class="ti"><span><?php _tt('SUBWAY HOUSES', '地铁房')?></span></div>
+          <?php foreach (SitemapHelper::getSubwayLines() as $id => $name):?>
+            <a href="<?php echo $urlEnd?>house/purchase/subway/sl-<?php echo $id?>/"><?php _tt($name)?></a>
+          <?php endforeach?>
+        </div>
+      <?php endif?>
       <div class="group">
         <div class="ti"><span><?php _tt('MAP', '地图搜房')?></span></div>
         <a href="<?php echo $urlEnd?>map/house/purchase/#areas"><?php _tt('Map', '地图搜房')?></a>
@@ -65,12 +69,14 @@
           <a href="<?php echo $urlEnd?>house/lease/pr-<?php echo $id?>/"><?php _tt($name)?></a>
         <?php endforeach?>
       </div>
-      <div class="group">
-        <div class="ti"><span><?php _tt('SUBWAY HOUSES', '地铁房')?></span></div>
-        <?php foreach (SitemapHelper::getSubwayLines() as $id => $name):?>
-          <a href="<?php echo $urlEnd?>house/lease/subway/sl-<?php echo $id?>/"><?php _tt($name)?></a>
-        <?php endforeach?>
-      </div>
+      <?php if (\WS::$app->area->id === 'ma'):?>
+        <div class="group">
+          <div class="ti"><span><?php _tt('SUBWAY HOUSES', '地铁房')?></span></div>
+          <?php foreach (SitemapHelper::getSubwayLines() as $id => $name):?>
+            <a href="<?php echo $urlEnd?>house/lease/subway/sl-<?php echo $id?>/"><?php _tt($name)?></a>
+          <?php endforeach?>
+        </div>
+      <?php endif?>
       <div class="group">
         <div class="ti"><span><?php _tt('MAP', '地图搜房')?></span></div>
         <a href="<?php echo $urlEnd?>map/house/lease/#areas"><?php _tt('Map', '地图搜房')?></a>
