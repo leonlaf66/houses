@@ -1,0 +1,154 @@
+<?php
+    use module\catalog\helpers\Sitemap as SitemapHelper;
+
+    $this->params['breadcrumbs'] = [
+        tt('Sitemap', '网站地图')
+    ];
+
+    $urlEnd = \WS::$app->language === 'zh-CN' ? '/zh/' : '/';
+?>
+
+<div class="sitemap">
+  <div class="container">
+
+    <div class="box cl" style="height:46px">
+      <div class="ti"><?php _tt('Areas', '区域分站')?></div>
+      <div class="cnt">
+        <?php foreach (SitemapHelper::getAreas() as $id => $area):?>
+          <?php if (\WS::$app->area->id !== $id):?>
+            <a href="//<?php echo $id?><?php echo domain().$urlEnd?>"><?php echo $area?></a>
+          <?php endif?>
+        <?php endforeach?>
+      </div>
+    </div>
+
+    <div class="ti"><?php _tt('SCHOLL DISTRICTSS', '优质学区')?></div>
+    <div class="box">
+      <?php foreach (SitemapHelper::getSchoolDistricts() as $id => $d):?>
+        <a href="<?php echo $urlEnd?>school-district/<?php echo $id?>/"><?php _tt($d['name'])?></a>
+      <?php endforeach?>
+    </div>
+
+    <div class="ti"><?php _tt('BUY & SELL', '房屋买卖')?></div>
+    <div class="box">
+      <div class="group">
+        <div class="ti"><span><?php _tt('Types', '类型')?></span></div>
+        <?php foreach (SitemapHelper::getHousePropNames() as $id => $name):?>
+          <a href="<?php echo $urlEnd?>house/purchase/pt-<?php echo strtolower($id)?>/"><?php _tt($name)?></a>
+        <?php endforeach?>
+      </div>
+      <div class="group">
+        <div class="ti"><span><?php _tt('SCHOLL DISTRICTSS HOUSES', '学区房')?></span></div>
+        <?php foreach (SitemapHelper::getSchoolDistricts() as $id => $d):?>
+          <a href="<?php echo $urlEnd?>house/purchase/school-district/sd-<?php echo strtolower($d['code'])?>/"><?php _tt($d['name'])?></a>
+        <?php endforeach?>
+      </div>
+      <div class="group">
+        <div class="ti"><span><?php _tt('SUBWAY HOUSES', '地铁房')?></span></div>
+        <?php foreach (SitemapHelper::getSubwayLines() as $id => $name):?>
+          <a href="<?php echo $urlEnd?>house/purchase/subway/sl-<?php echo $id?>/"><?php _tt($name)?></a>
+        <?php endforeach?>
+      </div>
+      <div class="group">
+        <div class="ti"><span><?php _tt('MAP', '地图搜房')?></span></div>
+        <a href="<?php echo $urlEnd?>map/house/purchase/#areas"><?php _tt('Map', '地图搜房')?></a>
+      </div>
+    </div>
+
+    <div class="ti"><?php _tt('RENTAL', '房屋出租')?></div>
+    <div class="box">
+      <div class="group">
+        <div class="ti"><span><?php _tt('Prices', '价格区间')?></span></div>
+        <?php foreach (SitemapHelper::getRetalPrices() as $id => $name):?>
+          <a href="<?php echo $urlEnd?>house/lease/pr-<?php echo $id?>/"><?php _tt($name)?></a>
+        <?php endforeach?>
+      </div>
+      <div class="group">
+        <div class="ti"><span><?php _tt('SUBWAY HOUSES', '地铁房')?></span></div>
+        <?php foreach (SitemapHelper::getSubwayLines() as $id => $name):?>
+          <a href="<?php echo $urlEnd?>house/lease/subway/sl-<?php echo $id?>/"><?php _tt($name)?></a>
+        <?php endforeach?>
+      </div>
+      <div class="group">
+        <div class="ti"><span><?php _tt('MAP', '地图搜房')?></span></div>
+        <a href="<?php echo $urlEnd?>map/house/lease/#areas"><?php _tt('Map', '地图搜房')?></a>
+      </div>
+    </div>
+
+    <div class="ti"><?php _tt('PRO SERVICE', '管房养房')?></div>
+    <div class="box">
+      <div class="group">
+        <div class="ti"><span><?php _tt('Popular Tags', '流行标签')?></span></div>
+        <?php foreach (SitemapHelper::getYpTypes() as $id => $name):?>
+          <a href="<?php echo $urlEnd?>pro-service/search/<?php echo $id?>/"><?php _tt($name)?></a>
+        <?php endforeach?>
+      </div>
+    </div>
+
+    <div class="ti"><?php _tt('News', '置业咨询')?></div>
+    <div class="box">
+      <div class="group">
+        <div class="ti"><span><?php _tt('Types', '类别')?></span></div>
+        <?php foreach (SitemapHelper::getNewsTypes() as $id => $name):?>
+          <a href="<?php echo $urlEnd?>news/channel<?php echo $id?>/"><?php _tt($name)?></a>
+        <?php endforeach?>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+.catalog-sitemap-index .page-breadcrumb-container {
+  background:#fff;
+}
+.sitemap {
+  padding:15px 0;
+  background:rgb(248, 248, 248);
+}
+.sitemap .ti {
+  padding:10px 15px;
+  font-size:16px;
+  font-weight:bold;
+  color:#99bd2a;
+}
+.sitemap .box {
+  background:#fff;
+  border:solid 1px rgb(236, 236, 236);
+  margin-bottom:25px;
+  padding:10px 15px;
+}
+.sitemap .box.cl {
+  position:relative;
+  padding:0;
+}
+.sitemap .box.cl .ti {
+  position:absolute;
+  left:0;top:0;bottom:0;
+  width:100px;
+  border-right:solid 1px rgb(236, 236, 236);
+}
+.sitemap .box.cl .cnt {
+  padding:7px 0 0 110px;
+}
+.sitemap a {
+  display:inline-block;
+  padding:5px 10px;
+  color:#2455a3;
+}
+.sitemap .group {
+  margin-bottom:10px;
+}
+.sitemap .group .ti {
+  padding:4px 10px;
+  margin-bottom:5px;
+  color:#333;
+  font-weight:200;
+  font-size:14px;
+}
+.sitemap .group .ti > span {
+  display:inline-block;
+  background:#e9e9e9;
+  padding:5px 10px;
+  border-radius:0 6px 6px 6px;
+}
+</style>

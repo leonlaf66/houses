@@ -3,14 +3,17 @@
 ?>
 <div id="footer-before" class="page-footer-before">
     <div class="areas-container">
-        <ul class="areas">
-            <li><?php _tt('Choose location: ', '选择区域：')?></li>
-            <?php foreach($this->context->getAreas() as $areaId => $name):?>
-                <?php if (\WS::$app->area->id !== $areaId):?>
-                    <li><a href="//<?php echo $areaId?><?php echo domain().$goUrlEndChars?>"><?php echo $name?></a></li>
-                <?php endif?>
-            <?php endforeach?>
-        </ul>
+        <div class="container">
+            <ul class="areas">
+                <li><?php _tt('Choose location: ', '选择区域：')?></li>
+                <?php foreach($this->context->getAreas() as $areaId => $name):?>
+                    <?php if (\WS::$app->area->id !== $areaId):?>
+                        <li><a href="//<?php echo $areaId?><?php echo domain().$goUrlEndChars?>"><?php echo $name?></a></li>
+                    <?php endif?>
+                <?php endforeach?>
+            </ul>
+            <a class="sitemap-link" href="<?php echo $goUrlEndChars?>sitemap/"><?php _tt('Sitemap', '网站地图')?></a>
+        </div>
     </div>
     <div class="container">
         <div class="lay-g">
@@ -55,3 +58,15 @@
         </div>
     </div>
 </div>
+<style>
+.areas-container .container{
+    padding: 0 !important;
+    min-height: 0 !important;
+    position:relative;
+}
+.areas-container .sitemap-link {
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+</style>
