@@ -43,7 +43,7 @@ class Sitemap
     public static function getHousePropNames()
     {
         return [
-            'RN' => ['Rental', '租房'],
+            // 'RN' => ['Rental', '租房'],
             'SF' => ['Single Family', '单家庭'],
             'MF' => ['Multi Family', '多家庭'],
             'CC' => ['Condominium', '公寓'],
