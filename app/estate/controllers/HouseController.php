@@ -223,4 +223,4 @@ class HouseController extends Controller
 
         return $params;
     }
-}√
+}
