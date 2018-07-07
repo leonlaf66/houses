@@ -183,8 +183,10 @@ class HouseController extends Controller
 
     private function getHouseSeoParams($data)
     {
-        $cityName2propName = explode(',', $data['nm'])[0];
-        $roomsName = explode(',', $data['nm'])[1];
+        $nameSpats = explode(',', $data['nm']);
+
+        $cityName2propName = $nameSpats[0];
+        $roomsName = count($nameSpats) > 1 ? $nameSpats[1] : '';
         $propName = FieldFilter::housePropName($data['prop']);
 
         $squareField = $data['prop'] === 'LD' ? 'lot_size' : 'square';
@@ -221,4 +223,4 @@ class HouseController extends Controller
 
         return $params;
     }
-}
+}√
