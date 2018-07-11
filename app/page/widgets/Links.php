@@ -12,15 +12,17 @@ class Links extends \yii\base\Widget
         $linksContent = SiteSetting::get('friended.links');
         $linksContent = str_replace(' ', '', $linksContent);
 
-        $items = explode("\n", $linksContent);
-        $items = array_map(function ($line) {
+        $lines = explode("\n", $linksContent);
+
+        $items = [];
+        foreach ($lines as $line) {
             if (preg_match('/\[(.*)\](.*)/', $line, $matcheds)) {
-              return [
+              $items[] = [
                 'title' => tt(explode(',', $matcheds[1])),
                 'url' => $matcheds[2]
               ];
             }
-        }, $items);
+        }
 
         return $this->render('html/links.phtml', [
           'items' => $items

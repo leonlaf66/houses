@@ -30,7 +30,7 @@ $langId = \WS::$app->language === 'zh-CN' ? 'zh/' : '';
                 </div>
             <?php endif?>
             <?php if (WS::$app->controller->module->id.'-'.WS::$app->controller->id.'-'.WS::$app->controller->action->id === 'home-default-index'):?>
-                <a href="http://www<?php echo domain()?>/<?php echo $langId?><?php $langId === '' ? '/' : ''?>area/" class="area-switcher-btn" href="javascript:void(0)">
+                <a href="http://www<?php echo domain()?>/<?php echo $langId?><?php $langId === '' ? '/' : ''?>" class="area-switcher-btn" href="javascript:void(0)">
                     <i class="iconfont icon-area"></i><?php echo tt(\WS::$app->area->getName())?>
                 </a>
             <?php endif?>

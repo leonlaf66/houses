@@ -1,18 +1,20 @@
-<ul class="footer-links">
-    <li><?php _tt('Links:', '友情链接：')?></li>
-  <?php foreach ($items as $item):?>
-    <?php if (!$item) continue;?>
-    <li><a href="<?php echo $item['url']?>" target="_blank"><?php echo $item['title']?></a></li>
-  <?php endforeach?>
-</ul>
+<?php if (count($items) > 1):?>
+  <ul class="footer-links">
+      <li><?php _tt('Links:', '友情链接：')?></li>
+    <?php foreach ($items as $item):?>
+      <?php if (!$item) continue;?>
+      <li><a href="<?php echo $item['url']?>" target="_blank"><?php echo $item['title']?></a></li>
+    <?php endforeach?>
+  </ul>
 
-<style type="text/css">
-.footer-links > li {
-  display:inline-block;
-}
-.footer-links > li > a {
-  display:block;
-  padding:0 10px;
-  color:#afafaf;
-}
-</style>
+  <style type="text/css">
+  .footer-links > li {
+    display:inline-block;
+  }
+  .footer-links > li > a {
+    display:block;
+    padding:0 10px;
+    color:#afafaf;
+  }
+  </style>
+<?php endif?>

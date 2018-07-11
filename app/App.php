@@ -59,14 +59,14 @@ class App extends \common\supports\SiteApp
 
     public function beforeAction($action)
     {
-        $isSelfRote = $action->id === 'area' && $action->controller->id === 'default' && $action->controller->module->id === 'home';
+        $isSelfRote = $action->controller->id === 'default' && $action->controller->module->id === 'home';
 
         $this->page->bindParams([
             'area' => tt($this->area->getName())
         ]);
 
         if (! $isSelfRote && ! \WS::$app->area->isAreaSite) {
-            return $action->controller->redirect(['/home/default/area']);
+            return $action->controller->redirect(['/home/default/index']);
         }
 
         return parent::beforeAction($action);
