@@ -1,0 +1,170 @@
+/*quick基本布局*/
+.areas-quick {margin-top:35px;line-height:35px;}
+.areas-quick h2 {font-size:20px;font-weight:bold;margin-bottom:10px}
+.areas-quick .tab-wrap {
+    border-top:solid 2px #cf0000;
+    font-size:0;
+}
+.areas-quick .tab-wrap .tab {
+    display:inline-block;padding:5px 45px;
+    border-left:solid 1px #e2e2e2;
+    font-size:16px;
+}
+.areas-quick .tab-wrap .tab:last-child {
+    border-right:solid 1px #e2e2e2;
+}
+.areas-quick .tab-wrap .tab:hover {
+    color:#dd0000;
+}
+.areas-quick .tab-wrap .tab.active {
+    background:red;color:#fff;
+    border-color:red;
+}
+.areas-quick .tab-container {
+    border:solid 1px #e2e2e2;
+    background:#fff;
+    margin-top:0;
+    margin-bottom:35px;
+    font-size:0;
+    position:relative;
+    display:none;
+}
+.areas-quick .tab-container.active {
+    display:block;
+}
+.areas-quick .col-1-2 {
+    display:inline-block;
+    width:50%;
+    font-size:14px;
+    vertical-align:top;
+}
+.areas-quick .col-left {
+    padding-right:43px;
+}
+
+/*houses slider*/
+.houses-slider {
+    height:250px;
+}
+.houses-slider .house-item{
+    display:block;
+    position:relative;
+    height:250px;
+    background-color:#eee;
+    background-image:url(http://media.usleju.local/area/ma.jpg);
+    background-size:100% 100%;
+    color:#fff;
+}
+.houses-slider .house-title {
+    position:absolute;
+    left:0;right:0;
+    bottom:0;
+    padding:2px 10px;
+    background:rgba(0, 0, 0, .4);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/*house list*/
+.areas-quick .house-list {
+    padding:15px;padding-left:35px;
+    position:relative;
+}
+.areas-quick .house-list .houses-slider {
+    height:250px;
+    padding-left:3px;
+    overflow:hidden;
+}
+.areas-quick .house-list .house-item {
+    display:none;
+}
+.areas-quick .houses-slider .house-item {
+    display:none;
+}
+.areas-quick .house-list > ul > li {
+    list-style-type:disc;
+    margin-right:70px;
+}
+.areas-quick .house-list > ul > li > a {
+    display:block;
+    margin-left:-5px;
+    font-size:15px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.areas-quick .house-list .more-link {
+    position:absolute;
+    right:0;
+    bottom:15px;
+}
+
+/*news-list*/
+.areas-quick .news-list {
+    padding:15px;
+    margin-left:-25px;
+}
+.areas-quick .news-list h2 {
+    font-size:16px;
+    position:relative;
+    text-align:center;
+}
+.areas-quick .news-list h2 > span {
+    display:inline-block;
+}
+.areas-quick .news-list h2 > span.t {
+    margin:0 20px;
+    letter-spacing:5px;
+}
+.areas-quick .news-list h2 > span.hl {
+    width:30px;
+    height:1px;
+    background:#ccc;
+    vertical-align: middle;
+}
+.areas-quick .news-list > ul > li {
+    list-style-type:disc;
+    margin-left:30px;
+}
+.areas-quick .news-list > ul > li > a {
+    display:block;
+    margin-left:-5px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.areas-quick .news-list .more-div {
+    position: absolute;
+    right: 20px;
+    bottom: 15px;
+}
+
+/*slider修正*/
+.bx-wrapper {
+    margin-bottom:0;
+    border-width: 0;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    border: 1px;
+}
+.bx-wrapper .bx-viewport {
+    border-width:0;
+    left:0;
+}
+.bx-wrapper .bx-pager, .bx-wrapper .bx-controls-auto {
+    bottom:15px;
+    text-align:right;
+    right:15px;
+}
+.bx-wrapper .bx-pager.bx-default-pager a {
+    text-indent: 99999px;
+}
+.bx-wrapper .bx-pager.bx-default-pager a:hover, .bx-wrapper .bx-pager.bx-default-pager a.active {
+    background:#cc0000;
+}
+
+/*footer修正*/
+.footer-simple {
+    position:static;
+}

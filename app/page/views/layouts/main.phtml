@@ -8,13 +8,8 @@
 
 <?php $this->beginContent('@module/page/views/layouts/base.phtml')?>
 
-    <?php echo $content;?>
+<?php echo $content;?>
 
-<div class="page-bottom-container">
-    <?php echo PageWidget\FooterBefore::widget()?>
-    <div class="container">
-        <?php echo PageWidget\Footer::widget()?>
-    </div>
-</div>
+<?php echo PageWidget\Footer::widget()?>
 
 <?php $this->endContent()?>

@@ -1,10 +1,116 @@
-<footer id="footer" class="page-footer-container">
+<?php
+  $_lang = \WS::$app->language === 'zh-CN' ? '/zh' : '';
+  $_areas = [
+    'ma' => ['Boston', '波士顿房产'],
+    'ny' => ['New York', '纽约房产'],
+    'ga' => ['Atlanta', '亚特兰大房产'],
+    'ca' => ['Los Angel', '洛杉矶房产'],
+    'il' => ['Chicago', '芝加哥房产']
+  ];
+  $_isInArea = in_array(substr($_SERVER['HTTP_HOST'], 0, 2), ['ma', 'ny', 'ca', 'ga', 'il']);
+?>
+<footer class="page-footer">
     <div class="container">
-        <div class="copyright">
-            蜀ICP备18012254号-1 Copyright 2015-<?php echo date('Y')?> The Fine Technology, Inc. All rights reserved.
+      <div class="row">
+        <div class="col col1">
+          <ul class="tab-container">
+            <?php $_firstAreaId = array_keys($_areas)[0]?>
+            <?php foreach ($_areas as $areaId => $title):?>
+              <?php
+                if ($_isInArea && \WS::$app->area->id === $areaId) continue;
+              ?>
+              <li class="<?php echo $areaId === $_firstAreaId ? 'active' : ''?>">
+                <a href="#house-<?php echo $areaId?>"><?php _tt($title)?></a>
+              </li>
+            <?php endforeach?>
+            <li><a href="#links"><?php _tt('Friendship Links', '友情链接')?></a></li>
+          </ul>
+          <?php foreach (['ma', 'ny', 'ga', 'ca', 'il'] as $areaId):?>
+            <ul class="tab-content <?php echo $areaId === 'ma' ? 'active' : ''?>" id="house-<?php echo $areaId?>">
+              <li>
+                <a href="http://<?php echo $areaId?><?php echo domain()?><?php echo $_lang?>/house/purchase/pt-sf2mf2cc/" target="_blank">
+                  <?php _tt('Buy & Sell', '房屋买卖')?></a></li>
+              <li>
+                <a href="http://<?php echo $areaId?><?php echo domain()?><?php echo $_lang?>/house/lease/" target="_blank">
+                  <?php _tt('Rental', '房屋租赁')?></a></li>
+              <?php if ($areaId === 'ma'):?>
+              <li>
+                <a href="http://<?php echo $areaId?><?php echo domain()?><?php echo $_lang?>/school-district/" target="_blank">
+                  <?php _tt('Scholl Districtss', '优质学区')?></a></li>
+              <?php endif?>
+              <li>
+                <a href="http://<?php echo $areaId?><?php echo domain()?><?php echo $_lang?>/pro-service/" target="_blank">
+                  <?php _tt('Pro Service', '管房养房')?></a></li>
+              <li>
+                <a href="http://<?php echo $areaId?><?php echo domain()?><?php echo $_lang?>/news/" target="_blank">
+                  <?php _tt('News', '新闻资讯')?></a></li>
+              <li>
+                <a href="http://<?php echo $areaId?><?php echo domain()?><?php echo $_lang?>/sitemap/" target="_blank">
+                  <?php _tt('Sitemap', '网站地图')?>
+                </a>
+              </li>
+            </ul>
+          <?php endforeach?>
+          <ul class="tab-content" id="links">
+            <?php foreach ($this->context->getLinks() as $link):?>
+              <li><a href="<?php echo $link['url']?>" target="_blank"><?php echo $link['title']?></a></li>
+            <?php endforeach?>
+          </ul>
         </div>
+        <div class="col col2">
+          <div class="contacts">
+            <div class="cn-phone"><span class="icon2"></span>1-888-610-3288</div>
+            <div class="us-phone"><span class="icon2"></span>+086 15680728360</div>
+            <div class="email"><span class="icon2"></span>contact@usleju.com</div>
+          </div>
+        </div>
+        <div class="col col3">
+          <div class="follow-us">
+              <div class="heading"><?php _t('footer', 'Follow us')?></div>
+              <ul class="follow-items">
+                  <li class="follow-item follow-wechat">
+                      <a href="javascript:void(0)" class="hover-float">
+                          <i class="iconfont icon-wechat"></i>
+                          <div class="float-pop wechat"></div>
+                      </a>
+                  </li>
+                  <li class="follow-item follow-weibo">
+                      <wb:follow-button uid="5973149812" width="64" height="24" style="display:inline-block;"></wb:follow-button>
+                  </li>
+              </ul>
+          </div>
+        </div>
+      </div>
+      <div class="copyright">
+        蜀ICP备18012254号-1 Copyright 2015-<?php echo date('Y')?> The Fine Technology, Inc. All rights reserved.
+      </div>
+    </div>
+    <div class="app-download-container">
+      <div class="container">
+        <div class="download-qrcode">
+          <?php _tt('Download', '扫码下载')?><br/>
+          <?php _tt('USLEJU App', '米乐居手机APP')?>
+        </div>
+        <div class="phone-app">Phone App</div>
+      </div>
     </div>
 </footer>
+
+<script>
+<?php $this->beginBlock('pbulic-footer-tab')?>
+$(function () {
+  var tabc = $('.page-footer .tab-container');
+  tabc.delegate('li', 'mouseenter', function () {
+    tabc.find('li.active').removeClass('active');
+    $(this).addClass('active');
+
+    $('.page-footer .tab-content.active').removeClass('active');
+    $($(this).find('a').attr('href')).addClass('active');
+  });
+  tabc.delegate('li', 'click', function () {return false;});
+});
+<?php $this->endBlock()?>
+</script>
 
 <script>
   <?php $this->beginBlock('pbulic-image-lazy')?>
@@ -12,3 +118,4 @@
   <?php $this->endBlock()?>
 </script>
 <?php $this->registerJs($this->blocks['pbulic-image-lazy'], $this::POS_END)?>
+<?php $this->registerJs($this->blocks['pbulic-footer-tab'], $this::POS_END)?>

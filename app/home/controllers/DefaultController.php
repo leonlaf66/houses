@@ -14,7 +14,14 @@ class DefaultController extends \yii\web\Controller
                 'description' => '米乐居是美国房地产网络平台，本站为用户提供最新、最全的实时房源，提供国内用户一条龙房产服务。让您不再为海外置业选房、看房、买房、养房发愁。'
             ];
 
-            return $this->render('area.phtml');
+            // http://127.0.0.1:8001/dashboard?cache-flush=no
+            $dashboardData = \WS::$app->houseApi->create("dashboard")
+                ->send()
+                ->asData();
+
+            return $this->render('area.phtml', [
+                'data' => $dashboardData
+            ]);
         }
 
         \WS::share('isHome', true);

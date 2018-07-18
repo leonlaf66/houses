@@ -1,3 +1,7 @@
+<?php
+    use \module\page\widgets as PageWidget;
+?>
+
 <?php $this->beginContent('@module/page/views/layouts/base.phtml')?>
 
 <style>
@@ -43,6 +47,9 @@ body {
         position:static;
     }
 }
+.page-bottom-container {
+    border-top:solid 5px #99bd2a;
+}
 </style>
 
 <nav id="main-nav">
@@ -54,17 +61,6 @@ body {
     <?php echo $content;?>
 </div>
 
-<div class="footer-simple">
-    <div class="footer-simple-links" style="margin-bottom:25px;">
-        <div class="container" style="min-height:0;padding:0;text-align:center;">
-            <?php echo \module\page\widgets\Links::widget()?>
-        </div>
-    </div>
-
-    Copyright 2015-2017 The Fine Technology All right reserved
-</div>
-<style type="text/css">
-.footer-simple-links li > a{color:#fff;}
-</style>
+<?php echo PageWidget\Footer::widget()?>
 
 <?php $this->endContent()?>
