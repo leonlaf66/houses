@@ -3,7 +3,7 @@ use module\home\widgets\AreaSelector;
 
 $_options = ['position'=>$this::POS_HEAD, 'depends' => '\module\page\assets\Asset'];
 $this->registerCssFile('https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css', $_options);
-$this->registerCssFile('/static/css/area.css', $_options);
+$this->registerCssFile('/static/css/area.css?v=0.02', $_options);
 $this->registerJsFile('https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js', $_options);
 
 $_areas = [
@@ -18,7 +18,6 @@ $lang = \WS::$app->language === 'zh-CN' ? '/zh' : '';
 $url_create = function ($areaId, $target) use ($domain, $lang) {
     return "http://{$areaId}{$domain}{$lang}/{$target}";
 }
-
 ?>
 
 <?php echo AreaSelector::widget()?>
