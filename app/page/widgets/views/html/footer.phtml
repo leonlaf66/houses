@@ -26,26 +26,40 @@
             <li><a href="#links"><?php _tt('Friendship Links', '友情链接')?></a></li>
           </ul>
           <?php foreach (['ma', 'ny', 'ga', 'ca', 'il'] as $areaId):?>
+            <?php
+              $title = $_areas[$areaId];
+            ?>
             <ul class="tab-content <?php echo $areaId === 'ma' ? 'active' : ''?>" id="house-<?php echo $areaId?>">
               <li>
-                <a href="http://<?php echo $areaId?><?php echo domain()?><?php echo $_lang?>/house/purchase/pt-sf2mf2cc/" target="_blank">
+                <a href="http://<?php echo $areaId?><?php echo domain()?><?php echo $_lang?>/house/purchase/pt-sf2mf2cc/" 
+                  title="<?php _tt($title)?> - <?php _tt('Buy & Sell', '房屋买卖')?>" target="_blank">
                   <?php _tt('Buy & Sell', '房屋买卖')?></a></li>
               <li>
-                <a href="http://<?php echo $areaId?><?php echo domain()?><?php echo $_lang?>/house/lease/" target="_blank">
+                <a href="http://<?php echo $areaId?><?php echo domain()?><?php echo $_lang?>/house/lease/"
+                  title="<?php _tt($title)?> - <?php _tt('Rental', '房屋租赁')?>"
+                  target="_blank">
                   <?php _tt('Rental', '房屋租赁')?></a></li>
               <?php if ($areaId === 'ma'):?>
               <li>
-                <a href="http://<?php echo $areaId?><?php echo domain()?><?php echo $_lang?>/school-district/" target="_blank">
+                <a href="http://<?php echo $areaId?><?php echo domain()?><?php echo $_lang?>/school-district/"
+                  title="<?php _tt($title)?> - <?php _tt('Scholl Districtss', '优质学区')?>"
+                  target="_blank">
                   <?php _tt('Scholl Districtss', '优质学区')?></a></li>
               <?php endif?>
               <li>
-                <a href="http://<?php echo $areaId?><?php echo domain()?><?php echo $_lang?>/pro-service/" target="_blank">
+                <a href="http://<?php echo $areaId?><?php echo domain()?><?php echo $_lang?>/pro-service/"
+                  title="<?php _tt($title)?> - <?php _tt('Pro Service', '管房养房')?>"
+                  target="_blank">
                   <?php _tt('Pro Service', '管房养房')?></a></li>
               <li>
-                <a href="http://<?php echo $areaId?><?php echo domain()?><?php echo $_lang?>/news/" target="_blank">
+                <a href="http://<?php echo $areaId?><?php echo domain()?><?php echo $_lang?>/news/"
+                  title="<?php _tt($title)?> - <?php _tt('News', '新闻资讯')?>"
+                  target="_blank">
                   <?php _tt('News', '新闻资讯')?></a></li>
               <li>
-                <a href="http://<?php echo $areaId?><?php echo domain()?><?php echo $_lang?>/sitemap/" target="_blank">
+                <a href="http://<?php echo $areaId?><?php echo domain()?><?php echo $_lang?>/sitemap/"
+                  title="<?php _tt($title)?> - <?php _tt('Sitemap', '网站地图')?>"
+                  target="_blank">
                   <?php _tt('Sitemap', '网站地图')?>
                 </a>
               </li>
