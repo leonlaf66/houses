@@ -36,7 +36,7 @@ $url_create = function ($areaId, $target) use ($domain, $lang) {
                     <div class="houses-slider">
                         <?php foreach($data[$areaId]['houses'] as $d):?>
                             <a class="house-item" href="<?php echo $url_create($areaId, "purchase/{$d['id']}/")?>" 
-                                style="background-image:url(<?php echo \module\estate\helpers\FieldFilter::photoUrl($d, 0, 656, 350)?>);" target="_blank">
+                                style="background-image:url(<?php echo \module\estate\helpers\FieldFilter::photoUrl($d, 0, 580, 320)?>);" target="_blank">
                                 <span class="house-title"><?php echo $d['nm']?></span>
                             </a>
                         <?php endforeach?>

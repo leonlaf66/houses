@@ -130,6 +130,9 @@
     display:none;
 }
 .areas-quick .houses-slider .house-item {
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
     display:none;
 }
 .areas-quick .house-list > ul > li {
