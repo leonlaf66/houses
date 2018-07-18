@@ -20,7 +20,7 @@ class Asset extends AssetBundle
     public $css = [
         'static/lib/tipped-4.6.0-light/css/tipped/tipped.css',
         'static/css/jquery.typeahead.min.css',
-        'static/css/main.css?v1.05'
+        'static/css/main.css?v1.06'
     ];
     public $js = [
 	    'static/lib/lazyload.min.js',
