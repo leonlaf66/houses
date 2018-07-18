@@ -50,11 +50,26 @@ body {
 .page-bottom-container {
     border-top:solid 5px #99bd2a;
 }
+#main-nav .quick-link {
+    position:absolute;
+    top: 25px;
+    right: 35px;
+    font-size:13px;
+}
+#main-nav .quick-link .iconfont {
+    font-size:16px;
+    margin-right:2px;
+    display: inline-block;
+    vertical-align:middle;
+}
 </style>
 
 <nav id="main-nav">
     <img class="logo" src="<?php echo static_url('img/logo2.png')?>">
+    <?php echo \module\page\widgets\Language::widget()?>
+    <!--
     <a href="#" class="btn-link-rtn"><i class="iconfont icon-app"><?php _tt('Download App', '下载米乐居APP')?></i></a>
+    -->
 </nav>
 
 <div id="main">
