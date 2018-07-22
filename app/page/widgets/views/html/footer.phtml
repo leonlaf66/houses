@@ -16,12 +16,15 @@
           <ul class="tab-container">
             <?php $_firstAreaId = array_keys($_areas)[0]?>
             <?php foreach ($_areas as $areaId => $title):?>
-              <?php
-                if ($_isInArea && \WS::$app->area->id === $areaId) continue;
-              ?>
-              <li class="<?php echo $areaId === $_firstAreaId ? 'active' : ''?>">
-                <a href="#house-<?php echo $areaId?>"><?php _tt($title)?></a>
-              </li>
+              <?php if (!$_isInArea):?>
+                <li class="<?php echo $areaId === $_firstAreaId ? 'active' : ''?>">
+                  <a href="#house-<?php echo $areaId?>"><?php _tt($title)?></a>
+                </li>
+              <?php else:?>
+                <li class="<?php echo \WS::$app->area->id === $areaId ? 'active' : ''?>">
+                  <a href="#house-<?php echo $areaId?>"><?php _tt($title)?></a>
+                </li>
+              <?php endif?>
             <?php endforeach?>
             <li><a href="#links"><?php _tt('Friendship Links', '友情链接')?></a></li>
           </ul>
@@ -29,7 +32,11 @@
             <?php
               $title = $_areas[$areaId];
             ?>
+            <?php if (!$_isInArea):?>
             <ul class="tab-content <?php echo $areaId === 'ma' ? 'active' : ''?>" id="house-<?php echo $areaId?>">
+              <?php else:?>
+                <ul class="tab-content <?php echo \WS::$app->area->id === $areaId ? 'active' : ''?>" id="house-<?php echo $areaId?>">
+              <?php endif?>
               <li>
                 <a href="http://<?php echo $areaId?><?php echo domain()?><?php echo $_lang?>/house/purchase/pt-sf2mf2cc/" 
                   title="<?php _tt($title)?> - <?php _tt('Buy & Sell', '房屋买卖')?>" target="_blank">
@@ -114,12 +121,25 @@
 <?php $this->beginBlock('pbulic-footer-tab')?>
 $(function () {
   var tabc = $('.page-footer .tab-container');
-  tabc.delegate('li', 'mouseenter', function () {
-    tabc.find('li.active').removeClass('active');
-    $(this).addClass('active');
+  tabc.delegate('li', 'mouseenter mouseleave', function (event) {
+    var $that = $(this);
 
-    $('.page-footer .tab-content.active').removeClass('active');
-    $($(this).find('a').attr('href')).addClass('active');
+    if (event.type === 'mouseenter') {
+      var timeout = setTimeout(function () {
+        //begin
+        tabc.find('li.active').removeClass('active');
+        $that.addClass('active');
+
+        $('.page-footer .tab-content.active').removeClass('active');
+        $($that.find('a').attr('href')).addClass('active');
+        //end
+      }, 500);
+      $that.data('tout', timeout);
+    } else if (event.type === 'mouseleave') {
+      var timeout = parseInt($that.data('tout'));
+      $that.data('tout', '0');
+      clearTimeout(timeout);
+    }
   });
   tabc.delegate('li', 'click', function () {return false;});
 });
