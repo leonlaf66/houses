@@ -19,6 +19,7 @@ class TourController extends Controller
             $tour->list_no = $req->post('listNo');
             $tour->date_start = $req->post('day').' '.$req->post('timeRange')[0] . ':00';
             $tour->date_end = $req->post('day').' '.$req->post('timeRange')[1] . ':00';
+            $tour->area_id = \WS::$app->area->id;
             $result = $tour->save();
         }
 
