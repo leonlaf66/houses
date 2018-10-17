@@ -8,11 +8,7 @@ class DefaultController extends \yii\web\Controller
 {
     public function actionIndex()
     {
-        $items = WS::$app->cache->get('schooldistrict.list');
-        if (!$items) {
-            $items = SchoolDistrict::xFind()->all();
-            WS::$app->cache->set('schooldistrict.list', $items);
-        }
+        $items = SchoolDistrict::xFind()->all();
 
         WS::share('schooldistrict.items', $items);
         
@@ -31,11 +27,7 @@ class DefaultController extends \yii\web\Controller
 
     public function actionView($id)
     {
-        $schoolDistrict = WS::$app->cache->get('schooldistrict.detail'.$id);
-        if (!$schoolDistrict) {
-            $schoolDistrict = SchoolDistrict::find()->where('id=:id', ['id' => $id])->one();
-            WS::$app->cache->set('schooldistrict.detail'.$id, $schoolDistrict);
-        }
+        $schoolDistrict = SchoolDistrict::find()->where('id=:id', ['id' => $id])->one();
 
         WS::$app->page->bindParams(['name' => $schoolDistrict->name]);
         if ($schoolDistrict->seo) {
