@@ -44,7 +44,7 @@
         <div class="row-body">
             <div class="col col1">
                 <a href="<?php echo $langId?>school-district/<?php echo $item->id?>/" title="<?php _tt($_name)?>">
-                    <img class="lazy" data-src="<?php echo media_url('school-area/images')?>/<?php echo str_replace('/', '&', strtoupper($item->code))?>.jpg" alt="<?php _tt($_name)?>">
+                    <img class="lazy" data-src="<?php echo media_url('school-area/images')?>/<?php echo $item->image?>.jpg" alt="<?php _tt($_name)?>">
                 </a>
             </div>
             <div class="col col2">

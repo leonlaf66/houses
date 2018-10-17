@@ -9,10 +9,10 @@ class SchoolDistrict extends \yii\base\Widget
 {  
     public function run()
     {
-        $items = \WS::$app->fetchCache('estate.search.school-district.items');
+        $items = \WS::$app->cache->get('estate.search.school-district.items');
         if (!$items) {
             $items = $this->getItems();
-            \WS::$app->saveCache('estate.search.school-district.items', $items);
+            \WS::$app->cache->set('estate.search.school-district.items', $items);
         }
 
         return $this->render('school-district.phtml', [

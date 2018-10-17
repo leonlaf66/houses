@@ -77,7 +77,7 @@ class SchoolDistrict extends \yii\db\ActiveRecord
 
     public function __get($name)
     {
-        if(in_array($name, ['id', 'property', 'json', 'sort_order', 'code'])) {
+        if(in_array($name, ['id', 'property', 'json', 'sort_order', 'code', 'image'])) {
             return parent::__get($name);
         }
 
