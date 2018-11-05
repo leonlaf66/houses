@@ -19,6 +19,15 @@
     </div>
 </div>
 
+
+<div class="top-description">
+    <img src="<?php echo media_url('egimgs/ma.jpg')?>" alt="<?php echo \WS::$app->area->name[1]?>买房 - 美国买房 - 米乐居">
+    米乐居 - <?php echo \WS::$app->area->name[1]?> 是美国房地产网络平台，本站为用户提供最新、最全的实时房源，提供国内用户一条龙房产服务。让您不再为海外置业选房、看房、买房、养房发愁。
+</div>
+<?php if(! \WS::$app->isSeoCrawlerAccess()):?>
+<style>.top-description{display:none;}</style>
+<?php endif?>
+
 <div class="container">
     <?php echo HomeWidgets\MarketingGuarantee::widget()?>
 </div>
